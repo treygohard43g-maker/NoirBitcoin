@@ -297,15 +297,18 @@ cursor:pointer;
 
 .dashboard-container{
 
-width:100%;
-max-width:100%;
-padding:20px;
-margin:0;
-box-sizing:border-box;
+    width:100%;
+    max-width:100%;
+    padding:20px;
+    margin:0 auto;
+    overflow-x:hidden;
 
 }
 
 .balance-card{
+
+width:100%;
+box-sizing:border-box;
 
 background:linear-gradient(135deg,#f59e0b,#d97706);
 
@@ -355,11 +358,13 @@ cursor:pointer;
 
 display:grid;
 
-grid-template-columns:repeat(4,1fr);
+grid-template-columns:repeat(2,1fr);
 
-gap:20px;
+gap:15px;
 
-margin:35px 0;
+margin:25px 0;
+
+width:100%;
 
 }
 
@@ -554,14 +559,16 @@ align-items:center;
 }
 
 
-.plans-grid {
+.plans-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+    width:100%;
+}
 
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 20px;
-
+.plan-card{
+    width:100%;
+    box-sizing:border-box;
 }
 
 
@@ -1199,23 +1206,16 @@ button[onclick="logout()"]:hover {
 
 
 
-.transaction-card {
+.transaction-card{
 
-    background:#111827;
-
-    padding:18px;
-
-    border-radius:18px;
-
+    width:100%;
     display:flex;
-
-    align-items:center;
-
     justify-content:space-between;
-
-    color:white;
-
-    border:1px solid rgba(255,255,255,0.1);
+    align-items:center;
+    padding:18px;
+    margin-bottom:15px;
+    border-radius:18px;
+    box-sizing:border-box;
 
 }
 
@@ -1406,3 +1406,13 @@ button[onclick="logout()"]:hover {
     color: #b7c0d1;
     font-size: 14px;
 }
+*{
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+}
+
