@@ -390,6 +390,30 @@ if(userData){
 
 }
 
+// ---------- NOTIFICATION MENU ----------
+
+const notificationBtn = document.getElementById("notificationBtn");
+
+const notificationMenu = document.getElementById("notificationMenu");
+
+
+if (notificationBtn && notificationMenu) {
+
+    notificationBtn.addEventListener("click", function () {
+
+        if (notificationMenu.style.display === "block") {
+
+            notificationMenu.style.display = "none";
+
+        } else {
+
+            notificationMenu.style.display = "block";
+
+        }
+
+    });
+
+}
 
 // ---------- LOGOUT ----------
 
