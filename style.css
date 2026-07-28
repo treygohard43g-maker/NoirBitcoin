@@ -267,18 +267,21 @@ font-weight:bold;
 /* ===== DASHBOARD ===== */
 
 .dashboard-header{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:20px 8%;
-
-background:#111827;
+    width:100%;
+    max-width:100%;
+    margin:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 24px;
+    background:#111827;
+    position:sticky;
+    top:0;
+    left:0;
+    z-index:1000;
 
 }
+
 
 .header-icons{
 
