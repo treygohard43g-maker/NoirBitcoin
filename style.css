@@ -752,3 +752,93 @@ color:white;
 color:#aaa;
 
 }
+
+/* Bitcoin Address Box */
+
+.wallet-address {
+
+    background: #0f172a;
+
+    color: #f59e0b;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    word-break: break-all;
+
+    border: 1px solid #f59e0b;
+
+    margin: 20px 0;
+
+}
+
+
+
+/* Copy Address Button */
+
+#copyAddress {
+
+    background: #f59e0b;
+
+    color: #000;
+
+    border: none;
+
+    padding: 12px 25px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+#copyAddress:hover {
+
+    background: white;
+
+}
+
+
+
+/* Logout Button */
+
+button[onclick="logout()"] {
+
+    background: #ef4444;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 30px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    transition: 0.3s;
+
+}
+
+
+button[onclick="logout()"]:hover {
+
+    background: #dc2626;
+
+    transform: scale(1.05);
+
+}
