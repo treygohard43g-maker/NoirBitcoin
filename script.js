@@ -415,6 +415,55 @@ if (notificationBtn && notificationMenu) {
 
 }
 
+// ---------- LIVE NOTIFICATIONS ----------
+
+const notificationContent = document.getElementById("notificationContent");
+
+
+const updates = [
+
+"₿ Bitcoin price increased by 2.5%",
+
+"💰 Your investment portfolio is active",
+
+"🔐 Security check completed",
+
+"📈 Market analysis updated",
+
+"✅ Wallet activity confirmed"
+
+];
+
+
+function updateNotification(){
+
+    if(!notificationContent) return;
+
+
+    const randomUpdate = updates[
+        Math.floor(Math.random() * updates.length)
+    ];
+
+
+    notificationContent.innerHTML = `
+
+    <div class="notification-item">
+
+    ${randomUpdate}
+
+    <p>
+    Just now
+    </p>
+
+    </div>
+
+    `;
+
+}
+
+
+setInterval(updateNotification,10000);
+
 // ---------- LOGOUT ----------
 
 function logout() {
