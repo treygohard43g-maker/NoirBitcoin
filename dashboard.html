@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>NoirBitcoin Dashboard</title>
@@ -12,65 +13,53 @@
 
 </head>
 
-
 <body>
 
-<div class="dashboard-container">
+<header class="dashboard-header">
 
-
-<div class="dashboard-header">
+<div class="logo">
 
 <h1>NOIRBITCOIN</h1>
 
-<button onclick="logout()">Logout</button>
+</div>
+
+<div class="header-icons">
+
+<span>🔔</span>
+
+<span>👤</span>
 
 </div>
 
+</header>
+
+<div class="dashboard-container">
 
 <h2 id="welcomeUser">
+
 Welcome
+
 </h2>
 
+<div class="balance-card">
 
+<p>Available Balance</p>
 
-<div class="dashboard-grid">
+<h1 id="availableBalance">
 
+$500,000.00
 
-<div class="dashboard-card">
+</h1>
 
-<h3>Available Balance</h3>
+<button id="toggleBalance">
 
-<h2>$100,000</h2>
+👁 Hide Balance
 
-</div>
-
-
-
-<div class="dashboard-card">
-
-<h3>Bitcoin Holdings</h3>
-
-<h2>0.00 BTC</h2>
+</button>
 
 </div>
 
-
-
-<div class="dashboard-card">
-
-<h3>Total Profit</h3>
-
-<h2>$0.00</h2>
-
-</div>
-
-
-</div>
-
-
-
-<div class="action-section">
-
+<div class="quick-actions">
 
 <button id="depositBtn">
 
@@ -78,33 +67,107 @@ Deposit
 
 </button>
 
-
 <button id="withdrawBtn">
 
 Withdraw
 
 </button>
 
+<button>
+
+Invest
+
+</button>
+
+<button>
+
+History
+
+</button>
 
 </div>
 
+<div class="market-card">
 
+<h3>
 
-<div class="transactions">
+₿ Bitcoin
 
-<h2>Recent Transactions</h2>
+</h3>
+
+<h1 id="btcPrice">
+
+$118,650
+
+</h1>
+
+<p id="btcMovement">
+
+▲ +2.50%
+
+</p>
+
+</div>
+
+<h2>
+
+Your Portfolio
+
+</h2>
+
+<div class="portfolio-grid">
+
+<div class="portfolio-card">
+
+<h3>Starter</h3>
+
+<p>$25,000</p>
+
+</div>
+
+<div class="portfolio-card">
+
+<h3>Gold</h3>
+
+<p>$100,000</p>
+
+</div>
+
+<div class="portfolio-card">
+
+<h3>Diamond</h3>
+
+<p>$375,000</p>
+
+</div>
+
+</div>
+
+<h2>
+
+Recent Transactions
+
+</h2>
+
+<div id="transactionList">
 
 <p>No transactions yet.</p>
 
 </div>
 
+<div style="text-align:center;margin-top:40px;">
 
+<button onclick="logout()">
+
+Logout
+
+</button>
 
 </div>
 
+</div>
 
 <script src="script.js"></script>
-
 
 </body>
 
