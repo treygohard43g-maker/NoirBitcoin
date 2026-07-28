@@ -12,7 +12,7 @@ const investmentPlans = [
     features: ["Daily returns", "Basic support", "Flexible withdrawal"]
   },
   {
-    id: 2,
+    id: 2,    
     name: "Professional",
     minimumBTC: 0.1,
     monthlyReturn: 8,
@@ -89,91 +89,12 @@ function selectPlan(planId) {
 }
 
 // Handle Investment Form Submission
-document.getElementById("investmentForm").addEventListener("submit", function(e) {
+const investmentForm = document.getElementById("investmentForm");
+
+if (investmentForm) {
+
+investmentForm.addEventListener("submit", function(e) {                  
   e.preventDefault();
-
-  const planId = parseInt(document.getElementById("planSelect").value);
-  const btcAmount = parseFloat(document.getElementById("btcAmount").value);
-  const walletAddress = document.getElementById("walletAddress").value;
-  const email = document.getElementById("email").value;
-
-  // Find selected plan
-  const selectedPlan = investmentPlans.find(p => p.id === planId);
-
-  // Validation
-  if (!selectedPlan) {
-    showMessage("Please select a plan", "error");
-    return;
-  }
-
-  if (btcAmount < selectedPlan.minimumBTC) {
-    showMessage(`Minimum investment for ${selectedPlan.name} is ${selectedPlan.minimumBTC} BTC`, "error");
-    return;
-  }
-
-  if (btcAmount <= 0) {
-    showMessage("Please enter a valid amount", "error");
-    return;
-  }
-
-  if (!walletAddress || !email) {
-    showMessage("Please fill in all fields", "error");
-    return;
-  }
-
-  // Add to portfolio
-  const investment = {
-    id: portfolio.length + 1,
-    planName: selectedPlan.name,
-    btcAmount: btcAmount,
-    usdAmount: (btcAmount * currentBTCPrice).toFixed(2),
-    monthlyReturn: selectedPlan.monthlyReturn,
-    duration: selectedPlan.duration,
-    investmentDate: new Date().toLocaleDateString(),
-    walletAddress: walletAddress,
-    email: email
-  };
-
-  portfolio.push(investment);
-  const transaction =
-document.createElement("div");
-
-transaction.className = "transaction";
-
-transaction.innerHTML = `
-
-<strong>${investment.planName}</strong><br>
-
-BTC: ${investment.btcAmount}<br>
-
-Value: $${investment.usdAmount}<br>
-
-${investment.investmentDate}
-
-`;
-
-if(transactionList.innerHTML.includes("No transactions")){
-
-transactionList.innerHTML="";
-
-}
-
-transactionList.prepend(transaction);
-activeInvestments++;
-
-totalDeposits += Number(investment.usdAmount);
-
-updateDashboardStats();
-  // Show success message
-  showMessage(`Successfully invested ${btcAmount} BTC in ${selectedPlan.name} plan!`, "success");
-
-  // Reset form
-  document.getElementById("investmentForm").reset();
-
-  // Update portfolio display
-  updatePortfolio();
-const percent =
-((portfolioBalance-100000)/100000*100);
 
 document.getElementById("profitPercent").innerHTML=
 
@@ -182,7 +103,8 @@ percent.toFixed(2)+"%";
   setTimeout(() => {
     document.getElementById("message").classList.remove("success");
   }, 5000);
-});
+  });
+}
 
 // Show Message
 function showMessage(text, type) {
@@ -674,28 +596,4 @@ if(window.location.pathname.includes("dashboard.html")){
     }
 
 }
-// Register System
-
-const registerForm = document.getElementById("registerForm");
-
-if (registerForm) {
-
-registerForm.addEventListener("submit", function(e){
-
-e.preventDefault();
-
-const name = document.getElementById("name").value;
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
-
-localStorage.setItem("userName", name);
-localStorage.setItem("userEmail", email);
-localStorage.setItem("userPassword", password);
-
-alert("Account created successfully!");
-
-window.location.href = "login.html";
-
-});
-
-}
+                                                        
