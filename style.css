@@ -297,7 +297,11 @@ cursor:pointer;
 
 .dashboard-container{
 
-padding:30px 8%;
+width:100%;
+max-width:100%;
+padding:20px;
+margin:0;
+box-sizing:border-box;
 
 }
 
