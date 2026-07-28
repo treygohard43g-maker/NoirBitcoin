@@ -1472,6 +1472,25 @@ body{
     margin-top: 3px;
 }
 
+.transaction-history {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+.transaction-card {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.dashboard-content {
+    width: 100%;
+    padding: 0;
+}
     
 
 
