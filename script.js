@@ -294,6 +294,27 @@ if (confirmWithdraw) {
     });
 
 }
+// ---------- INVEST BUTTON ----------
+
+const investBtn = document.getElementById("investBtn");
+
+const investmentPlans = document.getElementById("investmentPlans");
+
+
+if (investBtn && investmentPlans) {
+
+    investBtn.addEventListener("click", function () {
+
+        investmentPlans.scrollIntoView({
+
+            behavior: "smooth"
+
+        });
+
+    });
+
+}
+                                                        
 
 
 // ---------- LOGOUT ----------
@@ -335,4 +356,3 @@ alert("Bitcoin address copied");
 
 }
 
-                                                        
