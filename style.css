@@ -481,6 +481,58 @@ font-size:30px;
 }
 
 }
+
+/* Header Icon Buttons */
+
+.icon-btn{
+
+background:#1f2937;
+
+border:none;
+
+width:45px;
+
+height:45px;
+
+border-radius:50%;
+
+color:white;
+
+font-size:20px;
+
+cursor:pointer;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+transition:0.3s;
+
+}
+
+
+.icon-btn:hover{
+
+background:#f59e0b;
+
+color:#000;
+
+transform:scale(1.1);
+
+}
+
+
+.header-icons{
+
+display:flex;
+
+gap:15px;
+
+align-items:center;
+
+}
       
       
       
