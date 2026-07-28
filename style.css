@@ -1,4 +1,4 @@
-*{
+=*{
 margin:0;
 padding:0;
 box-sizing:border-box;
@@ -1343,4 +1343,59 @@ button[onclick="logout()"]:hover {
 
     cursor:pointer;
 
+}
+/* Notification Dropdown */
+.notification-menu {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    width: 320px;
+    background: #1f2937;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,.45);
+    display: none;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.notification-menu.active {
+    display: block;
+}
+
+.notification-header {
+    background: #111827;
+    padding: 15px 20px;
+    border-bottom: 1px solid #333;
+}
+
+.notification-header h3 {
+    color: #f59e0b;
+    margin: 0;
+    font-size: 18px;
+}
+
+.notification-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #2b3445;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.notification-item:hover {
+    background: #293548;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-title {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.notification-text {
+    color: #b7c0d1;
+    font-size: 14px;
 }
