@@ -1576,7 +1576,20 @@ body{
     font-size: 10px;
 }
 
+.transaction-history {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
 
+.transaction-row,
+.transaction-card {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+}
 
 
 
