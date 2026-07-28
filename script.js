@@ -249,4 +249,52 @@ function logout() {
 
 }
 
+// Deposit Popup
+
+const depositBtn = document.getElementById("depositBtn");
+
+const depositModal = document.getElementById("depositModal");
+
+const closeDeposit = document.getElementById("closeDeposit");
+
+
+if(depositBtn){
+
+depositBtn.onclick = function(){
+
+depositModal.style.display = "flex";
+
+}
+
+}
+
+
+if(closeDeposit){
+
+closeDeposit.onclick = function(){
+
+depositModal.style.display = "none";
+
+}
+
+}
+
+
+// Copy Bitcoin Address
+
+const copyAddress = document.getElementById("copyAddress");
+
+
+if(copyAddress){
+
+copyAddress.onclick = function(){
+
+navigator.clipboard.writeText("12345667990018682929");
+
+alert("Bitcoin address copied");
+
+}
+
+}
+
                                                         
