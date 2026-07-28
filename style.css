@@ -1591,5 +1591,11 @@ body{
     box-sizing: border-box;
 }
 
-
+.bitcoin-price,
+.live-price,
+.investment-plans,
+.plans-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 
