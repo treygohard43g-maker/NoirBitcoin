@@ -1490,7 +1490,91 @@ body{
     width: 100%;
     padding: 0;
 }
-    
+    .transaction-history {
+    width: 100%;
+}
+
+.transaction-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 20px;
+    background: #111827;
+    border-bottom: 1px solid #273244;
+    box-sizing: border-box;
+}
+
+
+.transaction-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+
+.receive {
+    color: #22c55e;
+}
+
+
+.send {
+    color: #ef4444;
+}
+
+
+.transaction-details {
+    flex: 1;
+}
+
+
+.transaction-details h3 {
+    font-size: 13px;
+    color: white;
+    margin: 0 0 5px;
+}
+
+
+.transaction-details p {
+    font-size: 11px;
+    color: #9ca3af;
+    margin: 2px 0;
+    font-family: monospace;
+}
+
+
+.transaction-details span {
+    font-size: 10px;
+    color: #64748b;
+}
+
+
+.transaction-value {
+    text-align: right;
+}
+
+
+.transaction-value strong {
+    font-size: 12px;
+    font-family: monospace;
+    color: white;
+}
+
+
+.confirmed {
+    color: #22c55e;
+    font-size: 10px;
+}
+
+
+.pending {
+    color: #f59e0b;
+    font-size: 10px;
+}
 
 
 
