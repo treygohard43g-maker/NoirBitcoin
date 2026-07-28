@@ -207,15 +207,28 @@ setInterval(updateBitcoin, 5000);
 
 
 
-// ---------- DEPOSIT ----------
+// ---------- DEPOSIT POPUP ----------
 
 const depositBtn = document.getElementById("depositBtn");
+const depositModal = document.getElementById("depositModal");
+const closeDeposit = document.getElementById("closeDeposit");
 
-if (depositBtn) {
+if (depositBtn && depositModal) {
 
     depositBtn.addEventListener("click", function () {
 
-        alert("Deposit feature coming soon.");
+        depositModal.style.display = "flex";
+
+    });
+
+}
+
+
+if (closeDeposit) {
+
+    closeDeposit.addEventListener("click", function () {
+
+        depositModal.style.display = "none";
 
     });
 
@@ -223,19 +236,45 @@ if (depositBtn) {
 
 
 
-// ---------- WITHDRAW ----------
+<!-- Withdraw Popup -->
 
-const withdrawBtn = document.getElementById("withdrawBtn");
+<div id="withdrawModal" class="modal">
 
-if (withdrawBtn) {
+    <div class="modal-content">
 
-    withdrawBtn.addEventListener("click", function () {
+        <span class="close" id="closeWithdraw">
+            &times;
+        </span>
 
-        alert("Withdraw feature coming soon.");
+        <h2>Withdraw Bitcoin</h2>
 
-    });
+        <p>Enter withdrawal details</p>
 
-}
+
+        <input 
+        type="number" 
+        id="withdrawAmount" 
+        placeholder="Amount in BTC">
+
+
+        <input 
+        type="text" 
+        id="withdrawWallet" 
+        placeholder="Bitcoin wallet address">
+
+
+        <button id="confirmWithdraw">
+            Confirm Withdrawal
+        </button>
+
+
+        <p class="notice">
+            Withdrawal request will be processed.
+        </p>
+
+    </div>
+
+</div>
 
 
 
