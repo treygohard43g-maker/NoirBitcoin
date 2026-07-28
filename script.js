@@ -513,3 +513,164 @@ document
 alert("Withdraw feature coming soon.");
 
 });
+
+function openDeposit() {
+
+    document.getElementById("depositModal").style.display = "flex";
+
+}
+
+function closeDeposit() {
+
+    document.getElementById("depositModal").style.display = "none";
+
+}
+
+function openWithdraw() {
+
+    document.getElementById("withdrawModal").style.display = "flex";
+
+}
+
+function closeWithdraw() {
+
+    document.getElementById("withdrawModal").style.display = "none";
+
+}
+
+window.onclick = function (event) {
+
+    const deposit = document.getElementById("depositModal");
+
+    const withdraw = document.getElementById("withdrawModal");
+
+    if (event.target === deposit) {
+
+        deposit.style.display = "none";
+
+    }
+
+    if (event.target === withdraw) {
+
+        withdraw.style.display = "none";
+
+    }
+
+};
+
+// REGISTER SYSTEM
+
+const registerForm = document.getElementById("registerForm");
+
+if (registerForm) {
+
+    registerForm.addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+
+        const user = {
+            name: name,
+            email: email,
+            password: password
+        };
+
+
+        localStorage.setItem("noirUser", JSON.stringify(user));
+
+
+        alert("Account created successfully!");
+
+
+        window.location.href = "login.html";
+
+    });
+
+}
+
+// LOGIN SYSTEM
+
+const loginForm = document.getElementById("loginForm");
+
+
+if (loginForm) {
+
+    loginForm.addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+
+
+        const savedUser = JSON.parse(localStorage.getItem("noirUser"));
+
+
+        if (
+            savedUser &&
+            email === savedUser.email &&
+            password === savedUser.password
+        ) {
+
+
+            localStorage.setItem("loggedIn", "true");
+
+
+            window.location.href = "dashboard.html";
+
+
+        } else {
+
+            alert("Incorrect email or password");
+
+        }
+
+
+    });
+
+}
+
+// DISPLAY USER NAME ON DASHBOARD
+
+const welcomeUser = document.getElementById("welcomeUser");
+
+if (welcomeUser) {
+
+    const user = JSON.parse(localStorage.getItem("noirUser"));
+
+    if (user) {
+
+        welcomeUser.innerHTML = "Welcome, " + user.name;
+
+    }
+
+}
+
+// LOGOUT FUNCTION
+
+function logout(){
+
+    localStorage.removeItem("loggedIn");
+
+    window.location.href = "login.html";
+
+}
+
+// CHECK IF USER IS LOGGED IN
+
+if(window.location.pathname.includes("dashboard.html")){
+
+    const loggedIn = localStorage.getItem("loggedIn");
+
+    if(loggedIn !== "true"){
+
+        window.location.href = "login.html";
+
+    }
+
+}
