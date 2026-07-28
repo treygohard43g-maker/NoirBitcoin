@@ -234,48 +234,66 @@ if (closeDeposit) {
 
 }
 
+// ---------- WITHDRAW POPUP ----------
+
+const withdrawBtn = document.getElementById("withdrawBtn");
+
+const withdrawModal = document.getElementById("withdrawModal");
+
+const closeWithdraw = document.getElementById("closeWithdraw");
 
 
-<!-- Withdraw Popup -->
+if (withdrawBtn && withdrawModal) {
 
-<div id="withdrawModal" class="modal">
+    withdrawBtn.addEventListener("click", function () {
 
-    <div class="modal-content">
+        withdrawModal.style.display = "flex";
 
-        <span class="close" id="closeWithdraw">
-            &times;
-        </span>
+    });
 
-        <h2>Withdraw Bitcoin</h2>
-
-        <p>Enter withdrawal details</p>
+}
 
 
-        <input 
-        type="number" 
-        id="withdrawAmount" 
-        placeholder="Amount in BTC">
+if (closeWithdraw) {
+
+    closeWithdraw.addEventListener("click", function () {
+
+        withdrawModal.style.display = "none";
+
+    });
+
+}
 
 
-        <input 
-        type="text" 
-        id="withdrawWallet" 
-        placeholder="Bitcoin wallet address">
+const confirmWithdraw = document.getElementById("confirmWithdraw");
 
 
-        <button id="confirmWithdraw">
-            Confirm Withdrawal
-        </button>
+if (confirmWithdraw) {
+
+    confirmWithdraw.addEventListener("click", function () {
+
+        const amount = document.getElementById("withdrawAmount").value;
+
+        const wallet = document.getElementById("withdrawWallet").value;
 
 
-        <p class="notice">
-            Withdrawal request will be processed.
-        </p>
+        if (!amount || !wallet) {
 
-    </div>
+            alert("Please fill all withdrawal details");
 
-</div>
+            return;
 
+        }
+
+
+        alert("Withdrawal request submitted successfully");
+
+
+        withdrawModal.style.display = "none";
+
+    });
+
+}
 
 
 // ---------- LOGOUT ----------
@@ -285,25 +303,6 @@ function logout() {
     localStorage.removeItem("loggedIn");
 
     window.location.href = "login.html";
-
-}
-
-// Deposit Popup
-
-const depositBtn = document.getElementById("depositBtn");
-
-const depositModal = document.getElementById("depositModal");
-
-const closeDeposit = document.getElementById("closeDeposit");
-
-
-if(depositBtn){
-
-depositBtn.onclick = function(){
-
-depositModal.style.display = "flex";
-
-}
 
 }
 
