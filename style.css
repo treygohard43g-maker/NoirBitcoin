@@ -1604,4 +1604,9 @@ body{
     margin-top: 5px;
     margin-bottom: 5px;
 }
-
+.balance-amount,
+.transaction-amount strong,
+.plan-card h2 {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
