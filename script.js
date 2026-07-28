@@ -315,7 +315,26 @@ if (investBtn && investmentPlans) {
 
 }
                                                         
+// ---------- HISTORY BUTTON ----------
 
+const historyBtn = document.getElementById("historyBtn");
+
+const transactionHistory = document.getElementById("transactionHistory");
+
+
+if (historyBtn && transactionHistory) {
+
+    historyBtn.addEventListener("click", function () {
+
+        transactionHistory.scrollIntoView({
+
+            behavior: "smooth"
+
+        });
+
+    });
+
+}
 
 // ---------- LOGOUT ----------
 
