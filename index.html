@@ -11,6 +11,21 @@
   <header>
     <h1>₿ Bitcoin Investment Hub</h1>
     <p>Grow Your Wealth with Bitcoin</p>
+   
+    <div class="auth-buttons">
+
+        <button onclick="window.location.href='login.html'">
+
+            Login
+
+        </button>
+
+        <button onclick="window.location.href='register.html'">
+
+            Register
+
+        </button>
+        </div>
   </header>
 
   <div class="container">
@@ -111,7 +126,7 @@
 
     <h2>Live Bitcoin Price</h2>
 
-    <h1 id="btcPrice">$118,650</h1>
+    <h1 id="lliveNotificationbtcPrice">$118,650</h1>
 
     <p id="btcMovement">Waiting for market update...</p>
 
@@ -142,6 +157,58 @@
   <script src="script.js"></script>
 
 <div id="liveNotification" class="live-notification">
+
+</div>
+
+<!-- Deposit Popup -->
+<div id="depositModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeDeposit()">&times;</span>
+
+        <h2>Deposit</h2>
+
+        <p>Select a demo payment method.</p>
+
+        <button class="payment-btn">💳 Card (Demo)</button>
+
+        <button class="payment-btn">₿ Bitcoin (Demo)</button>
+
+        <div class="notice">
+
+            This is a demonstration interface for the NoirBitcoin portfolio project.
+            No real payments are processed.
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Withdraw Popup -->
+
+<div id="withdrawModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeWithdraw()">&times;</span>
+
+        <h2>Withdraw</h2>
+
+        <p>
+
+            Withdrawal feature is currently in demonstration mode.
+
+        </p>
+
+        <p>
+
+            This interface is for showcasing the design only.
+
+        </p>
+
+    </div>
 
 </div>
 </body>
