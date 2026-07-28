@@ -1175,3 +1175,101 @@ button[onclick="logout()"]:hover {
     font-size:14px;
 
 }
+/* Transaction Cards */
+
+
+.transactions-list {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+
+
+.transaction-card {
+
+    background:#111827;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,0.1);
+
+}
+
+
+
+.transaction-icon {
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#1f2937;
+
+    color:#f59e0b;
+
+}
+
+
+
+.transaction-info {
+
+    flex:1;
+
+    margin-left:15px;
+
+}
+
+
+
+.transaction-info h4 {
+
+    margin:0;
+
+}
+
+
+
+.transaction-info p {
+
+    margin-top:5px;
+
+    color:#94a3b8;
+
+    font-size:13px;
+
+}
+
+
+
+.transaction-amount {
+
+    font-weight:bold;
+
+    color:#22c55e;
+
+}
