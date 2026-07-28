@@ -1411,88 +1411,70 @@ body{
 .transaction-history {
     margin-top: 30px;
 }
-
 .transaction-history h2 {
-    margin-bottom: 20px;
+    font-size: 16px;
     color: white;
+    margin-bottom: 15px;
 }
 
 
 .transaction-card {
     background: #111827;
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 15px;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     border: 1px solid #273244;
 }
 
 
 .transaction-icon {
-    width: 45px;
-    height: 45px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-}
-
-
-.receive {
-    background: #064e3b;
-    color: #34d399;
-}
-
-
-.send {
-    background: #450a0a;
-    color: #f87171;
-}
-
-
-.transaction-info {
-    flex: 1;
-}
-
-
-.transaction-info h3 {
-    color: white;
-    margin-bottom: 5px;
-}
-
-
-.transaction-info p {
-    color: #9ca3af;
-    font-size: 13px;
-    margin: 3px 0;
-}
-
-
-.transaction-info span {
-    color: #6b7280;
-    font-size: 12px;
-}
-
-
-.transaction-amount {
-    text-align: right;
-}
-
-
-.transaction-amount strong {
-    color: white;
     font-size: 16px;
 }
 
 
-.confirmed {
-    color: #34d399;
+.transaction-info h3 {
+    font-size: 13px;
+    margin: 0 0 4px;
+    color: white;
 }
 
 
+.transaction-info p {
+    font-size: 11px;
+    color: #9ca3af;
+    margin: 2px 0;
+    font-family: monospace;
+}
+
+
+.transaction-info span {
+    font-size: 10px;
+    color: #6b7280;
+}
+
+
+.transaction-amount strong {
+    font-size: 12px;
+    color: white;
+    font-family: monospace;
+}
+
+
+.confirmed,
 .pending {
-    color: #fbbf24;
+    font-size: 10px;
+    margin-top: 3px;
 }
+
+    
+
+
+
+
+
