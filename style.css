@@ -561,8 +561,8 @@ align-items:center;
 
 .plans-grid{
     display:grid;
-    grid-template-columns:1fr;
-    gap:20px;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
     width:100%;
 }
 
@@ -572,24 +572,17 @@ align-items:center;
 }
 
 
-.plan-card {
-
-    background: linear-gradient(145deg, #111827, #1f2937);
-
-    border-radius: 20px;
-
-    padding: 25px;
-
-    text-align: center;
-
-    color: white;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-
-    transition: 0.3s;
-
+.plan-card{
+    width:100%;
+    box-sizing:border-box;
+    background:linear-gradient(145deg,#111827,#1f2937);
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+    color:white;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+    transition:.3s;
 }
-
 
 .plan-card:hover {
 
