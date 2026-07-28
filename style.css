@@ -1473,13 +1473,12 @@ body{
 }
 
 .transaction-history {
-    width: 100%;
-    max-width: none;
-    margin: 0;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: 0;
     padding: 20px;
     box-sizing: border-box;
 }
-
 
 .transaction-card {
     width: 100%;
