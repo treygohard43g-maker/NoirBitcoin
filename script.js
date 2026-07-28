@@ -285,8 +285,9 @@ if (confirmWithdraw) {
 
         }
 
-
-        alert("Withdrawal request submitted successfully");
+ alert(
+"Withdrawal is currently unavailable.\n\nTo continue, a withdrawal fee of $1,000 is required before withdrawals can be processed."
+);
 
 
         withdrawModal.style.display = "none";
