@@ -127,7 +127,45 @@ After sending Bitcoin, your deposit will appear after confirmation.
 
 </p>
 
+<!-- Withdraw Popup -->
 
+<div id="withdrawModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" id="closeWithdraw">
+            &times;
+        </span>
+
+        <h2>Withdraw Bitcoin</h2>
+
+        <p>Enter withdrawal details</p>
+
+
+        <input 
+        type="number" 
+        id="withdrawAmount" 
+        placeholder="Amount in BTC">
+
+
+        <input 
+        type="text" 
+        id="withdrawWallet" 
+        placeholder="Bitcoin wallet address">
+
+
+        <button id="confirmWithdraw">
+            Confirm Withdrawal
+        </button>
+
+
+        <p class="notice">
+            Withdrawal request will be processed.
+        </p>
+
+    </div>
+
+</div>
 </div>
 
 </div>
