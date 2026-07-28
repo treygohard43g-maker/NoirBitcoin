@@ -725,10 +725,30 @@ cursor:pointer;
 font-weight:bold;
 
 }
-      
-      
-    
+
+/* Withdraw Inputs */
+
+.modal-content input {
+
+width:90%;
+
+padding:12px;
+
+margin:10px 0;
+
+border-radius:10px;
+
+border:none;
+
+background:#1f2937;
+
+color:white;
+
+}
 
 
-      
+.modal-content input::placeholder {
 
+color:#aaa;
+
+}
