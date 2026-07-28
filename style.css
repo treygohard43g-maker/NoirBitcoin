@@ -533,6 +533,110 @@ gap:15px;
 align-items:center;
 
 }
+
+ 
+/* Investment Plans */
+
+.plans-section {
+    margin-top: 40px;
+}
+
+
+.plans-section h2 {
+    margin-bottom: 20px;
+}
+
+
+.plans-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.plan-card {
+
+    background: linear-gradient(145deg, #111827, #1f2937);
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    color: white;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
+    transition: 0.3s;
+
+}
+
+
+.plan-card:hover {
+
+    transform: translateY(-8px);
+
+}
+
+
+.plan-card img {
+
+    width: 70px;
+
+    height: 70px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.plan-card h3 {
+
+    font-size: 22px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.plan-card h2 {
+
+    color: #f59e0b;
+
+}
+
+
+.plan-card button {
+
+    margin-top: 15px;
+
+    padding: 12px 25px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #f59e0b;
+
+    color: black;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.plan-card button:hover {
+
+    background: white;
+
+}
       
       
       
