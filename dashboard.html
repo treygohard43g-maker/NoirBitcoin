@@ -361,72 +361,96 @@ Investment Plans
 
 <section class="transaction-history">
 
-<h2>transaction History</h2>
+<h2>Transaction History</h2>
 
-<div class="transaction-row">
+<div class="transaction-item">
 
-<div class="transaction-icon receive">
-↓
-</div>
+    <div class="transaction-header" onclick="toggleTransaction(this)">
 
-<div class="transaction-details">
-<h3>Bitcoin Received</h3>
-<p>From: bc1q8x9f...72kd</p>
-<p>Hash: 8f92ab43d91e...</p>
-<span>July 28, 2026 • 12 Confirmations</span>
-</div>
+        <div>
+            <h3>Bitcoin Received</h3>
+            <p>July 28, 2026 • Confirmed</p>
+        </div>
 
-<div class="transaction-value">
-<strong>+0.025 BTC</strong>
-<p class="confirmed">Confirmed</p>
-</div>
+        <strong class="receive">+0.025 BTC ▼</strong>
 
-</div>
+    </div>
 
+    <div class="transaction-details">
 
-<div class="transaction-row">
+        <p><strong>From:</strong> bc1q8x9f...72kd</p>
 
-<div class="transaction-icon send">
-↑
-</div>
+        <p><strong>Transaction Hash:</strong></p>
 
-<div class="transaction-details">
-<h3>Bitcoin Sent</h3>
-<p>To: bc1m92kd...84js</p>
-<p>Hash: a73bd92ff21c...</p>
-<span>July 27, 2026 • 6 Confirmations</span>
-</div>
+        <p>8f92ab43d91e7b82ab394f73ab29d81283bcf7192ab83f</p>
 
-<div class="transaction-value">
-<strong>-0.010 BTC</strong>
-<p class="pending">Pending</p>
-</div>
+        <p><strong>Confirmations:</strong> 12</p>
+
+        <p><strong>Status:</strong> Confirmed</p>
+
+    </div>
 
 </div>
 
+<div class="transaction-item">
 
-<div class="transaction-row">
+    <div class="transaction-header" onclick="toggleTransaction(this)">
 
-<div class="transaction-icon receive">
-↓
+        <div>
+            <h3>Bitcoin Sent</h3>
+            <p>July 27, 2026 • Pending</p>
+        </div>
+
+        <strong class="send">-0.010 BTC ▼</strong>
+
+    </div>
+
+    <div class="transaction-details">
+
+        <p><strong>To:</strong> bc1m92kd...84js</p>
+
+        <p><strong>Transaction Hash:</strong></p>
+
+        <p>a73bd92ff21cd82a19f72bd73ab29d8abf72bcd8a12</p>
+
+        <p><strong>Confirmations:</strong> 6</p>
+
+        <p><strong>Status:</strong> Pending</p>
+
+    </div>
+
 </div>
 
-<div class="transaction-details">
-<h3>Investment Deposit</h3>
-<p>Wallet: bc1x72kd...91lm</p>
-<p>Hash: c82jd92ka81f...</p>
-<span>July 25, 2026 • 24 Confirmations</span>
-</div>
+<div class="transaction-item">
 
-<div class="transaction-value">
-<strong>+$5,000</strong>
-<p class="confirmed">Confirmed</p>
-</div>
+    <div class="transaction-header" onclick="toggleTransaction(this)">
+
+        <div>
+            <h3>Investment Deposit</h3>
+            <p>July 25, 2026 • Confirmed</p>
+        </div>
+
+        <strong class="receive">+$5,000 ▼</strong>
+
+    </div>
+
+    <div class="transaction-details">
+
+        <p><strong>Wallet:</strong> bc1x72kd...91lm</p>
+
+        <p><strong>Transaction Hash:</strong></p>
+
+        <p>c82jd92ka81f29ab73bc91d72ab38f72bc91ab2d73</p>
+
+        <p><strong>Confirmations:</strong> 24</p>
+
+        <p><strong>Status:</strong> Confirmed</p>
+
+    </div>
 
 </div>
 
 </section>
-</div>
 
 
 <div class="transaction-info">
