@@ -644,11 +644,18 @@ function confirmInvestment() {
 
     localStorage.setItem("investments", JSON.stringify(investments));
 
-    alert("✅ Investment Successful!");
+    document.getElementById("successPlan").textContent = selectedPlan;
+    document.getElementById("successAmount").textContent = amount;
 
-    window.location.href = "dashboard.html";
+    document.getElementById("successMessage").style.display = "block";
+
+    setTimeout(function () {
+        window.location.href = "dashboard.html";
+    }, 2500);
+
 }
 
+    
 // ---------- LOAD INVESTMENT HISTORY ----------
 
 const investmentHistory = document.getElementById("investmentHistory");
