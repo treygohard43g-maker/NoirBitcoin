@@ -299,7 +299,7 @@ if (confirmWithdraw) {
 
 const investBtn = document.getElementById("investBtn");
 
-const investmentPlans = document.getElementById("investmentPlans");
+const investmentPlans = document.getElementById("InvestmentPlans");
 
 
 if (investBtn && investmentPlans) {
@@ -504,3 +504,7 @@ alert("Bitcoin address copied");
 
 }
 
+function investNow(plan) {
+    localStorage.setItem("selectedPlan", plan);
+    window.location.href = "investment.html";
+}
