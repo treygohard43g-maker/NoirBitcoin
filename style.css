@@ -519,6 +519,9 @@ align-items:center;
     grid-template-columns:repeat(2, minmax(0, 1fr));
     gap:12px;
     width:100%;
+    max-width:100px;
+    margin:0 auto;
+    padding:0;
     
 }
 
@@ -850,47 +853,6 @@ button[onclick="logout()"]:hover {
 
 
 
-.modal-content button {
-
-    margin-top:15px;
-
-    background:#f59e0b;
-
-    color:black;
-
-    border:none;
-
-    padding:14px 25px;
-
-    border-radius:12px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-}
-
-
-
-.modal-content button:hover {
-
-    background:white;
-
-}
-
-
-
-.close {
-
-    float:right;
-
-    font-size:30px;
-
-    cursor:pointer;
-
-    color:#fff;
-
-}
 /* Wallet Balance Card Upgrade */
 
 .balance-card {
@@ -1073,17 +1035,6 @@ button[onclick="logout()"]:hover {
 
 }
 
-
-
-.transaction-card{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    width:100%;
-    box-sizing:border-box;
-    flex-wrap:wrap;
-}
 
 
 
@@ -1276,17 +1227,6 @@ body{
 }
 
 
-.transaction-card {
-    background: #111827;
-    border-radius: 10px;
-    padding: 12px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border: 1px solid #273244;
-}
-
 
 .transaction-icon {
     width: 32px;
@@ -1331,10 +1271,6 @@ body{
 }
 
 
-.transaction-card {
-    width: 100%;
-    box-sizing: border-box;
-}
 
 
 .dashboard-content {
