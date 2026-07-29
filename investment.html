@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoirBitcoin Investment</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body{
+            margin:0;
+            font-family:Arial,Helvetica,sans-serif;
+            background:#0b0b0b;
+            color:white;
+        }
+
+        .container{
+            max-width:700px;
+            margin:40px auto;
+            padding:20px;
+        }
+
+        .card{
+            background:#161616;
+            border-radius:18px;
+            padding:25px;
+            box-shadow:0 0 20px rgba(255,170,0,.15);
+        }
+
+        h1{
+            text-align:center;
+            color:#f5b942;
+        }
+
+        .plan-name{
+            font-size:28px;
+            font-weight:bold;
+            margin-top:20px;
+        }
+
+        .returns{
+            color:#00d26a;
+            font-size:20px;
+            margin-top:10px;
+        }
+
+        .minimum{
+            color:#bbbbbb;
+            margin-top:8px;
+        }
+
+        label{
+            display:block;
+            margin-top:25px;
+            margin-bottom:8px;
+            font-weight:bold;
+        }
+
+        input{
+            width:100%;
+            padding:15px;
+            border:none;
+            border-radius:10px;
+            font-size:16px;
+            background:#252525;
+            color:white;
+            box-sizing:border-box;
+        }
+
+        button{
+            width:100%;
+            margin-top:30px;
+            padding:16px;
+            background:#f5b942;
+            border:none;
+            border-radius:10px;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+        }
+
+        button:hover{
+            opacity:.9;
+        }
+
+        .back-btn{
+            background:#2b2b2b;
+            color:white;
+            margin-top:15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>
+<i class="fa-solid fa-chart-line"></i>
+Invest in Bitcoin
+</h1>
+
+<div class="plan-name" id="planName">
+Loading...
+</div>
+
+<div class="returns" id="planReturn">
+Monthly Return
+</div>
+
+<div class="minimum" id="planMinimum">
+Minimum Investment
+</div>
+
+<label>Investment Amount (BTC)</label>
+
+<input
+type="number"
+id="amount"
+placeholder="Enter amount">
+
+<button onclick="confirmInvestment()">
+Confirm Investment
+</button>
+
+<button class="back-btn"
+onclick="window.location.href='dashboard.html'">
+Back to Dashboard
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const selectedPlan = localStorage.getItem("selectedPlan");
+
+const plans = {
+
+"Starter Plan":{
+return:"5% Monthly Return",
+minimum:"Minimum: 0.01 BTC"
+},
+
+"Professional Plan":{
+return:"8% Monthly Return",
+minimum:"Minimum: 0.1 BTC"
+},
+
+"Premium Plan":{
+return:"12% Monthly Return",
+minimum:"Minimum: 0.5 BTC"
+},
+
+"Diamond Plan":{
+return:"20% Monthly Return",
+minimum:"Minimum: 1 BTC"
+}
+
+};
+
+if(plans[selectedPlan]){
+
+document.getElementById("planName").innerHTML = selectedPlan;
+
+document.getElementById("planReturn").innerHTML = plans[selectedPlan].return;
+
+document.getElementById("planMinimum").innerHTML = plans[selectedPlan].minimum;
+
+}else{
+
+document.getElementById("planName").innerHTML = "Bitcoin Investment";
+
+document.getElementById("planReturn").innerHTML = "";
+
+document.getElementById("planMinimum").innerHTML = "";
+
+}
+
+function confirmInvestment(){
+
+const amount=document.getElementById("amount").value;
+
+if(amount==""){
+
+alert("Please enter an investment amount.");
+
+return;
+
+}
+
+alert("Congratulations!\n\nYour "+selectedPlan+" investment has been submitted successfully.");
+
+window.location.href="dashboard.html";
+
+}
+
+</script>
+
+</body>
+</html>
