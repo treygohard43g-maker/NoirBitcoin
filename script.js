@@ -508,21 +508,29 @@ function investNow(plan) {
     localStorage.setItem("selectedPlan", plan);
     window.location.href = "investment.html";
 }
-function toggleTransaction(header) {
 
-    const details = header.nextElementSibling;
+function toggleHistory(header){
 
-    if (details.style.display === "block") {
+const details = header.nextElementSibling;
 
-        details.style.display = "none";
+document.querySelectorAll(".history-details").forEach(item=>{
 
-    } else {
+if(item!==details){
 
-        document.querySelectorAll(".transaction-details").forEach(item => {
-            item.style.display = "none";
-        });
+item.style.display="none";
 
-        details.style.display = "block";
-    }
+}
+
+});
+
+if(details.style.display==="block"){
+
+details.style.display="none";
+
+}else{
+
+details.style.display="block";
+
+}
 
 }
