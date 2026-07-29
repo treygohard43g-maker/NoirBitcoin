@@ -819,3 +819,18 @@ function updateBalance(){
 
 // update every few seconds
 setInterval(updateBalance,5000);
+
+
+function goToHistory(){
+
+    const history = document.getElementById("historySection");
+
+    if(history){
+
+        history.scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+}
