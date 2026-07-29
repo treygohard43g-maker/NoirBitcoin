@@ -2536,3 +2536,25 @@ margin:0;
     width:100% !important;
     height:100% !important;
 }
+
+/* Dashboard Section Spacing Fix */
+
+.market-card{
+    margin-bottom:40px !important;
+}
+
+.plans-section{
+    margin-top:40px !important;
+    margin-bottom:40px !important;
+}
+
+.transaction-history{
+    margin-top:40px !important;
+    padding-top:20px;
+}
+
+
+.portfolio-grid,
+.plans-grid{
+    margin-bottom:40px;
+}
