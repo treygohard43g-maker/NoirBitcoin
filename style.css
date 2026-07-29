@@ -1397,14 +1397,6 @@ body{
     width:100%;
     overflow-x:hidden;
 }
-.transaction-history {
-    margin-top: 30px;
-}
-.transaction-history h2 {
-    font-size: 16px;
-    color: white;
-    margin-bottom: 15px;
-}
 
 
 .transaction-card {
@@ -1461,13 +1453,6 @@ body{
     margin-top: 3px;
 }
 
-.transaction-history {
-    width: 100vw;
-    max-width: 100vw;
-    margin-left: 0;
-    padding: 20px;
-    box-sizing: border-box;
-}
 
 .transaction-card {
     width: 100%;
@@ -1568,11 +1553,6 @@ body{
     font-size: 10px;
 }
 
-.transaction-history {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-}
 
 .transaction-row,
 .transaction-card {
@@ -1691,14 +1671,7 @@ margin:0;
     overflow-x:hidden;
 }
 
-.tx-hash{
-    font-size:11px;
-    color:#888;
-    word-break:break-all;
-    overflow-wrap:anywhere;
-    white-space:normal;
-    margin-top:4px;
-}
+
 .tx-hash{
     font-size:11px;
     color:#888;
