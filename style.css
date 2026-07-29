@@ -2318,3 +2318,71 @@ margin:0;
 
 }
 
+/* Professional Dashboard Header */
+
+.dashboard-header{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 20px;
+    background:#111827;
+    border-radius:20px;
+    box-sizing:border-box;
+    margin-bottom:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+
+.logo h1{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:24px;
+    margin:0;
+    color:white;
+    letter-spacing:1px;
+}
+
+
+.logo i{
+    color:#f7931a;
+    font-size:32px;
+}
+
+
+.header-icons{
+    display:flex;
+    gap:12px;
+}
+
+
+.icon-btn{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.1);
+    background:#1f2937;
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+    transition:.3s ease;
+}
+
+
+.icon-btn i{
+    font-size:18px;
+}
+
+
+.icon-btn:hover{
+    background:#f7931a;
+    color:black;
+    transform:translateY(-3px);
+}
+
+
