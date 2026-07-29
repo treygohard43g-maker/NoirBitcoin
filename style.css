@@ -2161,6 +2161,7 @@ margin:0;
 
 .history-details{
     width:100% !important;
+    box-sizing:border-box !important;
     max-height:0;
     opacity:0;
     overflow:hidden;
@@ -2170,7 +2171,12 @@ margin:0;
         max-height .35s ease,
         opacity .35s ease,
         padding .35s ease;
-    box-sizing:border-box !important;
+}
+
+.history-details.active{
+    max-height:1000px !important;
+    opacity:1 !important;
+    padding:16px !important;
 }
 
 .history-details.active{
