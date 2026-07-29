@@ -2125,3 +2125,74 @@ margin:0;
     width:100% !important;
     margin-top:auto !important;
 }
+/* ===== TRANSACTION HISTORY PROFESSIONAL FORCE FIX ===== */
+
+.transaction-history{
+    width:100% !important;
+    max-width:100% !important;
+    margin:40px 0 0 !important;
+    padding:0 !important;
+    box-sizing:border-box !important;
+}
+
+.history-item{
+    width:100% !important;
+    display:block !important;
+    margin-bottom:12px !important;
+    background:#111827;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid #273244;
+}
+
+.history-header{
+    width:100% !important;
+    display:flex !important;
+    justify-content:space-between !important;
+    align-items:center !important;
+    padding:16px !important;
+    cursor:pointer;
+    box-sizing:border-box !important;
+}
+
+.history-header:hover{
+    background:#1b2535;
+}
+
+.history-details{
+    width:100% !important;
+    max-height:0;
+    opacity:0;
+    overflow:hidden;
+    padding:0 16px;
+    background:#0f172a;
+    transition:
+        max-height .35s ease,
+        opacity .35s ease,
+        padding .35s ease;
+    box-sizing:border-box !important;
+}
+
+.history-details.active{
+    max-height:500px;
+    opacity:1;
+    padding:16px;
+}
+
+.arrow{
+    display:inline-block;
+    transition:transform .3s ease;
+}
+
+.arrow.rotate{
+    transform:rotate(90deg);
+}
+
+.tx-hash{
+    word-break:break-all;
+    overflow-wrap:anywhere;
+}
+
+.transaction-history hr{
+    display:none;
+}
