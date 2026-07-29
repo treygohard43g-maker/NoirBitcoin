@@ -783,3 +783,39 @@ color:"rgba(255,255,255,.05)"
 });
 
 }
+
+// Live Balance Movement Animation
+
+const balanceDisplay = document.getElementById("availableBalance");
+
+let currentBalance = 500000;
+
+
+function updateBalance(){
+
+    if(!balanceDisplay) return;
+
+
+    // random small movement up or down
+    let change = Math.floor(Math.random() * 500) - 200;
+
+
+    currentBalance += change;
+
+
+    if(currentBalance < 0){
+        currentBalance = 0;
+    }
+
+
+    balanceDisplay.innerHTML =
+    "$" + currentBalance.toLocaleString("en-NG", {
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+    });
+
+}
+
+
+// update every few seconds
+setInterval(updateBalance,5000);
