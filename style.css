@@ -2224,3 +2224,7 @@ margin:0;
     transform:translateY(-2px) !important;
 }
 
+#toggleBalance i{
+    margin-right:8px;
+    font-size:16px;
+}
