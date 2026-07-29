@@ -2075,3 +2075,53 @@ margin:0;
     width:100%;
     box-sizing:border-box;
 }
+
+/* ===== RESET INVESTMENT PLAN CARDS ===== */
+
+.plans-section{
+    width:100% !important;
+    padding:0 15px !important;
+    margin:40px 0 !important;
+    box-sizing:border-box !important;
+}
+
+.plans-grid{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:15px !important;
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+}
+
+.plan-card{
+    width:100% !important;
+    min-width:0 !important;
+    max-width:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:flex-start !important;
+    align-items:center !important;
+    padding:18px !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+    border-radius:18px !important;
+    text-align:center !important;
+}
+
+.plan-card h2,
+.plan-card h3,
+.plan-card p{
+    width:100% !important;
+    margin:8px 0 !important;
+    white-space:normal !important;
+    word-break:normal !important;
+    overflow-wrap:break-word !important;
+    text-align:center !important;
+}
+
+.plan-card button{
+    width:100% !important;
+    margin-top:auto !important;
+}
