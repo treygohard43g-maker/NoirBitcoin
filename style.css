@@ -1730,3 +1730,10 @@ margin:0;
 .arrow.rotate{
     transform:rotate(90deg);
 }
+
+.logo i{
+    color:#f7931a;
+    margin-right:8px;
+    font-size:32px;
+    vertical-align:middle;
+}
