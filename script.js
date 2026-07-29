@@ -621,3 +621,25 @@ function calculateProfit() {
         "Estimated Monthly Profit: $" + profit.toFixed(2);
 
 }
+
+// ---------- CONFIRM INVESTMENT ----------
+
+function confirmInvestment() {
+
+    const amount = document.getElementById("investmentAmount").value;
+
+    if (!amount || Number(amount) <= 0) {
+        alert("Please enter an investment amount.");
+        return;
+    }
+
+    alert(
+        "✅ Investment Successful!\n\n" +
+        "Plan: " + selectedPlan +
+        "\nAmount: $" + amount +
+        "\n\nYour investment is now active."
+    );
+
+    window.location.href = "dashboard.html";
+
+}
