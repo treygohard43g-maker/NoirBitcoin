@@ -139,16 +139,14 @@ if (toggleBalance && balanceElement) {
 
             balanceElement.innerHTML = "••••••••";
 
-            toggleBalance.innerHTML = "👁 Show Balance";
-
+            toggleBalance.innerHTML = '<i class="fa-solid fa-eye-slash"></i> Show Balance';
             balanceVisible = false;
 
         } else {
 
             balanceElement.innerHTML = startingBalance;
 
-            toggleBalance.innerHTML = "👁 Hide Balance";
-
+            toggleBalance.innerHTML = '<i class="fa-solid fa-eye"></i> Hide Balance';
             balanceVisible = true;
 
         }
