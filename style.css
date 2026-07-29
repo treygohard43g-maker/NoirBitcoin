@@ -1832,3 +1832,95 @@ margin:0;
     font-weight:700;
     font-size:24px;
 }
+
+.investment-container{
+    max-width:450px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.investment-card{
+    background:#1b1b1b;
+    border:1px solid #333;
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+}
+
+.investment-card input{
+    width:100%;
+    padding:14px;
+    margin:15px 0;
+    border:none;
+    border-radius:10px;
+    background:#2a2a2a;
+    color:white;
+    font-size:16px;
+    box-sizing:border-box;
+}
+
+.investment-card button,
+.confirm-btn,
+.back-btn{
+
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+    margin-top:12px;
+}
+
+.investment-card button{
+
+    background:#f7931a;
+    color:white;
+
+}
+
+.confirm-btn{
+
+    background:#16a34a;
+    color:white;
+
+}
+
+.back-btn{
+
+    background:#333;
+    color:white;
+
+}
+
+.investment-card button:hover,
+.confirm-btn:hover,
+.back-btn:hover{
+
+    transform:translateY(-2px);
+    opacity:.95;
+
+}
+
+.investment-icon{
+
+    font-size:70px;
+    color:#f7931a;
+    margin-bottom:20px;
+
+}
+
+#selectedPlan{
+
+    color:#f7931a;
+
+}
+
+#estimatedProfit{
+
+    color:#16a34a;
+    margin-top:20px;
+
+}
