@@ -515,32 +515,19 @@ function toggleHistory(header){
     const arrow = header.querySelector(".arrow");
 
     document.querySelectorAll(".history-details").forEach(function(item){
-
         if(item !== details){
-            item.style.display = "none";
+            item.classList.remove("active");
         }
-
     });
 
     document.querySelectorAll(".arrow").forEach(function(item){
-
         if(item !== arrow){
             item.classList.remove("rotate");
         }
-
     });
 
-    if(details.style.display === "block"){
-
-        details.style.display = "none";
-        arrow.classList.remove("rotate");
-
-    }else{
-
-        details.style.display = "block";
-        arrow.classList.add("rotate");
-
-    }
+    details.classList.toggle("active");
+    arrow.classList.toggle("rotate");
 
 }
 
