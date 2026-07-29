@@ -2385,4 +2385,141 @@ margin:0;
     transform:translateY(-3px);
 }
 
+/* ===========================
+   Professional Bitcoin Market Card
+=========================== */
+
+.market-card{
+    width:100%;
+    box-sizing:border-box;
+    background:
+    linear-gradient(145deg,#111827,#1f2937);
+    border-radius:24px;
+    padding:25px;
+    margin:30px 0;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.35);
+
+    position:relative;
+    overflow:hidden;
+
+    transition:.35s ease;
+}
+
+
+.market-card:hover{
+    transform:translateY(-5px);
+    box-shadow:
+    0 20px 45px rgba(247,147,26,.2);
+}
+
+
+/* Bitcoin icon/logo */
+
+.market-card::before{
+    content:"₿";
+    position:absolute;
+    right:20px;
+    top:10px;
+
+    font-size:90px;
+    color:#f7931a;
+    opacity:.12;
+}
+
+
+/* Title */
+
+.market-card h2{
+    color:#94a3b8;
+    font-size:16px;
+    margin-bottom:15px;
+}
+
+
+/* Price */
+
+.market-card h1{
+    color:#fff;
+    font-size:42px;
+    margin:10px 0;
+    font-weight:700;
+}
+
+
+/* Price movement */
+
+.price-change{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    background:rgba(34,197,94,.15);
+    color:#22c55e;
+
+    padding:7px 12px;
+    border-radius:20px;
+
+    font-size:14px;
+    font-weight:600;
+}
+
+
+/* Live indicator */
+
+.live-indicator{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    margin-top:20px;
+
+    color:#94a3b8;
+    font-size:13px;
+}
+
+
+.live-dot{
+    width:10px;
+    height:10px;
+    background:#22c55e;
+    border-radius:50%;
+
+    animation:pulseLive 1.5s infinite;
+}
+
+
+@keyframes pulseLive{
+
+    0%{
+        box-shadow:0 0 0 0 rgba(34,197,94,.7);
+    }
+
+    70%{
+        box-shadow:0 0 0 12px rgba(34,197,94,0);
+    }
+
+    100%{
+        box-shadow:0 0 0 0 rgba(34,197,94,0);
+    }
+
+}
+
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    .market-card{
+        padding:20px;
+    }
+
+    .market-card h1{
+        font-size:32px;
+    }
+
+}
 
