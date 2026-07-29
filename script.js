@@ -511,8 +511,10 @@ function investNow(plan) {
 
 function toggleHistory(header){
 
-    const details = header.nextElementSibling;
+    const details = header.parentElement.querySelector(".history-details");
     const arrow = header.querySelector(".arrow");
+
+    if(!details) return;
 
     document.querySelectorAll(".history-details").forEach(function(item){
         if(item !== details){
@@ -528,8 +530,8 @@ function toggleHistory(header){
 
     details.classList.toggle("active");
     arrow.classList.toggle("rotate");
-
 }
+
 
 // ---------- INVESTMENT PAGE ----------
 
