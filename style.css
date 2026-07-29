@@ -2558,3 +2558,24 @@ margin:0;
 .plans-grid{
     margin-bottom:40px;
 }
+
+/* Force Transaction History To Full Screen Width */
+
+.transaction-history{
+    width:100% !important;
+    max-width:none !important;
+    display:block !important;
+    box-sizing:border-box !important;
+}
+
+.transaction-history .history-item{
+    width:100% !important;
+}
+
+.transaction-history .history-header{
+    width:100% !important;
+}
+
+.transaction-history .history-details{
+    width:100% !important;
+}
