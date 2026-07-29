@@ -1984,3 +1984,38 @@ margin:0;
 .plan-card button{
     margin-top:auto;
 }
+
+.plan-card{
+    background:#1b1b1b;
+    border-radius:18px;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    min-height:360px;
+    box-sizing:border-box;
+    text-align:center;
+    overflow:hidden;
+}
+
+.plan-card h3{
+    font-size:18px;
+    margin:10px 0;
+}
+
+.plan-card p{
+    font-size:13px;
+    line-height:1.5;
+    margin:5px 0;
+}
+
+.plan-card h2{
+    font-size:20px;
+    margin:12px 0;
+}
+
+.plan-card button{
+    width:100%;
+    margin-top:auto;
+}
