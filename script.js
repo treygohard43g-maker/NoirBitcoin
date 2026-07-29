@@ -508,3 +508,21 @@ function investNow(plan) {
     localStorage.setItem("selectedPlan", plan);
     window.location.href = "investment.html";
 }
+function toggleTransaction(header) {
+
+    const details = header.nextElementSibling;
+
+    if (details.style.display === "block") {
+
+        details.style.display = "none";
+
+    } else {
+
+        document.querySelectorAll(".transaction-details").forEach(item => {
+            item.style.display = "none";
+        });
+
+        details.style.display = "block";
+    }
+
+}
