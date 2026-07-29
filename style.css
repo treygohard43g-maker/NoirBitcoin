@@ -2610,3 +2610,106 @@ margin:0;
     width:100% !important;
     box-sizing:border-box;
 }
+
+/* ===========================
+   Professional Transaction Cards
+=========================== */
+
+.transaction-history{
+    background:#111827;
+    border-radius:22px;
+    padding:25px;
+    box-sizing:border-box;
+}
+
+
+.transaction-history h2{
+    color:white;
+    margin-bottom:20px;
+    font-size:22px;
+}
+
+
+.history-item{
+    background:#1f2937;
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:15px;
+    transition:.3s ease;
+}
+
+
+.history-item:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+
+.history-header{
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+
+.history-header h3{
+    color:white;
+    font-size:16px;
+    margin:0 0 6px;
+}
+
+
+.history-header p{
+    color:#94a3b8;
+    font-size:13px;
+    margin:0;
+}
+
+
+.arrow{
+    color:#f7931a;
+    font-size:14px;
+}
+
+
+.amount{
+    font-size:16px;
+    font-weight:700;
+}
+
+
+.positive{
+    color:#22c55e;
+}
+
+
+.negative{
+    color:#ef4444;
+}
+
+
+.history-details{
+    background:#0f172a !important;
+    border-radius:12px;
+    margin-top:12px;
+}
+
+
+.history-details p{
+    color:#cbd5e1;
+    font-size:13px;
+}
+
+
+.tx-hash{
+    color:#94a3b8 !important;
+    background:#111827;
+    padding:8px;
+    border-radius:8px;
+}
+
+
+.transaction-history hr{
+    display:none;
+}
