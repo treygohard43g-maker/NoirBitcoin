@@ -622,8 +622,6 @@ function calculateProfit() {
 
 }
 
-// ---------- CONFIRM INVESTMENT ----------
-
 function confirmInvestment() {
 
     const amount = document.getElementById("investmentAmount").value;
@@ -633,13 +631,20 @@ function confirmInvestment() {
         return;
     }
 
-    alert(
-        "✅ Investment Successful!\n\n" +
-        "Plan: " + selectedPlan +
-        "\nAmount: $" + amount +
-        "\n\nYour investment is now active."
-    );
+    const investment = {
+        plan: selectedPlan,
+        amount: amount,
+        date: new Date().toLocaleString(),
+        status: "Active"
+    };
+
+    let investments = JSON.parse(localStorage.getItem("investments")) || [];
+
+    investments.unshift(investment);
+
+    localStorage.setItem("investments", JSON.stringify(investments));
+
+    alert("✅ Investment Successful!");
 
     window.location.href = "dashboard.html";
-
 }
