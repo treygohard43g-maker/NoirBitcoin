@@ -648,3 +648,52 @@ function confirmInvestment() {
 
     window.location.href = "dashboard.html";
 }
+
+// ---------- LOAD INVESTMENT HISTORY ----------
+
+const investmentHistory = document.getElementById("investmentHistory");
+
+if (investmentHistory) {
+
+    const investments =
+        JSON.parse(localStorage.getItem("investments")) || [];
+
+    investments.forEach(function (investment) {
+
+        investmentHistory.innerHTML += `
+
+        <div class="history-item">
+
+            <div class="history-header" onclick="toggleHistory(this)">
+
+                <div>
+
+                    <h3><span class="arrow">▶</span> ${investment.plan}</h3>
+
+                    <p>${investment.date}</p>
+
+                </div>
+
+                <span class="amount negative">-$${investment.amount}</span>
+
+            </div>
+
+            <div class="history-details">
+
+                <p><strong>Investment Plan:</strong> ${investment.plan}</p>
+
+                <p><strong>Amount:</strong> $${investment.amount}</p>
+
+                <p><strong>Status:</strong> ${investment.status}</p>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        `;
+
+    });
+
+}
