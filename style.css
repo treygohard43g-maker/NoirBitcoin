@@ -1713,3 +1713,11 @@ margin:0;
     white-space:normal;
     margin-top:4px;
 }
+.tx-hash{
+    font-size:11px;
+    color:#888;
+    word-break:break-all;
+    overflow-wrap:anywhere;
+    white-space:normal;
+    margin-top:4px;
+}
