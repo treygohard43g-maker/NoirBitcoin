@@ -2179,11 +2179,6 @@ margin:0;
     padding:16px !important;
 }
 
-.history-details.active{
-    max-height:500px;
-    opacity:1;
-    padding:16px;
-}
 
 .arrow{
     display:inline-block;
