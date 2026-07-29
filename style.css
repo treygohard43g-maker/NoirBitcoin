@@ -1721,3 +1721,12 @@ margin:0;
     white-space:normal;
     margin-top:4px;
 }
+.arrow{
+    display:inline-block;
+    transition:transform 0.3s ease;
+    margin-right:8px;
+}
+
+.arrow.rotate{
+    transform:rotate(90deg);
+}
