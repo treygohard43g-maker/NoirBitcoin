@@ -543,3 +543,47 @@ function toggleHistory(header){
     }
 
 }
+
+// ---------- INVESTMENT PAGE ----------
+
+const selectedPlan = localStorage.getItem("selectedPlan");
+
+const planTitle = document.getElementById("selectedPlan");
+const planReturn = document.getElementById("planReturn");
+const planMinimum = document.getElementById("planMinimum");
+
+if (planTitle) {
+
+    if (selectedPlan === "Starter Plan") {
+
+        planTitle.textContent = "Starter Plan";
+        planReturn.textContent = "5% Monthly Return";
+        planMinimum.textContent = "Minimum Investment: 0.01 BTC";
+
+    }
+
+    else if (selectedPlan === "Professional Plan") {
+
+        planTitle.textContent = "Professional Plan";
+        planReturn.textContent = "8% Monthly Return";
+        planMinimum.textContent = "Minimum Investment: 0.10 BTC";
+
+    }
+
+    else if (selectedPlan === "Premium Plan") {
+
+        planTitle.textContent = "Premium Plan";
+        planReturn.textContent = "12% Monthly Return";
+        planMinimum.textContent = "Minimum Investment: 0.50 BTC";
+
+    }
+
+    else if (selectedPlan === "Diamond Plan") {
+
+        planTitle.textContent = "Diamond Plan";
+        planReturn.textContent = "20% Monthly Return";
+        planMinimum.textContent = "Minimum Investment: 0.50 BTC";
+
+    }
+
+}
