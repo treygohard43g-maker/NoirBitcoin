@@ -1679,21 +1679,15 @@ color:#ef4444;
 }
 
 .history-details{
-
-display:none;
-
-margin-top:15px;
-
-padding-left:10px;
-
-line-height:1.9;
-
-color:#bbb;
-
-font-size:14px;
-
-word-break:break-word;
-
+    display:none;
+    margin-top:12px;
+    padding-left:10px;
+    line-height:1.7;
+    font-size:12px;
+    color:#aaa;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+    white-space:normal;
 }
 
 .transaction-history hr{
