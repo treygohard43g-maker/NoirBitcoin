@@ -1737,3 +1737,15 @@ margin:0;
     border-radius:12px;
     margin-bottom:12px;
 }
+.plan-icon{
+    font-size:60px;
+    color:#f7931a;
+    display:block;
+    text-align:center;
+    margin:15px 0;
+}
+
+.plan-card:last-child .plan-icon{
+    color:#4fc3f7;
+}
+
