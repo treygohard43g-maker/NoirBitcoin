@@ -1826,3 +1826,9 @@ margin:0;
     border:2px solid #f7931a;
     box-shadow:0 0 20px rgba(247,147,26,0.4);
 }
+
+.return-rate{
+    color:#00ff99;
+    font-weight:700;
+    font-size:24px;
+}
