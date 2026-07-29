@@ -2523,3 +2523,16 @@ margin:0;
 
 }
 
+/* Bitcoin Chart */
+
+.chart-container{
+    width:100%;
+    height:220px;
+    margin-top:20px;
+}
+
+
+#bitcoinChart{
+    width:100% !important;
+    height:100% !important;
+}
