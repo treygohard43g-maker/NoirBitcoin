@@ -511,26 +511,35 @@ function investNow(plan) {
 
 function toggleHistory(header){
 
-const details = header.nextElementSibling;
+    const details = header.nextElementSibling;
+    const arrow = header.querySelector(".arrow");
 
-document.querySelectorAll(".history-details").forEach(item=>{
+    document.querySelectorAll(".history-details").forEach(function(item){
 
-if(item!==details){
+        if(item !== details){
+            item.style.display = "none";
+        }
 
-item.style.display="none";
+    });
 
-}
+    document.querySelectorAll(".arrow").forEach(function(item){
 
-});
+        if(item !== arrow){
+            item.classList.remove("rotate");
+        }
 
-if(details.style.display==="block"){
+    });
 
-details.style.display="none";
+    if(details.style.display === "block"){
 
-}else{
+        details.style.display = "none";
+        arrow.classList.remove("rotate");
 
-details.style.display="block";
+    }else{
 
-}
+        details.style.display = "block";
+        arrow.classList.add("rotate");
+
+    }
 
 }
