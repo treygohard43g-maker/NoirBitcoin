@@ -1768,3 +1768,12 @@ margin:0;
     color:#00ffff;
     text-shadow:0 0 15px #00ffff;
 }
+
+.plan-card{
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+}
