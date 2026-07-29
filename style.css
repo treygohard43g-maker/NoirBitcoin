@@ -1924,3 +1924,29 @@ margin:0;
     margin-top:20px;
 
 }
+
+.success-message{
+    display:none;
+    margin-top:25px;
+    padding:20px;
+    border-radius:15px;
+    background:#1f2937;
+    border:1px solid #16a34a;
+    text-align:center;
+}
+
+.success-icon{
+    font-size:60px;
+    color:#16a34a;
+    margin-bottom:15px;
+}
+
+.success-message h2{
+    color:#16a34a;
+    margin-bottom:10px;
+}
+
+.success-message p{
+    color:#ddd;
+    margin:8px 0;
+}
