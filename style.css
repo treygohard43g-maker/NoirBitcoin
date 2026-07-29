@@ -1699,3 +1699,8 @@ border-top:1px solid #2b2b2b;
 margin:0;
 
 }
+.transaction-history{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+}
