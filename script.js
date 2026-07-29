@@ -587,3 +587,37 @@ if (planTitle) {
     }
 
 }
+// ---------- CALCULATE PROFIT ----------
+
+function calculateProfit() {
+
+    const amount = Number(document.getElementById("investmentAmount").value);
+
+    const profitText = document.getElementById("estimatedProfit");
+
+    if (!amount || amount <= 0) {
+        alert("Please enter an investment amount.");
+        return;
+    }
+
+    let rate = 0;
+
+    if (selectedPlan === "Starter Plan") {
+        rate = 5;
+    }
+    else if (selectedPlan === "Professional Plan") {
+        rate = 8;
+    }
+    else if (selectedPlan === "Premium Plan") {
+        rate = 12;
+    }
+    else if (selectedPlan === "Diamond Plan") {
+        rate = 20;
+    }
+
+    const profit = amount * (rate / 100);
+
+    profitText.textContent =
+        "Estimated Monthly Profit: $" + profit.toFixed(2);
+
+}
