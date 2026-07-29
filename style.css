@@ -2228,3 +2228,93 @@ margin:0;
     margin-right:8px;
     font-size:16px;
 }
+
+/* Professional Dashboard Action Cards */
+
+.quick-actions{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin:30px 0;
+    width:100%;
+}
+
+
+.action-card{
+    background:linear-gradient(145deg,#111827,#1f2937);
+    color:white;
+    border:1px solid rgba(255,255,255,0.08);
+    padding:22px 15px;
+    border-radius:20px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    cursor:pointer;
+    transition:all .3s ease;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+
+.action-card i{
+    font-size:28px;
+    color:#f7931a;
+    transition:.3s ease;
+}
+
+
+.action-card span{
+    font-size:15px;
+    font-weight:600;
+}
+
+
+.action-card:hover{
+    transform:translateY(-8px);
+    border-color:#f7931a;
+    box-shadow:0 15px 35px rgba(247,147,26,.25);
+}
+
+
+.action-card:hover i{
+    transform:scale(1.15);
+}
+
+
+/* Different icon colors */
+
+#depositBtn i{
+    color:#22c55e;
+}
+
+#withdrawBtn i{
+    color:#ef4444;
+}
+
+#investBtn i{
+    color:#f7931a;
+}
+
+#historyBtn i{
+    color:#38bdf8;
+}
+
+
+/* Mobile view */
+
+@media(max-width:600px){
+
+    .quick-actions{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .action-card{
+        padding:18px 10px;
+    }
+
+}
+
