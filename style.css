@@ -1799,3 +1799,47 @@ margin:0;
     width:100%;
     margin-top:auto;
 }
+
+/* Investment Card Animation Upgrade */
+
+.plan-card{
+    position:relative;
+    overflow:hidden;
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border 0.35s ease;
+}
+
+.plan-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,0.4);
+}
+
+
+/* Space inside cards */
+
+.plan-card h3{
+    margin-top:10px;
+    margin-bottom:12px;
+}
+
+.plan-card p{
+    margin:8px 0;
+    line-height:1.5;
+}
+
+.plan-card h2{
+    margin:15px 0;
+}
+
+
+/* Button animation */
+
+.plan-card button{
+    transition:all 0.3s ease;
+}
+
+.plan-card button:hover{
+    transform:scale(1.05);
+}
