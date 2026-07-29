@@ -1777,3 +1777,22 @@ margin:0;
     transform:translateY(-5px);
     box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
+
+.plan-card button{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border:none;
+    border-radius:10px;
+    background:#f7931a;
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.plan-card button:hover{
+    transform:scale(1.03);
+    opacity:0.9;
+}
