@@ -2579,3 +2579,34 @@ margin:0;
 .transaction-history .history-details{
     width:100% !important;
 }
+
+/* Final Transaction History Width Fix */
+
+.transaction-history{
+    width:100% !important;
+    max-width:100% !important;
+    display:block !important;
+    box-sizing:border-box;
+}
+
+.transaction-history .history-item{
+    width:100% !important;
+    display:block !important;
+    box-sizing:border-box;
+}
+
+.transaction-history .history-header{
+    width:100% !important;
+    display:flex !important;
+    justify-content:space-between;
+    align-items:center;
+    box-sizing:border-box;
+    padding:18px 20px;
+    background:#111827;
+    border-radius:15px;
+}
+
+.transaction-history .history-details{
+    width:100% !important;
+    box-sizing:border-box;
+}
