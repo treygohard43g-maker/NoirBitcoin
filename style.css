@@ -1980,3 +1980,51 @@ margin:0;
     transform:scale(1.2);
 
 }
+
+/* Full Width Dashboard Sections Fix */
+
+.plans-section{
+    width:100%;
+    max-width:100%;
+    padding-left:0;
+    padding-right:0;
+}
+
+.plans-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:12px;
+}
+
+
+.plan-card{
+    width:100%;
+    min-width:0;
+}
+
+
+/* Transaction History Full Width */
+
+.transaction-history{
+    width:100%;
+    max-width:100%;
+    padding:0;
+    margin-top:40px;
+}
+
+
+.history-item{
+    width:100%;
+}
+
+
+.history-header{
+    width:100%;
+}
+
+
+.history-details{
+    width:100%;
+    box-sizing:border-box;
+}
