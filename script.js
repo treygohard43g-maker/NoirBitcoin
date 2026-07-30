@@ -707,152 +707,87 @@ if (investmentHistory) {
 
     });
 
-}
+// ---------- BITCOIN CHART ----------
 
 const chartContainer = document.getElementById("btcChart");
 
 if (chartContainer && typeof LightweightCharts !== "undefined") {
-const chart = LightweightCharts.createChart(chartContainer, {
 
-    width: document.getElementById("btcChart").clientWidth,
+    const chart = LightweightCharts.createChart(chartContainer, {
+        width: chartContainer.clientWidth,
+        height: 350,
 
-    height: 350,
-
-    layout: {
-
-        background: { color: "#111827" },
-
-        textColor: "#ffffff"
-
-    },
-
-    grid: {
-
-        vertLines: {
-
-            color: "rgba(255,255,255,0.05)"
-
+        layout: {
+            background: {
+                color: "#111827"
+            },
+            textColor: "#ffffff"
         },
 
-        horzLines: {
+        grid: {
+            vertLines: {
+                color: "rgba(255,255,255,0.05)"
+            },
+            horzLines: {
+                color: "rgba(255,255,255,0.05)"
+            }
+        },
 
-            color: "rgba(255,255,255,0.05)"
+        rightPriceScale: {
+            borderColor: "#374151"
+        },
+
+        timeScale: {
+            borderColor: "#374151",
+            timeVisible: true
+        },
+
+        crosshair: {
+            mode: LightweightCharts.CrosshairMode.Normal
+        }
+    });
+
+    const series = chart.addAreaSeries({
+        lineColor: "#f7931a",
+        topColor: "rgba(247,147,26,0.35)",
+        bottomColor: "rgba(247,147,26,0.03)",
+        lineWidth: 2
+    });
+
+    async function loadChartData(days = 7) {
+
+        try {
+
+            const response = await fetch(
+                `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${days}`
+            );
+
+            const data = await response.json();
+
+            const prices = data.prices.map(item => ({
+                time: Math.floor(item[0] / 1000),
+                value: item[1]
+            }));
+
+            series.setData(prices);
+
+        } catch (error) {
+
+            console.error("Chart error:", error);
 
         }
 
-    },
-
-    crosshair: {
-
-        mode: LightweightCharts.CrosshairMode.Normal
-
-    },
-
-    rightPriceScale: {
-
-        borderColor: "#374151"
-
-    },
-
-    timeScale: {
-
-        borderColor: "#374151"
-
     }
 
-});
+    loadChartData();
 
-const series = chart.addAreaSeries({
+    window.addEventListener("resize", () => {
 
-    lineColor: "#f7931a",
-
-    topColor: "rgba(247,147,26,0.45)",
-
-    bottomColor: "rgba(247,147,26,0.05)"
-
-});
-
-async function loadChartData(days = 7) {
-
-    try {
-
-        const response = await fetch(
-
-            `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${days}`
-
-        );
-
-        const data = await response.json();
-
-        const chartData = data.prices.map(item => ({
-
-            time: Math.floor(item[0] / 1000),
-
-            value: item[1]
-
-        }));
-
-        series.setData(chartData);
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-    }
-
-}
-
-loadChartData();
-
-document.querySelectorAll(".time-btn").forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        document.querySelectorAll(".time-btn").forEach(btn =>
-            btn.classList.remove("active")
-        );
-
-        button.classList.add("active");
-
-        loadChartData(button.dataset.days);
+        chart.applyOptions({
+            width: chartContainer.clientWidth
+        });
 
     });
-
-});
-
-chart.subscribeCrosshairMove(param => {
-
-    if (!param.point || !param.time) return;
-
-    const price = param.seriesData.get(series);
-
-    if (price !== undefined) {
-
-        document.getElementById("chartValue").textContent =
-            "$" + Number(price.value).toLocaleString(undefined, {
-                maximumFractionDigits: 2
-            });
-
-    }
-
-    const date = new Date(param.time * 1000);
-
-    document.getElementById("chartDate").textContent =
-        date.toLocaleDateString();
-
-});
-
-window.addEventListener("resize", () => {
-
-    chart.applyOptions({
-
-        width: document.getElementById("btcChart").clientWidth
-
-    });
-
-});
 
 }
 
