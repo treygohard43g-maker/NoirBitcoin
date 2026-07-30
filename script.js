@@ -884,7 +884,12 @@ if (saveSettingsBtn) {
             savedUser.name = newUsername;
         }
 
-        savedUser.password = newPassword;
+        if (newPassword.length < 8) {
+    alert("Your new password must be at least 8 characters long.");
+    return;
+}
+
+savedUser.password = newPassword;
 
         localStorage.setItem("noirUser", JSON.stringify(savedUser));
 
