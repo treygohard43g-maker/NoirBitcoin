@@ -805,6 +805,27 @@ async function loadChartData() {
 }
 
 loadChartData();
+chart.subscribeCrosshairMove(param => {
+
+    if (!param.point || !param.time) return;
+
+    const price = param.seriesData.get(series);
+
+    if (price !== undefined) {
+
+        document.getElementById("chartValue").textContent =
+            "$" + Number(price.value).toLocaleString(undefined, {
+                maximumFractionDigits: 2
+            });
+
+    }
+
+    const date = new Date(param.time * 1000);
+
+    document.getElementById("chartDate").textContent =
+        date.toLocaleDateString();
+
+});
 
 window.addEventListener("resize", () => {
 
