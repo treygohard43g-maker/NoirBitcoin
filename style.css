@@ -3191,3 +3191,23 @@ transition:.25s;
 transform:translateY(-2px);
 opacity:.9;
 }
+
+.qr-box{
+width:220px;
+height:220px;
+margin:0 auto 20px;
+background:#ffffff;
+border-radius:12px;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+padding:10px;
+}
+
+.qr-box img,
+.qr-box canvas{
+width:100% !important;
+height:100% !important;
+border-radius:8px;
+}
