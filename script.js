@@ -802,6 +802,35 @@ window.addEventListener("resize", () => {
 
 }
 
+
+}
+
+async function loadBitcoinPrice() {
+
+    try {
+
+        const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd");
+
+        const data = await response.json();
+
+        const price = data.bitcoin.usd;
+
+        document.getElementById("btcPrice").textContent =
+            "$" + price.toLocaleString();
+
+    } catch (error) {
+
+        console.error("Unable to load Bitcoin price:", error);
+
+    }
+
+}
+
+
+loadBitcoinPrice();
+
+setInterval(loadBitcoinPrice, 30000);
+
 // ---------- LIVE BALANCE MOVEMENT ----------
 
 function updateLiveBalance() {
