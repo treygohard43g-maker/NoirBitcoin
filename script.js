@@ -1339,19 +1339,43 @@ function copyWalletAddress(){
 
 }
 
-}else{
 
-alert("Sharing is not supported on this device.");
-
-}
-
-}
+function shareWalletAddress(){
 
     const address =
         document.getElementById("walletAddress").textContent;
 
-    navigator.clipboard.writeText(address).then(() => {
-        alert("Wallet address copied!");
-    });
+    if(navigator.share){
+
+        navigator.share({
+            title: "Crypto Wallet Address",
+            text: address
+        });
+
+    }else{
+
+        alert("Sharing is not supported on this device.");
+
+    }
+
+}
+
+function saveQRCode(){
+
+    const qr =
+        document.querySelector("#qrCode img, #qrCode canvas");
+
+    if(!qr) return;
+
+    const link = document.createElement("a");
+
+    if(qr.tagName === "IMG"){
+        link.href = qr.src;
+    }else{
+        link.href = qr.toDataURL("image/png");
+    }
+
+    link.download = "wallet-qr.png";
+    link.click();
 
 }
