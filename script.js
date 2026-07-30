@@ -855,3 +855,40 @@ if (currencyToggle) {
     });
 
 }
+
+// ---------- SETTINGS ----------
+const saveSettingsBtn = document.getElementById("saveSettings");
+
+if (saveSettingsBtn) {
+
+    saveSettingsBtn.addEventListener("click", function () {
+
+        const savedUser = JSON.parse(localStorage.getItem("noirUser"));
+
+        const newUsername = document.getElementById("newUsername").value.trim();
+        const oldPassword = document.getElementById("oldPassword").value;
+        const newPassword = document.getElementById("newPassword").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (oldPassword !== savedUser.password) {
+            alert("Current password is incorrect.");
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            alert("New passwords do not match.");
+            return;
+        }
+
+        if (newUsername !== "") {
+            savedUser.name = newUsername;
+        }
+
+        savedUser.password = newPassword;
+
+        localStorage.setItem("noirUser", JSON.stringify(savedUser));
+
+        alert("Account updated successfully!");
+    });
+
+}
