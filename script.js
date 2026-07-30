@@ -1,3 +1,6 @@
+window.onerror = function (message, source, line, column, error) {
+    alert("JS Error:\n" + message + "\nLine: " + line);
+};
 // ===============================
 // NOIRBITCOIN SCRIPT
 // Version 1.0
