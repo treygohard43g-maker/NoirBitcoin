@@ -158,7 +158,7 @@ function updateBalance() {
     }
 
 }
-
+ updateBalance();
 
 // ---------- HIDE / SHOW BALANCE ----------
 
