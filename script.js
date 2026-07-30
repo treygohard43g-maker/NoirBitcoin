@@ -1157,6 +1157,8 @@ if (assetsContainer) {
         assetsContainer.innerHTML += `
 
         <div class="asset-card">
+   
+         <img src="${asset.icon}" class="asset-icon">
 
             <h3>${asset.name} (${asset.symbol})</h3>
 
