@@ -1260,11 +1260,15 @@ updatePortfolio();
 const walletAddresses = {
     BTC: "bc1q3kjwt332fqwfvxjq0wls4rt38zkk0f4k8yv2hc",
     ETH: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-    USDT: "TRXxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    USDT: "TRXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
     XRP: "rXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 };
 
+let qr = null;
+
 function openReceive(symbol) {
+
+    const address = walletAddresses[symbol];
 
     document.getElementById("receiveModal").style.display = "flex";
 
@@ -1272,7 +1276,20 @@ function openReceive(symbol) {
         "Receive " + symbol;
 
     document.getElementById("walletAddress").textContent =
-        walletAddresses[symbol];
+        address;
+
+    const qrBox = document.getElementById("qrCode");
+
+    qrBox.innerHTML = "";
+
+    qr = new QRCode(qrBox, {
+        text: address,
+        width: 220,
+        height: 220,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
 
 }
 
@@ -1287,8 +1304,8 @@ function copyWalletAddress() {
     const address =
         document.getElementById("walletAddress").textContent;
 
-    navigator.clipboard.writeText(address);
-
-    alert("Wallet address copied!");
+    navigator.clipboard.writeText(address).then(() => {
+        alert("Wallet address copied!");
+    });
 
 }
