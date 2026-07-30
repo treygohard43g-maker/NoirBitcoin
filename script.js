@@ -1090,6 +1090,56 @@ function updatePortfolio(){
 
 updatePortfolio();
 
+// ---------- DIGITAL ASSETS ----------
+
+const assets = [
+
+    {
+        name: "Bitcoin",
+        symbol: "BTC",
+        price: "$118,000",
+        movement: "+2.5%",
+        status: "up",
+        address: "YOUR_BTC_ADDRESS"
+    },
+
+    {
+        name: "Ethereum",
+        symbol: "ETH",
+        price: "$3,800",
+        movement: "+1.8%",
+        status: "up",
+        address: "YOUR_ETH_ADDRESS"
+    },
+
+    {
+        name: "Tether",
+        symbol: "USDT",
+        price: "$1.00",
+        movement: "+0.01%",
+        status: "up",
+        address: "YOUR_USDT_ADDRESS"
+    },
+
+    {
+        name: "Solana",
+        symbol: "SOL",
+        price: "$180",
+        movement: "-0.7%",
+        status: "down",
+        address: "YOUR_SOL_ADDRESS"
+    },
+
+    {
+        name: "XRP",
+        symbol: "XRP",
+        price: "$2.50",
+        movement: "+3.2%",
+        status: "up",
+        address: "YOUR_XRP_ADDRESS"
+    }
+
+];
 
 // ---------- PORTFOLIO STATISTICS ----------
 
