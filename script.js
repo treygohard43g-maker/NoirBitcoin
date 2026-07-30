@@ -1254,3 +1254,41 @@ function updatePortfolio() {
 
 
 updatePortfolio();
+
+// ---------- RECEIVE MODAL ----------
+
+const walletAddresses = {
+    BTC: "bc1q3kjwt332fqwfvxjq0wls4rt38zkk0f4k8yv2hc",
+    ETH: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    USDT: "TRXxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    XRP: "rXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+};
+
+function openReceive(symbol) {
+
+    document.getElementById("receiveModal").style.display = "flex";
+
+    document.getElementById("receiveTitle").textContent =
+        "Receive " + symbol;
+
+    document.getElementById("walletAddress").textContent =
+        walletAddresses[symbol];
+
+}
+
+function closeReceive() {
+
+    document.getElementById("receiveModal").style.display = "none";
+
+}
+
+function copyWalletAddress() {
+
+    const address =
+        document.getElementById("walletAddress").textContent;
+
+    navigator.clipboard.writeText(address);
+
+    alert("Wallet address copied!");
+
+}
