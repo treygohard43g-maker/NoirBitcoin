@@ -38,6 +38,7 @@ if (registerForm) {
 
 
 // ---------- LOGIN ----------
+alert("Reached login section");
 
 const loginForm = document.getElementById("loginForm");
 
