@@ -1320,21 +1320,24 @@ function closeReceive() {
 
 }
 
-function copyWalletAddress() {
+function copyWalletAddress(){
 
-function shareWalletAddress(){
+    const address =
+        document.getElementById("walletAddress").textContent;
 
-const address=document.getElementById("walletAddress").textContent;
+    navigator.clipboard.writeText(address).then(() => {
 
-if(navigator.share){
+        const toast = document.getElementById("toast");
 
-navigator.share({
+        toast.classList.add("show");
 
-title:"Crypto Wallet Address",
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 2000);
 
-text:address
+    });
 
-});
+}
 
 }else{
 
