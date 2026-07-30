@@ -1141,6 +1141,40 @@ const assets = [
 
 ];
 
+// ---------- DISPLAY DIGITAL ASSETS ----------
+
+const assetsContainer = document.getElementById("assetsContainer");
+
+if (assetsContainer) {
+
+    assets.forEach(function(asset){
+
+        assetsContainer.innerHTML += `
+
+        <div class="asset-card">
+
+            <h3>${asset.name} (${asset.symbol})</h3>
+
+            <p class="asset-price">
+                ${asset.price}
+            </p>
+
+            <p class="asset-movement ${asset.status}">
+                ${asset.movement}
+            </p>
+
+            <button class="receive-btn">
+                Receive
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
 // ---------- PORTFOLIO STATISTICS ----------
 
 function updatePortfolio() {
