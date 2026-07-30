@@ -852,3 +852,25 @@ function goToHistory(){
     }
 
 }
+
+// ---------- USD / BTC TOGGLE ----------
+
+const currencyToggle = document.getElementById("currencyToggle");
+
+if (currencyToggle) {
+
+    currencyToggle.addEventListener("click", function () {
+
+        showingBTC = !showingBTC;
+
+        if (showingBTC) {
+            currencyToggle.innerHTML = "Show USD";
+        } else {
+            currencyToggle.innerHTML = "Show BTC";
+        }
+
+        updateBalance();
+
+    });
+
+}
