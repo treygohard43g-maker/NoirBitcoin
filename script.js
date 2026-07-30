@@ -780,6 +780,49 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
     }
 
     loadChartData();
+    
+document.querySelectorAll(".time-btn").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        document.querySelectorAll(".time-btn").forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        loadChartData(Number(button.dataset.days));
+
+    });
+
+});
+
+chart.subscribeCrosshairMove(param => {
+
+    if (!param.point || !param.time) return;
+
+    const price = param.seriesData.get(series);
+
+    if (price) {
+
+        const chartValue = document.getElementById("chartValue");
+        const chartDate = document.getElementById("chartDate");
+
+        if (chartValue) {
+            chartValue.textContent =
+                "$" + Number(price.value).toLocaleString(undefined, {
+                    maximumFractionDigits: 2
+                });
+        }
+
+        if (chartDate) {
+            chartDate.textContent =
+                new Date(param.time * 1000).toLocaleDateString();
+        }
+
+    }
+
+});
 
     window.addEventListener("resize", () => {
 
