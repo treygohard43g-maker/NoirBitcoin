@@ -2915,3 +2915,68 @@ margin:0;
     font-weight:bold;
 
 }
+
+/* Portfolio Upgrade */
+
+.portfolio-section{
+    width:100%;
+    margin-top:40px;
+}
+
+.portfolio-section h2{
+    color:white;
+    margin-bottom:25px;
+    font-size:28px;
+}
+
+
+.portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+
+.portfolio-card{
+    background:linear-gradient(145deg,#111827,#1f2937);
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.08);
+    transition:.3s ease;
+}
+
+
+.portfolio-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 30px rgba(0,0,0,.3);
+}
+
+
+.portfolio-card i{
+    font-size:35px;
+    color:#f7931a;
+    margin-bottom:15px;
+}
+
+
+.portfolio-card h3{
+    color:#94a3b8;
+    font-size:15px;
+}
+
+
+.portfolio-card h2{
+    color:white;
+    font-size:25px;
+    margin-top:10px;
+}
+
+
+@media(max-width:700px){
+
+    .portfolio-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
