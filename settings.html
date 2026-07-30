@@ -22,12 +22,22 @@
         <input type="text" id="newUsername" placeholder="Enter new username">
 
       <label>Current Password</label>
-<input type="password" id="oldPassword" placeholder="Enter current password">
 
-<label>New Password</label>
-<input type="password" id="newPassword" placeholder="Enter new password">
+<div class="password-field">
+    <input type="password" id="oldPassword" placeholder="Enter current password">
+    <i class="fa-solid fa-eye" id="toggleOldPassword"></i>
+</div>
 
-<label>Confirm New Password</label>
+<div class="password-field">
+    <input type="password" id="newPassword" placeholder="Enter new password">
+    <i class="fa-solid fa-eye" id="toggleNewPassword"></i>
+</div>
+
+<div class="password-field">
+    <input type="password" id="confirmPassword" placeholder="Confirm new password">
+    <i class="fa-solid fa-eye" id="toggleConfirmPassword"></i>
+</div>
+
 <input type="password" id="confirmPassword" placeholder="Confirm new password">
     
         <button id="saveSettings">
