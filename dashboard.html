@@ -603,6 +603,33 @@ a73bd92ff21cd82ab82b91d73ab29f82
 
 </div>
 
+<!-- RECEIVE MODAL -->
+<div id="receiveModal" class="receive-modal">
+
+    <div class="receive-content">
+
+        <span class="close-receive" onclick="closeReceive()">&times;</span>
+
+        <h2 id="receiveTitle">Receive Bitcoin</h2>
+
+        <div id="qrCode" class="qr-box">
+            QR CODE
+        </div>
+
+        <p class="wallet-label">Wallet Address</p>
+
+        <div id="walletAddress" class="wallet-address">
+            bc1qxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        </div>
+
+        <button class="copy-btn" onclick="copyWalletAddress()">
+            Copy Address
+        </button>
+
+    </div>
+
+</div>
+
 <script src="https://unpkg.com/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="script.js?v=2"></script>
