@@ -897,3 +897,16 @@ savedUser.password = newPassword;
     });
 
 }
+
+// ---------- DASHBOARD WELCOME ----------
+const welcomeUser = document.getElementById("welcomeUser");
+
+if (welcomeUser) {
+
+    const savedUser = JSON.parse(localStorage.getItem("noirUser"));
+
+    if (savedUser) {
+        welcomeUser.textContent = "Welcome, " + savedUser.name + " 👋";
+    }
+
+}
