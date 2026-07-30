@@ -713,93 +713,93 @@ const chart = document.getElementById("bitcoinChart");
 
 if(chart && typeof Chart !== "undefined"){
 
-new Chart(chart, {
-    
-type:"line",
+const chart = LightweightCharts.createChart(document.getElementById("btcChart"), {
 
-data:{
+    width: document.getElementById("btcChart").clientWidth,
 
-labels:[
-"9AM",
-"10AM",
-"11AM",
-"12PM",
-"1PM",
-"2PM",
-"3PM"
-],
+    height: 350,
 
-datasets:[{
+    layout: {
 
-label:"BTC Price",
+        background: { color: "#111827" },
 
-data:[
-64500,
-65200,
-64800,
-66100,
-67000,
-66500,
-68500
-],
+        textColor: "#ffffff"
 
+    },
 
-borderColor:"#f7931a",
+    grid: {
 
-backgroundColor:"rgba(247,147,26,0.15)",
+        vertLines: {
 
-fill:true,
+            color: "rgba(255,255,255,0.05)"
 
-tension:0.4,
+        },
 
-pointRadius:3
+        horzLines: {
 
-}]
+            color: "rgba(255,255,255,0.05)"
 
-},
+        }
 
+    },
 
-options:{
+    crosshair: {
 
-responsive:true,
+        mode: LightweightCharts.CrosshairMode.Normal
 
-maintainAspectRatio:false,
+    },
 
+    rightPriceScale: {
 
-plugins:{
+        borderColor: "#374151"
 
-legend:{
-display:false
-}
+    },
 
-},
+    timeScale: {
 
+        borderColor: "#374151"
 
-scales:{
-
-x:{
-display:false
-},
-
-y:{
-
-ticks:{
-color:"#94a3b8"
-},
-
-grid:{
-color:"rgba(255,255,255,.05)"
-}
-
-}
-
-}
-
-}
+    }
 
 });
 
-}
+const series = chart.addAreaSeries({
+
+    lineColor: "#f7931a",
+
+    topColor: "rgba(247,147,26,0.45)",
+
+    bottomColor: "rgba(247,147,26,0.05)"
+
+});
+
+series.setData([
+
+    { time: "2026-07-24", value: 64200 },
+
+    { time: "2026-07-25", value: 65100 },
+
+    { time: "2026-07-26", value: 64650 },
+
+    { time: "2026-07-27", value: 66300 },
+
+    { time: "2026-07-28", value: 67100 },
+
+    { time: "2026-07-29", value: 66700 },
+
+    { time: "2026-07-30", value: 68400 }
+
+]);
+
+window.addEventListener("resize", () => {
+
+    chart.applyOptions({
+
+        width: document.getElementById("btcChart").clientWidth
+
+    });
+
+});
 
 // ---------- LIVE BALANCE MOVEMENT ----------
 
