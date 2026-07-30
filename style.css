@@ -2713,3 +2713,25 @@ margin:0;
 .transaction-history hr{
     display:none;
 }
+
+.btc-toggle-btn {
+    background: linear-gradient(135deg, #f7931a, #ffb347);
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(247, 147, 26, 0.35);
+}
+
+.btc-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(247, 147, 26, 0.5);
+}
+
+.btc-toggle-btn:active {
+    transform: scale(0.98);
+}
