@@ -857,8 +857,6 @@ window.addEventListener("resize", () => {
 }
 
 
-}
-
 async function loadBitcoinPrice() {
 
     try {
