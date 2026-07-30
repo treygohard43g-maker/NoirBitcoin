@@ -2871,3 +2871,47 @@ margin:0;
     color:#f7931a;
     font-weight:bold;
 }
+
+.chart-timeframes{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:15px;
+
+}
+
+.time-btn{
+
+    background:#1f2937;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.time-btn:hover{
+
+    background:#374151;
+
+}
+
+.time-btn.active{
+
+    background:#f7931a;
+
+    color:#111827;
+
+    font-weight:bold;
+
+}
