@@ -903,13 +903,16 @@ savedUser.password = newPassword;
 // ---------- DASHBOARD WELCOME ----------
 const dashboardWelcomeUser = document.getElementById("welcomeUser");
 
-if (dashboardwelcomeUser) {
+if (dashboardWelcomeUser) {
 
     const savedUser = JSON.parse(localStorage.getItem("noirUser"));
 
     if (savedUser) {
         welcomeUser.innerHTML = 'Welcome, ' + savedUser.name + ' <i class="fa-solid fa-hand"></i>';
+   }
+
 }
+
 
 // ---------- SHOW / HIDE PASSWORD ----------
 function setupPasswordToggle(inputId, iconId) {
