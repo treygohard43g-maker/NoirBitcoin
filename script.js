@@ -117,14 +117,32 @@ const balanceElement = document.getElementById("availableBalance");
 
 let balanceVisible = true;
 
-const startingBalance = "$500,000.00";
+let balance = 500000;
+let bitcoinPrice = 120000;
+let showingBTC = false;
 
-if (balanceElement) {
+function updateBalance() {
 
-    balanceElement.innerHTML = startingBalance;
+    if (!balanceElement) return;
+
+    if (showingBTC) {
+
+        let btc = balance / bitcoinPrice;
+        balanceElement.innerHTML = "₿" + btc.toFixed(8);
+
+    } else {
+
+        balanceElement.innerHTML =
+            "$" + balance.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+    }
 
 }
 
+updateBalance();
 
 
 // ---------- HIDE / SHOW BALANCE ----------
