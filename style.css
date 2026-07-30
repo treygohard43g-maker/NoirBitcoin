@@ -2980,3 +2980,104 @@ margin:0;
     }
 
 }
+
+/* ---------- DIGITAL ASSETS ---------- */
+
+.assets-section {
+
+    margin-top: 40px;
+
+}
+
+
+.assets-section h2 {
+
+    margin-bottom: 20px;
+
+}
+
+
+.assets-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 20px;
+
+}
+
+
+.asset-card {
+
+    background: #161b22;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+}
+
+
+.asset-card h3 {
+
+    margin-bottom: 15px;
+
+}
+
+
+.asset-price {
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+}
+
+
+.asset-movement {
+
+    margin: 10px 0;
+
+    font-weight: bold;
+
+}
+
+
+.up {
+
+    color: #22c55e;
+
+}
+
+
+.down {
+
+    color: #ef4444;
+
+}
+
+
+.receive-btn {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    background: #f7931a;
+
+    color: white;
+
+    font-weight: bold;
+
+}
