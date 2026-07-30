@@ -2857,3 +2857,17 @@ margin:0;
     width:100%;
     height:350px;
 }
+
+.chart-info{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:12px;
+    color:#ffffff;
+    font-size:14px;
+}
+
+#chartValue{
+    color:#f7931a;
+    font-weight:bold;
+}
