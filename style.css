@@ -3087,3 +3087,107 @@ margin:0;
     height: 40px;
     margin-bottom: 10px;
 }
+
+/* ===========================
+   RECEIVE MODAL
+=========================== */
+
+.receive-modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.75);
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.receive-content{
+background:#161b22;
+width:90%;
+max-width:380px;
+padding:25px;
+border-radius:20px;
+text-align:center;
+position:relative;
+box-shadow:0 15px 40px rgba(0,0,0,.5);
+animation:popup .25s ease;
+}
+
+@keyframes popup{
+from{
+transform:scale(.9);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+.close-receive{
+position:absolute;
+right:18px;
+top:12px;
+font-size:28px;
+cursor:pointer;
+color:#ffffff;
+}
+
+.close-receive:hover{
+color:#f7931a;
+}
+
+.receive-content h2{
+margin-bottom:20px;
+font-size:24px;
+}
+
+.qr-box{
+width:220px;
+height:220px;
+margin:0 auto 20px;
+background:#ffffff;
+color:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:12px;
+font-weight:bold;
+}
+
+.wallet-label{
+color:#9ca3af;
+font-size:14px;
+margin-bottom:8px;
+}
+
+.wallet-address{
+background:#0d1117;
+padding:12px;
+border-radius:10px;
+word-break:break-all;
+font-size:14px;
+margin-bottom:20px;
+}
+
+.copy-btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#f7931a;
+color:#fff;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.25s;
+}
+
+.copy-btn:hover{
+transform:translateY(-2px);
+opacity:.9;
+}
