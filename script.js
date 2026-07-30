@@ -824,6 +824,23 @@ chart.subscribeCrosshairMove(param => {
 
 });
 
+
+window.addEventListener("resize", () => {
+
+    chart.applyOptions({
+
+        width: chartContainer.clientWidth
+
+    });
+
+});
+
+setInterval(() => {
+
+    loadChartData();
+
+}, 30000);
+
     window.addEventListener("resize", () => {
 
         chart.applyOptions({
