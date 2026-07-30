@@ -772,33 +772,33 @@ const series = chart.addAreaSeries({
 
 });
 
-async function loadChartData() {
+async function loadChartData(days = 7) {
 
     try {
 
         const response = await fetch(
-            "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7"
+
+            `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${days}`
+
         );
 
         const data = await response.json();
 
-        const chartData = data.prices.map(item => {
+        const chartData = data.prices.map(item => ({
 
-            return {
+            time: Math.floor(item[0] / 1000),
 
-                time: Math.floor(item[0] / 1000),
+            value: item[1]
 
-                value: item[1]
-
-            };
-
-        });
+        }));
 
         series.setData(chartData);
 
-    } catch (error) {
+    }
 
-        console.error("Unable to load chart data:", error);
+    catch(error){
+
+        console.error(error);
 
     }
 
