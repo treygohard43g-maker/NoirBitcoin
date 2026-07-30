@@ -44,7 +44,7 @@ const loginForm = document.getElementById("loginForm");
 if (loginForm) {
 
     loginForm.addEventListener("submit", function (e) {
-
+alert("Login button clicked");
         e.preventDefault();
 
         const email = document.getElementById("loginEmail").value.trim();
