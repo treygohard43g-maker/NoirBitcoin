@@ -2,7 +2,7 @@
 // NOIRBITCOIN SCRIPT
 // Version 1.0
 // ===============================
-
+alert("Script is running");
 // ---------- REGISTER ----------
 
 const registerForm = document.getElementById("registerForm");
