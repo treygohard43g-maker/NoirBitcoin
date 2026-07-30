@@ -841,14 +841,6 @@ setInterval(() => {
 
 }, 30000);
 
-    window.addEventListener("resize", () => {
-
-        chart.applyOptions({
-            width: chartContainer.clientWidth
-        });
-
-    });
-
 }
 
 
