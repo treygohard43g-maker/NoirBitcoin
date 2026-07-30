@@ -1170,9 +1170,9 @@ if (assetsContainer) {
                 ${asset.movement}
             </p>
 
-            <button class="receive-btn">
-                Receive
-            </button>
+            <button class="receive-btn" onclick="openReceive('${asset.symbol}')">
+    Receive
+</button>
 
         </div>
 
