@@ -709,6 +709,8 @@ if (investmentHistory) {
         `;
 
     });
+    
+}
 
 // ---------- BITCOIN CHART ----------
 
