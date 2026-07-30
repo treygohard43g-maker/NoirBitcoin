@@ -712,10 +712,10 @@ if (investmentHistory) {
 
 const chart = document.getElementById("bitcoinChart");
 
-if(chart){
+if(chart && typeof Chart !== "undefined"){
 
 new Chart(chart, {
-
+    
 type:"line",
 
 data:{
