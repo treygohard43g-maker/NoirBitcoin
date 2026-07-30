@@ -802,42 +802,23 @@ color:"rgba(255,255,255,.05)"
 
 }
 
-// Live Balance Movement Animation
+// ---------- LIVE BALANCE MOVEMENT ----------
 
-const balanceDisplay = document.getElementById("availableBalance");
+function updateLiveBalance() {
 
-let currentBalance = 500000;
-
-
-function updateBalance(){
-
-    if(!balanceDisplay) return;
-
-
-    // random small movement up or down
     let change = Math.floor(Math.random() * 500) - 200;
 
+    balance += change;
 
-    currentBalance += change;
-
-
-    if(currentBalance < 0){
-        currentBalance = 0;
+    if (balance < 0) {
+        balance = 0;
     }
 
-
-    balanceDisplay.innerHTML =
-    "$" + currentBalance.toLocaleString("en-NG", {
-        minimumFractionDigits:2,
-        maximumFractionDigits:2
-    });
+    updateBalance();
 
 }
 
-
-// update every few seconds
-setInterval(updateBalance,5000);
-
+setInterval(updateLiveBalance, 5000);
 
 function goToHistory(){
 
