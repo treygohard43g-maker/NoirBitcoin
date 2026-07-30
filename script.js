@@ -1287,30 +1287,30 @@ icon:"https://cryptologos.cc/logos/xrp-xrp-logo.png"
 
 let qr = null;
 
-function openReceive(symbol) {
+function openReceive(symbol){
 
-    const address = walletAddresses[symbol];
+const asset=walletAddresses[symbol];
 
-    document.getElementById("receiveModal").style.display = "flex";
+document.getElementById("receiveModal").style.display="flex";
 
-    document.getElementById("receiveTitle").textContent =
-        "Receive " + symbol;
+document.getElementById("receiveTitle").textContent="Receive "+symbol;
 
-    document.getElementById("walletAddress").textContent =
-        address;
+document.getElementById("walletAddress").textContent=asset.address;
 
-    const qrBox = document.getElementById("qrCode");
+document.getElementById("networkName").textContent=asset.network;
 
-    qrBox.innerHTML = "";
+document.getElementById("receiveIcon").src=asset.icon;
 
-    qr = new QRCode(qrBox, {
-        text: address,
-        width: 220,
-        height: 220,
-        colorDark: "#000000",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
-    });
+const qrBox=document.getElementById("qrCode");
+
+qrBox.innerHTML="";
+
+new QRCode(qrBox,{
+text:asset.address,
+width:220,
+height:220,
+correctLevel:QRCode.CorrectLevel.H
+});
 
 }
 
@@ -1321,6 +1321,28 @@ function closeReceive() {
 }
 
 function copyWalletAddress() {
+
+function shareWalletAddress(){
+
+const address=document.getElementById("walletAddress").textContent;
+
+if(navigator.share){
+
+navigator.share({
+
+title:"Crypto Wallet Address",
+
+text:address
+
+});
+
+}else{
+
+alert("Sharing is not supported on this device.");
+
+}
+
+}
 
     const address =
         document.getElementById("walletAddress").textContent;
