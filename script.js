@@ -805,6 +805,23 @@ async function loadChartData(days = 7) {
 }
 
 loadChartData();
+
+document.querySelectorAll(".time-btn").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        document.querySelectorAll(".time-btn").forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        loadChartData(button.dataset.days);
+
+    });
+
+});
+
 chart.subscribeCrosshairMove(param => {
 
     if (!param.point || !param.time) return;
