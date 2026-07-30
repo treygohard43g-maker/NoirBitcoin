@@ -162,7 +162,7 @@ if (toggleBalance && balanceElement) {
 
         } else {
 
-            balanceElement.innerHTML = startingBalance;
+            updateBalance();
 
             toggleBalance.innerHTML = '<i class="fa-solid fa-eye"></i> Hide Balance';
             balanceVisible = true;
