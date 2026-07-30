@@ -1,3 +1,4 @@
+alert("SCRIPT IS RUNNING");
 // ===============================
 // NOIRBITCOIN SCRIPT
 // Version 1.0
