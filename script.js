@@ -1097,6 +1097,7 @@ const assets = [
     {
         name: "Bitcoin",
         symbol: "BTC",
+        icon: "https://cryptologos.cc/logos/bitcoin-btc-logo.png",
         price: "$118,000",
         movement: "+2.5%",
         status: "up",
@@ -1106,6 +1107,7 @@ const assets = [
     {
         name: "Ethereum",
         symbol: "ETH",
+        icon: "https://cryptologos.cc/logos/ethereum-eth-logo.png",
         price: "$3,800",
         movement: "+1.8%",
         status: "up",
@@ -1115,6 +1117,7 @@ const assets = [
     {
         name: "Tether",
         symbol: "USDT",
+        icon: "https://cryptologos.cc/logos/tether-usdt-logo.png",
         price: "$1.00",
         movement: "+0.01%",
         status: "up",
@@ -1124,6 +1127,7 @@ const assets = [
     {
         name: "Solana",
         symbol: "SOL",
+        icon: "https://cryptologos.cc/logos/solana-sol-logo.png",
         price: "$180",
         movement: "-0.7%",
         status: "down",
@@ -1133,6 +1137,7 @@ const assets = [
     {
         name: "XRP",
         symbol: "XRP",
+        icon: "https://cryptologos.cc/logos/xrp-xrp-logo.png",
         price: "$2.50",
         movement: "+3.2%",
         status: "up",
