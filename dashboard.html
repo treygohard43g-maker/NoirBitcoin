@@ -610,27 +610,42 @@ a73bd92ff21cd82ab82b91d73ab29f82
 
         <span class="close-receive" onclick="closeReceive()">&times;</span>
 
+        <img id="receiveIcon" class="receive-icon" src="" alt="Asset">
+
         <h2 id="receiveTitle">Receive Bitcoin</h2>
 
-        <div id="qrCode" class="qr-box">
-            QR CODE
+        <p id="networkName" class="network-name">
+            Bitcoin Network
+        </p>
+
+        <div id="qrCode" class="qr-box"></div>
+
+        <p class="wallet-label">
+            Wallet Address
+        </p>
+
+        <div id="walletAddress" class="wallet-address"></div>
+
+        <div class="receive-buttons">
+
+            <button class="copy-btn" onclick="copyWalletAddress()">
+                📋 Copy Address
+            </button>
+
+            <button class="share-btn" onclick="shareWalletAddress()">
+                📤 Share
+            </button>
+
         </div>
 
-        <p class="wallet-label">Wallet Address</p>
-
-        <div id="walletAddress" class="wallet-address">
-            bc1qxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        </div>
-
-        <button class="copy-btn" onclick="copyWalletAddress()">
-            Copy Address
-        </button>
+        <p class="receive-warning">
+            Only send the selected cryptocurrency to this address.
+            Sending another asset may result in permanent loss.
+        </p>
 
     </div>
 
 </div>
-
-
 
 <script src="https://unpkg.com/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
