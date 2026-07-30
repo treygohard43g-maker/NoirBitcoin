@@ -1012,3 +1012,77 @@ function setupPasswordToggle(inputId, iconId) {
 setupPasswordToggle("oldPassword", "toggleOldPassword");
 setupPasswordToggle("newPassword", "toggleNewPassword");
 setupPasswordToggle("confirmPassword", "toggleConfirmPassword");
+
+
+// ---------- PORTFOLIO STATISTICS ----------
+
+function updatePortfolio() {
+
+    const totalInvestedElement = document.getElementById("totalInvested");
+    const activePlansElement = document.getElementById("activePlans");
+    const totalProfitElement = document.getElementById("totalProfit");
+    const portfolioBalanceElement = document.getElementById("portfolioBalance");
+
+
+    if (!totalInvestedElement) return;
+
+
+    const investments =
+        JSON.parse(localStorage.getItem("investments")) || [];
+
+
+    let totalInvested = 0;
+    let totalProfit = 0;
+
+
+    investments.forEach(function(investment){
+
+        const amount = Number(investment.amount);
+
+        totalInvested += amount;
+
+
+        let profitRate = 0;
+
+
+        if(investment.plan === "Starter Plan"){
+            profitRate = 5;
+        }
+
+        else if(investment.plan === "Professional Plan"){
+            profitRate = 8;
+        }
+
+        else if(investment.plan === "Premium Plan"){
+            profitRate = 12;
+        }
+
+        else if(investment.plan === "Diamond Plan"){
+            profitRate = 20;
+        }
+
+
+        totalProfit += amount * (profitRate / 100);
+
+    });
+
+
+    totalInvestedElement.textContent =
+        "$" + totalInvested.toLocaleString();
+
+
+    activePlansElement.textContent =
+        investments.length;
+
+
+    totalProfitElement.textContent =
+        "$" + totalProfit.toFixed(2);
+
+
+    portfolioBalanceElement.textContent =
+        "$" + (balance + totalProfit).toLocaleString();
+
+}
+
+
+updatePortfolio();
