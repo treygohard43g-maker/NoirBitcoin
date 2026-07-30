@@ -977,7 +977,7 @@ if (dashboardWelcomeUser) {
     const savedUser = JSON.parse(localStorage.getItem("noirUser"));
 
     if (savedUser) {
-        welcomeUser.innerHTML = 'Welcome, ' + savedUser.name + ' <i class="fa-solid fa-hand"></i>';
+        dashboardWelcomeUser.innerHTML = 'Welcome, ' + savedUser.name + ' <i class="fa-solid fa-hand"></i>';
    }
 
 }
