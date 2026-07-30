@@ -125,26 +125,39 @@ let showingBTC = false;
 
 function updateBalance() {
 
-    if (!balanceElement) return;
+    const portfolioBalance = document.getElementById("portfolioBalance");
 
     if (showingBTC) {
 
         let btc = balance / bitcoinPrice;
-        balanceElement.innerHTML = "₿" + btc.toFixed(8);
+
+        if(balanceElement){
+            balanceElement.innerHTML = "₿" + btc.toFixed(8);
+        }
+
+        if(portfolioBalance){
+            portfolioBalance.innerHTML = "₿" + btc.toFixed(8);
+        }
 
     } else {
 
-        balanceElement.innerHTML =
+        let formattedBalance =
             "$" + balance.toLocaleString("en-US", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
             });
 
+        if(balanceElement){
+            balanceElement.innerHTML = formattedBalance;
+        }
+
+        if(portfolioBalance){
+            portfolioBalance.innerHTML = formattedBalance;
+        }
+
     }
 
 }
-
-updateBalance();
 
 
 // ---------- HIDE / SHOW BALANCE ----------
