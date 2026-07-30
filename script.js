@@ -1258,10 +1258,31 @@ updatePortfolio();
 // ---------- RECEIVE MODAL ----------
 
 const walletAddresses = {
-    BTC: "bc1q3kjwt332fqwfvxjq0wls4rt38zkk0f4k8yv2hc",
-    ETH: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-    USDT: "TRXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    XRP: "rXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+BTC:{
+address:"bc1q3kjwt332fqwfvxjq0wls4rt38zkk0f4k8yv2hc",
+network:"Bitcoin Network",
+icon:"https://cryptologos.cc/logos/bitcoin-btc-logo.png"
+},
+
+ETH:{
+address:"0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+network:"Ethereum Network",
+icon:"https://cryptologos.cc/logos/ethereum-eth-logo.png"
+},
+
+USDT:{
+address:"TRXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+network:"TRC20 Network",
+icon:"https://cryptologos.cc/logos/tether-usdt-logo.png"
+},
+
+XRP:{
+address:"rXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+network:"XRP Ledger",
+icon:"https://cryptologos.cc/logos/xrp-xrp-logo.png"
+}
+
 };
 
 let qr = null;
