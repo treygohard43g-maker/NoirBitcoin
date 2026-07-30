@@ -95,20 +95,20 @@ if (window.location.pathname.includes("dashboard.html")) {
 
 // ---------- DISPLAY USER NAME ----------
 
-const welcomeUser = document.getElementById("welcomeUser");
+const welcomeUserElement = document.getElementById("welcomeUser");
 
-if (welcomeUser) {
+if (welcomeUserElement) {
 
     const savedUser = JSON.parse(localStorage.getItem("noirUser"));
 
     if (savedUser) {
 
-        welcomeUser.innerHTML = "Welcome, " + savedUser.name + " 👋";
+        welcomeUserElement.innerHTML =
+        "Welcome, " + savedUser.name + ' <i class="fa-solid fa-hand"></i>';
 
     }
 
 }
-
 
 
 // ---------- BALANCE ----------
