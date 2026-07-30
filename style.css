@@ -3201,6 +3201,22 @@ gap:6px;
 
 }
 
+.copy-btn{
+
+background:#f7931a;
+
+color:#fff;
+
+}
+
+.share-btn{
+
+background:#21262d;
+
+color:#fff;
+
+}
+
 .copy-btn:hover{
 transform:translateY(-2px);
 opacity:.9;
