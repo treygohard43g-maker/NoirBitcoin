@@ -709,11 +709,10 @@ if (investmentHistory) {
 
 }
 
-const chart = document.getElementById("bitcoinChart");
+const chartContainer = document.getElementById("btcChart");
 
-if(chart && typeof Chart !== "undefined"){
-
-const chart = LightweightCharts.createChart(document.getElementById("btcChart"), {
+if (chartContainer && typeof LightweightCharts !== "undefined") {
+const chart = LightweightCharts.createChart(chartContainer, {
 
     width: document.getElementById("btcChart").clientWidth,
 
@@ -800,6 +799,8 @@ window.addEventListener("resize", () => {
     });
 
 });
+
+}
 
 // ---------- LIVE BALANCE MOVEMENT ----------
 
