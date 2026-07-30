@@ -899,16 +899,14 @@ savedUser.password = newPassword;
 }
 
 // ---------- DASHBOARD WELCOME ----------
-const welcomeUser = document.getElementById("welcomeUser");
+const dashboardWelcomeUser = document.getElementById("welcomeUser");
 
-if (welcomeUser) {
+if (dashboardwelcomeUser) {
 
     const savedUser = JSON.parse(localStorage.getItem("noirUser"));
 
     if (savedUser) {
-        welcomeUser.textContent = "Welcome, " + savedUser.name + " 👋";
-    }
-
+        welcomeUser.innerHTML = 'Welcome, ' + savedUser.name + ' <i class="fa-solid fa-hand"></i>';
 }
 
 // ---------- SHOW / HIDE PASSWORD ----------
