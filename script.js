@@ -582,7 +582,22 @@ alert("Bitcoin address copied");
 }
 
 function investNow(plan) {
+
     localStorage.setItem("selectedPlan", plan);
+
+    let investments = JSON.parse(localStorage.getItem("investments")) || [];
+
+    let newInvestment = {
+        plan: plan,
+        amount: "+$5,000",
+        date: new Date().toLocaleDateString(),
+        status: "Pending"
+    };
+
+    investments.push(newInvestment);
+
+    localStorage.setItem("investments", JSON.stringify(investments));
+
     window.location.href = "investment.html";
 }
 
