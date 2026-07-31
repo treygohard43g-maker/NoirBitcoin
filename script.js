@@ -589,6 +589,7 @@ function investNow(plan) {
 function toggleHistory(header){
 
     const details = header.parentElement.querySelector(".history-details");
+    const chevron = header.querySelector(".history-chevron");
 
     if(!details) return;
 
@@ -598,8 +599,17 @@ function toggleHistory(header){
         }
     });
 
+    document.querySelectorAll(".history-chevron").forEach(function(item){
+        if(item !== chevron){
+            item.classList.remove("rotate");
+        }
+    });
+
     details.classList.toggle("active");
 
+    if(chevron){
+        chevron.classList.toggle("rotate");
+    }
 }
 
 // ---------- INVESTMENT PAGE ----------
@@ -756,6 +766,7 @@ if (investmentHistory) {
 
 </div>
 
+            
             
 
             <div class="history-details">
