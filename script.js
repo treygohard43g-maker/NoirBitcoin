@@ -740,6 +740,31 @@ function confirmInvestment() {
 
 }
 
+// ---------- INVESTMENT DATA MIGRATION ----------
+
+let savedInvestments = JSON.parse(localStorage.getItem("investments")) || [];
+
+savedInvestments = savedInvestments.map(function(investment){
+
+    if (typeof investment.amount === "string") {
+
+        investment.amount = investment.amount
+            .replace("$", "")
+            .replace("+", "")
+            .replace(",", "");
+
+    }
+
+    return investment;
+
+});
+
+
+localStorage.setItem(
+    "investments",
+    JSON.stringify(savedInvestments)
+);
+
     // ---------- LOAD INVESTMENT HISTORY ----------
 
 const investmentHistory = document.getElementById("investmentHistory");
