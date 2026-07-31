@@ -3457,3 +3457,15 @@ color:#f7931a;
     color:#fff;
     font-weight:500;
 }
+
+.history-chevron{
+    margin-top:8px;
+    font-size:14px;
+    color:#8b949e;
+    transition:transform .3s ease,color .3s ease;
+}
+
+.history-chevron.rotate{
+    transform:rotate(180deg);
+    color:#f7931a;
+}
