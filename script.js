@@ -739,17 +739,31 @@ if (investmentHistory) {
 
             <div class="history-header" onclick="toggleHistory(this)">
 
-                <div>
+<div class="history-info">
 
-                    <h3><span class="arrow">▶</span> ${investment.plan}</h3>
+    <h3>
+        <i class="fa-solid fa-chart-line history-icon"></i>
+        ${investment.plan}
+    </h3>
 
-                    <p>${investment.date}</p>
+    <p>
+        <span class="status-badge active">
+            ${investment.status}
+        </span>
 
-                </div>
+        • ${investment.date}
+    </p>
 
-                <span class="amount negative">-$${investment.amount}</span>
+</div>
 
-            </div>
+<div class="history-right">
+
+    <span class="amount negative">
+        -$${investment.amount}
+    </span>
+
+</div>
+
 
             <div class="history-details">
 
