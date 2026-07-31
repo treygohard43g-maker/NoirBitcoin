@@ -770,6 +770,97 @@ localStorage.setItem(
     JSON.stringify(savedInvestments)
 );
 
+// ---------- FORCE INVESTMENT HISTORY REPAIR ----------
+
+function forceRepairInvestmentHistory(){
+
+    const container = document.getElementById("investmentHistory");
+
+    if(!container) return;
+
+    const investments =
+        JSON.parse(localStorage.getItem("investments")) || [];
+
+
+    container.innerHTML = "";
+
+
+    investments.forEach(function(investment){
+
+        container.innerHTML += `
+
+        <div class="history-item">
+
+            <div class="history-header" onclick="toggleHistory(this)">
+
+                <div class="history-info">
+
+                    <h3>
+                        <i class="fa-solid fa-chart-line history-icon"></i>
+                        ${investment.plan}
+                    </h3>
+
+                    <p>
+                        <span class="status-badge pending">
+                            ${investment.status}
+                        </span>
+                        • ${investment.date}
+                    </p>
+
+                </div>
+
+
+                <div class="history-right">
+
+                    <span class="amount positive">
+                        +$${investment.amount}
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down history-chevron"></i>
+
+                </div>
+
+            </div>
+
+
+            <div class="history-details">
+
+                <div class="detail-row">
+                    <span>Investment Plan</span>
+                    <span>${investment.plan}</span>
+                </div>
+
+
+                <div class="detail-row">
+                    <span>Amount</span>
+                    <span>$${investment.amount}</span>
+                </div>
+
+
+                <div class="detail-row">
+                    <span>Status</span>
+                    <span class="status-badge pending">
+                        ${investment.status}
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        `;
+
+    });
+
+}
+
+
+// Run repair automatically when dashboard loads
+
+forceRepairInvestmentHistory();
+
     // ---------- LOAD INVESTMENT HISTORY ----------
 
 const investmentHistory = document.getElementById("investmentHistory");
