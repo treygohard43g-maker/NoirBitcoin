@@ -3545,25 +3545,26 @@ color:#f7931a;
 }
 
 .portfolio-icon{
-    width:64px;
-    height:64px;
+
+    width:48px;
+    height:48px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    border-radius:50%;
+    border-radius:14px;
 
-    background:linear-gradient(135deg,#f7931a,#ffb84d);
+    background:#1e293b;
 
-    box-shadow:0 8px 20px rgba(247,147,26,.35);
+    border:1px solid rgba(255,255,255,.08);
 
     flex-shrink:0;
 }
 
 .portfolio-icon i{
-    color:#fff;
-    font-size:30px;
+    font-size:22px;
+    color:inherit;
 }
 
 .portfolio-content{
@@ -3662,4 +3663,20 @@ color:#f7931a;
 
     box-shadow:
     0 20px 45px rgba(0,0,0,.38);
+}
+
+.invested-icon{
+    color:#3b82f6;
+}
+
+.plans-icon{
+    color:#8b5cf6;
+}
+
+.profit-icon{
+    color:#22c55e;
+}
+
+.portfolio-balance-card .portfolio-icon{
+    color:#f7931a;
 }
