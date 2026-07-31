@@ -1486,20 +1486,21 @@ margin-top:40px;
 }
 
 .amount{
-    font-size:20px;
+    font-size:18px;
     font-weight:700;
+    padding:6px 12px;
+    border-radius:10px;
+    display:inline-block;
 }
 
 .positive{
-
-color:#22c55e;
-
+    color:#22c55e;
+    background:rgba(34,197,94,.12);
 }
 
 .negative{
-
-color:#ef4444;
-
+    color:#ef4444;
+    background:rgba(239,68,68,.12);
 }
 
 .history-details{
@@ -2647,9 +2648,17 @@ color:#ef4444;
 }
 
 
+.history-item{
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
 .history-item:hover{
     transform:translateY(-3px);
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
+    border-color:#f7931a;
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
 }
 
 
