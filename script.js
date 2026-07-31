@@ -1511,3 +1511,6 @@ function saveQRCode(){
 
 }
 
+console.log(JSON.parse(localStorage.getItem("investments")));
+
+
