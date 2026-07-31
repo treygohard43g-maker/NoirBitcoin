@@ -1,10 +1,20 @@
 window.onerror = function (message, source, line, column, error) {
     alert("JS Error:\n" + message + "\nLine: " + line);
 };
+
 // ===============================
 // NOIRBITCOIN SCRIPT
 // Version 1.0
 // ===============================
+
+// Load saved theme
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "light") {
+    document.body.classList.add("light-mode");
+} else {
+    document.body.classList.remove("light-mode");
+}
 
 // ---------- REGISTER ----------
 
