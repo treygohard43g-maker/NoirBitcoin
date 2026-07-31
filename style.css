@@ -3166,47 +3166,40 @@ margin-bottom:8px;
 }
 
 
-.copy-btn,
-.share-btn{
-
-padding:14px 10px;
-
-border:none;
-
-border-radius:12px;
-
-font-size:15px;
-
-font-weight:600;
-
-cursor:pointer;
-
-transition:.25s;
-
+.receive-buttons{
 display:flex;
+justify-content:space-between;
+gap:12px;
+margin-top:20px;
+}
 
-justify-content:center;
-
+.action-btn{
+flex:1;
+display:flex;
+flex-direction:column;
 align-items:center;
-
-gap:6px;
-
+justify-content:center;
+gap:8px;
+padding:14px 10px;
+background:#1f2937;
+border:1px solid #374151;
+border-radius:14px;
+color:#ffffff;
+cursor:pointer;
+transition:.25s;
+font-size:13px;
+font-weight:600;
 }
 
-.copy-btn{
-
-background:#f7931a;
-
-color:#fff;
-
+.action-btn i{
+font-size:22px;
+color:#f7931a;
 }
 
-.share-btn{
-
-background:#21262d;
-
-color:#fff;
-
+.action-btn:hover{
+background:#2b3648;
+border-color:#f7931a;
+transform:translateY(-2px);
 }
 
 .copy-btn:hover{
@@ -3299,38 +3292,3 @@ opacity:1;
 transform:translateX(-50%) translateY(0);
 }
 
-.receive-buttons{
-display:flex;
-justify-content:space-between;
-gap:12px;
-margin-top:20px;
-}
-
-.action-btn{
-flex:1;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-gap:8px;
-padding:14px 10px;
-background:#1f2937;
-border:1px solid #374151;
-border-radius:14px;
-color:#ffffff;
-cursor:pointer;
-transition:.25s;
-font-size:13px;
-font-weight:600;
-}
-
-.action-btn i{
-font-size:22px;
-color:#f7931a;
-}
-
-.action-btn:hover{
-background:#2b3648;
-border-color:#f7931a;
-transform:translateY(-2px);
-}
