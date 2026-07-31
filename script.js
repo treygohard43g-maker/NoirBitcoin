@@ -1277,6 +1277,12 @@ network:"TRC20 Network",
 icon:"https://cryptologos.cc/logos/tether-usdt-logo.png"
 },
 
+SOL:{
+address:"YOUR_SOL_ADDRESS",
+network:"Solana Network",
+icon:"https://cryptologos.cc/logos/solana-sol-logo.png"
+},
+
 XRP:{
 address:"rXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 network:"XRP Ledger",
