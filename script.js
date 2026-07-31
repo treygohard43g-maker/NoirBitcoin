@@ -589,7 +589,6 @@ function investNow(plan) {
 function toggleHistory(header){
 
     const details = header.parentElement.querySelector(".history-details");
-    const arrow = header.querySelector(".arrow");
 
     if(!details) return;
 
@@ -599,16 +598,9 @@ function toggleHistory(header){
         }
     });
 
-    document.querySelectorAll(".arrow").forEach(function(item){
-        if(item !== arrow){
-            item.classList.remove("rotate");
-        }
-    });
-
     details.classList.toggle("active");
-    arrow.classList.toggle("rotate");
-}
 
+}
 
 // ---------- INVESTMENT PAGE ----------
 
