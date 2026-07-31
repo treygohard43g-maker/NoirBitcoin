@@ -1540,14 +1540,11 @@ color:#ef4444;
 }
 
 .transaction-history hr{
-
-border:none;
-
-border-top:1px solid #2b2b2b;
-
-margin:0;
-
+    border:none;
+    border-top:1px solid #2d333b;
+    margin:16px 0;
 }
+
 .transaction-history{
     width:100%;
     max-width:100%;
