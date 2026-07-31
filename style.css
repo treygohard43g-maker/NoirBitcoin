@@ -2585,9 +2585,6 @@ margin-top:40px;
     width:100% !important;
 }
 
-.transaction-history .history-details{
-    width:100% !important;
-}
 
 /* Final Transaction History Width Fix */
 
@@ -2615,10 +2612,6 @@ margin-top:40px;
     border-radius:15px;
 }
 
-.transaction-history .history-details{
-    width:100% !important;
-    box-sizing:border-box;
-}
 
 /* ===========================
    Professional Transaction Cards
@@ -2705,12 +2698,6 @@ margin-top:40px;
     color:#ef4444;
 }
 
-
-.history-details{
-    background:#0f172a !important;
-    border-radius:12px;
-    margin-top:12px;
-}
 
 
 .history-details p{
