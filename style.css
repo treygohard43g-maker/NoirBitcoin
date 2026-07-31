@@ -3354,7 +3354,7 @@ font-size:20px;
 
 input:checked + .slider:before {
     transform: translateX(27px);
-    content: "🌙";
+    content: "🌑";
 }
 
 input:not(:checked) + .slider:before {
