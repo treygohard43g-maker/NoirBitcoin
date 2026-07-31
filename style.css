@@ -3426,3 +3426,25 @@ color:#f7931a;
     background:rgba(245,158,11,.15);
     color:#f59e0b;
 }
+
+.detail-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid #2d333b;
+}
+
+.detail-row:last-child{
+    border-bottom:none;
+}
+
+.detail-row span:first-child{
+    color:#8b949e;
+    font-size:13px;
+}
+
+.detail-row span:last-child{
+    color:#fff;
+    font-weight:500;
+}
