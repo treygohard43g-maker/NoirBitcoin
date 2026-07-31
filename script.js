@@ -773,18 +773,19 @@ if (investmentHistory) {
 
                 </div>
 
+
                 <div class="history-right">
 
-    <span class="amount negative">
-        -$${investment.amount}
-    </span>
+                    <span class="amount negative">
+                        -$${investment.amount}
+                    </span>
 
-    <i class="fa-solid fa-chevron-down history-chevron"></i>
+                    <i class="fa-solid fa-chevron-down history-chevron"></i>
 
-</div>
+                </div>
 
-            
-            
+            </div>
+
 
             <div class="history-details">
 
@@ -793,10 +794,12 @@ if (investmentHistory) {
                     <span>${investment.plan}</span>
                 </div>
 
+
                 <div class="detail-row">
                     <span>Amount</span>
                     <span>$${investment.amount}</span>
                 </div>
+
 
                 <div class="detail-row">
                     <span>Status</span>
@@ -816,7 +819,6 @@ if (investmentHistory) {
     });
 
 }
-
     
 // ---------- BITCOIN CHART ----------
 
