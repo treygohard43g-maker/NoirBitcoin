@@ -711,7 +711,7 @@ color:#aaa;
 
     font-weight: bold;
 
-    word-break: break-all;
+    overflow-wrap: anywhere;
 
     border: 1px solid #f59e0b;
 
