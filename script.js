@@ -721,8 +721,7 @@ function confirmInvestment() {
 
 }
 
-    
-// ---------- LOAD INVESTMENT HISTORY ----------
+    // ---------- LOAD INVESTMENT HISTORY ----------
 
 const investmentHistory = document.getElementById("investmentHistory");
 
@@ -739,39 +738,50 @@ if (investmentHistory) {
 
             <div class="history-header" onclick="toggleHistory(this)">
 
-<div class="history-info">
+                <div class="history-info">
 
-    <h3>
-        <i class="fa-solid fa-chart-line history-icon"></i>
-        ${investment.plan}
-    </h3>
+                    <h3>
+                        <i class="fa-solid fa-chart-line history-icon"></i>
+                        ${investment.plan}
+                    </h3>
 
-    <p>
-        <span class="status-badge active">
-            ${investment.status}
-        </span>
+                    <p>
+                        <span class="status-badge ${investment.status.toLowerCase()}">
+                            ${investment.status}
+                        </span>
+                        • ${investment.date}
+                    </p>
 
-        • ${investment.date}
-    </p>
+                </div>
 
-</div>
+                <div class="history-right">
 
-<div class="history-right">
+                    <span class="amount negative">
+                        -$${investment.amount}
+                    </span>
 
-    <span class="amount negative">
-        -$${investment.amount}
-    </span>
+                </div>
 
-</div>
-
+            </div>
 
             <div class="history-details">
 
-                <p><strong>Investment Plan:</strong> ${investment.plan}</p>
+                <div class="detail-row">
+                    <span>Investment Plan</span>
+                    <span>${investment.plan}</span>
+                </div>
 
-                <p><strong>Amount:</strong> $${investment.amount}</p>
+                <div class="detail-row">
+                    <span>Amount</span>
+                    <span>$${investment.amount}</span>
+                </div>
 
-                <p><strong>Status:</strong> ${investment.status}</p>
+                <div class="detail-row">
+                    <span>Status</span>
+                    <span class="status-badge ${investment.status.toLowerCase()}">
+                        ${investment.status}
+                    </span>
+                </div>
 
             </div>
 
@@ -782,9 +792,10 @@ if (investmentHistory) {
         `;
 
     });
-    
+
 }
 
+    
 // ---------- BITCOIN CHART ----------
 
 const chartContainer = document.getElementById("btcChart");
