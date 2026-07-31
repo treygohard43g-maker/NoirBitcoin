@@ -16,6 +16,42 @@ if (savedTheme === "light") {
     document.body.classList.remove("light-mode");
 }
 
+// ---------- THEME TOGGLE ----------
+
+const themeToggle = document.getElementById("themeToggle");
+
+if (themeToggle) {
+
+    if (savedTheme === "light") {
+
+        themeToggle.checked = false;
+
+    } else {
+
+        themeToggle.checked = true;
+
+    }
+
+    themeToggle.addEventListener("change", function () {
+
+        if (themeToggle.checked) {
+
+            document.body.classList.remove("light-mode");
+
+            localStorage.setItem("theme", "dark");
+
+        } else {
+
+            document.body.classList.add("light-mode");
+
+            localStorage.setItem("theme", "light");
+
+        }
+
+    });
+
+}
+
 // ---------- REGISTER ----------
 
 const registerForm = document.getElementById("registerForm");
@@ -1396,35 +1432,3 @@ function saveQRCode(){
 
 }
 
-// ---------- THEME TOGGLE ----------
-
-const themeToggle = document.getElementById("themeToggle");
-
-if (themeToggle) {
-
-    const savedTheme = localStorage.getItem("theme");
-
-    if (savedTheme === "light") {
-        document.body.classList.add("light-mode");
-        themeToggle.checked = false;
-    } else {
-        themeToggle.checked = true;
-    }
-
-    themeToggle.addEventListener("change", function () {
-
-        if (themeToggle.checked) {
-
-            document.body.classList.remove("light-mode");
-            localStorage.setItem("theme", "dark");
-
-        } else {
-
-            document.body.classList.add("light-mode");
-            localStorage.setItem("theme", "light");
-
-        }
-
-    });
-
-}
