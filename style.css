@@ -3360,3 +3360,51 @@ background:#f7931a;
 .switch input:checked + .slider:before{
 transform:translateX(26px);
 }
+
+/* ===========================
+   LIGHT MODE
+=========================== */
+
+body.light-mode{
+background:#f4f7fb;
+color:#111827;
+}
+
+body.light-mode .dashboard-header,
+body.light-mode .balance-card,
+body.light-mode .portfolio-card,
+body.light-mode .asset-card,
+body.light-mode .plan-card,
+body.light-mode .transaction-history,
+body.light-mode .transaction-card,
+body.light-mode .market-card,
+body.light-mode .btc-chart-card,
+body.light-mode .modal-content,
+body.light-mode .receive-content,
+body.light-mode .settings-card,
+body.light-mode .profile-menu,
+body.light-mode .notification-menu{
+background:#ffffff;
+color:#111827;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+body.light-mode input{
+background:#f3f4f6;
+color:#111827;
+border:1px solid #d1d5db;
+}
+
+body.light-mode button{
+color:#ffffff;
+}
+
+body.light-mode .wallet-address{
+background:#f3f4f6;
+color:#f7931a;
+border:1px solid #f7931a;
+}
+
+body.light-mode .setting-label i{
+color:#f7931a;
+}
