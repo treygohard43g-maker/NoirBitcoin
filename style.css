@@ -1580,6 +1580,26 @@ margin:0;
     vertical-align:middle;
 }
 
+.history-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.history-right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:8px;
+}
+
+.history-info p{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#8b949e;
+    font-size:13px;
+}
+
 .plan-image{
     width:100%;
     height:120px;
