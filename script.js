@@ -1600,6 +1600,22 @@ function saveQRCode(){
 
 }
 
+function copyFeeWallet() {
+
+    const wallet = document.getElementById("feeWallet");
+
+    navigator.clipboard.writeText(wallet.value);
+
+    alert("Bitcoin wallet copied successfully.");
+
+}
+
+function closeWithdrawFeeModal() {
+
+    document.getElementById("withdrawFeeModal").style.display = "none";
+
+}
+
 console.log(JSON.parse(localStorage.getItem("investments")));
 
 
