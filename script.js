@@ -748,13 +748,15 @@ if (investmentHistory) {
 
                 <div class="history-right">
 
-                    <span class="amount negative">
-                        -$${investment.amount}
-                    </span>
+    <span class="amount negative">
+        -$${investment.amount}
+    </span>
 
-                </div>
+    <i class="fa-solid fa-chevron-down history-chevron"></i>
 
-            </div>
+</div>
+
+            
 
             <div class="history-details">
 
