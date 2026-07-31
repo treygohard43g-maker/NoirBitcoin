@@ -3681,3 +3681,65 @@ color:#f7931a;
 .portfolio-balance-card .portfolio-icon{
     color:#f7931a;
 }
+
+/* ===== Premium Portfolio Cards ===== */
+
+.portfolio-card{
+    background:linear-gradient(145deg,#111827,#1f2937);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:22px;
+    transition:all .3s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.portfolio-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:4px;
+    background:linear-gradient(90deg,#f7931a,#ffd166);
+}
+
+.portfolio-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+}
+
+.portfolio-card i{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.portfolio-card:nth-child(1) i{
+    color:#f7931a;
+}
+
+.portfolio-card:nth-child(2) i{
+    color:#3b82f6;
+}
+
+.portfolio-card:nth-child(3) i{
+    color:#8b5cf6;
+}
+
+.portfolio-card:nth-child(4) i{
+    color:#22c55e;
+}
+
+.portfolio-card h3{
+    color:#94a3b8;
+    font-size:14px;
+    margin-bottom:10px;
+    font-weight:500;
+}
+
+.portfolio-card h2{
+    color:#fff;
+    font-size:24px;
+    margin:0;
+    font-weight:700;
+}
