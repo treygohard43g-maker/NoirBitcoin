@@ -523,19 +523,35 @@ align-items:center;
 }
 
 .plan-card{
-    background:#1b1b1b;
-    border-radius:18px;
-    padding:18px;
+    background:linear-gradient(
+        145deg,
+        #1f2937,
+        #111827
+    );
+
+    border-radius:22px;
+    padding:22px;
+
     display:flex;
     flex-direction:column;
     align-items:center;
     text-align:center;
-    min-height:360px;
+
+    min-height:380px;
     width:100%;
+
     box-sizing:border-box;
     position:relative;
     overflow:hidden;
-    transition:transform .3s ease, box-shadow .3s ease;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.35);
+
+    transition:
+    transform .3s ease,
+    box-shadow .3s ease;
 }
 
 .plan-card:hover{
