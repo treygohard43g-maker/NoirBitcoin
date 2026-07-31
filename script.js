@@ -655,6 +655,8 @@ if (planTitle) {
     }
 
 }
+
+
 // ---------- CALCULATE PROFIT ----------
 
 function calculateProfit() {
