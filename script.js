@@ -109,34 +109,46 @@ if (registerForm) {
 
 // ---------- LOGIN ----------
 
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
 const loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
 
-    loginForm.addEventListener("submit", function (e) {
+    loginForm.addEventListener("submit", async function (e) {
+
         e.preventDefault();
 
         const email = document.getElementById("loginEmail").value.trim();
 
         const password = document.getElementById("loginPassword").value;
 
-        const savedUser = JSON.parse(localStorage.getItem("noirUser"));
 
-        if (
+        try {
 
-            savedUser &&
+            const userCredential = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
-            email === savedUser.email &&
 
-            password === savedUser.password
+            const user = userCredential.user;
 
-        ) {
 
             localStorage.setItem("loggedIn", "true");
 
+            localStorage.setItem("firebaseUser", JSON.stringify({
+                uid: user.uid,
+                email: user.email
+            }));
+
+
             window.location.href = "dashboard.html";
 
-        } else {
+
+        } catch (error) {
 
             alert("Incorrect email or password.");
 
@@ -145,7 +157,6 @@ if (loginForm) {
     });
 
 }
-
 
 
 // ---------- PROTECT DASHBOARD ----------
