@@ -854,5 +854,36 @@ Investment Plans
 
 </div>
 
+<script>
+window.addEventListener("load", () => {
+    const username =
+        localStorage.getItem("username") ||
+        localStorage.getItem("registeredUsername") ||
+        "User";
+
+    const welcomeType = localStorage.getItem("welcomeType");
+
+    let message = "";
+
+    if (welcomeType === "back") {
+        message = `Welcome back to NoirBitcoin, ${username}`;
+    } else {
+        message = `Welcome to NoirBitcoin, ${username}`;
+    }
+
+    if ("speechSynthesis" in window && message) {
+        const speech = new SpeechSynthesisUtterance(message);
+        speech.rate = 0.9;
+        speech.pitch = 1;
+        speech.volume = 1;
+
+        speechSynthesis.cancel();
+        speechSynthesis.speak(speech);
+    }
+
+    localStorage.removeItem("welcomeType");
+});
+</script>
+
 </body>
 </html>
