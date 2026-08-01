@@ -93,8 +93,9 @@ if (registerForm) {
 
             alert("Account created successfully!");
 
-            window.location.href = "login.html";
+localStorage.setItem("welcomeType", "new");
 
+window.location.href = "login.html";
 
         } catch (error) {
 
