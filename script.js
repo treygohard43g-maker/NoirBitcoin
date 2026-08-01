@@ -1213,69 +1213,6 @@ setupPasswordToggle("oldPassword", "toggleOldPassword");
 setupPasswordToggle("newPassword", "toggleNewPassword");
 setupPasswordToggle("confirmPassword", "toggleConfirmPassword");
 
-// ---------- PORTFOLIO OVERVIEW ----------
-
-function updatePortfolio(){
-
-    const totalInvestedElement = document.getElementById("totalInvested");
-    const activePlansElement = document.getElementById("activePlans");
-    const totalProfitElement = document.getElementById("totalProfit");
-
-    const investments =
-        JSON.parse(localStorage.getItem("investments")) || [];
-
-
-    let totalInvested = 0;
-    let totalProfit = 0;
-
-
-    investments.forEach(function(investment){
-
-        totalInvested += Number(investment.amount);
-
-
-        let rate = 0;
-
-        if(investment.plan === "Starter Plan"){
-            rate = 5;
-        }
-        else if(investment.plan === "Professional Plan"){
-            rate = 8;
-        }
-        else if(investment.plan === "Premium Plan"){
-            rate = 12;
-        }
-        else if(investment.plan === "Diamond Plan"){
-            rate = 20;
-        }
-
-
-        totalProfit += Number(investment.amount) * (rate / 100);
-
-    });
-
-
-    if(totalInvestedElement){
-        totalInvestedElement.innerHTML =
-        "$" + totalInvested.toLocaleString();
-    }
-
-
-    if(activePlansElement){
-        activePlansElement.innerHTML =
-        investments.length;
-    }
-
-
-    if(totalProfitElement){
-        totalProfitElement.innerHTML =
-        "$" + totalProfit.toLocaleString();
-    }
-
-}
-
-
-updatePortfolio();
 
 // ---------- DIGITAL ASSETS ----------
 
