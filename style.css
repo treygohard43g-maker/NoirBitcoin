@@ -711,6 +711,32 @@ color:#aaa;
 
 }
 
+/* ---------- CONTINUE BUTTON ---------- */
+
+.continue-btn{
+    width:100%;
+    padding:16px;
+    margin-top:20px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#f7931a,#ffb347);
+    color:#ffffff;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s ease;
+    box-shadow:0 10px 25px rgba(247,147,26,0.35);
+}
+
+.continue-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 30px rgba(247,147,26,0.45);
+}
+
+.continue-btn:active{
+    transform:scale(0.98);
+}
+
 /* Bitcoin Address Box */
 
 .wallet-address {
