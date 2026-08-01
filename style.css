@@ -4091,20 +4091,50 @@ color:#f7931a;
 }
 
 .copy-wallet-btn{
+
     width:100%;
+
+    padding:17px;
+
     border:none;
+
     border-radius:16px;
-    padding:16px;
-    font-size:17px;
-    font-weight:700;
-    background:linear-gradient(90deg,#ffb300,#ff9800);
+
     cursor:pointer;
-    margin-bottom:15px;
-    transition:.25s;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    color:#111;
+
+    background:linear-gradient(
+        180deg,
+        #fff2a8 0%,
+        #ffd86b 20%,
+        #f7b500 55%,
+        #d48b00 100%
+    );
+
+    box-shadow:
+        0 10px 25px rgba(247,181,0,.35),
+        inset 0 2px 2px rgba(255,255,255,.35);
+
+    transition:.3s ease;
+
+    margin-bottom:16px;
+
 }
 
 .copy-wallet-btn:hover{
     transform:translateY(-2px);
+    
+    box-shadow:
+        0 16px 35px rgba(247,181,0,0,.45)
+        inset 0 2px 2px rgba(255,255,255,.4);
+        
+    filter:brightness(1.05);
+    
 }
 
 .close-btn{
