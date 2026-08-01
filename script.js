@@ -154,9 +154,9 @@ if (!localStorage.getItem("welcomeType")) {
 
         } catch (error) {
 
-            alert("Incorrect email or password.");
+    alert(error.message);
 
-        }
+}
 
     });
 
