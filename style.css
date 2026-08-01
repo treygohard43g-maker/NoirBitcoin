@@ -3839,8 +3839,10 @@ color:#f7931a;
 }
 
 .withdraw-icon{
-    width:96px;
-    height:96px;
+
+    width:78px;
+    height:78px;
+
     margin:0 auto 20px;
 
     border-radius:50%;
@@ -3849,16 +3851,36 @@ color:#f7931a;
     justify-content:center;
     align-items:center;
 
-    background:linear-gradient(135deg,#f7931a,#ffb347);
+    background:#0b0b0b;
 
-    color:#fff;
-    font-size:44px;
-
-    border:4px solid rgba(255,255,255,.08);
+    border:3px solid #3a2a00;
 
     box-shadow:
-        0 0 0 8px rgba(247,147,26,.08),
-        0 12px 35px rgba(247,147,26,.45);
+        0 0 0 5px rgba(247,147,26,.08),
+        0 12px 30px rgba(0,0,0,.6);
+
+}
+
+.withdraw-icon i{
+
+    font-size:42px;
+
+    background:linear-gradient(
+        180deg,
+        #fff7bf 0%,
+        #ffd86b 25%,
+        #f7b500 55%,
+        #c88700 80%,
+        #8b5a00 100%
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+        0 1px 2px rgba(255,255,255,.3),
+        0 0 12px rgba(247,181,0,.45);
+
 }
 
 .withdraw-card h2{
