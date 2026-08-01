@@ -61,32 +61,50 @@ const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
 
-    registerForm.addEventListener("submit", function (e) {
+    registerForm.addEventListener("submit", async function (e) {
 
         e.preventDefault();
 
-        const user = {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const password = document.getElementById("password").value;
 
-            name: document.getElementById("name").value.trim(),
 
-            email: document.getElementById("email").value.trim(),
+        try {
 
-            phone: document.getElementById("phone").value.trim(),
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
-            password: document.getElementById("password").value
 
-        };
+            const user = userCredential.user;
 
-        localStorage.setItem("noirUser", JSON.stringify(user));
 
-        alert("Account created successfully!");
+            localStorage.setItem("noirUser", JSON.stringify({
+                uid: user.uid,
+                name: name,
+                email: email,
+                phone: phone
+            }));
 
-        window.location.href = "login.html";
+
+            alert("Account created successfully!");
+
+            window.location.href = "login.html";
+
+
+        } catch (error) {
+
+            alert(error.message);
+
+        }
 
     });
 
 }
-
 
 
 // ---------- LOGIN ----------
