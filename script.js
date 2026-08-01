@@ -145,7 +145,9 @@ if (loginForm) {
                 email: user.email
             }));
 
-localStorage.setItem("welcomeType", "back");
+if (!localStorage.getItem("welcomeType")) {
+    localStorage.setItem("welcomeType", "back");
+}
 
             window.location.href = "dashboard.html";
 
