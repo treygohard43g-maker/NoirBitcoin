@@ -115,6 +115,8 @@ window.location.href = "login.html";
 
 const loginForm = document.getElementById("loginForm");
 
+alert("Login code reached");
+
 if (loginForm) {
 
     loginForm.addEventListener("submit", async function (e) {
