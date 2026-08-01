@@ -1655,3 +1655,19 @@ function speakWelcome(username, isNewUser = false) {
     speechSynthesis.speak(speech);
 }
 
+// Make HTML onclick functions available
+
+window.logout = logout;
+window.toggleHistory = toggleHistory;
+window.openReceive = openReceive;
+window.copyFeeWallet = copyFeeWallet;
+window.closeWithdrawFeeModal = closeWithdrawFeeModal;
+window.closeReceive = closeReceive;
+window.copyWalletAddress = copyWalletAddress;
+window.shareWalletAddress = shareWalletAddress;
+window.saveQRCode = saveQRCode;
+window.showWithdrawalPending = showWithdrawalPending;
+window.closeWithdrawModal = closeWithdrawModal;
+window.closePendingModal = closePendingModal;
+window.copyWallet = copyWallet;
+window.investNow = investNow;
