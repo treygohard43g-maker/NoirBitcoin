@@ -144,6 +144,7 @@ if (loginForm) {
                 email: user.email
             }));
 
+localStorage.setItem("welcomeType", "back");
 
             window.location.href = "dashboard.html";
 
