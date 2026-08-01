@@ -3919,32 +3919,50 @@ color:#f7931a;
 }
 
 .withdraw-icon{
-    width:90px;
-    height:90px;
-    margin:auto;
+    width:96px;
+    height:96px;
+    margin:0 auto 20px;
+
     border-radius:50%;
-    background:linear-gradient(135deg,#ffb300,#ff8f00);
+
     display:flex;
     justify-content:center;
     align-items:center;
+
+    background:linear-gradient(135deg,#f7931a,#ffb347);
+
     color:#fff;
-    font-size:42px;
-    box-shadow:0 0 30px rgba(255,166,0,.45);
+    font-size:44px;
+
+    border:4px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 0 0 8px rgba(247,147,26,.08),
+        0 12px 35px rgba(247,147,26,.45);
 }
 
 .withdraw-card h2{
-    margin:20px 0 10px;
+    margin:18px 0 8px;
     text-align:center;
+
     color:#fff;
-    font-size:32px;
+
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:.5px;
 }
 
 .divider{
-    width:70px;
-    height:4px;
+    width:90px;
+    height:5px;
+
+    margin:0 auto 22px;
+
     border-radius:50px;
-    margin:0 auto 25px;
-    background:linear-gradient(90deg,#ffb300,#ff7b00);
+
+    background:linear-gradient(90deg,#f7931a,#ffd166);
+
+    box-shadow:0 0 12px rgba(247,147,26,.45);
 }
 
 .withdraw-text{
