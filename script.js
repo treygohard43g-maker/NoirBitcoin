@@ -1609,4 +1609,45 @@ function copyWallet() {
     }, 2000);
 }
 
+// ===========================
+// WELCOME VOICE
+// ===========================
+
+function speakWelcome(username, isNewUser = false) {
+
+    if (!("speechSynthesis" in window)) return;
+
+    speechSynthesis.cancel();
+
+    const message = isNewUser
+        ? `Welcome to NoirBitcoin, ${username}.`
+        : `Welcome back to NoirBitcoin, ${username}.`;
+
+    const speech = new SpeechSynthesisUtterance(message);
+
+    speech.lang = "en-US";
+    speech.rate = 0.95;
+    speech.pitch = 1;
+    speech.volume = 1;
+
+    // Try to use a female English voice if available
+    const voices = speechSynthesis.getVoices();
+
+    const femaleVoice = voices.find(voice =>
+        voice.lang.startsWith("en") &&
+        (
+            voice.name.toLowerCase().includes("female") ||
+            voice.name.toLowerCase().includes("samantha") ||
+            voice.name.toLowerCase().includes("zira") ||
+            voice.name.toLowerCase().includes("karen") ||
+            voice.name.toLowerCase().includes("victoria")
+        )
+    );
+
+    if (femaleVoice) {
+        speech.voice = femaleVoice;
+    }
+
+    speechSynthesis.speak(speech);
+}
 
