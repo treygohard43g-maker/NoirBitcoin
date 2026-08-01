@@ -1465,11 +1465,6 @@ body{
 p {
     color: #94a3b8;
 }
-.transaction-history{
-
-margin-top:40px;
-
-}
 
 .history-item{
     background:#161b22;
@@ -1561,13 +1556,6 @@ margin-top:40px;
     border-top:1px solid #2d333b;
     margin:16px 0;
 }
-
-.transaction-history{
-    width:100%;
-    max-width:100%;
-    overflow-x:hidden;
-}
-
 
 .tx-hash{
     font-size:11px;
@@ -2571,13 +2559,6 @@ margin-top:40px;
 }
 
 /* Force Transaction History To Full Screen Width */
-
-.transaction-history{
-    width:100% !important;
-    max-width:none !important;
-    display:block !important;
-    box-sizing:border-box !important;
-}
 
 .transaction-history .history-item{
     width:100% !important;
