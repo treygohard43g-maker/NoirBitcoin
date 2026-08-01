@@ -3985,73 +3985,70 @@ color:#f7931a;
 
 .wallet-box{
     display:flex;
+    flex-direction:column;
     align-items:center;
-    justify-content:space-between;
-    gap:15px;
 
-    background:#1b2433;
-    border:1px solid rgba(247,147,26,.25);
+    background:#1a2232;
+    border:1px solid rgba(255,170,0,.2);
     border-radius:18px;
 
-    padding:16px;
-    margin-bottom:22px;
+    padding:22px 18px;
+    margin-bottom:20px;
 }
 
 .wallet-left{
+    width:100%;
     display:flex;
+    flex-direction:column;
     align-items:center;
-    gap:14px;
-    flex:1;
-    min-width:0;
+    gap:16px;
 }
 
 .btc-circle{
-    width:56px;
-    height:56px;
-    min-width:56px;
+    width:52px;
+    height:52px;
 
     border-radius:50%;
 
-    background:linear-gradient(135deg,#f7931a,#ffb347);
+    background:#f7931a;
 
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
 
     color:#fff;
-    font-size:26px;
+    font-size:24px;
 
-    box-shadow:0 0 18px rgba(247,147,26,.35);
+    margin-bottom:6px;
 }
 
 #btcWallet{
-    flex:1;
-    min-width:0;
+    width:100%;
+
+    text-align:left;
 
     color:#fff;
 
-    font-size:13px;
-    line-height:1.6;
+    font-size:15px;
+
+    line-height:1.7;
 
     word-break:break-all;
 }
 
 .copy-btn{
-    width:44px;
-    height:44px;
+    align-self:flex-end;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    margin-top:12px;
 
+    background:none;
     border:none;
-    border-radius:12px;
 
-    background:#273244;
     color:#fff;
 
+    font-size:22px;
+
     cursor:pointer;
-    transition:.25s;
 }
 
 .copy-btn:hover{
