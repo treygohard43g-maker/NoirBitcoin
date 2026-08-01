@@ -124,13 +124,16 @@ if (loginForm) {
 
         e.preventDefault();
 
+        alert("Login button clicked");
+
         const email = document.getElementById("loginEmail").value.trim();
 
         const password = document.getElementById("loginPassword").value;
 
+        alert("Email: " + email);
 
         try {
-
+            
             const userCredential = await signInWithEmailAndPassword(
                 auth,
                 email,
