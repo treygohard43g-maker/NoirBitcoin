@@ -413,44 +413,37 @@ Copy Address
 </div>
 
 
-<!-- Withdraw Popup -->
-
+<!-- Withdraw Form -->
 <div id="withdrawModal" class="modal">
 
     <div class="modal-content">
 
-        <span class="close" id="closeWithdraw">
+        <span class="close" onclick="closeWithdrawModal()">
             &times;
         </span>
 
         <h2>Withdraw Bitcoin</h2>
 
-        <p>Enter withdrawal details</p>
+        <p>Enter your withdrawal details.</p>
 
+        <input
+            type="number"
+            id="withdrawAmount"
+            placeholder="Amount in BTC">
 
-        <input 
-        type="number" 
-        id="withdrawAmount" 
-        placeholder="Amount in BTC">
+        <input
+            type="text"
+            id="withdrawWallet"
+            placeholder="Your Bitcoin wallet">
 
-
-        <input 
-        type="text" 
-        id="withdrawWallet" 
-        placeholder="Bitcoin wallet address">
-
-
-        <button id="confirmWithdraw">
-            Confirm Withdrawal
+        <button onclick="showWithdrawalPending()">
+            Continue
         </button>
 
-
-        <p class="notice">
-            Withdrawal request will be processed.
-        </p>
-
     </div>
+
 </div>
+
 
 <div class="market-card">
 
