@@ -1618,4 +1618,51 @@ function closeWithdrawFeeModal() {
 
 console.log(JSON.parse(localStorage.getItem("investments")));
 
+/* ==========================
+   PREMIUM WITHDRAW FLOW
+========================== */
 
+function showWithdrawalPending() {
+
+    const amount = document.getElementById("withdrawAmount").value.trim();
+    const wallet = document.getElementById("withdrawWallet").value.trim();
+
+    if (amount === "" || wallet === "") {
+        alert("Please enter the withdrawal amount and your Bitcoin wallet address.");
+        return;
+    }
+
+    // Hide the withdraw form
+    document.getElementById("withdrawModal").style.display = "none";
+
+    // Show the premium pending modal
+    document.getElementById("pendingModal").style.display = "flex";
+}
+
+function closeWithdrawModal() {
+    document.getElementById("withdrawModal").style.display = "none";
+}
+
+function closePendingModal() {
+    document.getElementById("pendingModal").style.display = "none";
+}
+
+function copyWallet() {
+
+    const wallet =
+        document.getElementById("btcWallet").innerText.trim();
+
+    navigator.clipboard.writeText(wallet);
+
+    const btn =
+        document.querySelector(".copy-wallet-btn");
+
+    const oldText = btn.innerHTML;
+
+    btn.innerHTML =
+        '<i class="fa-solid fa-check"></i> Wallet Copied!';
+
+    setTimeout(() => {
+        btn.innerHTML = oldText;
+    }, 2000);
+}
