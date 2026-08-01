@@ -1671,3 +1671,6 @@ window.closeWithdrawModal = closeWithdrawModal;
 window.closePendingModal = closePendingModal;
 window.copyWallet = copyWallet;
 window.investNow = investNow;
+window.calculateProfit = calculateProfit;
+window.confirmInvestment = confirmInvestment;
+
