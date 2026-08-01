@@ -856,32 +856,36 @@ Investment Plans
 
 <script>
 window.addEventListener("load", () => {
-    const username =
-        localStorage.getItem("username") ||
-        localStorage.getItem("registeredUsername") ||
-        "User";
+
+    const savedUser = JSON.parse(localStorage.getItem("noirUser"));
+
+    const username = savedUser ? savedUser.name : "User";
 
     const welcomeType = localStorage.getItem("welcomeType");
 
-    let message = "";
+    const message = welcomeType === "back"
+        ? `Welcome back to NoirBitcoin, ${username}`
+        : `Welcome to NoirBitcoin, ${username}`;
 
-    if (welcomeType === "back") {
-        message = `Welcome back to NoirBitcoin, ${username}`;
-    } else {
-        message = `Welcome to NoirBitcoin, ${username}`;
-    }
+    if ("speechSynthesis" in window) {
 
-    if ("speechSynthesis" in window && message) {
-        const speech = new SpeechSynthesisUtterance(message);
-        speech.rate = 0.9;
-        speech.pitch = 1;
-        speech.volume = 1;
+        setTimeout(() => {
 
-        speechSynthesis.cancel();
-        speechSynthesis.speak(speech);
+            const speech = new SpeechSynthesisUtterance(message);
+
+            speech.lang = "en-US";
+            speech.rate = 0.9;
+            speech.pitch = 1;
+            speech.volume = 1;
+
+            speechSynthesis.cancel();
+            speechSynthesis.speak(speech);
+
+        }, 1000);
     }
 
     localStorage.removeItem("welcomeType");
+
 });
 </script>
 
