@@ -1216,10 +1216,14 @@ if (dashboardWelcomeUser) {
 
     if (savedUser) {
         dashboardWelcomeUser.innerHTML = 'Welcome, ' + savedUser.name + ' <i class="fa-solid fa-hand"></i>';
-   }
+
+        // Play welcome voice after the page loads
+        setTimeout(() => {
+            speakWelcome(savedUser.name);
+        }, 800);
+    }
 
 }
-
 
 // ---------- SHOW / HIDE PASSWORD ----------
 function setupPasswordToggle(inputId, iconId) {
