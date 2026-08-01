@@ -1,5 +1,8 @@
 import { auth } from "./firebase.js";
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { 
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 window.onerror = function (message, source, line, column, error) {
     alert("JS Error:\n" + message + "\nLine: " + line);
