@@ -1666,3 +1666,11 @@ function copyWallet() {
         btn.innerHTML = oldText;
     }, 2000);
 }
+
+const withdrawBtn = document.getElementById("withdrawBtn");
+
+if (withdrawBtn) {
+    withdrawBtn.addEventListener("click", function () {
+        document.getElementById("withdrawModal").style.display = "flex";
+    });
+}
