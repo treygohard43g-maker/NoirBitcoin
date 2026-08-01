@@ -342,34 +342,7 @@ if (closeWithdraw) {
 }
 
 
-const confirmWithdraw = document.getElementById("confirmWithdraw");
 
-
-if (confirmWithdraw) {
-
-    confirmWithdraw.addEventListener("click", function () {
-
-        const amount = document.getElementById("withdrawAmount").value;
-
-        const wallet = document.getElementById("withdrawWallet").value;
-
-
-        if (!amount || !wallet) {
-
-            alert("Please fill all withdrawal details");
-
-            return;
-
-        }
-
- 
-document.getElementById("withdrawFeeModal").style.display = "flex";
-
-        withdrawModal.style.display = "none";
-
-    });
-
-}
 // ---------- INVEST BUTTON ----------
 
 const investBtn = document.getElementById("investBtn");
