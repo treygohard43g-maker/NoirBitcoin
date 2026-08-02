@@ -4215,35 +4215,30 @@ color:#f7931a;
 .premium-bitcoin-coin{
     width:150px;
     height:150px;
-
     object-fit:contain;
-
     display:block;
-
     margin:auto;
-
     filter:drop-shadow(0 10px 20px rgba(247,181,0,.35));
-    animation: coinSpin 8s linear infinite;
-    
+
+    transform-style: preserve-3d;
+    animation: coinFlip 4s ease-in-out infinite;
 }
 
-@keyframes coinSpin{
-
-    from{
-
-        transform: rotateY(0deg);
-
+@keyframes coinFlip{
+    0%{
+        transform: perspective(800px) rotateY(0deg);
     }
 
-    to{
-
-        transform: rotateY(360deg);
-
+    50%{
+        transform: perspective(800px) rotateY(180deg);
     }
 
+    100%{
+        transform: perspective(800px) rotateY(360deg);
+    }
 }
 
-.btc-premium-coin span{
+    .btc-premium-coin span{
 
     font-size:38px;
 
