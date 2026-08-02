@@ -4213,8 +4213,8 @@ color:#f7931a;
 }
 
 .premium-bitcoin-coin{
-    width:130px;
-    height:130px;
+    width:150px;
+    height:150px;
 
     object-fit:contain;
 
@@ -4222,7 +4222,7 @@ color:#f7931a;
 
     margin:auto;
 
-    filter:drop-shadow(0 8px 16px rgba(247,181,0,.35));
+    filter:drop-shadow(0 10px 20px rgba(247,181,0,.35));
 
 }
 
