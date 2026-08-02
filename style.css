@@ -4223,6 +4223,23 @@ color:#f7931a;
     margin:auto;
 
     filter:drop-shadow(0 10px 20px rgba(247,181,0,.35));
+    animation: coinSpin 8s linear infinite;
+    
+}
+
+@keyframes coinSpin{
+
+    from{
+
+        transform: rotateY(0deg);
+
+    }
+
+    to{
+
+        transform: rotateY(360deg);
+
+    }
 
 }
 
