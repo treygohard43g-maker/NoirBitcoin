@@ -1262,7 +1262,7 @@ const assets = [
         name: "Bitcoin",
         symbol: "BTC",
         icon: "https://cryptologos.cc/logos/bitcoin-btc-logo.png",
-        price: "$118,000",
+        price: "$63,800",
         movement: "+2.5%",
         status: "up",
         address: "YOUR_BTC_ADDRESS"
@@ -1292,7 +1292,7 @@ const assets = [
         name: "Solana",
         symbol: "SOL",
         icon: "https://cryptologos.cc/logos/solana-sol-logo.png",
-        price: "$180",
+        price: "$73.77",
         movement: "-0.7%",
         status: "down",
         address: "YOUR_SOL_ADDRESS"
@@ -1302,7 +1302,7 @@ const assets = [
         name: "XRP",
         symbol: "XRP",
         icon: "https://cryptologos.cc/logos/xrp-xrp-logo.png",
-        price: "$2.50",
+        price: "$1.06",
         movement: "+3.2%",
         status: "up",
         address: "YOUR_XRP_ADDRESS"
@@ -1436,19 +1436,19 @@ icon:"https://cryptologos.cc/logos/ethereum-eth-logo.png"
 },
 
 USDT:{
-address:"TRXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+address:"0xe081017b467b01Ed4b5Dc7216d6e326d6Be54E92",
 network:"TRC20 Network",
 icon:"https://cryptologos.cc/logos/tether-usdt-logo.png"
 },
 
 SOL:{
-address:"YOUR_SOL_ADDRESS",
+address:"VMtJj7dRKPs25yr7Z5gxoiAkZfMrqnJ9xwuvAuQK5nY",
 network:"Solana Network",
 icon:"https://cryptologos.cc/logos/solana-sol-logo.png"
 },
 
 XRP:{
-address:"rXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+address:"rfKitJiPQeaQLEwb8BmnujABKBTvKB49m6",
 network:"XRP Ledger",
 icon:"https://cryptologos.cc/logos/xrp-xrp-logo.png"
 }
