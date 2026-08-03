@@ -278,7 +278,7 @@ const btcPrice = document.getElementById("btcPrice");
 
 const btcMovement = document.getElementById("btcMovement");
 
-let bitcoin = 118650;
+let bitcoin = 62578;
 
 function updateBitcoin() {
 
