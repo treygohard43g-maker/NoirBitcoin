@@ -602,7 +602,7 @@ function investNow(plan) {
         status: "Pending"
     };
 
-    investments.push(newInvestment);
+    investments.unshift(newInvestment);
 
     localStorage.setItem(
         "investments",
