@@ -4250,3 +4250,33 @@ color:#f7931a;
         0 1px 0 rgba(255,255,255,.5);
 
 }
+
+/* NoirBitcoin History Surface Override */
+
+#investmentHistory .history-item {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#investmentHistory .history-header {
+    background: transparent !important;
+    padding: 10px 0 !important;
+}
+
+#investmentHistory .history-details {
+    display: none !important;
+}
+
+#investmentHistory .history-info h3 {
+    font-size: 15px;
+    margin: 0;
+}
+
+#investmentHistory .history-info p {
+    margin: 4px 0;
+    font-size: 13px;
+}
