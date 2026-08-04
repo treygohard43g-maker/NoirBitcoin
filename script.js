@@ -781,8 +781,8 @@ localStorage.setItem(
 
 function forceRepairInvestmentHistory(){
 
-    const container = document.getElementById("investmentHistory");
-
+    const container = document.getElementById("recentHistory");
+    
     if(!container) return;
 
     const investments =
@@ -1288,8 +1288,10 @@ function updatePortfolio() {
     let totalProfit = 0;
 
 
-    investments.forEach(function(investment){
+    const latest = investments.slice(-3).reverse();
 
+    latest.forEach(function(investment){
+        
         const amount = Number(investment.amount);
 
         totalInvested += amount;
