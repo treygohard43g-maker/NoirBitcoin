@@ -4292,3 +4292,42 @@ color:#f7931a;
     margin: 4px 0;
     font-size: 13px;
 }
+
+/* NoirBitcoin Dashboard Recent History Surface Style */
+
+#recentHistory .history-item {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+
+
+#recentHistory .history-header {
+    background: transparent;
+    padding: 12px 0;
+}
+
+
+#recentHistory .history-details {
+    display: none;
+}
+
+
+#recentHistory .history-details.active {
+    display: block;
+}
+
+
+#recentHistory .history-info h3 {
+    font-size: 15px;
+    margin: 0;
+}
+
+
+#recentHistory .history-info p {
+    font-size: 13px;
+    margin-top: 5px;
+}
