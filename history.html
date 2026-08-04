@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NoirBitcoin History</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<header class="dashboard-header">
+
+<div class="logo">
+<h1>
+<i class="fa-brands fa-bitcoin"></i>
+NOIRBITCOIN
+</h1>
+</div>
+
+
+<div class="header-icons">
+
+<button class="icon-btn" onclick="window.location.href='dashboard.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+</button>
+
+</div>
+
+</header>
+
+
+
+<div class="dashboard-container">
+
+
+<div class="history-page">
+
+
+<h2>
+Transaction History
+</h2>
+
+
+<div id="investmentHistory"></div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<script>
+
+
+function loadHistory(){
+
+
+const container = document.getElementById("investmentHistory");
+
+
+const investments =
+JSON.parse(localStorage.getItem("investments")) || [];
+
+
+
+container.innerHTML = "";
+
+
+
+if(investments.length === 0){
+
+container.innerHTML = `
+
+<div class="empty-history">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+<p>No transactions yet</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+
+investments.reverse().forEach(function(investment){
+
+
+
+container.innerHTML += `
+
+
+<div class="history-item">
+
+
+<div class="history-header" onclick="toggleHistory(this)">
+
+
+<div class="history-info">
+
+
+<h3>
+
+<i class="fa-solid fa-chart-line history-icon"></i>
+
+${investment.plan}
+
+</h3>
+
+
+<p>
+
+<span class="status-badge pending">
+
+${investment.status || "Pending"}
+
+</span>
+
+•
+
+${investment.date || ""}
+
+</p>
+
+
+</div>
+
+
+
+<div class="history-right">
+
+
+<span class="amount positive">
+
++$${investment.amount}
+
+</span>
+
+
+<i class="fa-solid fa-chevron-down history-chevron"></i>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="history-details">
+
+
+
+<div class="detail-row">
+
+<span>Investment Plan</span>
+
+<span>${investment.plan}</span>
+
+</div>
+
+
+
+
+<div class="detail-row">
+
+<span>Amount</span>
+
+<span>$${investment.amount}</span>
+
+</div>
+
+
+
+
+<div class="detail-row">
+
+<span>Status</span>
+
+<span class="status-badge pending">
+
+${investment.status || "Pending"}
+
+</span>
+
+</div>
+
+
+
+
+<div class="detail-row">
+
+<span>Date</span>
+
+<span>${investment.date || "N/A"}</span>
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+`;
+
+
+
+});
+
+
+
+}
+
+
+
+function toggleHistory(element){
+
+
+const item = element.parentElement;
+
+
+item.classList.toggle("active");
+
+
+
+}
+
+
+
+window.onload = loadHistory;
+
+
+</script>
+
+
+</body>
+
+</html>
