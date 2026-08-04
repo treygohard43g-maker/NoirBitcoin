@@ -780,7 +780,7 @@ localStorage.setItem(
 function forceRepairInvestmentHistory(){
 
     const container = document.getElementById("recentHistory");
-    
+
     if(!container) return;
 
     const investments =
@@ -788,20 +788,51 @@ function forceRepairInvestmentHistory(){
 
     container.innerHTML = "";
 
-    investments.forEach(function(investment){
+    // Show only the latest 3 transactions
+    investments.slice(-3).reverse().forEach(function(investment){
 
         container.innerHTML += `
 
-        <div class="history-text">
+        <div class="history-item">
 
-            <p>
-                <i class="fa-solid fa-chart-line"></i>
-                ${investment.plan}
-                — 
-                <span>$${investment.amount}</span>
-                • ${investment.status}
-                • ${investment.date}
-            </p>
+            <div class="history-header" onclick="toggleHistory(this)">
+
+                <div class="history-info">
+
+                    <h3>
+                        <i class="fa-solid fa-chart-line"></i>
+                        ${investment.plan}
+                    </h3>
+
+                    <p>
+                        ${investment.status}
+                        • ${investment.date}
+                    </p>
+
+                </div>
+
+
+                <div class="history-right">
+
+                    <span>
+                        +$${investment.amount}
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+
+            <div class="history-details">
+
+                <p>Investment Plan: ${investment.plan}</p>
+                <p>Amount: $${investment.amount}</p>
+                <p>Status: ${investment.status}</p>
+                <p>Date: ${investment.date}</p>
+
+            </div>
 
         </div>
 
