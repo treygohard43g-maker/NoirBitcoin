@@ -4268,7 +4268,19 @@ color:#f7931a;
 }
 
 #investmentHistory .history-details {
-    display: none !important;
+    display: none;
+}
+
+#investmentHistory .history-details.active {
+    display: block;
+}
+
+#recentHistory .history-details {
+    display: none;
+}
+
+#recentHistory .history-details.active {
+    display: block;
 }
 
 #investmentHistory .history-info h3 {
