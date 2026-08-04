@@ -236,20 +236,23 @@ ${investment.status || "Pending"}
 
 }
 
+function toggleHistory(header){
+
+    const details = header.parentElement.querySelector(".history-details");
+    const chevron = header.querySelector(".history-chevron");
 
 
-function toggleHistory(element){
+    if(!details) return;
 
 
-const item = element.parentElement;
+    details.classList.toggle("active");
 
 
-item.classList.toggle("active");
-
-
+    if(chevron){
+        chevron.classList.toggle("rotate");
+    }
 
 }
-
 
 
 window.onload = loadHistory;
