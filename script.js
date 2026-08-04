@@ -789,7 +789,7 @@ function forceRepairInvestmentHistory(){
     container.innerHTML = "";
 
     // Show only the latest 3 transactions
-    investments.slice(-3).reverse().forEach(function(investment){
+      investments.slice(0,3).forEach(function(investment){
 
         container.innerHTML += `
 
