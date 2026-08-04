@@ -818,7 +818,7 @@ function forceRepairInvestmentHistory(){
                         +$${investment.amount}
                     </span>
 
-                    <i class="fa-solid fa-chevron-down"></i>
+                    <i class="fa-solid fa-chevron-down history-chevron"></i>
 
                 </div>
 
