@@ -792,7 +792,13 @@ function forceRepairInvestmentHistory(){
     container.innerHTML = "";
 
 
-    investments.forEach(function(investment){
+    const recentInvestments = investments
+    .slice()
+    .reverse()
+    .slice(0, 3);
+
+
+recentInvestments.forEach(function(investment){
 
         container.innerHTML += `
 
