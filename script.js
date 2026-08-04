@@ -779,8 +779,8 @@ localStorage.setItem(
 
 function forceRepairInvestmentHistory(){
 
-    const container = document.getElementById("investmentHistory");
-
+    const container = document.getElementById("recentHistory");
+    
     if(!container) return;
 
     const investments =
