@@ -4340,3 +4340,7 @@ border:1px solid #2A2F38;
 .view-all-btn i{
     font-size: 14px;
 }
+
+.action-card{
+    background:red !important;
+}
