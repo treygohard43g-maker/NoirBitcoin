@@ -4382,3 +4382,38 @@ border:1px solid #2A2F38;
     border-color:#f7931a;
     box-shadow:0 0 15px rgba(247,147,26,.25);
 }
+
+.search-results{
+    display:none;
+    position:absolute;
+    width:100%;
+    background:#111;
+    border-radius:12px;
+    margin-top:8px;
+    overflow:hidden;
+    z-index:1000;
+}
+
+
+.search-item{
+    display:flex;
+    gap:15px;
+    padding:15px;
+    color:white;
+    cursor:pointer;
+}
+
+
+.search-item:hover{
+    background:#222;
+}
+
+
+.search-item h4{
+    margin:0;
+}
+
+.search-item span{
+    color:#999;
+    font-size:13px;
+}
