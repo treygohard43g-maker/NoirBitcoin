@@ -352,24 +352,18 @@ color:black;
 }
 
 .market-card{
-
-background:#1f2937;
-
-padding:25px;
-
-border-radius:18px;
-
-margin-bottom:35px;
-
+    background:#1B1E24;
+    padding:25px;
+    border-radius:18px;
+    margin-bottom:35px;
+    border:1px solid #2A2F38;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
 .market-card h1{
-
-color:#f59e0b;
-
-font-size:40px;
-
-}
+    color:#F7931A;
+    font-size:40px;
+} 
 
 .portfolio-grid{
 
@@ -438,15 +432,12 @@ border:1px solid #f59e0b;
 }
 
 #transactionList{
-
-background:#1f2937;
-
-padding:25px;
-
-border-radius:18px;
-
-min-height:180px;
-
+    background:#1B1E24;
+    padding:25px;
+    border-radius:18px;
+    min-height:180px;
+    border:1px solid #2A2F38;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
 @media(max-width:900px){
@@ -2416,12 +2407,12 @@ p {
 .market-card{
     width:100%;
     box-sizing:border-box;
-    background:linear-gradient(145deg,#111827,#1f2937);
+    background:#1B1E24;
     border-radius:24px;
     padding:25px;
     margin:30px 0;
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid #2A2F38;
 
     box-shadow:0 15px 35px rgba(0,0,0,.35);
 
@@ -2430,7 +2421,6 @@ p {
 
     transition:.35s ease;
 }
-
 
 .market-card:hover{
     transform:translateY(-5px);
