@@ -2266,9 +2266,9 @@ p {
 
 
 .action-card{
-    background:linear-gradient(145deg,#111827,#1f2937);
-    color:white;
-    border:1px solid rgba(255,255,255,0.08);
+    background:#1B1E24;
+    color:#fff;
+    border:1px solid #2A2F38;
     padding:22px 15px;
     border-radius:20px;
 
@@ -2283,7 +2283,6 @@ p {
 
     box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
-
 
 .action-card i{
     font-size:28px;
@@ -2351,7 +2350,7 @@ p {
     align-items:center;
     justify-content:space-between;
     padding:18px 20px;
-    background:#111827;
+    background:#181C22;
     border-radius:20px;
     box-sizing:border-box;
     margin-bottom:25px;
@@ -2386,9 +2385,9 @@ p {
     width:45px;
     height:45px;
     border-radius:50%;
-    border:1px solid rgba(255,255,255,.1);
-    background:#1f2937;
-    color:white;
+    border:1px solid #2A2F38;
+    background:#181C22;
+    color:#fff;
 
     display:flex;
     align-items:center;
@@ -2405,8 +2404,8 @@ p {
 
 
 .icon-btn:hover{
-    background:#f7931a;
-    color:black;
+    background:#f7931A;
+    color:#000;
     transform:translateY(-3px);
 }
 
@@ -2417,16 +2416,14 @@ p {
 .market-card{
     width:100%;
     box-sizing:border-box;
-    background:
-    linear-gradient(145deg,#111827,#1f2937);
+    background:linear-gradient(145deg,#111827,#1f2937);
     border-radius:24px;
     padding:25px;
     margin:30px 0;
 
     border:1px solid rgba(255,255,255,.08);
 
-    box-shadow:
-    0 15px 35px rgba(0,0,0,.35);
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
 
     position:relative;
     overflow:hidden;
