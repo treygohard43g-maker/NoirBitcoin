@@ -3592,9 +3592,9 @@ border:1px solid #2A2F38;
 /* ===== Premium Portfolio Cards ===== */
 
 .portfolio-card{
-    background:linear-gradient(145deg,#111827,#1f2937);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:18px;
+    background:linear-gradient(145deg,#1B1E24,#181C22);
+    border:1px solid #2A2F38;
+    border-radius:22px;
     padding:22px;
     transition:all .3s ease;
     position:relative;
@@ -3612,8 +3612,9 @@ border:1px solid #2A2F38;
 }
 
 .portfolio-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 15px 35px rgba(0,0,0,.35);
+    transform:translateY(-6px);
+    border-color:rgba(247,147,26,.45);
+    box-shadow:0 20px 45px rgba(0,0,0,.38);
 }
 
 .portfolio-card i{
