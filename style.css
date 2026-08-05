@@ -1054,11 +1054,11 @@ button[onclick="logout()"]:hover {
 
 .action-card {
 
-    background:#111827;
+    background:#1B1E24;
 
     color:white;
 
-    border:none;
+    border:1px solid #2A2F38;
 
     padding:20px 10px;
 
@@ -1075,8 +1075,6 @@ button[onclick="logout()"]:hover {
     cursor:pointer;
 
     font-weight:bold;
-
-    border:1px solid rgba(255,255,255,0.1);
 
     transition:0.3s;
 
