@@ -1052,34 +1052,26 @@ button[onclick="logout()"]:hover {
 
 
 
-.action-card {
-
-    background:#1B1E24;
-
-    color:white;
-
+.action-card{
+    background:linear-gradient(145deg,#1B1E24,#181C22);
+    color:#fff;
     border:1px solid #2A2F38;
-
     padding:20px 10px;
-
     border-radius:18px;
 
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
+    justify-content:center;
     gap:10px;
 
     cursor:pointer;
-
     font-weight:bold;
 
-    transition:0.3s;
+    transition:.3s ease;
 
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
-
 
 
 .action-card i {
@@ -1092,12 +1084,10 @@ button[onclick="logout()"]:hover {
 
 
 
-.action-card:hover {
-
+.action-card:hover{
     transform:translateY(-5px);
-
-    background:#1f2937;
-
+    background:linear-gradient(145deg,#232831,#1D222A);
+    border-color:rgba(247,147,26,.4);
 }
 
 
