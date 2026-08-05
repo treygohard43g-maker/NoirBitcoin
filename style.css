@@ -4331,3 +4331,34 @@ color:#f7931a;
     font-size: 13px;
     margin-top: 5px;
 }
+
+.view-all-container{
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+.view-all-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #f59e0b, #ff8c00);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .3s ease;
+    box-shadow: 0 6px 18px rgba(255,140,0,.3);
+}
+
+.view-all-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(255,140,0,.45);
+}
+
+.view-all-btn i{
+    font-size: 14px;
+}
