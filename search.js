@@ -85,7 +85,9 @@ async function displayResults(coins) {
         } catch (e) {}
 
         searchResults.innerHTML += `
-            <div class="search-item" data-id="${coin.id}">
+        
+            <div class="search-item"
+     onclick="selectAsset('${coin.id}','${coin.name}','${coin.symbol}','${coin.large}')">
 
                 <img src="${coin.thumb}" class="search-logo">
 
