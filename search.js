@@ -109,29 +109,6 @@ async function displayResults(coins) {
 
 }
 
-    coins.slice(0, 10).forEach((coin) => {
-
-        searchResults.innerHTML += `
-            <div class="search-item">
-
-                <img src="${coin.thumb}" class="search-logo">
-
-                <div class="search-info">
-
-                    <h4>${coin.name}</h4>
-
-                    <span>${coin.symbol.toUpperCase()}</span>
-
-                </div>
-
-            </div>
-        `;
-
-    });
-
-    searchResults.style.display = "block";
-
-}
 
 if (searchInput) {
 
