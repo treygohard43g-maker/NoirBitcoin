@@ -143,3 +143,13 @@ if (searchInput) {
 
 }
 
+function selectAsset(id, name, symbol, logo) {
+
+    searchInput.value = name;
+
+    searchResults.innerHTML = "";
+    searchResults.style.display = "none";
+
+    alert(`You selected ${name} (${symbol.toUpperCase()})`);
+
+}
