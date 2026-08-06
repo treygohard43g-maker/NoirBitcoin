@@ -4443,3 +4443,98 @@ border:1px solid #2A2F38;
     font-weight:600;
     font-size:15px;
 }
+
+/*==========================
+ ASSET DETAILS PAGE
+==========================*/
+
+.asset-page{
+    padding:20px;
+    color:#fff;
+    min-height:100vh;
+    background:#0d1117;
+}
+
+.back-btn{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:12px;
+    background:#1B1E24;
+    color:#fff;
+    font-size:18px;
+    cursor:pointer;
+    margin-bottom:20px;
+}
+
+#assetHeader{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+#assetHeader img{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+}
+
+.asset-name{
+    font-size:24px;
+    font-weight:700;
+}
+
+.asset-symbol{
+    color:#999;
+    text-transform:uppercase;
+}
+
+.asset-price{
+    font-size:34px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+#chart{
+    width:100%;
+    background:#1B1E24;
+    border-radius:18px;
+    margin:25px 0;
+}
+
+#assetStats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.stat-card{
+    background:#1B1E24;
+    padding:18px;
+    border-radius:16px;
+}
+
+.stat-title{
+    color:#999;
+    font-size:14px;
+}
+
+.stat-value{
+    margin-top:8px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.invest-btn{
+    width:100%;
+    height:55px;
+    margin-top:30px;
+    border:none;
+    border-radius:15px;
+    background:#f7931a;
+    color:#fff;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
