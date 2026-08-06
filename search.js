@@ -1,3 +1,4 @@
+alert("search.js loaded");
 const COINGECKO_API_KEY = "CG-AEbisio9spT8HodxYnx9iyHE";
 
 let searchInput;
