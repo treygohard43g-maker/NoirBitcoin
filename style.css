@@ -4405,7 +4405,7 @@ border:1px solid #2A2F38;
 
 
 .search-item:hover{
-    background:#222;
+    background:#1B1E24;
 }
 
 
@@ -4416,4 +4416,30 @@ border:1px solid #2A2F38;
 .search-item span{
     color:#999;
     font-size:13px;
+}
+
+.search-logo{
+    width:40px;
+    height:40px;
+    object-fit:contain;
+    border-radius:50%;
+    background:#fff;
+    padding:2px;
+    flex-shrink:0;
+}
+
+.search-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    flex:1;
+}
+
+.search-price{
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+    color:#f7931a;
+    font-weight:600;
+    font-size:15px;
 }
