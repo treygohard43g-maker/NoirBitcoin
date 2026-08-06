@@ -1,7 +1,24 @@
 const COINGECKO_API_KEY = "CG-AEbisio9spT8HodxYnx9iyHE";
 
-const searchInput = document.getElementById("assetSearch");
-const searchResults = document.getElementById("searchResults");
+let searchInput;
+let searchResults;
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    searchInput = document.getElementById("assetSearch");
+    searchResults = document.getElementById("searchResults");
+
+    if (searchInput) {
+
+        searchInput.addEventListener("input", (e) => {
+
+            searchCoins(e.target.value.trim());
+
+        });
+
+    }
+
+});
 
 async function searchCoins(query) {
 
@@ -109,16 +126,6 @@ async function displayResults(coins) {
 
 }
 
-
-if (searchInput) {
-
-    searchInput.addEventListener("input", (e) => {
-
-        searchCoins(e.target.value.trim());
-
-    });
-
-}
 
 window.selectAsset = function(id, name, symbol, logo) {
 
