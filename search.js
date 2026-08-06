@@ -1,68 +1,97 @@
-const COINGECKO_API_KEY ="CG-AEbisio9spT8HodxYnx9iyHE";
-
-async function searchAssets(query) {
-
-    if (!query) return [];
-
-    const url =
-        `https://api.coingecko.com/api/v3/search?query=${encodeURIComponent(query)}`;
-
-    const response = await fetch(url, {
-        headers: {
-            "x-cg-demo-api-key": COINGECKO_API_KEY
-        }
-    });
-
-    const data = await response.json();
-
-    return data.coins || [];
-}
+const COINGECKO_API_KEY = "CG-AEbisio9spT8HodxYnx9iyHE";
 
 const searchInput = document.getElementById("assetSearch");
 const searchResults = document.getElementById("searchResults");
 
-if (searchInput && searchResults) {
+async function searchCoins(query) {
 
-    searchInput.addEventListener("input", async function () {
-
-        const value = this.value.toLowerCase();
+    if (!query || query.length < 2) {
 
         searchResults.innerHTML = "";
+        searchResults.style.display = "none";
+        return;
 
-        if (value === "") {
-            searchResults.style.display = "none";
-            return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `https://api.coingecko.com/api/v3/search?query=${encodeURIComponent(query)}`,
+            {
+                headers: {
+                    "x-cg-demo-api-key": COINGECKO_API_KEY
+                }
+            }
+        );
+
+        if (!response.ok) {
+
+            throw new Error("Failed to fetch assets");
+
         }
 
-        const filtered = await searchAssets(value);
+        const data = await response.json();
 
-searchResults.innerHTML = "";
+        displayResults(data.coins || []);
 
-filtered.forEach(asset => {
+    } catch (error) {
 
-    searchResults.innerHTML += `
-        <div class="search-item">
+        console.error(error);
 
-            <img
-                src="${asset.thumb}"
-                alt="${asset.name}"
-                class="search-logo">
+        searchResults.innerHTML =
+            `<div class="search-item">Unable to load assets.</div>`;
 
-            <div class="search-info">
+        searchResults.style.display = "block";
 
-                <h4>${asset.name}</h4>
+    }
 
-                <span>${asset.symbol.toUpperCase()}</span>
+}
+
+function displayResults(coins) {
+
+    searchResults.innerHTML = "";
+
+    if (coins.length === 0) {
+
+        searchResults.innerHTML =
+            `<div class="search-item">No assets found</div>`;
+
+        searchResults.style.display = "block";
+        return;
+
+    }
+
+    coins.slice(0, 10).forEach((coin) => {
+
+        searchResults.innerHTML += `
+            <div class="search-item">
+
+                <img src="${coin.thumb}" class="search-logo">
+
+                <div class="search-info">
+
+                    <h4>${coin.name}</h4>
+
+                    <span>${coin.symbol.toUpperCase()}</span>
+
+                </div>
 
             </div>
+        `;
 
-        </div>
-    `;
+    });
 
-});
+    searchResults.style.display = "block";
 
-searchResults.style.display = filtered.length ? "block" : "none";
-   
-   });
-    
 }
+
+if (searchInput) {
+
+    searchInput.addEventListener("input", (e) => {
+
+        searchCoins(e.target.value.trim());
+
+    });
+
+}
+
