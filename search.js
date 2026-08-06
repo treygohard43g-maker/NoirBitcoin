@@ -122,6 +122,8 @@ if (searchInput) {
 
 function selectAsset(id, name, symbol, logo) {
 
+    alert("Clicked: " + name);
+
     localStorage.setItem("selectedAsset", id);
 
     window.location.href = "asset.html";
