@@ -145,11 +145,8 @@ if (searchInput) {
 
 function selectAsset(id, name, symbol, logo) {
 
-    searchInput.value = name;
+    localStorage.setItem("selectedAsset", id);
 
-    searchResults.innerHTML = "";
-    searchResults.style.display = "none";
-
-    alert(`You selected ${name} (${symbol.toUpperCase()})`);
+    window.location.href = "asset.html";
 
 }
