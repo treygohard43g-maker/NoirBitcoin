@@ -101,26 +101,27 @@ async function displayResults(coins) {
 
         } catch (e) {}
 
-        searchResults.innerHTML += `
-        
-              <div class="search-item"
-                onclick="window.selectAsset('${coin.id}', '${coin.name}', '${coin.symbol}', '${coin.thumb}')">
-            
-               <img src="${coin.thumb}" class="search-logo">
+        const item = document.createElement("div");
+item.className = "search-item";
 
-                <div class="search-info">
-                    <h4>${coin.name}</h4>
-                    <span>${coin.symbol.toUpperCase()}</span>
-                </div>
+item.innerHTML = `
+    <img src="${coin.thumb}" class="search-logo">
 
-                <div class="search-price">
-                    ${price}
-                </div>
+    <div class="search-info">
+        <h4>${coin.name}</h4>
+        <span>${coin.symbol.toUpperCase()}</span>
+    </div>
 
-            </div>
-        `;
+    <div class="search-price">
+        ${price}
+    </div>
+`;
 
-    }
+item.addEventListener("click", () => {
+    window.selectAsset(coin.id, coin.name, coin.symbol, coin.thumb);
+});
+
+searchResults.appendChild(item);
 
     searchResults.style.display = "block";
 
