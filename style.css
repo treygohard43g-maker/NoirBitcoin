@@ -4540,3 +4540,9 @@ border:1px solid #2A2F38;
     font-weight:bold;
     cursor:pointer;
 }
+
+.view-all-btn {
+    background: #1B1E24 !important;
+    color: #ffffff !important;
+    border: 1px solid #2A2F38 !important;
+}
