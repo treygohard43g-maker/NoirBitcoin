@@ -4316,29 +4316,27 @@ border:1px solid #2A2F38;
     margin: 25px 0;
 }
 
-.view-all-btn {
+.view-all-btn,
+#viewAllBtn {
+    background: transparent;
+    color: #6b7280;          /* charcoal gray text */
+    border: none;
+    box-shadow: none;
+    padding: 4px 8px;
+    width: auto;
+    height: auto;
+    font-size: 16px;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: 6px;
-
-    background: transparent;
-    color: #8b949e;
-
-    border: none;
-    border-radius: 8px;
-
-    padding: 4px 8px;
-    font-size: 15px;
-    font-weight: 600;
-
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: color 0.2s ease;
 }
 
-.view-all-btn:hover {
+.view-all-btn:hover,
+#viewAllBtn:hover {
     color: #ffffff;
-    background: rgba(255, 255, 255, 0.05);
 }
 
 .view-all-btn i{
