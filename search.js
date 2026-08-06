@@ -23,7 +23,7 @@ const searchResults = document.getElementById("searchResults");
 
 if (searchInput && searchResults) {
 
-    searchInput.addEventListener("input", function () {
+    searchInput.addEventListener("input", async function () {
 
         const value = this.value.toLowerCase();
 
