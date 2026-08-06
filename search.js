@@ -1,22 +1,22 @@
 const COINGECKO_API_KEY ="CG-AEbisio9spT8HodxYnx9iyHE";
 
-const assets = [
-    {
-        name: "Bitcoin",
-        symbol: "BTC",
-        icon: "fa-brands fa-bitcoin"
-    },
-    {
-        name: "Ethereum",
-        symbol: "ETH",
-        icon: "fa-brands fa-ethereum"
-    },
-    {
-        name: "Gold",
-        symbol: "XAU",
-        icon: "fa-solid fa-coins"
-    }
-];
+async function searchAssets(query) {
+
+    if (!query) return [];
+
+    const url =
+        `https://api.coingecko.com/api/v3/search?query=${encodeURIComponent(query)}`;
+
+    const response = await fetch(url, {
+        headers: {
+            "x-cg-demo-api-key": COINGECKO_API_KEY
+        }
+    });
+
+    const data = await response.json();
+
+    return data.coins || [];
+}
 
 const searchInput = document.getElementById("assetSearch");
 const searchResults = document.getElementById("searchResults");
@@ -34,27 +34,31 @@ if (searchInput && searchResults) {
             return;
         }
 
-        const filtered = assets.filter(asset =>
-            asset.name.toLowerCase().includes(value) ||
-            asset.symbol.toLowerCase().includes(value)
-        );
+        const filtered = await searchAssets(value);
 
-        filtered.forEach(asset => {
+searchResults.innerHTML = "";
 
-            searchResults.innerHTML += `
-                <div class="search-item">
-                    <i class="${asset.icon}"></i>
-                    <div>
-                        <h4>${asset.name}</h4>
-                        <span>${asset.symbol}</span>
-                    </div>
-                </div>
-            `;
+filtered.forEach(asset => {
 
-        });
+    searchResults.innerHTML += `
+        <div class="search-item">
 
-        searchResults.style.display = filtered.length ? "block" : "none";
+            <img
+                src="${asset.thumb}"
+                alt="${asset.name}"
+                class="search-logo">
 
-    });
+            <div class="search-info">
 
-}
+                <h4>${asset.name}</h4>
+
+                <span>${asset.symbol.toUpperCase()}</span>
+
+            </div>
+
+        </div>
+    `;
+
+});
+
+searchResults.style.display = filtered.length ? "block" : "none";
