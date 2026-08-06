@@ -4316,29 +4316,33 @@ border:1px solid #2A2F38;
     margin: 25px 0;
 }
 
-.view-all-btn{
+.view-all-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
-    background: linear-gradient(135deg, #f59e0b, #ff8c00);
-    color: #fff;
+    justify-content: center;
+    gap: 6px;
+
+    background: transparent;
+    color: #8b949e;
+
     border: none;
-    border-radius: 12px;
-    font-size: 16px;
+    border-radius: 8px;
+
+    padding: 4px 8px;
+    font-size: 15px;
     font-weight: 600;
+
     cursor: pointer;
-    transition: all .3s ease;
-    box-shadow: 0 6px 18px rgba(255,140,0,.3);
+    transition: 0.3s ease;
 }
 
-.view-all-btn:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(255,140,0,.45);
+.view-all-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .view-all-btn i{
-    font-size: 14px;
+    font-size: 10px;
 }
 
 
