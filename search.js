@@ -62,3 +62,7 @@ filtered.forEach(asset => {
 });
 
 searchResults.style.display = filtered.length ? "block" : "none";
+   
+   });
+    
+}
