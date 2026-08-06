@@ -120,7 +120,7 @@ if (searchInput) {
 
 }
 
-function selectAsset(id, name, symbol, logo) {
+window.selectAsset = function(id, name, symbol, logo) {
 
     alert("Clicked: " + name);
 
@@ -128,4 +128,4 @@ function selectAsset(id, name, symbol, logo) {
 
     window.location.href = "asset.html";
 
-}
+};
