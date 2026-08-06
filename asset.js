@@ -95,3 +95,11 @@ async function loadAsset() {
             "<h2>Unable to load asset.</h2>";
     }
 }
+
+document.querySelector(".invest-btn").addEventListener("click", () => {
+
+    localStorage.setItem("selectedInvestment", assetId);
+
+    window.location.href = "investment.html";
+
+});
