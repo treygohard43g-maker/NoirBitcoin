@@ -1,3 +1,4 @@
+const COINGECKO_API_KEY = "CG-AEbisio9spT8HodxYnx9iyHE";
 const assetId = localStorage.getItem("selectedAsset") || "bitcoin";
 
 loadAsset();
@@ -7,23 +8,30 @@ async function loadAsset() {
     try {
 
         // Get asset details
-        const response = await fetch(
-            `https://api.coingecko.com/api/v3/coins/${assetId}`
-        );
+const response = await fetch(
+    `https://api.coingecko.com/api/v3/coins/${assetId}`,
+    {
+        headers: {
+            "x-cg-demo-api-key": COINGECKO_API_KEY
+        }
+    }
+);
 
-        const asset = await response.json();
+const asset = await response.json();
 
-        // Header
-        document.getElementById("assetHeader").innerHTML = `
-            <img src="${asset.image.large}">
-            <div>
-                <div class="asset-name">${asset.name}</div>
-                <div class="asset-symbol">${asset.symbol.toUpperCase()}</div>
-                <div class="asset-price">
-                    $${asset.market_data.current_price.usd.toLocaleString()}
-                </div>
-            </div>
-        `;
+console.log(asset);
+
+// Header
+document.getElementById("assetHeader").innerHTML = `
+    <img src="${asset.image.large}">
+    <div>
+        <div class="asset-name">${asset.name}</div>
+        <div class="asset-symbol">${asset.symbol.toUpperCase()}</div>
+        <div class="asset-price">
+            $${asset.market_data.current_price.usd.toLocaleString()}
+        </div>
+    </div>
+`;
 
         // Stats
         document.getElementById("assetStats").innerHTML = `
@@ -57,27 +65,32 @@ async function loadAsset() {
         `;
 
         // Chart data
-        const chartResponse = await fetch(
-            `https://api.coingecko.com/api/v3/coins/${assetId}/market_chart?vs_currency=usd&days=7`
-        );
+const chartResponse = await fetch(
+    `https://api.coingecko.com/api/v3/coins/${assetId}/market_chart?vs_currency=usd&days=7`,
+    {
+        headers: {
+            "x-cg-demo-api-key": COINGECKO_API_KEY
+        }
+    }
+);
 
-        const chartData = await chartResponse.json();
+const chartData = await chartResponse.json();
 
-        const chart = LightweightCharts.createChart(
-            document.getElementById("chart"),
-            {
-                width: document.getElementById("chart").clientWidth,
-                height: 300,
-                layout: {
-                    background: { color: "#1B1E24" },
-                    textColor: "#ffffff"
-                },
-                grid: {
-                    vertLines: { color: "#2A2F38" },
-                    horzLines: { color: "#2A2F38" }
-                }
-            }
-        );
+const chart = LightweightCharts.createChart(
+    document.getElementById("chart"),
+    {
+        width: document.getElementById("chart").clientWidth,
+        height: 300,
+        layout: {
+            background: { color: "#1B1E24" },
+            textColor: "#ffffff"
+        },
+        grid: {
+            vertLines: { color: "#2A2F38" },
+            horzLines: { color: "#2A2F38" }
+        }
+    }
+);
 
         const lineSeries = chart.addLineSeries();
 
