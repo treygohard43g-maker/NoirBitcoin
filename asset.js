@@ -19,7 +19,8 @@ const response = await fetch(
 
 const asset = await response.json();
 
-console.log(asset);
+console.log("Asset ID:", assetId);
+console.log("Asset:", asset);
 
 // Header
 document.getElementById("assetHeader").innerHTML = `
@@ -102,11 +103,11 @@ const chart = LightweightCharts.createChart(
         );
 
     } catch (error) {
-        console.error(error);
+    console.error("Asset Error:", error);
 
-        document.getElementById("assetHeader").innerHTML =
-            "<h2>Unable to load asset.</h2>";
-    }
+    document.getElementById("assetHeader").innerHTML =
+        `<h2>${error.message}</h2>`;
+  }
 }
 
 document.querySelector(".invest-btn").addEventListener("click", () => {
