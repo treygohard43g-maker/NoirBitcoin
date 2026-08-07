@@ -117,13 +117,9 @@ item.innerHTML = `
     </div>
 `;
 
-item.onclick = function () {
-    alert("Clicked: " + coin.name);
-
-    localStorage.setItem("selectedAsset", coin.id);
-
-    window.location.href = "asset.html";
-};
+item.addEventListener("click", () => {
+    window.selectAsset(coin.id, coin.name, coin.symbol, coin.thumb);
+});
 
 searchResults.appendChild(item);
 
