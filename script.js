@@ -1588,9 +1588,18 @@ profileBtn.addEventListener("click", (e) => {
     profileMenu.classList.toggle("show");
 });
 
-document.addEventListener("click", (e) => {
-    if (!profileMenu.contains(e.target) && !profileBtn.contains(e.target)) {
-        profileMenu.classList.remove("show");
-    }
+document.addEventListener("DOMContentLoaded", () => {
+    const profileBtn = document.getElementById("profileBtn");
+    const profileMenu = document.getElementById("profileMenu");
+
+    profileBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        profileMenu.classList.toggle("show");
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!profileMenu.contains(e.target) && !profileBtn.contains(e.target)) {
+            profileMenu.classList.remove("show");
+        }
+    });
 });
-            
