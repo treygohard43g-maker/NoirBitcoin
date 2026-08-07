@@ -4546,3 +4546,39 @@ border:1px solid #2A2F38;
     color: #ffffff !important;
     border: 1px solid #2A2F38 !important;
 }
+
+.profile-menu {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #1B1E24;
+    border: 1px solid #2A2F38;
+    border-radius: 12px;
+    min-width: 180px;
+    display: none;
+    z-index: 1000;
+}
+
+.profile-menu.show {
+    display: block;
+}
+
+.profile-menu a,
+.profile-menu button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: none;
+    border: none;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.profile-menu a:hover,
+.profile-menu button:hover {
+    background: #2A2F38;
+}
