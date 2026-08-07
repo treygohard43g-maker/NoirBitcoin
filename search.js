@@ -127,6 +127,7 @@ searchResults.appendChild(item);
 
 }
 
+}
 
 window.selectAsset = function(id, name, symbol, logo) {
 
