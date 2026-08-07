@@ -131,8 +131,6 @@ searchResults.appendChild(item);
 
 window.selectAsset = function(id, name, symbol, logo) {
 
-    alert("Clicked: " + name);
-
     localStorage.setItem("selectedAsset", id);
 
     window.location.href = "asset.html";
