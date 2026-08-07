@@ -33,19 +33,30 @@ NOIRBITCOIN
 
 </div>
 
-<div id="profileMenu" class="profile-menu">
 
-    <a href="settings.html">
-        <i class="fa-solid fa-gear"></i>
-        Settings
-    </a>
+<div class="header-icons">
 
-    <button id="logoutBtn">
-        <i class="fa-solid fa-right-from-bracket"></i>
-        Logout
+    <button class="icon-btn" id="profileBtn">
+        <i class="fa-solid fa-bars"></i>
     </button>
 
-</div>
+    <button class="icon-btn" id="notificationBtn">
+        <i class="fa-solid fa-bell"></i>
+    </button>
+
+    <div id="profileMenu" class="profile-menu">
+
+        <a href="settings.html">
+            <i class="fa-solid fa-gear"></i>
+            Settings
+        </a>
+
+        <button id="logoutBtn" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </button>
+
+    </div>
 
 </div>
 
