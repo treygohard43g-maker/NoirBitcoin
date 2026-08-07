@@ -49,7 +49,9 @@ async function searchCoins(query) {
 
         const data = await response.json();
 
-        displayResults(data.coins || []);
+        displayResults(
+    (data.coins || []).filter(coin => coin.market_cap_rank !== null)
+);
 
     } catch (error) {
 
@@ -78,7 +80,7 @@ async function displayResults(coins) {
 
     }
 
-    for (const coin of coins.slice(0, 10)) {
+    for (const coin of coins.slice(0, 20)) {
 
         let price = "Loading...";
 
