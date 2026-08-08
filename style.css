@@ -4352,6 +4352,7 @@ border:1px solid #2A2F38;
     padding:0 25px;
     position:relative;
     box-sizing:border-box;
+    position: relative;
 }
 
 .search-container i{
