@@ -4432,14 +4432,14 @@ border:1px solid #2A2F38;
     min-width: 38px;
 
     object-fit: contain;
+
     border-radius: 50%;
 
-    background: #fff;
-    padding: 2px;
+    background: transparent;
+    padding: 0;
 
     flex-shrink: 0;
 }
-
 
 .search-info {
     display: flex;
