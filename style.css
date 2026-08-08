@@ -4391,8 +4391,10 @@ border:1px solid #2A2F38;
     position: absolute;
     top: calc(100% + 8px);
     left: 0;
+
     width: 100%;
-    max-width: 100%;
+    max-width: 420px;
+
     box-sizing: border-box;
 
     background: #111;
@@ -4403,7 +4405,6 @@ border:1px solid #2A2F38;
 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
-
 
 .search-item {
     display: flex;
