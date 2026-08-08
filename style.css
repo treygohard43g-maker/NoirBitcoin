@@ -4394,13 +4394,17 @@ border:1px solid #2A2F38;
 
     width: 100%;
     max-width: 420px;
+    max-heighth: 420px;
 
     box-sizing: border-box;
 
     background: #111;
     border: 1px solid #2A2F38;
     border-radius: 12px;
-    overflow: hidden;
+    
+    overflow-y: auto;
+    overflow-x: hidden;
+    
     z-index: 1000;
 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
