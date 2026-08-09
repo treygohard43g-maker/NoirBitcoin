@@ -4631,3 +4631,30 @@ border:1px solid #2A2F38;
 .profile-menu button:hover {
     background: #2A2F38;
 }
+
+/* NoirBitcoin Welcome Message */
+
+.welcome-message {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: #FFD700;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+
+    text-shadow:
+        0 0 5px rgba(255, 215, 0, 0.55),
+        0 0 12px rgba(255, 215, 0, 0.35),
+        0 0 22px rgba(255, 215, 0, 0.20);
+
+    margin: 28px 0 24px 0;
+}
+
+@media (max-width: 600px) {
+
+    .welcome-message {
+        font-size: 32px;
+        margin: 28px 0 24px 0;
+    }
+
+}
