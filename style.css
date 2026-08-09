@@ -4636,11 +4636,11 @@ border:1px solid #2A2F38;
 
 .welcome-message {
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 36px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 200;
     color: #FFD700;
     letter-spacing: 0.3px;
-    line-height: 1.2;
+    line-height: 1.0;
 
     text-shadow:
         0 0 5px rgba(255, 215, 0, 0.55),
@@ -4653,7 +4653,7 @@ border:1px solid #2A2F38;
 @media (max-width: 600px) {
 
     .welcome-message {
-        font-size: 32px;
+        font-size: 15px;
         margin: 28px 0 24px 0;
     }
 
