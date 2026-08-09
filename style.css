@@ -4658,3 +4658,27 @@ border:1px solid #2A2F38;
     }
 
 }
+
+.balance-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.balance-header p {
+    margin: 0;
+}
+
+.balance-header p:first-child {
+    font-size: 20px;
+    color: #cbd5e1;
+}
+
+#balanceUserName {
+    font-size: 20px;
+    font-weight: 600;
+    color: #f7931a;
+    text-align: right;
+}
