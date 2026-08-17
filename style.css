@@ -4704,3 +4704,12 @@ border:1px solid #2A2F38;
     color: #f59e0b;
     text-align: right;
 }
+
+.balance-username {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #f59e0b;
+    text-align: right;
+    white-space: nowrap;
+}
