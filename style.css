@@ -4682,3 +4682,25 @@ border:1px solid #2A2F38;
     color: #f7931a;
     text-align: right;
 }
+
+.balance-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.balance-label {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+    color: #d8deea;
+}
+
+.balance-username {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #f59e0b;
+    text-align: right;
+}
