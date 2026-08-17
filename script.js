@@ -194,6 +194,19 @@ if (welcomeUserElement) {
 
 }
 
+// ---------- BALANCE CARD USER NAME ----------
+
+const balanceUserElement = document.getElementById("balanceuserName");
+
+if (balanceUserElement) {
+
+    const savedUser = JSON.parse(localStorage.getItem("noirUser"));
+
+    if (savedUser) {
+        balanceUserElement.textContent = savedUser.name;
+    }
+
+}
 
 // ---------- BALANCE ----------
 
