@@ -1,7 +1,10 @@
 import { auth } from "./firebase.js";
-import { 
+import {
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    EmailAuthProvider,
+    reauthenticateWithCredential,
+    updatePassword
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 window.onerror = function (message, source, line, column, error) {
@@ -1078,43 +1081,176 @@ if (currencyToggle) {
 }
 
 // ---------- SETTINGS ----------
+
 const saveSettingsBtn = document.getElementById("saveSettings");
 
 if (saveSettingsBtn) {
 
-    saveSettingsBtn.addEventListener("click", function () {
+    saveSettingsBtn.addEventListener("click", async function () {
 
-        const savedUser = JSON.parse(localStorage.getItem("noirUser"));
+        const newUsername =
+            document.getElementById("newUsername").value.trim();
 
-        const newUsername = document.getElementById("newUsername").value.trim();
-        const oldPassword = document.getElementById("oldPassword").value;
-        const newPassword = document.getElementById("newPassword").value;
-        const confirmPassword = document.getElementById("confirmPassword").value;
+        const currentPassword =
+            document.getElementById("oldPassword").value;
 
-        if (oldPassword !== savedUser.password) {
-            alert("Current password is incorrect.");
-            return;
-        }
+        const newPassword =
+            document.getElementById("newPassword").value;
 
-        if (newPassword !== confirmPassword) {
-            alert("New passwords do not match.");
-            return;
-        }
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+
+        // Get saved user information
+        let savedUser =
+            JSON.parse(localStorage.getItem("noirUser")) || {};
+
+
+        // ---------- UPDATE USERNAME ----------
 
         if (newUsername !== "") {
+
             savedUser.name = newUsername;
+
+            localStorage.setItem(
+                "noirUser",
+                JSON.stringify(savedUser)
+            );
+
         }
 
-        if (newPassword.length < 8) {
-    alert("Your new password must be at least 8 characters long.");
-    return;
-}
 
-savedUser.password = newPassword;
+        // ---------- UPDATE PASSWORD ----------
 
-        localStorage.setItem("noirUser", JSON.stringify(savedUser));
+        if (newPassword !== "" || confirmPassword !== "") {
 
-        alert("Account updated successfully!");
+            if (currentPassword === "") {
+
+                alert("Please enter your current password.");
+                return;
+
+            }
+
+
+            if (newPassword.length < 8) {
+
+                alert(
+                    "Your new password must be at least 8 characters long."
+                );
+
+                return;
+
+            }
+
+
+            if (newPassword !== confirmPassword) {
+
+                alert("New passwords do not match.");
+                return;
+
+            }
+
+
+            const currentUser = auth.currentUser;
+
+
+            if (!currentUser) {
+
+                alert(
+                    "Your login session has expired. Please log in again."
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                // Verify current password
+                const credential =
+                    EmailAuthProvider.credential(
+                        currentUser.email,
+                        currentPassword
+                    );
+
+
+                await reauthenticateWithCredential(
+                    currentUser,
+                    credential
+                );
+
+
+                // Update password in Firebase
+                await updatePassword(
+                    currentUser,
+                    newPassword
+                );
+
+
+                alert("Account updated successfully!");
+
+
+                // Clear password fields
+                document.getElementById("oldPassword").value = "";
+                document.getElementById("newPassword").value = "";
+                document.getElementById("confirmPassword").value = "";
+
+
+            } catch (error) {
+
+                console.error("Settings error:", error);
+
+
+                if (
+                    error.code === "auth/wrong-password" ||
+                    error.code === "auth/invalid-credential"
+                ) {
+
+                    alert("Current password is incorrect.");
+
+                }
+
+                else if (
+                    error.code === "auth/requires-recent-login"
+                ) {
+
+                    alert(
+                        "For security, please log out and log in again before changing your password."
+                    );
+
+                }
+
+                else {
+
+                    alert(error.message);
+
+                }
+
+                return;
+
+            }
+
+        } else {
+
+            alert("Username updated successfully!");
+
+        }
+
+
+        // ---------- UPDATE DASHBOARD USERNAME ----------
+
+        const balanceUserElement =
+            document.getElementById("balanceuserName");
+
+
+        if (balanceUserElement && savedUser.name) {
+
+            balanceUserElement.textContent =
+                savedUser.name;
+
+        }
+
     });
 
 }
