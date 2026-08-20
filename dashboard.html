@@ -452,10 +452,27 @@ Copy Address
 
         <p>Enter your withdrawal details.</p>
 
+        <div class="withdraw-amount-group">
+
+    <label for="withdrawUSD">Withdrawal Amount</label>
+
+    <div class="amount-input">
+        <span>$</span>
+
         <input
             type="number"
-            id="withdrawAmount"
-            placeholder="Amount in BTC">
+            id="withdrawUSD"
+            placeholder="0.00"
+            step="0.01">
+
+        <span>USD</span>
+    </div>
+
+    <div class="btc-equivalent">
+        ≈ <span id="withdrawBTC">0.00000000</span> BTC
+    </div>
+
+</div>
 
         <input
             type="text"
