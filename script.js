@@ -1637,13 +1637,6 @@ function showWithdrawalPending() {
     document.getElementById("pendingModal").style.display = "flex";
 }
 
-    // Hide the withdraw form
-    document.getElementById("withdrawModal").style.display = "none";
-
-    // Show the premium pending modal
-    document.getElementById("pendingModal").style.display = "flex";
-}
-
 function closeWithdrawModal() {
     document.getElementById("withdrawModal").style.display = "none";
 }
