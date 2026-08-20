@@ -4701,3 +4701,124 @@ border:1px solid #2A2F38;
     color: #d8deea;
 }
 
+/* =================================
+   CHARCOAL WITHDRAWAL MODALS
+================================= */
+
+.withdraw-modal .withdraw-card,
+.withdraw-fee-modal .withdraw-fee-content,
+#withdrawModal .modal-content {
+    background: #111418;
+    color: #ffffff;
+    border: 1px solid #2A2F38;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+}
+
+
+/* Withdrawal headings */
+
+.withdraw-modal .withdraw-card h2,
+.withdraw-fee-modal .withdraw-fee-content h2,
+#withdrawModal .modal-content h2 {
+    color: #ffffff;
+}
+
+
+/* Normal text */
+
+.withdraw-modal .withdraw-card p,
+.withdraw-fee-modal .withdraw-fee-content p,
+#withdrawModal .modal-content p {
+    color: #9ca3af;
+}
+
+
+/* USD amount input */
+
+#withdrawModal .amount-input {
+    background: #181c22;
+    border: 1px solid #2A2F38;
+    color: #ffffff;
+}
+
+#withdrawModal .amount-input input {
+    background: transparent;
+    color: #ffffff;
+}
+
+#withdrawModal .amount-input span {
+    color: #f7931a;
+}
+
+
+/* BTC equivalent */
+
+#withdrawModal .btc-equivalent {
+    color: #9ca3af;
+}
+
+#withdrawModal #withdrawBTC {
+    color: #f7931a;
+}
+
+
+/* Bitcoin wallet input */
+
+#withdrawModal #withdrawWallet {
+    background: #181c22;
+    border: 1px solid #2A2F38;
+    color: #ffffff;
+}
+
+#withdrawModal #withdrawWallet::placeholder {
+    color: #6b7280;
+}
+
+
+/* Continue button */
+
+#withdrawModal .continue-btn {
+    background: #f7931a;
+    color: #111418;
+    border: none;
+}
+
+#withdrawModal .continue-btn:hover {
+    background: #ff9f1c;
+}
+
+
+/* Pending modal wallet box */
+
+.withdraw-modal .wallet-box {
+    background: #181c22;
+    border: 1px solid #2A2F38;
+}
+
+
+/* Security box */
+
+.withdraw-modal .security-box {
+    background: #181c22;
+    border: 1px solid #2A2F38;
+}
+
+
+/* Wallet address */
+
+.withdraw-modal #btcWallet {
+    color: #ffffff;
+}
+
+
+/* Close buttons */
+
+.withdraw-modal .close-btn {
+    background: #181c22;
+    color: #ffffff;
+    border: 1px solid #2A2F38;
+}
+
+.withdraw-modal .close-btn:hover {
+    background: #22272f;
+}
