@@ -1624,13 +1624,18 @@ console.log(JSON.parse(localStorage.getItem("investments")));
 
 function showWithdrawalPending() {
 
-    const amount = document.getElementById("withdrawAmount").value.trim();
+    const amount = document.getElementById("withdrawUSD").value.trim();
     const wallet = document.getElementById("withdrawWallet").value.trim();
 
     if (amount === "" || wallet === "") {
         alert("Please enter the withdrawal amount and your Bitcoin wallet address.");
         return;
     }
+
+    document.getElementById("withdrawModal").style.display = "none";
+
+    document.getElementById("pendingModal").style.display = "flex";
+}
 
     // Hide the withdraw form
     document.getElementById("withdrawModal").style.display = "none";
