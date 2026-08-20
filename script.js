@@ -334,7 +334,30 @@ function updateBitcoin() {
 
 setInterval(updateBitcoin, 5000);
 
+// ---------- WITHDRAW USD / BTC CONVERSION ----------
 
+const withdrawUSD = document.getElementById("withdrawUSD");
+const withdrawBTC = document.getElementById("withdrawBTC");
+
+function updateWithdrawBTC() {
+
+    if (!withdrawUSD || !withdrawBTC) return;
+
+    const usdAmount = Number(withdrawUSD.value);
+
+    if (!usdAmount || usdAmount <= 0 || !bitcoin) {
+        withdrawBTC.textContent = "0.00000000";
+        return;
+    }
+
+    const btcAmount = usdAmount / bitcoin;
+
+    withdrawBTC.textContent = btcAmount.toFixed(8);
+}
+
+if (withdrawUSD) {
+    withdrawUSD.addEventListener("input", updateWithdrawBTC);
+}
 
 // ---------- DEPOSIT POPUP ----------
 
