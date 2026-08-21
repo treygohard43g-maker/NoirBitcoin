@@ -970,3 +970,9 @@ document.addEventListener(
 
     }
 );
+
+// =========================
+// START ASSET LOADING
+// =========================
+
+loadAsset(); xx
