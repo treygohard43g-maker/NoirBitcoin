@@ -4831,7 +4831,7 @@ border:1px solid #2A2F38;
     width: 90%;
     max-width: 520px;
     margin: 24px auto 28px;
-    border-radius: 16px;
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid #2a2f38;
     background: #1b1e24;
@@ -4841,7 +4841,5 @@ border:1px solid #2A2F38;
 .top-trading-banner img {
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
     display: block;
 }
