@@ -9,64 +9,178 @@ const assetId =
 
 
 // =========================
-// START
+// CACHE SETTINGS
 // =========================
 
-loadAsset();
+// Asset information stays fresh for 60 seconds
+const ASSET_CACHE_TIME = 60 * 1000;
+
+// Chart stays fresh for 2 minutes
+const CHART_CACHE_TIME = 2 * 60 * 1000;
+
+
+// Prevent multiple loads at the same time
+let assetLoading = false;
 
 
 // =========================
-// FETCH WITH RETRIES
+// CACHE HELPERS
 // =========================
 
-async function fetchWithRetry(url, options = {}, retries = 3) {
+function getCache(key) {
+
+    try {
+
+        const saved =
+            localStorage.getItem(key);
+
+        if (!saved) {
+            return null;
+        }
+
+        return JSON.parse(saved);
+
+    } catch (error) {
+
+        console.warn(
+            "Cache read error:",
+            error
+        );
+
+        return null;
+    }
+}
+
+
+function setCache(key, data) {
+
+    try {
+
+        localStorage.setItem(
+            key,
+            JSON.stringify({
+                timestamp: Date.now(),
+                data: data
+            })
+        );
+
+    } catch (error) {
+
+        console.warn(
+            "Cache save error:",
+            error
+        );
+    }
+}
+
+
+function isCacheFresh(cache, maxAge) {
+
+    if (!cache) {
+        return false;
+    }
+
+    return (
+        Date.now() - cache.timestamp <
+        maxAge
+    );
+}
+
+
+// =========================
+// FETCH WITH CONTROL
+// =========================
+
+async function fetchWithRetry(
+    url,
+    options = {},
+    retries = 2
+) {
 
     let lastError;
 
-    for (let attempt = 0; attempt < retries; attempt++) {
+    for (
+        let attempt = 0;
+        attempt < retries;
+        attempt++
+    ) {
 
         try {
 
-            const response = await fetch(url, options);
+            const controller =
+                new AbortController();
+
+            const timeout =
+                setTimeout(() => {
+                    controller.abort();
+                }, 15000);
+
+
+            const response =
+                await fetch(
+                    url,
+                    {
+                        ...options,
+                        signal:
+                            controller.signal
+                    }
+                );
+
+
+            clearTimeout(timeout);
+
 
             if (response.ok) {
                 return response;
             }
 
-            // Retry temporary/server errors
+
+            // Rate limit or server error
             if (
                 response.status === 429 ||
                 response.status >= 500
             ) {
+
                 throw new Error(
                     `CoinGecko error: ${response.status}`
                 );
             }
 
-            // Don't retry permanent errors
+
+            // Permanent error
             throw new Error(
                 `CoinGecko error: ${response.status}`
             );
+
 
         } catch (error) {
 
             lastError = error;
 
             console.warn(
-                `Request failed. Attempt ${attempt + 1}/${retries}`,
+                `CoinGecko request failed (${attempt + 1}/${retries}):`,
                 error
             );
 
-            if (attempt < retries - 1) {
 
-                const delay =
-                    1000 * Math.pow(2, attempt);
+            if (
+                attempt <
+                retries - 1
+            ) {
 
-                await new Promise(resolve =>
-                    setTimeout(resolve, delay)
+                // Wait before retry
+                await new Promise(
+                    resolve =>
+                        setTimeout(
+                            resolve,
+                            1500 * (attempt + 1)
+                        )
                 );
+
             }
+
         }
+
     }
 
     throw lastError;
@@ -79,119 +193,444 @@ async function fetchWithRetry(url, options = {}, retries = 3) {
 
 async function loadAsset() {
 
-    console.log("Loading asset:", assetId);
+    // Prevent duplicate requests
+    if (assetLoading) {
+        console.log(
+            "Asset already loading..."
+        );
+        return;
+    }
+
+    assetLoading = true;
+
+
+    console.log(
+        "Loading asset:",
+        assetId
+    );
+
 
     const assetHeader =
-        document.getElementById("assetHeader");
+        document.getElementById(
+            "assetHeader"
+        );
 
     const assetStats =
-        document.getElementById("assetStats");
+        document.getElementById(
+            "assetStats"
+        );
 
     const chartContainer =
-        document.getElementById("chart");
-
-
-    try {
-
-        // =========================
-        // CHECK ELEMENTS
-        // =========================
-
-        if (!assetHeader) {
-            throw new Error(
-                "assetHeader element not found"
-            );
-        }
-
-        if (!assetStats) {
-            throw new Error(
-                "assetStats element not found"
-            );
-        }
-
-
-        // =========================
-        // GET ASSET DETAILS
-        // =========================
-
-        const response = await fetchWithRetry(
-
-            `https://api.coingecko.com/api/v3/coins/${encodeURIComponent(assetId)}`,
-
-            {
-                headers: {
-                    "x-cg-demo-api-key":
-                        COINGECKO_API_KEY
-                }
-            },
-
-            3
+        document.getElementById(
+            "chart"
         );
 
 
-        const asset =
-            await response.json();
+    if (!assetHeader) {
+
+        console.error(
+            "assetHeader element not found"
+        );
+
+        assetLoading = false;
+
+        return;
+    }
+
+
+    // =========================
+    // CACHE KEYS
+    // =========================
+
+    const assetCacheKey =
+        `noir_asset_${assetId}`;
+
+    const chartCacheKey =
+        `noir_chart_${assetId}`;
+
+
+    // =========================
+    // GET CACHED DATA
+    // =========================
+
+    const cachedAsset =
+        getCache(assetCacheKey);
+
+    const cachedChart =
+        getCache(chartCacheKey);
+
+
+    // =========================
+    // SHOW CACHED ASSET
+    // =========================
+
+    if (cachedAsset) {
 
         console.log(
-            "Asset loaded:",
-            asset
+            "Using cached asset data"
         );
 
+        displayAsset(
+            cachedAsset.data,
+            assetHeader,
+            assetStats
+        );
 
-        // =========================
-        // GET DATA SAFELY
-        // =========================
+    } else {
 
-        const currentPrice =
-            asset.market_data?.current_price?.usd ?? 0;
-
-        const marketCap =
-            asset.market_data?.market_cap?.usd ?? 0;
-
-        const volume =
-            asset.market_data?.total_volume?.usd ?? 0;
-
-        const change24h =
-            asset.market_data
-                ?.price_change_percentage_24h ?? 0;
-
-        const rank =
-            asset.market_cap_rank ?? "N/A";
-
-
-        // =========================
-        // ASSET HEADER
-        // =========================
-
+        // Initial loading message
         assetHeader.innerHTML = `
 
-            <img
-                src="${asset.image?.large || asset.image?.small || ""}"
-                alt="${asset.name || "Asset"}"
-            >
-
-            <div>
-
-                <div class="asset-name">
-                    ${asset.name || "Unknown"}
-                </div>
-
-                <div class="asset-symbol">
-                    ${(asset.symbol || "").toUpperCase()}
-                </div>
-
-                <div class="asset-price">
-                    $${Number(currentPrice).toLocaleString()}
-                </div>
-
+            <div style="
+                padding:20px;
+                color:#8b949e;
+            ">
+                Loading asset...
             </div>
 
         `;
+    }
 
 
-        // =========================
-        // STATS
-        // =========================
+    // =========================
+    // LOAD CHART FROM CACHE
+    // =========================
+
+    if (
+        cachedChart &&
+        chartContainer
+    ) {
+
+        console.log(
+            "Using cached chart"
+        );
+
+        createChart(
+            cachedChart.data,
+            chartContainer
+        );
+
+    }
+
+
+    // =========================
+    // FETCH FRESH ASSET DATA
+    // =========================
+
+    try {
+
+        // If cache is still fresh,
+        // don't make another request.
+        if (
+            isCacheFresh(
+                cachedAsset,
+                ASSET_CACHE_TIME
+            )
+        ) {
+
+            console.log(
+                "Asset cache is still fresh"
+            );
+
+        } else {
+
+            console.log(
+                "Getting fresh asset data..."
+            );
+
+
+            const response =
+                await fetchWithRetry(
+
+                    `https://api.coingecko.com/api/v3/coins/${encodeURIComponent(assetId)}`,
+
+                    {
+                        headers: {
+                            "x-cg-demo-api-key":
+                                COINGECKO_API_KEY
+                        }
+                    },
+
+                    2
+                );
+
+
+            const asset =
+                await response.json();
+
+
+            console.log(
+                "Fresh asset loaded:",
+                asset
+            );
+
+
+            // Save asset to cache
+            setCache(
+                assetCacheKey,
+                asset
+            );
+
+
+            // Display asset
+            displayAsset(
+                asset,
+                assetHeader,
+                assetStats
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Asset request failed:",
+            error
+        );
+
+
+        // If we already have cached data,
+        // KEEP showing it.
+        if (cachedAsset) {
+
+            console.log(
+                "Using old cached asset because network failed"
+            );
+
+            displayAsset(
+                cachedAsset.data,
+                assetHeader,
+                assetStats
+            );
+
+        } else {
+
+            showAssetError(
+                assetHeader,
+                error
+            );
+
+        }
+
+    }
+
+
+    // =========================
+    // CHART
+    // =========================
+
+    if (chartContainer) {
+
+        try {
+
+            // Don't request chart if
+            // fresh cached chart exists
+            if (
+                isCacheFresh(
+                    cachedChart,
+                    CHART_CACHE_TIME
+                )
+            ) {
+
+                console.log(
+                    "Chart cache is still fresh"
+                );
+
+            } else {
+
+                console.log(
+                    "Getting fresh chart data..."
+                );
+
+
+                const chartResponse =
+                    await fetchWithRetry(
+
+                        `https://api.coingecko.com/api/v3/coins/${encodeURIComponent(assetId)}/market_chart?vs_currency=usd&days=7`,
+
+                        {
+                            headers: {
+                                "x-cg-demo-api-key":
+                                    COINGECKO_API_KEY
+                            }
+                        },
+
+                        2
+                    );
+
+
+                const chartData =
+                    await chartResponse.json();
+
+
+                if (
+                    !chartData.prices ||
+                    !chartData.prices.length
+                ) {
+
+                    throw new Error(
+                        "No chart data available"
+                    );
+
+                }
+
+
+                // Save chart
+                setCache(
+                    chartCacheKey,
+                    chartData
+                );
+
+
+                // Create chart
+                createChart(
+                    chartData,
+                    chartContainer
+                );
+
+            }
+
+
+        } catch (chartError) {
+
+            console.warn(
+                "Chart request failed:",
+                chartError
+            );
+
+
+            // If we have an older chart,
+            // keep showing it.
+            if (cachedChart) {
+
+                console.log(
+                    "Using old cached chart"
+                );
+
+                createChart(
+                    cachedChart.data,
+                    chartContainer
+                );
+
+            } else {
+
+                chartContainer.innerHTML = `
+
+                    <div style="
+                        height:300px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        text-align:center;
+                        color:#8b949e;
+                        padding:20px;
+                        box-sizing:border-box;
+                    ">
+
+                        Chart temporarily unavailable.
+                        <br>
+                        Your asset information is still available.
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+    }
+
+
+    assetLoading = false;
+
+}
+
+
+// =========================
+// DISPLAY ASSET
+// =========================
+
+function displayAsset(
+    asset,
+    assetHeader,
+    assetStats
+) {
+
+    const currentPrice =
+        asset.market_data
+            ?.current_price
+            ?.usd ?? 0;
+
+
+    const marketCap =
+        asset.market_data
+            ?.market_cap
+            ?.usd ?? 0;
+
+
+    const volume =
+        asset.market_data
+            ?.total_volume
+            ?.usd ?? 0;
+
+
+    const change24h =
+        asset.market_data
+            ?.price_change_percentage_24h ?? 0;
+
+
+    const rank =
+        asset.market_cap_rank ??
+        "N/A";
+
+
+    // =========================
+    // HEADER
+    // =========================
+
+    assetHeader.innerHTML = `
+
+        <img
+            src="${
+                asset.image?.large ||
+                asset.image?.small ||
+                ""
+            }"
+            alt="${asset.name || "Asset"}"
+        >
+
+        <div>
+
+            <div class="asset-name">
+                ${asset.name || "Unknown"}
+            </div>
+
+            <div class="asset-symbol">
+                ${
+                    asset.symbol
+                        ? asset.symbol.toUpperCase()
+                        : ""
+                }
+            </div>
+
+            <div class="asset-price">
+                $${Number(
+                    currentPrice
+                ).toLocaleString()}
+            </div>
+
+        </div>
+
+    `;
+
+
+    // =========================
+    // STATS
+    // =========================
+
+    if (assetStats) {
 
         assetStats.innerHTML = `
 
@@ -202,7 +641,9 @@ async function loadAsset() {
                 </div>
 
                 <div class="stat-value">
-                    $${Number(marketCap).toLocaleString()}
+                    $${Number(
+                        marketCap
+                    ).toLocaleString()}
                 </div>
 
             </div>
@@ -215,7 +656,9 @@ async function loadAsset() {
                 </div>
 
                 <div class="stat-value">
-                    ${Number(change24h).toFixed(2)}%
+                    ${Number(
+                        change24h
+                    ).toFixed(2)}%
                 </div>
 
             </div>
@@ -228,7 +671,9 @@ async function loadAsset() {
                 </div>
 
                 <div class="stat-value">
-                    $${Number(volume).toLocaleString()}
+                    $${Number(
+                        volume
+                    ).toLocaleString()}
                 </div>
 
             </div>
@@ -248,283 +693,243 @@ async function loadAsset() {
 
         `;
 
+    }
 
-        // =========================
-        // CHART
-        // =========================
+}
 
-        if (!chartContainer) {
-            console.warn(
-                "Chart element not found"
-            );
 
-            return;
-        }
+// =========================
+// CREATE CHART
+// =========================
 
+function createChart(
+    chartData,
+    chartContainer
+) {
 
-        try {
-
-            const chartResponse =
-                await fetchWithRetry(
-
-                    `https://api.coingecko.com/api/v3/coins/${encodeURIComponent(assetId)}/market_chart?vs_currency=usd&days=7`,
-
-                    {
-                        headers: {
-                            "x-cg-demo-api-key":
-                                COINGECKO_API_KEY
-                        }
-                    },
-
-                    3
-                );
-
-
-            const chartData =
-                await chartResponse.json();
-
-            console.log(
-                "Chart data loaded:",
-                chartData
-            );
-
-
-            // =========================
-            // CHECK LIGHTWEIGHT CHARTS
-            // =========================
-
-            if (
-                typeof LightweightCharts ===
-                "undefined"
-            ) {
-
-                throw new Error(
-                    "LightweightCharts library not loaded"
-                );
-            }
-
-
-            // =========================
-            // PREPARE CHART DATA
-            // =========================
-
-            const prices =
-                (chartData.prices || [])
-                    .map(price => ({
-
-                        time:
-                            Math.floor(
-                                price[0] / 1000
-                            ),
-
-                        value:
-                            Number(price[1])
-
-                    }))
-                    .filter(item =>
-                        Number.isFinite(item.time) &&
-                        Number.isFinite(item.value)
-                    );
-
-
-            if (!prices.length) {
-
-                throw new Error(
-                    "No chart data available"
-                );
-
-            }
-
-
-            // =========================
-            // REMOVE DUPLICATES
-            // =========================
-
-            const uniquePrices = [];
-
-            const seenTimes = new Set();
-
-            for (const item of prices) {
-
-                if (!seenTimes.has(item.time)) {
-
-                    seenTimes.add(item.time);
-
-                    uniquePrices.push(item);
-
-                }
-
-            }
-
-
-            // =========================
-            // CLEAR OLD CHART
-            // =========================
-
-            chartContainer.innerHTML = "";
-
-
-            // =========================
-            // CREATE CHART
-            // =========================
-
-            const chart =
-                LightweightCharts.createChart(
-                    chartContainer,
-                    {
-
-                        width:
-                            chartContainer.clientWidth,
-
-                        height: 300,
-
-                        layout: {
-
-                            background: {
-                                color: "#1B1E24"
-                            },
-
-                            textColor: "#ffffff"
-
-                        },
-
-                        grid: {
-
-                            vertLines: {
-                                color: "#2A2F38"
-                            },
-
-                            horzLines: {
-                                color: "#2A2F38"
-                            }
-
-                        }
-
-                    }
-                );
-
-
-            // =========================
-            // LINE
-            // =========================
-
-            const lineSeries =
-                chart.addLineSeries();
-
-
-            lineSeries.setData(
-                uniquePrices
-            );
-
-
-            // =========================
-            // RESPONSIVE
-            // =========================
-
-            window.addEventListener(
-                "resize",
-                () => {
-
-                    if (chartContainer) {
-
-                        chart.applyOptions({
-
-                            width:
-                                chartContainer.clientWidth
-
-                        });
-
-                    }
-
-                }
-            );
-
-
-        } catch (chartError) {
-
-            // =========================
-            // CHART FAILED
-            // ASSET STILL WORKS
-            // =========================
-
-            console.warn(
-                "Chart failed:",
-                chartError
-            );
-
-
-            chartContainer.innerHTML = `
-
-                <div style="
-                    height:300px;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    text-align:center;
-                    color:#8b949e;
-                    padding:20px;
-                    box-sizing:border-box;
-                ">
-
-                    Chart temporarily unavailable.
-                    <br>
-                    Please try again in a moment.
-
-                </div>
-
-            `;
-
-        }
-
-
-    } catch (error) {
-
-        // =========================
-        // ASSET FAILED
-        // =========================
+    if (
+        typeof LightweightCharts ===
+        "undefined"
+    ) {
 
         console.error(
-            "Asset loading error:",
-            error
+            "LightweightCharts is not loaded"
         );
 
+        return;
+    }
 
-        if (assetHeader) {
 
-            assetHeader.innerHTML = `
+    if (
+        !chartData ||
+        !chartData.prices ||
+        !chartData.prices.length
+    ) {
 
-                <h2>
-                    Unable to load asset
-                </h2>
+        console.warn(
+            "No chart prices available"
+        );
 
-                <p style="
-                    color:#8b949e;
-                    margin-top:8px;
-                ">
-                    ${error.message}
-                </p>
+        return;
+    }
 
-                <button
-                    onclick="loadAsset()"
-                    style="
-                        margin-top:15px;
-                        padding:10px 18px;
-                        border:none;
-                        border-radius:8px;
-                        background:#f59e0b;
-                        color:white;
-                        font-weight:600;
-                        cursor:pointer;
-                    "
-                >
-                    Try Again
-                </button>
 
-            `;
+    // Clear previous chart
+    chartContainer.innerHTML = "";
+
+
+    // =========================
+    // PREPARE DATA
+    // =========================
+
+    const prices =
+        chartData.prices
+            .map(price => ({
+
+                time:
+                    Math.floor(
+                        price[0] / 1000
+                    ),
+
+                value:
+                    Number(price[1])
+
+            }))
+            .filter(item =>
+                Number.isFinite(
+                    item.time
+                ) &&
+                Number.isFinite(
+                    item.value
+                )
+            );
+
+
+    // =========================
+    // REMOVE DUPLICATE TIMES
+    // =========================
+
+    const uniquePrices = [];
+
+    const seenTimes =
+        new Set();
+
+
+    for (
+        const item of prices
+    ) {
+
+        if (
+            !seenTimes.has(
+                item.time
+            )
+        ) {
+
+            seenTimes.add(
+                item.time
+            );
+
+            uniquePrices.push(
+                item
+            );
 
         }
 
     }
+
+
+    if (!uniquePrices.length) {
+
+        return;
+
+    }
+
+
+    // =========================
+    // CREATE
+    // =========================
+
+    const chart =
+        LightweightCharts.createChart(
+            chartContainer,
+            {
+
+                width:
+                    chartContainer.clientWidth,
+
+                height:300,
+
+                layout: {
+
+                    background: {
+                        color:"#1B1E24"
+                    },
+
+                    textColor:"#ffffff"
+
+                },
+
+                grid: {
+
+                    vertLines: {
+                        color:"#2A2F38"
+                    },
+
+                    horzLines: {
+                        color:"#2A2F38"
+                    }
+
+                }
+
+            }
+        );
+
+
+    // =========================
+    // LINE
+    // =========================
+
+    const lineSeries =
+        chart.addLineSeries();
+
+
+    lineSeries.setData(
+        uniquePrices
+    );
+
+
+    // =========================
+    // RESPONSIVE
+    // =========================
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            if (
+                chartContainer
+            ) {
+
+                chart.applyOptions({
+
+                    width:
+                        chartContainer.clientWidth
+
+                });
+
+            }
+
+        }
+    );
+
+}
+
+
+// =========================
+// ERROR DISPLAY
+// =========================
+
+function showAssetError(
+    assetHeader,
+    error
+) {
+
+    assetHeader.innerHTML = `
+
+        <div style="
+            width:100%;
+        ">
+
+            <h2>
+                Unable to load asset
+            </h2>
+
+            <p style="
+                color:#8b949e;
+                margin-top:8px;
+            ">
+                ${error?.message || "Connection failed"}
+            </p>
+
+            <button
+                onclick="loadAsset()"
+                style="
+                    margin-top:15px;
+                    padding:10px 18px;
+                    border:none;
+                    border-radius:8px;
+                    background:#f59e0b;
+                    color:white;
+                    font-weight:600;
+                    cursor:pointer;
+                "
+            >
+                Try Again
+            </button>
+
+        </div>
+
+    `;
 
 }
 
@@ -538,7 +943,10 @@ document.addEventListener(
     () => {
 
         const investButton =
-            document.querySelector(".invest-btn");
+            document.querySelector(
+                ".invest-btn"
+            );
+
 
         if (investButton) {
 
@@ -550,6 +958,7 @@ document.addEventListener(
                         "selectedInvestment",
                         assetId
                     );
+
 
                     window.location.href =
                         "investment.html";
