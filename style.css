@@ -2539,6 +2539,13 @@ p {
     height:100% !important;
 }
 
+/* Bitcoin Chart Card */
+.chart-card {
+    background: #1B1E24;
+    border: 1px solid #2A2F38;
+    border-radius: 24px;
+}
+
 /* Dashboard Section Spacing Fix */
 
 .market-card{
