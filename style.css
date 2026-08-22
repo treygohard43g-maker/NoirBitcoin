@@ -4937,3 +4937,40 @@ border:1px solid #2A2F38;
         transform: scale(1.025);
     }
 }
+
+/* =========================
+   DIGITAL ASSET CARDS
+========================= */
+
+.asset-card {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 32px 36px;
+    border-radius: 18px;
+    background: #1b1e24;
+    border: 1px solid #2a2f38;
+    overflow: hidden;
+}
+
+/* Make the Digital Assets section use the same width */
+.digital-assets {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 26px;
+}
+
+/* Asset logo */
+.asset-card img,
+.asset-logo {
+    width: 68px;
+    height: 68px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Prevent the asset card from becoming narrower */
+.digital-assets .asset-card {
+    width: 100%;
+    max-width: none;
+}
