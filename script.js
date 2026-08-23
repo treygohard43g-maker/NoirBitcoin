@@ -383,18 +383,22 @@ function updateWithdrawBTC() {
 
     const usdAmount = Number(withdrawUSD.value);
 
-    if (!usdAmount || usdAmount <= 0 || !bitcoin) {
+    if (!usdAmount || usdAmount <= 0 || !bitcoinPrice) {
         withdrawBTC.textContent = "0.00000000";
         return;
     }
 
-    const btcAmount = usdAmount / bitcoin;
+    const btcAmount = usdAmount / bitcoinPrice;
 
-    withdrawBTC.textContent = btcAmount.toFixed(8);
+    withdrawBTC.textContent =
+        btcAmount.toFixed(8);
 }
 
 if (withdrawUSD) {
-    withdrawUSD.addEventListener("input", updateWithdrawBTC);
+    withdrawUSD.addEventListener(
+        "input",
+        updateWithdrawBTC
+    );
 }
 
 // ---------- DEPOSIT POPUP ----------
