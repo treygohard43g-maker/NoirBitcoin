@@ -895,10 +895,9 @@ async function forceRepairInvestmentHistory() {
 
         const investmentsQuery = query(
             investmentsRef,
-            where("userId", "==", user.uid),
-            orderBy("date", "desc")
-        );
-
+            where("userId", "==", user.uid)
+       );
+    
         const snapshot =
             await getDocs(investmentsQuery);
 
@@ -914,6 +913,10 @@ async function forceRepairInvestmentHistory() {
             });
 
         });
+      
+    investments.sort(function(a, b) {
+          return new Date(b.date) - new Date(a.date);
+       });
 
         // Show only latest 3 transactions
         investments
