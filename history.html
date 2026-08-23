@@ -89,26 +89,327 @@
 
 </div>
 
+<script type="module">
+
+import { auth } from "./firebase.js";
+
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-<script>
+const db = getFirestore(auth.app);
 
-function loadHistory() {
+
+// =========================================
+// LOAD FIRESTORE INVESTMENT HISTORY
+// =========================================
+
+async function loadHistory(user) {
 
     const container =
         document.getElementById("investmentHistory");
 
 
-    const investments =
-        JSON.parse(
-            localStorage.getItem("investments")
-        ) || [];
+    if (!container) return;
 
 
     container.innerHTML = "";
 
 
-    if (investments.length === 0) {
+    try {
+
+        const investmentsRef =
+            collection(db, "investments");
+
+
+        const investmentsQuery =
+            query(
+                investmentsRef,
+                where("userId", "==", user.uid)
+            );
+
+
+        const snapshot =
+            await getDocs(investmentsQuery);
+
+
+        const investments = [];
+
+
+        snapshot.forEach(function(doc) {
+
+            investments.push({
+                id: doc.id,
+                ...doc.data()
+            });
+
+        });
+
+
+        // Newest investment first
+        investments.sort(function(a, b) {
+
+            return new Date(b.date) -
+                   new Date(a.date);
+
+        });
+
+
+        if (investments.length === 0) {
+
+            container.innerHTML = `
+
+                <div class="empty-history">
+
+                    <div class="empty-history-icon">
+
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    </div>
+
+                    <h3>
+                        No Transactions Yet
+                    </h3>
+
+                    <p>
+                        Your investment activity will appear here.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        investments.forEach(function(investment) {
+
+
+            const amount =
+                Number(investment.amount) || 0;
+
+
+            const formattedAmount =
+                amount.toLocaleString("en-US", {
+
+                    minimumFractionDigits: 2,
+
+                    maximumFractionDigits: 2
+
+                });
+
+
+            let formattedDate =
+                investment.date || "N/A";
+
+
+            if (investment.date) {
+
+                const date =
+                    new Date(investment.date);
+
+
+                if (!isNaN(date.getTime())) {
+
+                    formattedDate =
+                        date.toLocaleString("en-US", {
+
+                            day: "2-digit",
+
+                            month: "short",
+
+                            year: "numeric",
+
+                            hour: "2-digit",
+
+                            minute: "2-digit"
+
+                        });
+
+                }
+
+            }
+
+
+            const status =
+                investment.status || "Pending";
+
+
+            const statusClass =
+                status.toLowerCase() === "active"
+                    ? "active"
+                    : "pending";
+
+
+            container.innerHTML += `
+
+            <div class="website-history-item">
+
+
+                <div
+                    class="website-history-header"
+                    onclick="toggleHistory(this)"
+                >
+
+
+                    <div class="website-history-left">
+
+
+                        <div class="website-history-icon">
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                        </div>
+
+
+                        <div class="website-history-info">
+
+                            <h3>
+                                ${investment.plan}
+                            </h3>
+
+                            <p>
+
+                                Investment
+
+                                <span>•</span>
+
+                                <span class="history-status ${statusClass}">
+                                    ${status}
+                                </span>
+
+                            </p>
+
+                            <small>
+                                ${formattedDate}
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="website-history-right">
+
+
+                        <strong class="history-amount">
+
+                            +$${formattedAmount}
+
+                        </strong>
+
+
+                        <i
+                            class="fa-solid fa-chevron-down history-chevron"
+                        ></i>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="website-history-details">
+
+
+                    <div class="history-details-title">
+
+                        Investment Details
+
+                    </div>
+
+
+                    <div class="website-detail-row">
+
+                        <span>
+                            Investment Plan
+                        </span>
+
+                        <strong>
+                            ${investment.plan}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="website-detail-row">
+
+                        <span>
+                            Amount
+                        </span>
+
+                        <strong>
+                            $${formattedAmount}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="website-detail-row">
+
+                        <span>
+                            Status
+                        </span>
+
+                        <strong class="history-status ${statusClass}">
+                            ${status}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="website-detail-row">
+
+                        <span>
+                            Date
+                        </span>
+
+                        <strong>
+                            ${formattedDate}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="website-detail-row">
+
+                        <span>
+                            Monthly Return
+                        </span>
+
+                        <strong>
+                            ${investment.profitRate || 0}%
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            `;
+
+        });
+
+
+    } catch (error) {
+
+        console.error(
+            "Error loading transaction history:",
+            error
+        );
+
 
         container.innerHTML = `
 
@@ -116,247 +417,32 @@ function loadHistory() {
 
                 <div class="empty-history-icon">
 
-                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <i class="fa-solid fa-triangle-exclamation"></i>
 
                 </div>
 
                 <h3>
-                    No Transactions Yet
+                    Unable to Load History
                 </h3>
 
                 <p>
-                    Your investment activity will appear here.
+                    Please refresh the page and try again.
                 </p>
 
             </div>
 
         `;
 
-        return;
-
     }
-
-
-    [...investments]
-        .reverse()
-        .forEach(function(investment) {
-
-
-        const amount =
-            Number(investment.amount) || 0;
-
-
-        const formattedAmount =
-            amount.toLocaleString("en-US", {
-
-                minimumFractionDigits: 2,
-
-                maximumFractionDigits: 2
-
-            });
-
-
-        let formattedDate =
-            investment.date || "N/A";
-
-
-        if (investment.date) {
-
-            const date =
-                new Date(investment.date);
-
-
-            if (!isNaN(date)) {
-
-                formattedDate =
-                    date.toLocaleString("en-US", {
-
-                        day: "2-digit",
-
-                        month: "short",
-
-                        year: "numeric",
-
-                        hour: "2-digit",
-
-                        minute: "2-digit"
-
-                    });
-
-            }
-
-        }
-
-
-        const status =
-            investment.status || "Pending";
-
-
-        const statusClass =
-            status.toLowerCase() === "active"
-                ? "active"
-                : "pending";
-
-
-        container.innerHTML += `
-
-        <div class="website-history-item">
-
-
-            <div
-                class="website-history-header"
-                onclick="toggleHistory(this)"
-            >
-
-
-                <div class="website-history-left">
-
-
-                    <div class="website-history-icon">
-
-                        <i class="fa-solid fa-chart-line"></i>
-
-                    </div>
-
-
-                    <div class="website-history-info">
-
-                        <h3>
-                            ${investment.plan}
-                        </h3>
-
-                        <p>
-                            Investment
-                            <span>•</span>
-                            <span class="history-status ${statusClass}">
-                                ${status}
-                            </span>
-                        </p>
-
-                        <small>
-                            ${formattedDate}
-                        </small>
-
-                    </div>
-
-
-                </div>
-
-
-
-                <div class="website-history-right">
-
-
-                    <strong class="history-amount">
-
-                        +$${formattedAmount}
-
-                    </strong>
-
-
-                    <i
-                        class="fa-solid fa-chevron-down history-chevron"
-                    ></i>
-
-
-                </div>
-
-
-            </div>
-
-
-
-            <div class="website-history-details">
-
-
-                <div class="history-details-title">
-
-                    <span>
-                        Investment Details
-                    </span>
-
-                </div>
-
-
-                <div class="website-detail-row">
-
-                    <span>
-                        Investment Plan
-                    </span>
-
-                    <strong>
-                        ${investment.plan}
-                    </strong>
-
-                </div>
-
-
-                <div class="website-detail-row">
-
-                    <span>
-                        Amount
-                    </span>
-
-                    <strong>
-                        $${formattedAmount}
-                    </strong>
-
-                </div>
-
-
-                <div class="website-detail-row">
-
-                    <span>
-                        Status
-                    </span>
-
-                    <strong class="history-status ${statusClass}">
-                        ${status}
-                    </strong>
-
-                </div>
-
-
-                <div class="website-detail-row">
-
-                    <span>
-                        Date
-                    </span>
-
-                    <strong>
-                        ${formattedDate}
-                    </strong>
-
-                </div>
-
-
-                <div class="website-detail-row">
-
-                    <span>
-                        Monthly Return
-                    </span>
-
-                    <strong>
-                        ${investment.profitRate || 0}%
-                    </strong>
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-        `;
-
-    });
 
 }
 
 
+// =========================================
+// EXPAND / COLLAPSE
+// =========================================
 
-function toggleHistory(header) {
+window.toggleHistory = function(header) {
 
     const item =
         header.parentElement;
@@ -386,13 +472,35 @@ function toggleHistory(header) {
 
     }
 
-}
+};
 
 
-window.onload = loadHistory;
+// =========================================
+// WAIT FOR FIREBASE LOGIN
+// =========================================
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+onAuthStateChanged(auth, function(user) {
+
+    if (!user) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    loadHistory(user);
+
+});
 
 </script>
-
 
 </body>
 
