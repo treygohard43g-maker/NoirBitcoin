@@ -6,6 +6,7 @@ import {
     EmailAuthProvider,
     reauthenticateWithCredential,
     updatePassword,
+    updateProfile,
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -17,9 +18,6 @@ import {
     where,
     orderBy,
     getDocs
-    doc,
-    setDoc,
-    getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const db = getFirestore(auth.app);
@@ -114,19 +112,14 @@ if (registerForm) {
             const user = userCredential.user;
 
 
-            // Save username permanently in Firestore
-            await setDoc(
-                doc(db, "users", user.uid),
-                {
-                    uid: user.uid,
-                    name: name,
-                    email: email,
-                    phone: phone
-                }
-            );
+            // Save the username permanently
+            // inside Firebase Authentication
+            await updateProfile(user, {
+                displayName: name
+            });
 
 
-            // Also keep a local copy for faster dashboard loading
+            // Keep local copy for the dashboard
             localStorage.setItem(
                 "noirUser",
                 JSON.stringify({
@@ -166,7 +159,7 @@ if (registerForm) {
 
 }
 
-// ---------- LOGIN ----------
+    // ---------- LOGIN ----------
 
 const loginForm = document.getElementById("loginForm");
 
@@ -197,35 +190,11 @@ if (loginForm) {
                 userCredential.user;
 
 
-            // Get the user's permanent profile from Firestore
-            const userRef =
-                doc(db, "users", user.uid);
-
-            const userSnapshot =
-                await getDoc(userRef);
+            // Get permanent username from Firebase
+            const name =
+                user.displayName || "User";
 
 
-            let userData;
-
-
-            if (userSnapshot.exists()) {
-
-                userData =
-                    userSnapshot.data();
-
-            } else {
-
-                // Fallback for older accounts
-                userData = {
-                    uid: user.uid,
-                    name: user.displayName || "User",
-                    email: user.email
-                };
-
-            }
-
-
-            // Save the Firebase user session
             localStorage.setItem(
                 "loggedIn",
                 "true"
@@ -241,14 +210,14 @@ if (loginForm) {
             );
 
 
-            // Restore the username locally
+            // Restore username locally
             localStorage.setItem(
                 "noirUser",
                 JSON.stringify({
                     uid: user.uid,
-                    name: userData.name,
-                    email: userData.email || user.email,
-                    phone: userData.phone || ""
+                    name: name,
+                    email: user.email,
+                    phone: ""
                 })
             );
 
@@ -281,6 +250,7 @@ if (loginForm) {
     });
 
 }
+
 
 // ---------- PROTECT DASHBOARD ----------
 
