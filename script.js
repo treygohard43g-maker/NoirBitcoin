@@ -1551,7 +1551,7 @@ if (assetsContainer) {
 
 // ---------- PORTFOLIO STATISTICS ----------
 
-function updatePortfolio() {
+async function updatePortfolio() {
 
     const totalInvestedElement =
         document.getElementById("totalInvested");
@@ -1566,67 +1566,166 @@ function updatePortfolio() {
     if (!totalInvestedElement) return;
 
 
-    const investments =
-        JSON.parse(localStorage.getItem("investments")) || [];
+    // Get currently logged-in Firebase user
+    const user = auth.currentUser;
+
+    if (!user) return;
 
 
-    let totalInvested = 0;
+    try {
 
-    let totalProfit = 0;
+        // Get this user's investments from Firestore
+        const investmentsRef =
+            collection(db, "investments");
 
-    let activePlans = 0;
+        const investmentsQuery = query(
+            investmentsRef,
+            where("userId", "==", user.uid)
+        );
 
-
-    // Calculate EVERY investment
-    investments.forEach(function(investment) {
-
-        const amount = Number(investment.amount) || 0;
-
-
-        // Only count active investments
-        if (investment.status === "Active") {
-
-            activePlans++;
-
-            totalInvested += amount;
+        const snapshot =
+            await getDocs(investmentsQuery);
 
 
-            // Use saved profit if available
-            if (typeof investment.monthlyProfit === "number") {
+        let totalInvested = 0;
 
-                totalProfit += investment.monthlyProfit;
+        let totalProfit = 0;
+
+        let activePlans = 0;
+
+
+        // Calculate investments
+        snapshot.forEach(function(doc) {
+
+            const investment = doc.data();
+
+            const amount =
+                Number(investment.amount) || 0;
+
+
+            // Only count active investments
+            if (investment.status === "Active") {
+
+                activePlans++;
+
+                totalInvested += amount;
+
+
+                // Use saved profit if available
+                if (
+                    typeof investment.monthlyProfit === "number"
+                ) {
+
+                    totalProfit +=
+                        investment.monthlyProfit;
+
+                }
+
+                // Support older investments
+                else {
+
+                    let rate = 0;
+
+
+                    if (
+                        investment.plan === "Starter Plan"
+                    ) {
+
+                        rate = 5;
+
+                    }
+
+                    else if (
+                        investment.plan === "Professional Plan"
+                    ) {
+
+                        rate = 8;
+
+                    }
+
+                    else if (
+                        investment.plan === "Premium Plan"
+                    ) {
+
+                        rate = 12;
+
+                    }
+
+                    else if (
+                        investment.plan === "Diamond Plan"
+                    ) {
+
+                        rate = 20;
+
+                    }
+
+
+                    totalProfit +=
+                        amount * (rate / 100);
+
+                }
 
             }
 
-            // Support older investments
-            else {
+        });
 
-                let rate = 0;
 
-                if (investment.plan === "Starter Plan") {
-                    rate = 5;
-                }
+        // ---------- TOTAL INVESTED ----------
 
-                else if (investment.plan === "Professional Plan") {
-                    rate = 8;
-                }
+        totalInvestedElement.textContent =
+            "$" +
+            totalInvested.toLocaleString("en-US", {
 
-                else if (investment.plan === "Premium Plan") {
-                    rate = 12;
-                }
+                minimumFractionDigits: 2,
 
-                else if (investment.plan === "Diamond Plan") {
-                    rate = 20;
-                }
+                maximumFractionDigits: 2
 
-                totalProfit += amount * (rate / 100);
+            });
 
-            }
+
+        // ---------- ACTIVE PLANS ----------
+
+        if (activePlansElement) {
+
+            activePlansElement.textContent =
+                activePlans;
 
         }
 
-    });
 
+        // ---------- PORTFOLIO BALANCE ----------
+
+        if (portfolioBalanceElement) {
+
+            const portfolioValue =
+                balance +
+                totalInvested +
+                totalProfit;
+
+
+            portfolioBalanceElement.textContent =
+                "$" +
+                portfolioValue.toLocaleString("en-US", {
+
+                    minimumFractionDigits: 2,
+
+                    maximumFractionDigits: 2
+
+                });
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Error loading portfolio:",
+            error
+        );
+
+    }
+
+}
 
     // ---------- TOTAL INVESTED ----------
 
