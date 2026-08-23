@@ -1727,38 +1727,6 @@ async function updatePortfolio() {
 
 }
 
-    // ---------- TOTAL INVESTED ----------
-
-    totalInvestedElement.textContent =
-        "$" + totalInvested.toLocaleString("en-US", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
-
-
-    // ---------- ACTIVE PLANS ----------
-
-    activePlansElement.textContent =
-        activePlans;
-
-
-    // ---------- PORTFOLIO BALANCE ----------
-
-    if (portfolioBalanceElement) {
-
-        const portfolioValue =
-            balance + totalInvested + totalProfit;
-
-        portfolioBalanceElement.textContent =
-            "$" + portfolioValue.toLocaleString("en-US", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            });
-
-    }
-
-}
-
 updatePortfolio();
 
 // ---------- RECEIVE MODAL ----------
