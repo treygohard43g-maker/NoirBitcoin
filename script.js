@@ -1463,9 +1463,6 @@ function updatePortfolio() {
     const activePlansElement =
         document.getElementById("activePlans");
 
-    const totalProfitElement =
-        document.getElementById("totalProfit");
-
     const portfolioBalanceElement =
         document.getElementById("portfolioBalance");
 
@@ -1548,15 +1545,6 @@ function updatePortfolio() {
 
     activePlansElement.textContent =
         activePlans;
-
-
-    // ---------- TOTAL PROFIT ----------
-
-    totalProfitElement.textContent =
-        "$" + totalProfit.toLocaleString("en-US", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
 
 
     // ---------- PORTFOLIO BALANCE ----------
