@@ -699,11 +699,14 @@ if (planTitle) {
 
     else if (selectedPlan === "Diamond Plan") {
 
-        planTitle.textContent = "Diamond Plan";
-        planReturn.textContent = "20% Monthly Return";
-        planMinimum.textContent = "Minimum Investment: 0.50 BTC";
+    planTitle.textContent = "Diamond Plan";
 
-    }
+    planReturn.textContent = "20% Monthly Return";
+
+    planMinimum.textContent =
+        "Unlimited Investments";
+
+}
 
 }
 
