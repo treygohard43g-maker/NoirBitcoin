@@ -17,6 +17,9 @@ import {
     where,
     orderBy,
     getDocs
+    doc,
+    setDoc,
+    getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const db = getFirestore(auth.app);
@@ -85,39 +88,75 @@ if (registerForm) {
 
         e.preventDefault();
 
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const password = document.getElementById("password").value;
+        const name =
+            document.getElementById("name").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const phone =
+            document.getElementById("phone").value.trim();
+
+        const password =
+            document.getElementById("password").value;
 
 
         try {
 
-            const userCredential = await createUserWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
+            const userCredential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
 
 
             const user = userCredential.user;
 
 
-            localStorage.setItem("noirUser", JSON.stringify({
-                uid: user.uid,
-                name: name,
-                email: email,
-                phone: phone
-            }));
+            // Save username permanently in Firestore
+            await setDoc(
+                doc(db, "users", user.uid),
+                {
+                    uid: user.uid,
+                    name: name,
+                    email: email,
+                    phone: phone
+                }
+            );
+
+
+            // Also keep a local copy for faster dashboard loading
+            localStorage.setItem(
+                "noirUser",
+                JSON.stringify({
+                    uid: user.uid,
+                    name: name,
+                    email: email,
+                    phone: phone
+                })
+            );
+
+
+            localStorage.setItem(
+                "welcomeType",
+                "new"
+            );
 
 
             alert("Account created successfully!");
 
-localStorage.setItem("welcomeType", "new");
 
-window.location.href = "login.html";
+            window.location.href =
+                "login.html";
+
 
         } catch (error) {
+
+            console.error(
+                "Registration error:",
+                error
+            );
 
             alert(error.message);
 
@@ -127,11 +166,9 @@ window.location.href = "login.html";
 
 }
 
-
 // ---------- LOGIN ----------
 
 const loginForm = document.getElementById("loginForm");
-
 
 if (loginForm) {
 
@@ -139,46 +176,111 @@ if (loginForm) {
 
         e.preventDefault();
 
-        const email = document.getElementById("loginEmail").value.trim();
+        const email =
+            document.getElementById("loginEmail").value.trim();
 
-        const password = document.getElementById("loginPassword").value;
+        const password =
+            document.getElementById("loginPassword").value;
+
 
         try {
-            
-            const userCredential = await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
+
+            const userCredential =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            const user =
+                userCredential.user;
+
+
+            // Get the user's permanent profile from Firestore
+            const userRef =
+                doc(db, "users", user.uid);
+
+            const userSnapshot =
+                await getDoc(userRef);
+
+
+            let userData;
+
+
+            if (userSnapshot.exists()) {
+
+                userData =
+                    userSnapshot.data();
+
+            } else {
+
+                // Fallback for older accounts
+                userData = {
+                    uid: user.uid,
+                    name: user.displayName || "User",
+                    email: user.email
+                };
+
+            }
+
+
+            // Save the Firebase user session
+            localStorage.setItem(
+                "loggedIn",
+                "true"
             );
 
 
-            const user = userCredential.user;
+            localStorage.setItem(
+                "firebaseUser",
+                JSON.stringify({
+                    uid: user.uid,
+                    email: user.email
+                })
+            );
 
 
-            localStorage.setItem("loggedIn", "true");
+            // Restore the username locally
+            localStorage.setItem(
+                "noirUser",
+                JSON.stringify({
+                    uid: user.uid,
+                    name: userData.name,
+                    email: userData.email || user.email,
+                    phone: userData.phone || ""
+                })
+            );
 
-            localStorage.setItem("firebaseUser", JSON.stringify({
-                uid: user.uid,
-                email: user.email
-            }));
 
-if (!localStorage.getItem("welcomeType")) {
-    localStorage.setItem("welcomeType", "back");
-}
+            if (!localStorage.getItem("welcomeType")) {
 
-            window.location.href = "dashboard.html";
+                localStorage.setItem(
+                    "welcomeType",
+                    "back"
+                );
+
+            }
+
+
+            window.location.href =
+                "dashboard.html";
 
 
         } catch (error) {
 
-    alert(error.message);
+            console.error(
+                "Login error:",
+                error
+            );
 
-}
+            alert(error.message);
+
+        }
 
     });
 
 }
-
 
 // ---------- PROTECT DASHBOARD ----------
 
