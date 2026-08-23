@@ -300,54 +300,6 @@ if (toggleBalance && balanceElement) {
 
 }
 
-
-
-// ---------- LIVE BTC PRICE ----------
-
-const btcPrice = document.getElementById("btcPrice");
-
-const btcMovement = document.getElementById("btcMovement");
-
-let bitcoin = 62578;
-
-function updateBitcoin() {
-
-    if (!btcPrice) return;
-
-    const move = Math.floor(Math.random() * 1000) - 500;
-
-    bitcoin += move;
-
-    btcPrice.innerHTML =
-
-        "$" + bitcoin.toLocaleString();
-
-    if (btcMovement) {
-
-        if (move >= 0) {
-
-            btcMovement.innerHTML =
-
-                "▲ +$" + move.toLocaleString();
-
-            btcMovement.style.color = "#22c55e";
-
-        } else {
-
-            btcMovement.innerHTML =
-
-                "▼ -$" + Math.abs(move).toLocaleString();
-
-            btcMovement.style.color = "#ef4444";
-
-        }
-
-    }
-
-}
-
-setInterval(updateBitcoin, 5000);
-
 // ---------- WITHDRAW USD / BTC CONVERSION ----------
 
 const withdrawUSD = document.getElementById("withdrawUSD");
