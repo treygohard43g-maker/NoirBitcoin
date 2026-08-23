@@ -5466,3 +5466,20 @@ border:1px solid #2A2F38;
     }
 
 }
+
+/* ---------- DASHBOARD HISTORY DROPDOWN ---------- */
+
+.history-item .history-details {
+    background: #0d1117;
+    border-top: 1px solid #2a2f38;
+    color: #ffffff;
+}
+
+.history-item .history-details p {
+    color: #9ca3af;
+}
+
+.history-item .history-details p strong,
+.history-item .history-details p span {
+    color: #ffffff;
+}
