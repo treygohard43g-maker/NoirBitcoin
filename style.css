@@ -4326,31 +4326,44 @@ border:1px solid #2A2F38;
 
 .view-all-btn,
 #viewAllBtn {
-    background: transparent;
-    color: #6b7280;          /* charcoal gray text */
-    border: none;
+    background: #1b1e24;
+    color: #9ca3af;
+    border: 1px solid #2a2f38;
     box-shadow: none;
-    padding: 4px 8px;
+
+    padding: 7px 14px;
+
     width: auto;
     height: auto;
-    font-size: 16px;
+
+    font-size: 14px;
     font-weight: 600;
+
     display: inline-flex;
     align-items: center;
     gap: 6px;
+
     cursor: pointer;
-    transition: color 0.2s ease;
+
+    border-radius: 999px;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .view-all-btn:hover,
 #viewAllBtn:hover {
     color: #ffffff;
+    background: #22262e;
+    border-color: #3a414c;
 }
 
-.view-all-btn i{
+.view-all-btn i,
+#viewAllBtn i {
     font-size: 10px;
 }
-
 
 /* Search Bar */
 
