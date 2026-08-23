@@ -630,27 +630,12 @@ alert("Bitcoin address copied");
 
 function investNow(plan) {
 
+    // Only remember which plan the user selected.
+    // The investment is NOT saved until they confirm it.
     localStorage.setItem("selectedPlan", plan);
-
-    let investments = JSON.parse(localStorage.getItem("investments")) || [];
-
-    let newInvestment = {
-        plan: plan,
-        amount: "5000",
-        date: new Date().toLocaleDateString(),
-        status: "Pending"
-    };
-
-    investments.unshift(newInvestment);
-
-    localStorage.setItem(
-        "investments",
-        JSON.stringify(investments)
-    );
 
     window.location.href = "investment.html";
 }
-
 
 function toggleHistory(header){
 
@@ -760,35 +745,83 @@ function calculateProfit() {
 
 function confirmInvestment() {
 
-    const amount = document.getElementById("investmentAmount").value;
+    const amountInput = document.getElementById("investmentAmount");
 
-    if (!amount || Number(amount) <= 0) {
-        alert("Please enter an investment amount.");
+    const amount = Number(amountInput.value);
+
+    if (!amount || amount <= 0) {
+        alert("Please enter a valid investment amount.");
         return;
     }
 
-    const investment = {
-        plan: selectedPlan,
-        amount: amount,
-        date: new Date().toLocaleString(),
-        status: "Active"
+    // Get the selected plan
+    const plan = localStorage.getItem("selectedPlan");
+
+    if (!plan) {
+        alert("Please select an investment plan.");
+        return;
+    }
+
+    // Monthly profit rates
+    const rates = {
+        "Starter Plan": 5,
+        "Professional Plan": 8,
+        "Premium Plan": 12,
+        "Diamond Plan": 20
     };
 
-    let investments = JSON.parse(localStorage.getItem("investments")) || [];
+    const rate = rates[plan] || 0;
 
+    const monthlyProfit = amount * (rate / 100);
+
+    const investment = {
+
+        id: Date.now(),
+
+        plan: plan,
+
+        amount: amount,
+
+        profitRate: rate,
+
+        monthlyProfit: monthlyProfit,
+
+        date: new Date().toLocaleString(),
+
+        status: "Active"
+
+    };
+
+    let investments =
+        JSON.parse(localStorage.getItem("investments")) || [];
+
+    // Add this investment exactly once
     investments.unshift(investment);
 
-    localStorage.setItem("investments", JSON.stringify(investments));
+    localStorage.setItem(
+        "investments",
+        JSON.stringify(investments)
+    );
 
-    document.getElementById("successPlan").textContent = selectedPlan;
-    document.getElementById("successAmount").textContent = amount;
+    // Show success information
+    document.getElementById("successPlan").textContent = plan;
+
+    document.getElementById("successAmount").textContent =
+        amount.toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
 
     document.getElementById("successMessage").style.display = "block";
 
-    setTimeout(function () {
-        window.location.href = "dashboard.html";
-    }, 2500);
+    // Update dashboard statistics if available
+    updatePortfolio();
 
+    setTimeout(function () {
+
+        window.location.href = "dashboard.html";
+
+    }, 2500);
 }
 
 // ---------- INVESTMENT DATA MIGRATION ----------
