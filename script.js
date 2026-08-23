@@ -1014,10 +1014,6 @@ async function forceRepairInvestmentHistory() {
 
 }
 
-// Run repair automatically when dashboard loads
-
-forceRepairInvestmentHistory();
-
     
 // ---------- BITCOIN CHART ----------
 
@@ -1728,7 +1724,14 @@ async function updatePortfolio() {
 
 }
 
-updatePortfolio();
+onAuthStateChanged(auth, function(user) {
+
+    if (!user) return;
+
+    updatePortfolio();
+    forceRepairInvestmentHistory();
+
+});
 
 // ---------- RECEIVE MODAL ----------
 
