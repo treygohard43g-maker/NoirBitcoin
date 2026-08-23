@@ -1457,10 +1457,17 @@ if (assetsContainer) {
 
 function updatePortfolio() {
 
-    const totalInvestedElement = document.getElementById("totalInvested");
-    const activePlansElement = document.getElementById("activePlans");
-    const totalProfitElement = document.getElementById("totalProfit");
-    const portfolioBalanceElement = document.getElementById("portfolioBalance");
+    const totalInvestedElement =
+        document.getElementById("totalInvested");
+
+    const activePlansElement =
+        document.getElementById("activePlans");
+
+    const totalProfitElement =
+        document.getElementById("totalProfit");
+
+    const portfolioBalanceElement =
+        document.getElementById("portfolioBalance");
 
 
     if (!totalInvestedElement) return;
@@ -1471,60 +1478,103 @@ function updatePortfolio() {
 
 
     let totalInvested = 0;
+
     let totalProfit = 0;
 
-
-    const latest = investments.slice(-3).reverse();
-
-    latest.forEach(function(investment){
-        
-        const amount = Number(investment.amount);
-
-        totalInvested += amount;
+    let activePlans = 0;
 
 
-        let profitRate = 0;
+    // Calculate EVERY investment
+    investments.forEach(function(investment) {
+
+        const amount = Number(investment.amount) || 0;
 
 
-        if(investment.plan === "Starter Plan"){
-            profitRate = 5;
+        // Only count active investments
+        if (investment.status === "Active") {
+
+            activePlans++;
+
+            totalInvested += amount;
+
+
+            // Use saved profit if available
+            if (typeof investment.monthlyProfit === "number") {
+
+                totalProfit += investment.monthlyProfit;
+
+            }
+
+            // Support older investments
+            else {
+
+                let rate = 0;
+
+                if (investment.plan === "Starter Plan") {
+                    rate = 5;
+                }
+
+                else if (investment.plan === "Professional Plan") {
+                    rate = 8;
+                }
+
+                else if (investment.plan === "Premium Plan") {
+                    rate = 12;
+                }
+
+                else if (investment.plan === "Diamond Plan") {
+                    rate = 20;
+                }
+
+                totalProfit += amount * (rate / 100);
+
+            }
+
         }
-
-        else if(investment.plan === "Professional Plan"){
-            profitRate = 8;
-        }
-
-        else if(investment.plan === "Premium Plan"){
-            profitRate = 12;
-        }
-
-        else if(investment.plan === "Diamond Plan"){
-            profitRate = 20;
-        }
-
-
-        totalProfit += amount * (profitRate / 100);
 
     });
 
 
-    totalInvestedElement.textContent =
-        "$" + totalInvested.toLocaleString();
+    // ---------- TOTAL INVESTED ----------
 
+    totalInvestedElement.textContent =
+        "$" + totalInvested.toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+
+    // ---------- ACTIVE PLANS ----------
 
     activePlansElement.textContent =
-        investments.length;
+        activePlans;
 
+
+    // ---------- TOTAL PROFIT ----------
 
     totalProfitElement.textContent =
-        "$" + totalProfit.toFixed(2);
+        "$" + totalProfit.toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
 
 
-    portfolioBalanceElement.textContent =
-        "$" + (balance + totalProfit).toLocaleString();
+    // ---------- PORTFOLIO BALANCE ----------
+
+    if (portfolioBalanceElement) {
+
+        const portfolioValue =
+            balance + totalInvested + totalProfit;
+
+        portfolioBalanceElement.textContent =
+            "$" + portfolioValue.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+    }
 
 }
-
 
 updatePortfolio();
 
