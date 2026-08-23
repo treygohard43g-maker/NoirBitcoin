@@ -871,93 +871,145 @@ async function confirmInvestment() {
     }
 }
 
-// ---------- INVESTMENT DATA MIGRATION ----------
+async function forceRepairInvestmentHistory() {
 
-let savedInvestments = JSON.parse(localStorage.getItem("investments")) || [];
+    const container =
+        document.getElementById("recentHistory");
 
-savedInvestments = savedInvestments.map(function(investment){
+    if (!container) return;
 
-    if (typeof investment.amount === "string") {
+    const user = auth.currentUser;
 
-        investment.amount = investment.amount
-            .replace("$", "")
-            .replace("+", "")
-            .replace(",", "");
-
+    if (!user) {
+        console.log(
+            "No Firebase user logged in."
+        );
+        return;
     }
 
-    return investment;
+    try {
 
-});
+        const investmentsRef =
+            collection(db, "investments");
 
+        const investmentsQuery = query(
+            investmentsRef,
+            where("userId", "==", user.uid),
+            orderBy("date", "desc")
+        );
 
-localStorage.setItem(
-    "investments",
-    JSON.stringify(savedInvestments)
-);
+        const snapshot =
+            await getDocs(investmentsQuery);
 
-function forceRepairInvestmentHistory(){
+        container.innerHTML = "";
 
-    const container = document.getElementById("recentHistory");
+        const investments = [];
 
-    if(!container) return;
+        snapshot.forEach(function(doc) {
 
-    const investments =
-        JSON.parse(localStorage.getItem("investments")) || [];
+            investments.push({
+                id: doc.id,
+                ...doc.data()
+            });
 
-    container.innerHTML = "";
+        });
 
-    // Show only the latest 3 transactions
-      investments.slice(0,3).forEach(function(investment){
+        // Show only latest 3 transactions
+        investments
+            .slice(0, 3)
+            .forEach(function(investment) {
 
-        container.innerHTML += `
+                const amount =
+                    Number(investment.amount) || 0;
 
-        <div class="history-item">
+                const formattedAmount =
+                    amount.toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
 
-            <div class="history-header" onclick="toggleHistory(this)">
+                const formattedDate =
+                    investment.date
+                        ? new Date(
+                            investment.date
+                        ).toLocaleString()
+                        : "";
 
-                <div class="history-info">
+                container.innerHTML += `
 
-                    <h3>
-                        <i class="fa-solid fa-chart-line"></i>
-                        ${investment.plan}
-                    </h3>
+                <div class="history-item">
 
-                    <p>
-                        ${investment.status}
-                        • ${investment.date}
-                    </p>
+                    <div
+                        class="history-header"
+                        onclick="toggleHistory(this)"
+                    >
+
+                        <div class="history-info">
+
+                            <h3>
+                                <i class="fa-solid fa-chart-line"></i>
+                                ${investment.plan}
+                            </h3>
+
+                            <p>
+                                ${investment.status}
+                                • ${formattedDate}
+                            </p>
+
+                        </div>
+
+                        <div class="history-right">
+
+                            <span>
+                                +$${formattedAmount}
+                            </span>
+
+                            <i
+                                class="fa-solid fa-chevron-down history-chevron"
+                            ></i>
+
+                        </div>
+
+                    </div>
+
+                    <div class="history-details">
+
+                        <p>
+                            Investment Plan:
+                            ${investment.plan}
+                        </p>
+
+                        <p>
+                            Amount:
+                            $${formattedAmount}
+                        </p>
+
+                        <p>
+                            Status:
+                            ${investment.status}
+                        </p>
+
+                        <p>
+                            Date:
+                            ${formattedDate}
+                        </p>
+
+                    </div>
 
                 </div>
 
+                `;
 
-                <div class="history-right">
+            });
 
-                    <span>
-                        +$${investment.amount}
-                    </span>
+    } catch (error) {
 
-                    <i class="fa-solid fa-chevron-down history-chevron"></i>
+        console.error(
+            "Error loading investment history:",
+            error
+        );
 
-                </div>
-
-            </div>
-
-
-            <div class="history-details">
-
-                <p>Investment Plan: ${investment.plan}</p>
-                <p>Amount: $${investment.amount}</p>
-                <p>Status: ${investment.status}</p>
-                <p>Date: ${investment.date}</p>
-
-            </div>
-
-        </div>
-
-        `;
-
-    });
+    }
 
 }
 
