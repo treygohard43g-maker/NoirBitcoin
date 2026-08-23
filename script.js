@@ -1,4 +1,5 @@
 import { auth } from "./firebase.js";
+
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -6,6 +7,18 @@ import {
     reauthenticateWithCredential,
     updatePassword
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    query,
+    where,
+    orderBy,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const db = getFirestore(auth.app);
 
 window.onerror = function (message, source, line, column, error) {
     alert("JS Error:\n" + message + "\nLine: " + line);
@@ -746,9 +759,10 @@ function calculateProfit() {
 
 }
 
-function confirmInvestment() {
+async function confirmInvestment() {
 
-    const amountInput = document.getElementById("investmentAmount");
+    const amountInput =
+        document.getElementById("investmentAmount");
 
     const amount = Number(amountInput.value);
 
@@ -757,8 +771,18 @@ function confirmInvestment() {
         return;
     }
 
-    // Get the selected plan
-    const plan = localStorage.getItem("selectedPlan");
+    // Get the currently logged-in Firebase user
+    const user = auth.currentUser;
+
+    if (!user) {
+        alert("Your login session has expired. Please log in again.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    // Get selected investment plan
+    const plan =
+        localStorage.getItem("selectedPlan");
 
     if (!plan) {
         alert("Please select an investment plan.");
@@ -775,56 +799,76 @@ function confirmInvestment() {
 
     const rate = rates[plan] || 0;
 
-    const monthlyProfit = amount * (rate / 100);
+    const monthlyProfit =
+        amount * (rate / 100);
 
-    const investment = {
+    try {
 
-        id: Date.now(),
+        // Save investment to Firestore
+        await addDoc(
+            collection(db, "investments"),
+            {
+                userId: user.uid,
 
-        plan: plan,
+                plan: plan,
 
-        amount: amount,
+                amount: amount,
 
-        profitRate: rate,
+                profitRate: rate,
 
-        monthlyProfit: monthlyProfit,
+                monthlyProfit: monthlyProfit,
 
-        date: new Date().toLocaleString(),
+                date: new Date().toISOString(),
 
-        status: "Active"
+                status: "Active"
+            }
+        );
 
-    };
+        // Show success information
+        const successPlan =
+            document.getElementById("successPlan");
 
-    let investments =
-        JSON.parse(localStorage.getItem("investments")) || [];
+        const successAmount =
+            document.getElementById("successAmount");
 
-    // Add this investment exactly once
-    investments.unshift(investment);
+        const successMessage =
+            document.getElementById("successMessage");
 
-    localStorage.setItem(
-        "investments",
-        JSON.stringify(investments)
-    );
+        if (successPlan) {
+            successPlan.textContent = plan;
+        }
 
-    // Show success information
-    document.getElementById("successPlan").textContent = plan;
+        if (successAmount) {
+            successAmount.textContent =
+                amount.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+        }
 
-    document.getElementById("successAmount").textContent =
-        amount.toLocaleString("en-US", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
+        if (successMessage) {
+            successMessage.style.display = "block";
+        }
 
-    document.getElementById("successMessage").style.display = "block";
+        // Go back to dashboard
+        setTimeout(function () {
 
-    // Update dashboard statistics if available
-    updatePortfolio();
+            window.location.href =
+                "dashboard.html";
 
-    setTimeout(function () {
+        }, 2500);
 
-        window.location.href = "dashboard.html";
+    } catch (error) {
 
-    }, 2500);
+        console.error(
+            "Error saving investment:",
+            error
+        );
+
+        alert(
+            "Unable to save your investment. Please try again."
+        );
+    }
 }
 
 // ---------- INVESTMENT DATA MIGRATION ----------
