@@ -1196,31 +1196,74 @@ setInterval(() => {
 
 }
 
+// ---------- LIVE BITCOIN PRICE ----------
+
+let previousBitcoinPrice = null;
 
 async function loadBitcoinPrice() {
 
     try {
 
-        const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd");
+        const response = await fetch(
+            "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+        );
 
         const data = await response.json();
 
         const price = data.bitcoin.usd;
 
-        document.getElementById("btcPrice").textContent =
-            "$" + price.toLocaleString();
+        const btcPriceElement =
+            document.getElementById("btcPrice");
+
+        if (!btcPriceElement) return;
+
+
+        // Display live price
+        btcPriceElement.textContent =
+            "$" + price.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+
+        // Determine price movement
+        if (previousBitcoinPrice !== null) {
+
+            if (price > previousBitcoinPrice) {
+
+                // Price went UP → green
+                btcPriceElement.style.color = "#22c55e";
+
+            } else if (price < previousBitcoinPrice) {
+
+                // Price went DOWN → red
+                btcPriceElement.style.color = "#ef4444";
+
+            }
+
+        }
+
+
+        // Save current price for next update
+        previousBitcoinPrice = price;
+
 
     } catch (error) {
 
-        console.error("Unable to load Bitcoin price:", error);
+        console.error(
+            "Unable to load Bitcoin price:",
+            error
+        );
 
     }
 
 }
 
 
+// Load immediately
 loadBitcoinPrice();
 
+// Update every 30 seconds
 setInterval(loadBitcoinPrice, 30000);
 
 // ---------- LIVE BALANCE MOVEMENT ----------
