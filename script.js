@@ -1054,145 +1054,266 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
 
     const chart = LightweightCharts.createChart(chartContainer, {
 
-    width: chartContainer.clientWidth,
+        width: chartContainer.clientWidth,
+        height: 260,
 
-    height: 350,
-
-    layout: {
-        background: {
-            color: "#0d1117"
-        },
-        textColor: "#8b949e"
-    },
-
-    grid: {
-        vertLines: {
-            color: "rgba(255,255,255,0.025)"
+        layout: {
+            background: {
+                color: "#1B1E24"
+            },
+            textColor: "#8b949e"
         },
 
-        horzLines: {
-            color: "rgba(255,255,255,0.025)"
+        grid: {
+            vertLines: {
+                color: "rgba(255,255,255,0.025)"
+            },
+
+            horzLines: {
+                color: "rgba(255,255,255,0.025)"
+            }
+        },
+
+        rightPriceScale: {
+            borderColor: "#252b33"
+        },
+
+        timeScale: {
+            borderColor: "#252b33",
+            timeVisible: true,
+            secondsVisible: false
+        },
+
+        crosshair: {
+            mode: LightweightCharts.CrosshairMode.Normal
         }
-    },
 
-    rightPriceScale: {
-        borderColor: "#252b33",
-        textColor: "#8b949e"
-    },
+    });
 
-    timeScale: {
-        borderColor: "#252b33",
-        timeVisible: true,
-        secondsVisible: false
-    },
 
-    crosshair: {
-        mode: LightweightCharts.CrosshairMode.Normal
-    }
+    // Create Bitcoin price line
+    const series = chart.addLineSeries({
 
-});
+        color: "#f7931a",
+
+        lineWidth: 2,
+
+        priceLineVisible: true,
+
+        lastValueVisible: true
+
+    });
+
+
+    // ---------- LOAD BITCOIN CHART DATA ----------
 
     async function loadChartData(days = 7) {
 
-    try {
+        try {
 
-        const response = await fetch(
-            `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${days}`
-        );
+            const response = await fetch(
+                `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${days}`
+            );
 
-        const data = await response.json();
+            if (!response.ok) {
+                throw new Error(
+                    "CoinGecko request failed: " + response.status
+                );
+            }
 
-        if (!data.prices || !data.prices.length) {
-            throw new Error("No Bitcoin chart data");
+            const data = await response.json();
+
+
+            if (!data.prices || !data.prices.length) {
+                throw new Error("No Bitcoin chart data received");
+            }
+
+
+            const prices = data.prices.map(item => ({
+
+                time: Math.floor(item[0] / 1000),
+
+                value: Number(item[1])
+
+            }));
+
+
+            // Remove duplicate timestamps
+            const uniquePrices = [];
+
+            const seenTimes = new Set();
+
+            prices.forEach(price => {
+
+                if (!seenTimes.has(price.time)) {
+
+                    seenTimes.add(price.time);
+
+                    uniquePrices.push(price);
+
+                }
+
+            });
+
+
+            // Determine market movement
+            const firstPrice =
+                uniquePrices[0].value;
+
+            const lastPrice =
+                uniquePrices[uniquePrices.length - 1].value;
+
+
+            const isUp =
+                lastPrice >= firstPrice;
+
+
+            series.applyOptions({
+
+                color:
+                    isUp
+                        ? "#22c55e"
+                        : "#ef4444"
+
+            });
+
+
+            series.setData(uniquePrices);
+
+
+            chart.timeScale().fitContent();
+
+
+            console.log(
+                "Bitcoin chart loaded:",
+                uniquePrices.length,
+                "points"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Bitcoin chart error:",
+                error
+            );
+
         }
 
-        const prices = data.prices.map(item => ({
-            time: Math.floor(item[0] / 1000),
-            value: item[1]
-        }));
+    }
 
-        // Determine whether Bitcoin is up or down
-        const firstPrice = prices[0].value;
-        const lastPrice = prices[prices.length - 1].value;
 
-        const isUp = lastPrice >= firstPrice;
+    // Load 7-day chart
+    loadChartData(7);
 
-        // Green when up, red when down
-        series.applyOptions({
-            color: isUp ? "#22c55e" : "#ef4444"
+
+    // ---------- TIME BUTTONS ----------
+
+    document.querySelectorAll(".time-btn").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            document
+                .querySelectorAll(".time-btn")
+                .forEach(btn =>
+                    btn.classList.remove("active")
+                );
+
+
+            button.classList.add("active");
+
+
+            const days =
+                Number(button.dataset.days);
+
+
+            loadChartData(days);
+
         });
 
-        series.setData(prices);
-
-    } catch (error) {
-
-        console.error("Chart error:", error);
-
-    }
-
-}
-            
-loadChartData();
-    
-document.querySelectorAll(".time-btn").forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        document.querySelectorAll(".time-btn").forEach(btn =>
-            btn.classList.remove("active")
-        );
-
-        button.classList.add("active");
-
-        loadChartData(Number(button.dataset.days));
-
     });
 
-});
 
-chart.subscribeCrosshairMove(param => {
+    // ---------- CHART CROSSHAIR ----------
 
-    if (!param.point || !param.time) return;
+    chart.subscribeCrosshairMove(param => {
 
-    const price = param.seriesData.get(series);
+        if (!param.point || !param.time) return;
 
-    if (price) {
 
-        const chartValue = document.getElementById("chartValue");
-        const chartDate = document.getElementById("chartDate");
+        const price =
+            param.seriesData.get(series);
+
+
+        if (!price) return;
+
+
+        const chartValue =
+            document.getElementById("chartValue");
+
+
+        const chartDate =
+            document.getElementById("chartDate");
+
 
         if (chartValue) {
+
             chartValue.textContent =
-                "$" + Number(price.value).toLocaleString(undefined, {
-                    maximumFractionDigits: 2
-                });
+                "$" +
+                Number(price.value).toLocaleString(
+                    "en-US",
+                    {
+                        maximumFractionDigits: 2
+                    }
+                );
+
         }
+
 
         if (chartDate) {
+
             chartDate.textContent =
-                new Date(param.time * 1000).toLocaleDateString();
+                new Date(
+                    param.time * 1000
+                ).toLocaleDateString();
+
         }
-
-    }
-
-});
-
-
-window.addEventListener("resize", () => {
-
-    chart.applyOptions({
-
-        width: chartContainer.clientWidth
 
     });
 
-});
 
-setInterval(() => {
+    // ---------- RESPONSIVE CHART ----------
 
-    loadChartData();
+    function resizeBitcoinChart() {
 
-}, 30000);
+        if (!chartContainer) return;
+
+
+        chart.applyOptions({
+
+            width:
+                chartContainer.clientWidth,
+
+            height:
+                chartContainer.clientHeight || 260
+
+        });
+
+    }
+
+
+    window.addEventListener(
+        "resize",
+        resizeBitcoinChart
+    );
+
+
+    // Update Bitcoin chart every 30 seconds
+    setInterval(() => {
+
+        loadChartData(7);
+
+    }, 30000);
 
 }
 
