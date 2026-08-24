@@ -6432,5 +6432,125 @@ body {
 
 }
 
+/* =========================================================
+   BALANCE CONTROLS — DIAMOND GLASS
+========================================================= */
+
+#currencyToggle,
+#toggleBalance {
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.09),
+            rgba(255,255,255,0.035)
+        ) !important;
+
+    color: #c7cdd4 !important;
+
+    border: 1px solid rgba(255,255,255,0.13) !important;
+
+    border-radius: 12px;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.10),
+        0 8px 20px rgba(0,0,0,0.22);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        color 0.25s ease;
+
+    overflow: hidden;
+}
+
+
+/* Subtle diamond reflection */
+
+#currencyToggle::before,
+#toggleBalance::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -100%;
+    left: -60%;
+
+    width: 35%;
+    height: 300%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.28),
+            transparent
+        );
+
+    transform: rotate(25deg);
+
+    animation: balanceButtonShine 5s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes balanceButtonShine {
+
+    0% {
+        left: -70%;
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.7;
+    }
+
+    45% {
+        left: 140%;
+        opacity: 0;
+    }
+
+    100% {
+        left: 140%;
+        opacity: 0;
+    }
+
+}
+
+
+/* Hover */
+
+#currencyToggle:hover,
+#toggleBalance:hover {
+
+    color: #eef1f4 !important;
+
+    border-color: rgba(255,255,255,0.24) !important;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.14),
+        0 12px 26px rgba(0,0,0,0.30),
+        0 0 18px rgba(255,255,255,0.05);
+}
+
+
+/* Active press */
+
+#currencyToggle:active,
+#toggleBalance:active {
+
+    transform: translateY(0) scale(0.98);
+
+}
 
     
