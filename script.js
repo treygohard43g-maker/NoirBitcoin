@@ -1086,39 +1086,63 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
         }
     });
 
-    const series = chart.addAreaSeries({
-        lineColor: "#f7931a",
-        topColor: "rgba(247,147,26,0.35)",
-        bottomColor: "rgba(247,147,26,0.03)",
-        lineWidth: 2
-    });
+    const series = chart.addLineSeries({
+
+    color: "#22c55e",
+
+    lineWidth: 3,
+
+    crosshairMarkerVisible: true,
+
+    crosshairMarkerRadius: 4,
+
+    lastValueVisible: true,
+
+    priceLineVisible: false
+
+});
 
     async function loadChartData(days = 7) {
 
-        try {
+    try {
 
-            const response = await fetch(
-                `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${days}`
-            );
+        const response = await fetch(
+            `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${days}`
+        );
 
-            const data = await response.json();
+        const data = await response.json();
 
-            const prices = data.prices.map(item => ({
-                time: Math.floor(item[0] / 1000),
-                value: item[1]
-            }));
-
-            series.setData(prices);
-
-        } catch (error) {
-
-            console.error("Chart error:", error);
-
+        if (!data.prices || !data.prices.length) {
+            throw new Error("No Bitcoin chart data");
         }
+
+        const prices = data.prices.map(item => ({
+            time: Math.floor(item[0] / 1000),
+            value: item[1]
+        }));
+
+        // Determine whether Bitcoin is up or down
+        const firstPrice = prices[0].value;
+        const lastPrice = prices[prices.length - 1].value;
+
+        const isUp = lastPrice >= firstPrice;
+
+        // Green when up, red when down
+        series.applyOptions({
+            color: isUp ? "#22c55e" : "#ef4444"
+        });
+
+        series.setData(prices);
+
+    } catch (error) {
+
+        console.error("Chart error:", error);
 
     }
 
-    loadChartData();
+}
+            
+loadChartData();
     
 document.querySelectorAll(".time-btn").forEach(button => {
 
