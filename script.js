@@ -1053,52 +1053,42 @@ const chartContainer = document.getElementById("btcChart");
 if (chartContainer && typeof LightweightCharts !== "undefined") {
 
     const chart = LightweightCharts.createChart(chartContainer, {
-        width: chartContainer.clientWidth,
-        height: 350,
 
-        layout: {
-            background: {
-                color: "#111827"
-            },
-            textColor: "#ffffff"
+    width: chartContainer.clientWidth,
+
+    height: 350,
+
+    layout: {
+        background: {
+            color: "#0d1117"
+        },
+        textColor: "#8b949e"
+    },
+
+    grid: {
+        vertLines: {
+            color: "rgba(255,255,255,0.025)"
         },
 
-        grid: {
-            vertLines: {
-                color: "rgba(255,255,255,0.05)"
-            },
-            horzLines: {
-                color: "rgba(255,255,255,0.05)"
-            }
-        },
-
-        rightPriceScale: {
-            borderColor: "#374151"
-        },
-
-        timeScale: {
-            borderColor: "#374151",
-            timeVisible: true
-        },
-
-        crosshair: {
-            mode: LightweightCharts.CrosshairMode.Normal
+        horzLines: {
+            color: "rgba(255,255,255,0.025)"
         }
-    });
+    },
 
-    const series = chart.addLineSeries({
+    rightPriceScale: {
+        borderColor: "#252b33",
+        textColor: "#8b949e"
+    },
 
-    color: "#22c55e",
+    timeScale: {
+        borderColor: "#252b33",
+        timeVisible: true,
+        secondsVisible: false
+    },
 
-    lineWidth: 3,
-
-    crosshairMarkerVisible: true,
-
-    crosshairMarkerRadius: 4,
-
-    lastValueVisible: true,
-
-    priceLineVisible: false
+    crosshair: {
+        mode: LightweightCharts.CrosshairMode.Normal
+    }
 
 });
 
