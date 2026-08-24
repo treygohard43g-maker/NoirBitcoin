@@ -2819,8 +2819,8 @@ p {
 }
 
 .btc-chart-card{
-    background: #1B1E24;
-    border: 1px solid #2A2F38;
+    background: #0d1117;
+    border: 1px solid #252b33;
     border-radius:18px;
     padding:20px;
     margin-top:20px;
@@ -2852,8 +2852,11 @@ p {
 }
 
 #btcChart{
-    width:100%;
-    height:350px;
+    width: 100%;
+    height: 350px;
+    background: #0d1117;
+    border-radius: 12px
+    overflow: hidden;
 }
 
 .chart-info{
