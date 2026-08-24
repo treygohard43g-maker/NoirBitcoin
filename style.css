@@ -6375,7 +6375,58 @@ body {
 
 }
     
+/* =========================================================
+   AVAILABLE BALANCE — DIAMOND SHINE
+========================================================= */
 
+#availableBalance {
+
+    color: transparent !important;
+
+    background:
+        linear-gradient(
+            110deg,
+            #ffffff 0%,
+            #d9dee4 20%,
+            #ffffff 38%,
+            #9da6b0 50%,
+            #ffffff 62%,
+            #e5e8eb 80%,
+            #ffffff 100%
+        );
+
+    background-size: 250% 100%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    text-shadow:
+        0 1px 1px rgba(255,255,255,0.35),
+        0 4px 14px rgba(255,255,255,0.08);
+
+    animation:
+        balanceDiamondShine 4s ease-in-out infinite;
+
+}
+
+
+/* Moving diamond reflection */
+
+@keyframes balanceDiamondShine {
+
+    0% {
+        background-position: 150% 50%;
+    }
+
+    45% {
+        background-position: -50% 50%;
+    }
+
+    100% {
+        background-position: -50% 50%;
+    }
+
+}
         
 
     
