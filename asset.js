@@ -846,17 +846,45 @@ function createChart(
 
 
     // =========================
-    // LINE
-    // =========================
+// LINE CHART
+// =========================
 
-    const lineSeries =
-        chart.addLineSeries();
+const firstPrice =
+    uniquePrices[0].value;
+
+const lastPrice =
+    uniquePrices[
+        uniquePrices.length - 1
+    ].value;
 
 
-    lineSeries.setData(
-        uniquePrices
-    );
+const lineColor =
+    lastPrice >= firstPrice
+        ? "#16a34a"
+        : "#dc2626";
 
+
+const lineSeries =
+    chart.addLineSeries({
+
+        color: lineColor,
+
+        lineWidth: 3,
+
+        crosshairMarkerVisible: true,
+
+        crosshairMarkerRadius: 4,
+
+        lastValueVisible: true,
+
+        priceLineVisible: false
+
+    });
+
+
+lineSeries.setData(
+    uniquePrices
+);
 
     // =========================
     // RESPONSIVE
