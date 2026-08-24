@@ -867,7 +867,7 @@ const lineColor =
 const lineSeries =
     chart.addLineSeries({
 
-        color: lineColor,
+        color: "#16a34a",
 
         lineWidth: 3,
 
