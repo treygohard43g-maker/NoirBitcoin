@@ -6553,4 +6553,204 @@ body {
 
 }
 
+/* =========================================================
+   NOIRBITCOIN — MOBILE SPACING & LAYOUT
+========================================================= */
+
+@media (max-width: 600px) {
+
+    /* Main dashboard spacing */
+    .dashboard-container {
+        width: 100%;
+        padding: 0 14px;
+        box-sizing: border-box;
+    }
+
+
+    /* Search bar */
+    .search-container {
+        width: 100%;
+        padding: 0;
+        margin: 16px 0 22px;
+    }
+
+
+    .search-container input {
+        height: 50px;
+        border-radius: 15px;
+        padding-left: 48px;
+        font-size: 15px;
+    }
+
+
+    /* Available balance card */
+    .balance-card {
+        width: 100%;
+        margin: 0 0 18px;
+        padding: 22px 20px !important;
+        border-radius: 20px;
+        box-sizing: border-box;
+    }
+
+
+    /* Balance title */
+    .balance-label {
+        font-size: 20px !important;
+    }
+
+
+    /* Balance amount */
+    #availableBalance {
+        font-size: 34px;
+        line-height: 1.15;
+        margin: 12px 0 16px;
+        word-break: break-word;
+    }
+
+
+    /* Username */
+    #balanceUserName {
+        font-size: 14px;
+        max-width: 45%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+    /* Balance buttons */
+    #currencyToggle,
+    #toggleBalance {
+        min-height: 42px;
+        padding: 10px 14px;
+        font-size: 13px;
+        border-radius: 11px;
+    }
+
+
+    /* Quick actions */
+    .quick-actions {
+        width: 100%;
+        gap: 10px;
+        margin: 18px 0 24px;
+    }
+
+
+    .action-card {
+        min-height: 76px;
+        padding: 14px 10px;
+        border-radius: 16px;
+    }
+
+
+    .action-card i {
+        font-size: 19px;
+        margin-bottom: 6px;
+    }
+
+
+    .action-card span {
+        font-size: 13px;
+    }
+
+
+    /* Portfolio section */
+    .portfolio-card {
+        width: 100%;
+        padding: 19px !important;
+        border-radius: 18px;
+        margin-bottom: 12px;
+    }
+
+
+    .portfolio-card i {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+
+    .portfolio-card h2 {
+        font-size: 21px;
+    }
+
+
+    .portfolio-card h3 {
+        font-size: 13px;
+    }
+
+
+    /* Chart */
+    .chart-container,
+    .btc-chart-card,
+    .chart-card {
+        width: 100%;
+        border-radius: 18px;
+        margin-bottom: 18px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+
+    /* Digital assets */
+    .digital-assets {
+        padding: 0;
+        margin-top: 20px;
+    }
+
+
+    .digital-assets .asset-card {
+        width: 100%;
+        padding: 22px 20px;
+        border-radius: 18px;
+        margin-bottom: 12px;
+    }
+
+
+    .asset-card img,
+    .asset-logo {
+        width: 58px;
+        height: 58px;
+    }
+
+
+    /* Transaction history */
+    .transaction-history {
+        width: 100%;
+        padding: 18px !important;
+        border-radius: 18px;
+        box-sizing: border-box;
+        margin-top: 20px;
+    }
+
+
+    /* History rows */
+    .history-item {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+
+    /* View all */
+    .view-all-container {
+        margin: 20px 0 8px;
+    }
+
+
+    /* Top trading banner */
+    .top-trading-banner {
+        width: 100%;
+        margin: 20px 0 24px;
+        border-radius: 16px;
+    }
+
+
+    /* Prevent horizontal overflow */
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+}
+
     
