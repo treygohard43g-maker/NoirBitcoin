@@ -5483,3 +5483,802 @@ border:1px solid #2A2F38;
 .history-item .history-details p span {
     color: #ffffff;
 }
+
+/* =========================================================
+   NOIRBITCOIN — FULL GLASS DASHBOARD
+   Add this at the VERY BOTTOM of style.css
+========================================================= */
+
+/* ---------- GLASS VARIABLES ---------- */
+
+:root {
+    --glass-bg: rgba(27, 30, 36, 0.58);
+    --glass-bg-light: rgba(255, 255, 255, 0.045);
+    --glass-border: rgba(255, 255, 255, 0.10);
+    --glass-border-hover: rgba(247, 147, 26, 0.45);
+    --glass-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.055);
+    --glass-blur: blur(20px);
+}
+
+
+/* =========================================================
+   DASHBOARD BACKGROUND
+========================================================= */
+
+body {
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(247, 147, 26, 0.08),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 25%,
+            rgba(255, 255, 255, 0.035),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(247, 147, 26, 0.055),
+            transparent 35%
+        ),
+        #0d1117;
+
+    color: #fff;
+}
+
+
+/* =========================================================
+   DASHBOARD HEADER
+========================================================= */
+
+.dashboard-header {
+
+    background: rgba(17, 24, 39, 0.58) !important;
+
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+
+    border: 1px solid var(--glass-border);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    position: sticky;
+    z-index: 1000;
+}
+
+
+/* =========================================================
+   SEARCH BAR
+========================================================= */
+
+.search-container input {
+
+    background: rgba(27, 30, 36, 0.50) !important;
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.035),
+        0 8px 25px rgba(0, 0, 0, 0.20);
+
+    transition: all 0.3s ease;
+}
+
+.search-container input:focus {
+
+    border-color: rgba(247, 147, 26, 0.55) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(247, 147, 26, 0.08),
+        0 12px 30px rgba(0, 0, 0, 0.30);
+}
+
+
+/* Search dropdown */
+
+.search-results {
+
+    background: rgba(17, 24, 39, 0.72) !important;
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.50),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+
+/* =========================================================
+   BALANCE CARD — MAIN GLASS CARD
+========================================================= */
+
+.balance-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(247, 147, 26, 0.10),
+            rgba(27, 30, 36, 0.58) 40%,
+            rgba(24, 28, 34, 0.68)
+        ) !important;
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    border: 1px solid rgba(247, 147, 26, 0.22) !important;
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.40),
+        0 0 35px rgba(247, 147, 26, 0.07),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+    overflow: hidden;
+}
+
+
+/* Glass reflection */
+
+.balance-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -30%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            110deg,
+            transparent,
+            rgba(255, 255, 255, 0.045),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+.action-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27, 30, 36, 0.62),
+            rgba(24, 28, 34, 0.48)
+        ) !important;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.085) !important;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.045);
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Small glass shine */
+
+.action-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.16),
+            transparent
+        );
+}
+
+
+.action-card:hover {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(247, 147, 26, 0.12),
+            rgba(27, 30, 36, 0.60)
+        ) !important;
+
+    border-color: rgba(247, 147, 26, 0.40) !important;
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.38),
+        0 0 25px rgba(247, 147, 26, 0.08);
+}
+
+
+/* =========================================================
+   PORTFOLIO CARDS
+========================================================= */
+
+.portfolio-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27, 30, 36, 0.62),
+            rgba(24, 28, 34, 0.48)
+        ) !important;
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.085) !important;
+
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+.portfolio-card:hover {
+
+    border-color: rgba(247, 147, 26, 0.42) !important;
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.40),
+        0 0 25px rgba(247, 147, 26, 0.07);
+}
+
+
+/* =========================================================
+   BITCOIN MARKET CARD
+========================================================= */
+
+.market-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27, 30, 36, 0.62),
+            rgba(24, 28, 34, 0.48)
+        ) !important;
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.36),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+
+/* =========================================================
+   BITCOIN CHART
+========================================================= */
+
+.btc-chart-card,
+.chart-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27, 30, 36, 0.60),
+            rgba(24, 28, 34, 0.46)
+        ) !important;
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+
+/* =========================================================
+   INVESTMENT PLANS
+========================================================= */
+
+.plan-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27, 30, 36, 0.60),
+            rgba(24, 28, 34, 0.46)
+        ) !important;
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.085) !important;
+
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+
+.plan-card:hover {
+
+    border-color: rgba(247, 147, 26, 0.42) !important;
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.40),
+        0 0 25px rgba(247, 147, 26, 0.07);
+}
+
+
+/* =========================================================
+   TRANSACTION HISTORY
+========================================================= */
+
+.transaction-history {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27, 30, 36, 0.60),
+            rgba(24, 28, 34, 0.46)
+        ) !important;
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border: 1px solid rgba(255, 255, 255, 0.085) !important;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+
+.history-item {
+
+    background:
+        rgba(255, 255, 255, 0.025) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.055) !important;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+
+.history-item:hover {
+
+    background:
+        rgba(247, 147, 26, 0.045) !important;
+
+    border-color:
+        rgba(247, 147, 26, 0.30) !important;
+}
+
+
+.history-details {
+
+    background:
+        rgba(13, 17, 23, 0.55) !important;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-color:
+        rgba(255, 255, 255, 0.06) !important;
+}
+
+
+/* Dashboard recent history */
+
+#recentHistory .history-item,
+#investmentHistory .history-item {
+
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   DIGITAL ASSETS
+========================================================= */
+
+.asset-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27, 30, 36, 0.60),
+            rgba(24, 28, 34, 0.46)
+        ) !important;
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.085) !important;
+
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+
+.asset-card:hover {
+
+    border-color: rgba(247, 147, 26, 0.40) !important;
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.38);
+}
+
+
+/* =========================================================
+   TOP TRADING BANNER
+========================================================= */
+
+.top-trading-banner {
+
+    background: rgba(27, 30, 36, 0.55) !important;
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10) !important;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.40),
+        0 0 25px rgba(247, 147, 26, 0.08);
+}
+
+
+/* =========================================================
+   HEADER ICONS
+========================================================= */
+
+.icon-btn {
+
+    background:
+        rgba(27, 30, 36, 0.55) !important;
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.09) !important;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 8px 20px rgba(0, 0, 0, 0.20);
+}
+
+
+.icon-btn:hover {
+
+    background: rgba(247, 147, 26, 0.85) !important;
+
+    border-color: rgba(247, 147, 26, 0.8) !important;
+
+    box-shadow:
+        0 8px 25px rgba(247, 147, 26, 0.20);
+}
+
+
+/* =========================================================
+   PROFILE MENU
+========================================================= */
+
+.profile-menu {
+
+    background:
+        rgba(17, 24, 39, 0.72) !important;
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10) !important;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.50),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+
+/* =========================================================
+   NOTIFICATION MENU
+========================================================= */
+
+.notification-menu {
+
+    background:
+        rgba(17, 24, 39, 0.72) !important;
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.50),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.notification-header {
+
+    background:
+        rgba(255, 255, 255, 0.035) !important;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.07);
+}
+
+.notification-item:hover {
+
+    background:
+        rgba(247, 147, 26, 0.07) !important;
+}
+
+
+/* =========================================================
+   VIEW ALL BUTTON
+========================================================= */
+
+.view-all-btn,
+#viewAllBtn {
+
+    background:
+        rgba(255, 255, 255, 0.035) !important;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08) !important;
+
+    color: #9ca3af !important;
+}
+
+
+.view-all-btn:hover,
+#viewAllBtn:hover {
+
+    background:
+        rgba(247, 147, 26, 0.07) !important;
+
+    border-color:
+        rgba(247, 147, 26, 0.30) !important;
+
+    color: #fff !important;
+}
+
+
+/* =========================================================
+   GLASS EFFECT FOR MAIN DASHBOARD CONTAINER
+========================================================= */
+
+.dashboard-container {
+
+    position: relative;
+}
+
+
+/* Subtle background glow */
+
+.dashboard-container::before {
+
+    content: "";
+
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    top: 20%;
+    right: -150px;
+
+    background:
+        rgba(247, 147, 26, 0.055);
+
+    filter: blur(100px);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+/* =========================================================
+   GLASS BUTTONS
+========================================================= */
+
+.btc-toggle-btn,
+.continue-btn {
+
+    box-shadow:
+        0 10px 30px rgba(247, 147, 26, 0.20),
+        inset 0 1px 0 rgba(255, 255, 255, 0.20);
+}
+
+
+/* =========================================================
+   GLASS INPUTS
+========================================================= */
+
+.modal-content input,
+.investment-card input,
+.settings-card input {
+
+    background:
+        rgba(17, 24, 39, 0.55) !important;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08) !important;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal {
+
+    background:
+        rgba(0, 0, 0, 0.62) !important;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+
+.modal-content,
+.receive-content,
+.investment-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27, 30, 36, 0.78),
+            rgba(17, 24, 39, 0.72)
+        ) !important;
+
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.60),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+
+/* =========================================================
+   GLASS TRANSACTION ROWS
+========================================================= */
+
+.transaction-row {
+
+    background:
+        rgba(255, 255, 255, 0.025) !important;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.055) !important;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+/* =========================================================
+   MOBILE GLASS
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .dashboard-header {
+
+        border-radius: 16px;
+
+        padding:
+            15px 16px;
+    }
+
+    .balance-card {
+
+        border-radius: 20px;
+
+        padding: 24px;
+    }
+
+    .action-card {
+
+        border-radius: 17px;
+
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+
+    .portfolio-card {
+
+        border-radius: 18px;
+
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+
+    .btc-chart-card {
+
+        border-radius: 18px;
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+    }
+
+    .transaction-history {
+
+        border-radius: 18px;
+
+        padding: 18px !important;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCE MOTION FOR USERS WHO REQUEST IT
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+}
