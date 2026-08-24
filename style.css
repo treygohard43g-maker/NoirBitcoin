@@ -6375,32 +6375,31 @@ body {
 
 }
     
-
 /* =========================================================
-   AVAILABLE BALANCE — PREMIUM DIAMOND METALLIC
+   AVAILABLE BALANCE — PLATINUM DIAMOND FINISH
 ========================================================= */
 
 #availableBalance {
 
-    color: #c9ced4 !important;
-
     font-weight: 700;
 
-    letter-spacing: -0.4px;
+    letter-spacing: -0.6px;
+
+    color: #b8bec6;
 
     background:
         linear-gradient(
             105deg,
-            #8f969e 0%,
-            #d4d8dc 22%,
-            #aeb5bd 42%,
-            #eef0f2 50%,
-            #aeb5bd 58%,
-            #d0d4d8 78%,
-            #858d96 100%
+            #8d949c 0%,
+            #bfc5cb 22%,
+            #9da5ae 40%,
+            #e1e4e7 50%,
+            #a5adb5 60%,
+            #c5cad0 78%,
+            #8b929a 100%
         );
 
-    background-size: 220% 100%;
+    background-size: 240% 100%;
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -6408,28 +6407,30 @@ body {
     -webkit-text-fill-color: transparent;
 
     text-shadow:
-        0 1px 2px rgba(255,255,255,0.12),
-        0 3px 12px rgba(0,0,0,0.30);
+        0 2px 3px rgba(0,0,0,0.35),
+        0 0 10px rgba(255,255,255,0.06);
 
     animation:
-        balanceMetallicShine 6s ease-in-out infinite;
+        balancePlatinumShine 7s ease-in-out infinite;
 
 }
 
 
-@keyframes balanceMetallicShine {
+@keyframes balancePlatinumShine {
 
     0% {
-        background-position: 130% 50%;
+        background-position: 140% 50%;
     }
 
     45% {
-        background-position: -30% 50%;
+        background-position: -40% 50%;
     }
 
     100% {
-        background-position: -30% 50%;
+        background-position: -40% 50%;
     }
 
 }
 
+
+    
