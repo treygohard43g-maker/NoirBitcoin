@@ -5485,48 +5485,55 @@ border:1px solid #2A2F38;
 }
 
 /* =========================================================
-   NOIRBITCOIN — FULL GLASS DASHBOARD
-   Add this at the VERY BOTTOM of style.css
+   NOIRBITCOIN — DIAMOND CRYSTAL GLASS
+   REPLACE THE OLD FULL GLASS DASHBOARD SECTION WITH THIS
 ========================================================= */
 
-/* ---------- GLASS VARIABLES ---------- */
+
+/* =========================================================
+   DIAMOND GLASS VARIABLES
+========================================================= */
 
 :root {
-    --glass-bg: rgba(27, 30, 36, 0.58);
-    --glass-bg-light: rgba(255, 255, 255, 0.045);
-    --glass-border: rgba(255, 255, 255, 0.10);
-    --glass-border-hover: rgba(247, 147, 26, 0.45);
-    --glass-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.38),
-        inset 0 1px 0 rgba(255, 255, 255, 0.055);
-    --glass-blur: blur(20px);
+
+    --diamond-bg: rgba(20,24,30,0.62);
+
+    --diamond-light: rgba(255,255,255,0.08);
+
+    --diamond-highlight: rgba(255,255,255,0.22);
+
+    --diamond-border: rgba(255,255,255,0.13);
+
+    --diamond-shadow: rgba(0,0,0,0.48);
+
 }
 
 
 /* =========================================================
-   DASHBOARD BACKGROUND
+   DARK CRYSTAL BACKGROUND
 ========================================================= */
 
 body {
+
     background:
         radial-gradient(
-            circle at 10% 10%,
-            rgba(247, 147, 26, 0.08),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 25%,
-            rgba(255, 255, 255, 0.035),
+            circle at 15% 10%,
+            rgba(255,255,255,0.025),
             transparent 28%
         ),
         radial-gradient(
+            circle at 85% 20%,
+            rgba(255,255,255,0.018),
+            transparent 25%
+        ),
+        radial-gradient(
             circle at 50% 100%,
-            rgba(247, 147, 26, 0.055),
+            rgba(255,255,255,0.018),
             transparent 35%
         ),
-        #0d1117;
+        #0d1117 !important;
 
-    color: #fff;
+    color:#fff;
 }
 
 
@@ -5536,71 +5543,215 @@ body {
 
 .dashboard-header {
 
-    background: rgba(17, 24, 39, 0.58) !important;
+    background:
+        rgba(15,19,25,0.70) !important;
 
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
 
-    border: 1px solid var(--glass-border);
+    border:
+        1px solid rgba(255,255,255,0.10);
 
     box-shadow:
-        0 12px 35px rgba(0, 0, 0, 0.30),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 15px 35px rgba(0,0,0,0.35);
 
-    position: sticky;
-    z-index: 1000;
+    position:sticky;
+    z-index:1000;
 }
 
 
 /* =========================================================
-   SEARCH BAR
+   MAIN DIAMOND GLASS CARDS
 ========================================================= */
 
-.search-container input {
+.balance-card,
+.portfolio-card,
+.plan-card,
+.chart-container,
+.transaction-history,
+.asset-card,
+.market-card,
+.btc-chart-card,
+.chart-card {
 
-    background: rgba(27, 30, 36, 0.50) !important;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.075) 0%,
+            rgba(255,255,255,0.025) 20%,
+            rgba(18,22,28,0.72) 48%,
+            rgba(255,255,255,0.035) 72%,
+            rgba(255,255,255,0.07) 100%
+        ) !important;
 
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter:
+        blur(24px) saturate(120%);
 
-    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+    -webkit-backdrop-filter:
+        blur(24px) saturate(120%);
 
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.035),
-        0 8px 25px rgba(0, 0, 0, 0.20);
-
-    transition: all 0.3s ease;
-}
-
-.search-container input:focus {
-
-    border-color: rgba(247, 147, 26, 0.55) !important;
-
-    box-shadow:
-        0 0 0 3px rgba(247, 147, 26, 0.08),
-        0 12px 30px rgba(0, 0, 0, 0.30);
-}
-
-
-/* Search dropdown */
-
-.search-results {
-
-    background: rgba(17, 24, 39, 0.72) !important;
-
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    border:
+        1px solid var(--diamond-border) !important;
 
     box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.50),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        inset 0 1px 0 rgba(255,255,255,0.16),
+        inset 0 -1px 0 rgba(255,255,255,0.035),
+        0 18px 45px var(--diamond-shadow);
+
+    position:relative;
+
+    overflow:hidden;
+
 }
 
 
 /* =========================================================
-   BALANCE CARD — MAIN GLASS CARD
+   CRYSTAL TOP EDGE
+========================================================= */
+
+.balance-card::before,
+.portfolio-card::before,
+.plan-card::before,
+.asset-card::before {
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:5%;
+
+    width:90%;
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.35),
+            rgba(255,255,255,0.10),
+            transparent
+        );
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,0.10);
+
+    pointer-events:none;
+
+}
+
+
+/* =========================================================
+   MOVING DIAMOND REFLECTION
+========================================================= */
+
+.balance-card::after,
+.portfolio-card::after,
+.plan-card::after,
+.asset-card::after {
+
+    content:"";
+
+    position:absolute;
+
+    top:-120%;
+    left:-80%;
+
+    width:42%;
+    height:340%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255,255,255,0.025) 30%,
+            rgba(255,255,255,0.28) 48%,
+            rgba(255,255,255,0.06) 58%,
+            transparent 100%
+        );
+
+    transform:rotate(25deg);
+
+    pointer-events:none;
+
+    animation:
+        diamondReflection 7s ease-in-out infinite;
+
+}
+
+
+@keyframes diamondReflection {
+
+    0% {
+
+        left:-80%;
+
+        opacity:0;
+
+    }
+
+    15% {
+
+        opacity:0.45;
+
+    }
+
+    45% {
+
+        left:130%;
+
+        opacity:0.75;
+
+    }
+
+    60% {
+
+        opacity:0;
+
+    }
+
+    100% {
+
+        left:130%;
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* =========================================================
+   CARD HOVER — SILVER/CRYSTAL, NOT ORANGE
+========================================================= */
+
+.balance-card:hover,
+.portfolio-card:hover,
+.plan-card:hover,
+.chart-container:hover,
+.transaction-history:hover,
+.asset-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(255,255,255,0.22) !important;
+
+    box-shadow:
+
+        inset 0 1px 0 rgba(255,255,255,0.22),
+
+        0 22px 50px rgba(0,0,0,0.55),
+
+        0 0 20px rgba(255,255,255,0.025);
+
+}
+
+
+/* =========================================================
+   BALANCE CARD — PREMIUM DIAMOND
 ========================================================= */
 
 .balance-card {
@@ -5608,118 +5759,23 @@ body {
     background:
         linear-gradient(
             135deg,
-            rgba(247, 147, 26, 0.10),
-            rgba(27, 30, 36, 0.58) 40%,
-            rgba(24, 28, 34, 0.68)
+            rgba(255,255,255,0.10),
+            rgba(25,29,35,0.60) 38%,
+            rgba(15,19,25,0.74) 72%,
+            rgba(255,255,255,0.045)
         ) !important;
 
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-
-    border: 1px solid rgba(247, 147, 26, 0.22) !important;
+    border:
+        1px solid rgba(255,255,255,0.16) !important;
 
     box-shadow:
-        0 20px 55px rgba(0, 0, 0, 0.40),
-        0 0 35px rgba(247, 147, 26, 0.07),
-        inset 0 1px 0 rgba(255, 255, 255, 0.07);
 
-    overflow: hidden;
-}
+        inset 0 1px 0 rgba(255,255,255,0.20),
 
+        inset 0 -1px 0 rgba(255,255,255,0.04),
 
-/* Glass reflection */
+        0 25px 60px rgba(0,0,0,0.55);
 
-.balance-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: -30%;
-
-    width: 70%;
-    height: 100%;
-
-    background:
-        linear-gradient(
-            110deg,
-            transparent,
-            rgba(255, 255, 255, 0.045),
-            transparent
-        );
-
-    transform: skewX(-20deg);
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   QUICK ACTIONS
-========================================================= */
-
-.action-card {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(27, 30, 36, 0.62),
-            rgba(24, 28, 34, 0.48)
-        ) !important;
-
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-
-    border: 1px solid rgba(255, 255, 255, 0.085) !important;
-
-    box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.28),
-        inset 0 1px 0 rgba(255, 255, 255, 0.045);
-
-    position: relative;
-    overflow: hidden;
-}
-
-
-/* Small glass shine */
-
-.action-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.16),
-            transparent
-        );
-}
-
-
-.action-card:hover {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(247, 147, 26, 0.12),
-            rgba(27, 30, 36, 0.60)
-        ) !important;
-
-    border-color: rgba(247, 147, 26, 0.40) !important;
-
-    box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.38),
-        0 0 25px rgba(247, 147, 26, 0.08);
 }
 
 
@@ -5732,213 +5788,150 @@ body {
     background:
         linear-gradient(
             145deg,
-            rgba(27, 30, 36, 0.62),
-            rgba(24, 28, 34, 0.48)
+            rgba(255,255,255,0.065),
+            rgba(18,22,28,0.68)
         ) !important;
 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
-    border: 1px solid rgba(255, 255, 255, 0.085) !important;
-
-    box-shadow:
-        0 14px 35px rgba(0, 0, 0, 0.30),
-        inset 0 1px 0 rgba(255, 255, 255, 0.045);
-}
-
-.portfolio-card:hover {
-
-    border-color: rgba(247, 147, 26, 0.42) !important;
-
-    box-shadow:
-        0 20px 45px rgba(0, 0, 0, 0.40),
-        0 0 25px rgba(247, 147, 26, 0.07);
 }
 
 
 /* =========================================================
-   BITCOIN MARKET CARD
+   PORTFOLIO TOP LINE
 ========================================================= */
 
-.market-card {
+.portfolio-card::before {
+
+    height:2px;
 
     background:
         linear-gradient(
-            145deg,
-            rgba(27, 30, 36, 0.62),
-            rgba(24, 28, 34, 0.48)
-        ) !important;
-
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-
-    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+            90deg,
+            transparent,
+            rgba(255,255,255,0.25),
+            rgba(255,255,255,0.55),
+            rgba(255,255,255,0.18),
+            transparent
+        );
 
     box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.36),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        0 0 12px rgba(255,255,255,0.12);
+
 }
 
 
 /* =========================================================
-   BITCOIN CHART
+   DIAMOND PORTFOLIO ICONS
 ========================================================= */
 
-.btc-chart-card,
-.chart-card {
+.invested-icon,
+.plans-icon,
+.profit-icon,
+.portfolio-balance-card .portfolio-icon {
 
     background:
         linear-gradient(
             145deg,
-            rgba(27, 30, 36, 0.60),
-            rgba(24, 28, 34, 0.46)
+            #ffffff 0%,
+            #e8ebef 20%,
+            #9ba3ad 45%,
+            #ffffff 65%,
+            #b4bbc3 82%,
+            #f8f9fa 100%
         ) !important;
 
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
+    color:#111 !important;
 
-    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+    border:
+        1px solid rgba(255,255,255,0.28);
 
     box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.34),
-        inset 0 1px 0 rgba(255, 255, 255, 0.045);
+
+        inset 0 1px 2px rgba(255,255,255,0.85),
+
+        0 7px 20px rgba(255,255,255,0.10);
+
 }
 
 
 /* =========================================================
-   INVESTMENT PLANS
+   SEARCH BAR
 ========================================================= */
 
-.plan-card {
+.search-container input {
 
     background:
         linear-gradient(
-            145deg,
-            rgba(27, 30, 36, 0.60),
-            rgba(24, 28, 34, 0.46)
+            135deg,
+            rgba(255,255,255,0.055),
+            rgba(18,22,28,0.68)
         ) !important;
 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter:
+        blur(20px);
 
-    border: 1px solid rgba(255, 255, 255, 0.085) !important;
+    -webkit-backdrop-filter:
+        blur(20px);
 
-    box-shadow:
-        0 14px 35px rgba(0, 0, 0, 0.30),
-        inset 0 1px 0 rgba(255, 255, 255, 0.045);
-}
-
-
-.plan-card:hover {
-
-    border-color: rgba(247, 147, 26, 0.42) !important;
+    border:
+        1px solid rgba(255,255,255,0.12) !important;
 
     box-shadow:
-        0 20px 45px rgba(0, 0, 0, 0.40),
-        0 0 25px rgba(247, 147, 26, 0.07);
+
+        inset 0 1px 0 rgba(255,255,255,0.10),
+
+        0 10px 30px rgba(0,0,0,0.30);
+
 }
 
 
-/* =========================================================
-   TRANSACTION HISTORY
-========================================================= */
-
-.transaction-history {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(27, 30, 36, 0.60),
-            rgba(24, 28, 34, 0.46)
-        ) !important;
-
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-
-    border: 1px solid rgba(255, 255, 255, 0.085) !important;
-
-    box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.34),
-        inset 0 1px 0 rgba(255, 255, 255, 0.045);
-}
-
-
-.history-item {
-
-    background:
-        rgba(255, 255, 255, 0.025) !important;
-
-    border: 1px solid rgba(255, 255, 255, 0.055) !important;
-
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-}
-
-
-.history-item:hover {
-
-    background:
-        rgba(247, 147, 26, 0.045) !important;
+.search-container input:focus {
 
     border-color:
-        rgba(247, 147, 26, 0.30) !important;
-}
+        rgba(255,255,255,0.25) !important;
 
+    box-shadow:
 
-.history-details {
+        inset 0 1px 0 rgba(255,255,255,0.15),
 
-    background:
-        rgba(13, 17, 23, 0.55) !important;
+        0 12px 35px rgba(0,0,0,0.40);
 
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-
-    border-color:
-        rgba(255, 255, 255, 0.06) !important;
-}
-
-
-/* Dashboard recent history */
-
-#recentHistory .history-item,
-#investmentHistory .history-item {
-
-    background: transparent !important;
 }
 
 
 /* =========================================================
-   DIGITAL ASSETS
+   SEARCH RESULTS
 ========================================================= */
 
-.asset-card {
+.search-results {
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(27, 30, 36, 0.60),
-            rgba(24, 28, 34, 0.46)
-        ) !important;
+        rgba(13,17,23,0.82) !important;
 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter:
+        blur(28px);
 
-    border: 1px solid rgba(255, 255, 255, 0.085) !important;
+    -webkit-backdrop-filter:
+        blur(28px);
+
+    border:
+        1px solid rgba(255,255,255,0.12) !important;
 
     box-shadow:
-        0 14px 35px rgba(0, 0, 0, 0.30),
-        inset 0 1px 0 rgba(255, 255, 255, 0.045);
+
+        0 25px 60px rgba(0,0,0,0.60),
+
+        inset 0 1px 0 rgba(255,255,255,0.08);
+
+    max-height:420px;
+
 }
 
 
-.asset-card:hover {
+.search-item:hover {
 
-    border-color: rgba(247, 147, 26, 0.40) !important;
+    background:
+        rgba(255,255,255,0.055) !important;
 
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 20px 45px rgba(0, 0, 0, 0.38);
 }
 
 
@@ -5948,49 +5941,69 @@ body {
 
 .top-trading-banner {
 
-    background: rgba(27, 30, 36, 0.55) !important;
-
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background:
+        rgba(18,22,28,0.68) !important;
 
     border:
-        1px solid rgba(255, 255, 255, 0.10) !important;
+        1px solid rgba(255,255,255,0.14) !important;
 
     box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.40),
-        0 0 25px rgba(247, 147, 26, 0.08);
+
+        0 20px 50px rgba(0,0,0,0.55),
+
+        inset 0 1px 0 rgba(255,255,255,0.12);
+
 }
 
 
-/* =========================================================
-   HEADER ICONS
-========================================================= */
+/* REMOVE ORANGE BANNER GLOW */
 
-.icon-btn {
+.top-trading-banner::before {
 
     background:
-        rgba(27, 30, 36, 0.55) !important;
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,0.18),
+            rgba(255,255,255,0.025),
+            transparent
+        ) !important;
 
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    filter:
+        blur(10px);
 
-    border:
-        1px solid rgba(255, 255, 255, 0.09) !important;
+    opacity:
+        0.55;
 
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.05),
-        0 8px 20px rgba(0, 0, 0, 0.20);
+    animation:
+        diamondBannerShine 6s ease-in-out infinite;
+
 }
 
 
-.icon-btn:hover {
+@keyframes diamondBannerShine {
 
-    background: rgba(247, 147, 26, 0.85) !important;
+    0% {
 
-    border-color: rgba(247, 147, 26, 0.8) !important;
+        transform:
+            translateX(-80%);
 
-    box-shadow:
-        0 8px 25px rgba(247, 147, 26, 0.20);
+    }
+
+    50% {
+
+        transform:
+            translateX(80%);
+
+    }
+
+    100% {
+
+        transform:
+            translateX(-80%);
+
+    }
+
 }
 
 
@@ -6001,17 +6014,32 @@ body {
 .profile-menu {
 
     background:
-        rgba(17, 24, 39, 0.72) !important;
+        rgba(13,17,23,0.82) !important;
 
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter:
+        blur(28px);
+
+    -webkit-backdrop-filter:
+        blur(28px);
 
     border:
-        1px solid rgba(255, 255, 255, 0.10) !important;
+        1px solid rgba(255,255,255,0.12) !important;
 
     box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.50),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+        0 25px 60px rgba(0,0,0,0.60),
+
+        inset 0 1px 0 rgba(255,255,255,0.08);
+
+}
+
+
+.profile-menu a:hover,
+.profile-menu button:hover {
+
+    background:
+        rgba(255,255,255,0.055);
+
 }
 
 
@@ -6022,32 +6050,23 @@ body {
 .notification-menu {
 
     background:
-        rgba(17, 24, 39, 0.72) !important;
+        rgba(13,17,23,0.82) !important;
 
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter:
+        blur(28px);
+
+    -webkit-backdrop-filter:
+        blur(28px);
 
     border:
-        1px solid rgba(255, 255, 255, 0.10);
+        1px solid rgba(255,255,255,0.12) !important;
 
     box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.50),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
 
-.notification-header {
+        0 25px 60px rgba(0,0,0,0.60),
 
-    background:
-        rgba(255, 255, 255, 0.035) !important;
+        inset 0 1px 0 rgba(255,255,255,0.08);
 
-    border-bottom:
-        1px solid rgba(255, 255, 255, 0.07);
-}
-
-.notification-item:hover {
-
-    background:
-        rgba(247, 147, 26, 0.07) !important;
 }
 
 
@@ -6059,15 +6078,26 @@ body {
 #viewAllBtn {
 
     background:
-        rgba(255, 255, 255, 0.035) !important;
+        rgba(255,255,255,0.045) !important;
 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
 
     border:
-        1px solid rgba(255, 255, 255, 0.08) !important;
+        1px solid rgba(255,255,255,0.12) !important;
 
-    color: #9ca3af !important;
+    color:
+        #cbd5e1 !important;
+
+    box-shadow:
+
+        inset 0 1px 0 rgba(255,255,255,0.08),
+
+        0 5px 15px rgba(0,0,0,0.20);
+
 }
 
 
@@ -6075,62 +6105,75 @@ body {
 #viewAllBtn:hover {
 
     background:
-        rgba(247, 147, 26, 0.07) !important;
+        rgba(255,255,255,0.09) !important;
 
     border-color:
-        rgba(247, 147, 26, 0.30) !important;
+        rgba(255,255,255,0.22) !important;
 
-    color: #fff !important;
+    color:
+        #ffffff !important;
+
 }
 
 
 /* =========================================================
-   GLASS EFFECT FOR MAIN DASHBOARD CONTAINER
+   HISTORY ITEMS
 ========================================================= */
 
-.dashboard-container {
-
-    position: relative;
-}
-
-
-/* Subtle background glow */
-
-.dashboard-container::before {
-
-    content: "";
-
-    position: fixed;
-
-    width: 300px;
-    height: 300px;
-
-    top: 20%;
-    right: -150px;
+.website-history-item {
 
     background:
-        rgba(247, 147, 26, 0.055);
+        rgba(255,255,255,0.025) !important;
 
-    filter: blur(100px);
+    border:
+        1px solid rgba(255,255,255,0.07) !important;
 
-    border-radius: 50%;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.035);
 
-    pointer-events: none;
+}
 
-    z-index: -1;
+
+.website-history-item:hover {
+
+    border-color:
+        rgba(255,255,255,0.18) !important;
+
+}
+
+
+.website-history-icon {
+
+    background:
+        rgba(255,255,255,0.06) !important;
+
+    color:
+        #dfe4ea !important;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
 }
 
 
 /* =========================================================
-   GLASS BUTTONS
+   DASHBOARD HISTORY DROPDOWN
 ========================================================= */
 
-.btc-toggle-btn,
-.continue-btn {
+.history-item .history-details {
 
-    box-shadow:
-        0 10px 30px rgba(247, 147, 26, 0.20),
-        inset 0 1px 0 rgba(255, 255, 255, 0.20);
+    background:
+        rgba(13,17,23,0.62) !important;
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border-top:
+        1px solid rgba(255,255,255,0.07);
+
 }
 
 
@@ -6143,16 +6186,20 @@ body {
 .settings-card input {
 
     background:
-        rgba(17, 24, 39, 0.55) !important;
+        rgba(13,17,23,0.60) !important;
 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
 
     border:
-        1px solid rgba(255, 255, 255, 0.08) !important;
+        1px solid rgba(255,255,255,0.09) !important;
 
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+        inset 0 1px 0 rgba(255,255,255,0.05);
+
 }
 
 
@@ -6163,10 +6210,14 @@ body {
 .modal {
 
     background:
-        rgba(0, 0, 0, 0.62) !important;
+        rgba(0,0,0,0.68) !important;
 
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
 }
 
 
@@ -6177,96 +6228,132 @@ body {
     background:
         linear-gradient(
             145deg,
-            rgba(27, 30, 36, 0.78),
-            rgba(17, 24, 39, 0.72)
+            rgba(27,30,36,0.82),
+            rgba(13,17,23,0.78)
         ) !important;
 
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
+    backdrop-filter:
+        blur(30px);
+
+    -webkit-backdrop-filter:
+        blur(30px);
 
     border:
-        1px solid rgba(255, 255, 255, 0.10);
+        1px solid rgba(255,255,255,0.12);
 
     box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.60),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+        0 30px 80px rgba(0,0,0,0.65),
+
+        inset 0 1px 0 rgba(255,255,255,0.08);
+
 }
 
 
 /* =========================================================
-   GLASS TRANSACTION ROWS
+   HEADER ICONS
 ========================================================= */
 
-.transaction-row {
+.icon-btn {
 
     background:
-        rgba(255, 255, 255, 0.025) !important;
+        rgba(255,255,255,0.045) !important;
 
-    border-bottom:
-        1px solid rgba(255, 255, 255, 0.055) !important;
+    backdrop-filter:
+        blur(15px);
 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    -webkit-backdrop-filter:
+        blur(15px);
+
+    border:
+        1px solid rgba(255,255,255,0.10) !important;
+
+    box-shadow:
+
+        inset 0 1px 0 rgba(255,255,255,0.08),
+
+        0 8px 20px rgba(0,0,0,0.25);
+
+}
+
+
+.icon-btn:hover {
+
+    background:
+        rgba(255,255,255,0.10) !important;
+
+    border-color:
+        rgba(255,255,255,0.20) !important;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.35);
+
 }
 
 
 /* =========================================================
-   MOBILE GLASS
+   KEEP GOLD AS AN ACCENT — NOT A GLOW
 ========================================================= */
 
-@media (max-width: 600px) {
+#balanceUserName {
 
-    .dashboard-header {
+    color:#f5c451;
 
-        border-radius: 16px;
+}
 
-        padding:
-            15px 16px;
-    }
 
-    .balance-card {
+.welcome-message {
 
-        border-radius: 20px;
+    color:#f5d36b;
 
-        padding: 24px;
-    }
+    text-shadow:
+        0 1px 8px rgba(255,215,0,0.16);
 
-    .action-card {
+}
 
-        border-radius: 17px;
 
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-    }
+/* =========================================================
+   REMOVE ORANGE GLOW FROM DASHBOARD BACKGROUND
+========================================================= */
 
-    .portfolio-card {
+.dashboard-container::before {
 
-        border-radius: 18px;
+    display:none !important;
 
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-    }
+}
 
-    .btc-chart-card {
 
-        border-radius: 18px;
+/* =========================================================
+   MOBILE DIAMOND GLASS
+========================================================= */
 
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-    }
+@media (max-width:600px) {
 
+    .balance-card,
+    .portfolio-card,
+    .plan-card,
+    .asset-card,
     .transaction-history {
 
-        border-radius: 18px;
+        backdrop-filter:
+            blur(18px);
 
-        padding: 18px !important;
+        -webkit-backdrop-filter:
+            blur(18px);
+
+        box-shadow:
+
+            inset 0 1px 0 rgba(255,255,255,0.14),
+
+            0 15px 35px rgba(0,0,0,0.45);
+
     }
 
 }
 
 
 /* =========================================================
-   REDUCE MOTION FOR USERS WHO REQUEST IT
+   REDUCED MOTION
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -6275,10 +6362,24 @@ body {
     *::before,
     *::after {
 
-        animation-duration: 0.01ms !important;
+        animation-duration:
+            0.01ms !important;
 
-        animation-iteration-count: 1 !important;
+        animation-iteration-count:
+            1 !important;
 
-        transition-duration: 0.01ms !important;
+        transition-duration:
+            0.01ms !important;
+
     }
+
 }
+    
+
+        
+
+    
+    
+
+
+    
