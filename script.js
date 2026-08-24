@@ -1338,6 +1338,8 @@ async function loadBitcoinPrice() {
 
         if (!btcPriceElement) return;
 
+    // Remove the default orange color
+    btcPriceElement.style.color = "";
 
         // Display live price
         btcPriceElement.textContent =
