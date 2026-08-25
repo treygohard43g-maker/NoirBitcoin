@@ -7404,4 +7404,22 @@ body {
     }
 
 }
-    
+
+/* Mobile Bitcoin chart */
+@media (max-width: 600px) {
+
+    .btc-chart-area {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    #btcChart {
+        width: 100% !important;
+        height: 360px !important;
+    }
+
+    .btc-chart-card {
+        overflow: hidden;
+    }
+
+}
