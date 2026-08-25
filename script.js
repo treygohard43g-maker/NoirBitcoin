@@ -1083,10 +1083,20 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
          },
         
         crosshair: {
-            mode: LightweightCharts.CrosshairMode.Normal
-        }
+    mode: LightweightCharts.CrosshairMode.Normal,
 
-    });
+    vertLine: {
+        visible: false,
+        labelVisible: false
+    },
+
+    horzLine: {
+        visible: false,
+        labelVisible: false
+    }
+}
+
+});
 
 
     // Create Bitcoin price line
