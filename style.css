@@ -2533,16 +2533,67 @@ p {
     width: 100%;
     box-sizing: border-box;
 
-    background: #1B1E24;
-    border: 1px solid #2A2F38;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.08) 0%,
+            rgba(255,255,255,0.02) 25%,
+            transparent 50%,
+            rgba(255,255,255,0.035) 75%,
+            rgba(255,255,255,0.08) 100%
+        ),
+        #1B1E24;
+
+    border: 1px solid rgba(255,255,255,0.10);
     border-radius: 24px;
 
     padding: 20px;
     margin-top: 20px;
 
     overflow: hidden;
+    position: relative;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.06);
 }
 
+.btc-chart-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            45deg,
+            transparent 46%,
+            rgba(255,255,255,0.035) 50%,
+            transparent 54%
+        ),
+        linear-gradient(
+            -45deg,
+            transparent 46%,
+            rgba(255,255,255,0.025) 50%,
+            transparent 54%
+        );
+
+    background-size: 70px 70px;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Keep chart content above the glass pattern */
+
+.btc-chart-card > * {
+
+    position: relative;
+
+    z-index: 1;
+
+}
 
 /* Bitcoin Chart Container */
 
