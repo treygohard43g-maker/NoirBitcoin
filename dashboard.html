@@ -557,33 +557,96 @@ Copy Address
 
 <div class="market-card">
 
-<div class="btc-chart-card">
+    <div class="btc-chart-card">
 
-    <div class="chart-header">
+        <!-- TOP OF CARD -->
 
-        <h3>₿ Bitcoin</h3>
+        <div class="btc-chart-top">
 
-        <div>
+            <!-- BITCOIN INFORMATION -->
 
-            <h1 id="btcPrice">Loading...</h1>
+            <div class="btc-info">
 
-            <p id="btcMovement">▲ +2.50%</p>
+                <div class="btc-name">
+
+                    <div class="btc-logo-circle">
+                        <i class="fa-brands fa-bitcoin"></i>
+                    </div>
+
+                    <span>Bitcoin (BTC)</span>
+
+                </div>
+
+                <h1 id="btcPrice">Loading...</h1>
+
+                <p id="btcMovement">▲ +2.50% (24h)</p>
+
+            </div>
+
+
+            <!-- TIME PERIODS -->
+
+            <div class="chart-timeframes">
+
+                <button
+                    class="time-btn"
+                    data-days="1">
+                    1H
+                </button>
+
+                <button
+                    class="time-btn active"
+                    data-days="1">
+                    1D
+                </button>
+
+                <button
+                    class="time-btn"
+                    data-days="7">
+                    1W
+                </button>
+
+                <button
+                    class="time-btn"
+                    data-days="30">
+                    1M
+                </button>
+
+                <button
+                    class="time-btn"
+                    data-days="365">
+                    1Y
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- CHART -->
+
+        <div class="btc-chart-area">
+
+            <div id="btcChart"></div>
+
+        </div>
+
+
+        <!-- CHART INFORMATION -->
+
+        <div class="chart-info">
+
+            <span id="chartDate">
+                Select point
+            </span>
+
+            <span id="chartValue">
+                $0.00
+            </span>
 
         </div>
 
     </div>
-    
-    <div class="chart-timeframes">
-
-    <button class="time-btn active" data-days="1">1D</button>
-
-    <button class="time-btn" data-days="7">1W</button>
-
-    <button class="time-btn" data-days="30">1M</button>
-
-    <button class="time-btn" data-days="90">3M</button>
-
-    <button class="time-btn" data-days="365">1Y</button>
 
 </div>
 
