@@ -1079,11 +1079,9 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
         },
 
         timeScale: {
-            borderColor: "#252b33",
-            timeVisible: true,
-            secondsVisible: false
-        },
-
+             visible: false
+         },
+        
         crosshair: {
             mode: LightweightCharts.CrosshairMode.Normal
         }
@@ -1098,9 +1096,9 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
 
         lineWidth: 2,
 
-        priceLineVisible: true,
+        priceLineVisible: false,
 
-        lastValueVisible: true
+        lastValueVisible: false
 
     });
 
