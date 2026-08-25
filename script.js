@@ -1059,10 +1059,10 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
 
         layout: {
             background: {
-                color: "#1B1E24"
+                color: "transparent"
             },
             textColor: "#8b949e"
-        },
+      },
 
         grid: {
             vertLines: {
