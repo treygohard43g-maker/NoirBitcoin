@@ -7292,3 +7292,116 @@ body {
     -webkit-backdrop-filter: blur(14px);
 }
     
+    /* ===========================
+   BTC CARD MODERN LAYOUT
+=========================== */
+
+.btc-chart-card {
+    width: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+}
+
+
+/* Top section */
+
+.btc-chart-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+/* Bitcoin information */
+
+.btc-info {
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* Bitcoin name */
+
+.btc-name {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+/* BTC price */
+
+.btc-info h1 {
+    margin: 8px 0 2px;
+    font-size: 28px;
+    line-height: 1.1;
+}
+
+
+/* BTC movement */
+
+.btc-info p {
+    margin: 0;
+    font-size: 13px;
+}
+
+
+/* Time buttons */
+
+.btc-chart-top .chart-timeframes {
+    margin-top: 0;
+    flex-shrink: 0;
+    justify-content: flex-end;
+}
+
+
+/* Chart */
+
+.btc-chart-area {
+    width: 100%;
+    margin-top: 12px;
+}
+
+
+/* Chart information */
+
+.chart-info {
+    margin-top: 6px;
+}
+
+@media (max-width: 600px) {
+
+    .btc-chart-card {
+        padding: 18px;
+    }
+
+    .btc-chart-top {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .btc-info h1 {
+        font-size: 25px;
+    }
+
+    .btc-name {
+        font-size: 14px;
+    }
+
+    .btc-chart-top .chart-timeframes {
+        max-width: 52%;
+        overflow-x: auto;
+    }
+
+    .time-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+}
+    
