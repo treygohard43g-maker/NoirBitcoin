@@ -891,7 +891,7 @@ const lastPrice =
 
 const lineColor =
     lastPrice >= firstPrice
-        ? "#16a34a"
+        color: linecolor,
         : "#dc2626";
 
 
