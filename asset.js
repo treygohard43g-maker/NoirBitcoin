@@ -12,14 +12,9 @@ const assetId =
 // CACHE SETTINGS
 // =========================
 
-// Asset information stays fresh for 60 seconds
 const ASSET_CACHE_TIME = 60 * 1000;
-
-// Chart stays fresh for 2 minutes
 const CHART_CACHE_TIME = 2 * 60 * 1000;
 
-
-// Prevent multiple loads at the same time
 let assetLoading = false;
 
 
@@ -42,10 +37,7 @@ function getCache(key) {
 
     } catch (error) {
 
-        console.warn(
-            "Cache read error:",
-            error
-        );
+        console.warn("Cache read error:", error);
 
         return null;
     }
@@ -66,10 +58,7 @@ function setCache(key, data) {
 
     } catch (error) {
 
-        console.warn(
-            "Cache save error:",
-            error
-        );
+        console.warn("Cache save error:", error);
     }
 }
 
@@ -81,14 +70,13 @@ function isCacheFresh(cache, maxAge) {
     }
 
     return (
-        Date.now() - cache.timestamp <
-        maxAge
+        Date.now() - cache.timestamp < maxAge
     );
 }
 
 
 // =========================
-// FETCH WITH CONTROL
+// FETCH WITH RETRY
 // =========================
 
 async function fetchWithRetry(
@@ -105,15 +93,16 @@ async function fetchWithRetry(
         attempt++
     ) {
 
+        let timeout;
+
         try {
 
             const controller =
                 new AbortController();
 
-            const timeout =
-                setTimeout(() => {
-                    controller.abort();
-                }, 15000);
+            timeout = setTimeout(() => {
+                controller.abort();
+            }, 15000);
 
 
             const response =
@@ -121,8 +110,7 @@ async function fetchWithRetry(
                     url,
                     {
                         ...options,
-                        signal:
-                            controller.signal
+                        signal: controller.signal
                     }
                 );
 
@@ -135,25 +123,14 @@ async function fetchWithRetry(
             }
 
 
-            // Rate limit or server error
-            if (
-                response.status === 429 ||
-                response.status >= 500
-            ) {
-
-                throw new Error(
-                    `CoinGecko error: ${response.status}`
-                );
-            }
-
-
-            // Permanent error
             throw new Error(
                 `CoinGecko error: ${response.status}`
             );
 
 
         } catch (error) {
+
+            clearTimeout(timeout);
 
             lastError = error;
 
@@ -168,7 +145,6 @@ async function fetchWithRetry(
                 retries - 1
             ) {
 
-                // Wait before retry
                 await new Promise(
                     resolve =>
                         setTimeout(
@@ -193,11 +169,7 @@ async function fetchWithRetry(
 
 async function loadAsset() {
 
-    // Prevent duplicate requests
     if (assetLoading) {
-        console.log(
-            "Asset already loading..."
-        );
         return;
     }
 
@@ -211,19 +183,13 @@ async function loadAsset() {
 
 
     const assetHeader =
-        document.getElementById(
-            "assetHeader"
-        );
+        document.getElementById("assetHeader");
 
     const assetStats =
-        document.getElementById(
-            "assetStats"
-        );
+        document.getElementById("assetStats");
 
     const chartContainer =
-        document.getElementById(
-            "chart"
-        );
+        document.getElementById("chart");
 
 
     if (!assetHeader) {
@@ -250,7 +216,7 @@ async function loadAsset() {
 
 
     // =========================
-    // GET CACHED DATA
+    // GET CACHE
     // =========================
 
     const cachedAsset =
@@ -266,10 +232,6 @@ async function loadAsset() {
 
     if (cachedAsset) {
 
-        console.log(
-            "Using cached asset data"
-        );
-
         displayAsset(
             cachedAsset.data,
             assetHeader,
@@ -278,22 +240,19 @@ async function loadAsset() {
 
     } else {
 
-        // Initial loading message
         assetHeader.innerHTML = `
-
             <div style="
                 padding:20px;
                 color:#8b949e;
             ">
                 Loading asset...
             </div>
-
         `;
     }
 
 
     // =========================
-    // LOAD CHART FROM CACHE
+    // SHOW CACHED CHART
     // =========================
 
     if (
@@ -301,26 +260,19 @@ async function loadAsset() {
         chartContainer
     ) {
 
-        console.log(
-            "Using cached chart"
-        );
-
         createChart(
             cachedChart.data,
             chartContainer
         );
-
     }
 
 
     // =========================
-    // FETCH FRESH ASSET DATA
+    // LOAD ASSET INFORMATION
     // =========================
 
     try {
 
-        // If cache is still fresh,
-        // don't make another request.
         if (
             isCacheFresh(
                 cachedAsset,
@@ -365,20 +317,17 @@ async function loadAsset() {
             );
 
 
-            // Save asset to cache
             setCache(
                 assetCacheKey,
                 asset
             );
 
 
-            // Display asset
             displayAsset(
                 asset,
                 assetHeader,
                 assetStats
             );
-
         }
 
 
@@ -390,13 +339,7 @@ async function loadAsset() {
         );
 
 
-        // If we already have cached data,
-        // KEEP showing it.
         if (cachedAsset) {
-
-            console.log(
-                "Using old cached asset because network failed"
-            );
 
             displayAsset(
                 cachedAsset.data,
@@ -410,22 +353,18 @@ async function loadAsset() {
                 assetHeader,
                 error
             );
-
         }
-
     }
 
 
     // =========================
-    // CHART
+    // LOAD CHART
     // =========================
 
     if (chartContainer) {
 
         try {
 
-            // Don't request chart if
-            // fresh cached chart exists
             if (
                 isCacheFresh(
                     cachedChart,
@@ -472,23 +411,19 @@ async function loadAsset() {
                     throw new Error(
                         "No chart data available"
                     );
-
                 }
 
 
-                // Save chart
                 setCache(
                     chartCacheKey,
                     chartData
                 );
 
 
-                // Create chart
                 createChart(
                     chartData,
                     chartContainer
                 );
-
             }
 
 
@@ -500,13 +435,7 @@ async function loadAsset() {
             );
 
 
-            // If we have an older chart,
-            // keep showing it.
             if (cachedChart) {
-
-                console.log(
-                    "Using old cached chart"
-                );
 
                 createChart(
                     cachedChart.data,
@@ -516,7 +445,6 @@ async function loadAsset() {
             } else {
 
                 chartContainer.innerHTML = `
-
                     <div style="
                         height:300px;
                         display:flex;
@@ -527,24 +455,15 @@ async function loadAsset() {
                         padding:20px;
                         box-sizing:border-box;
                     ">
-
                         Chart temporarily unavailable.
-                        <br>
-                        Your asset information is still available.
-
                     </div>
-
                 `;
-
             }
-
         }
-
     }
 
 
     assetLoading = false;
-
 }
 
 
@@ -582,8 +501,7 @@ function displayAsset(
 
 
     const rank =
-        asset.market_cap_rank ??
-        "N/A";
+        asset.market_cap_rank ?? "N/A";
 
 
     // =========================
@@ -692,9 +610,7 @@ function displayAsset(
             </div>
 
         `;
-
     }
-
 }
 
 
@@ -734,7 +650,6 @@ function createChart(
     }
 
 
-    // Clear previous chart
     chartContainer.innerHTML = "";
 
 
@@ -756,12 +671,8 @@ function createChart(
 
             }))
             .filter(item =>
-                Number.isFinite(
-                    item.time
-                ) &&
-                Number.isFinite(
-                    item.value
-                )
+                Number.isFinite(item.time) &&
+                Number.isFinite(item.value)
             );
 
 
@@ -792,21 +703,36 @@ function createChart(
             uniquePrices.push(
                 item
             );
-
         }
-
     }
 
 
     if (!uniquePrices.length) {
-
         return;
-
     }
 
 
     // =========================
-    // CREATE
+    // PRICE DIRECTION
+    // =========================
+
+    const firstPrice =
+        uniquePrices[0].value;
+
+    const lastPrice =
+        uniquePrices[
+            uniquePrices.length - 1
+        ].value;
+
+
+    const lineColor =
+        lastPrice >= firstPrice
+            ? "#22c55e"
+            : "#dc2626";
+
+
+    // =========================
+    // CREATE CHART
     // =========================
 
     const chart =
@@ -817,17 +743,17 @@ function createChart(
                 width:
                     chartContainer.clientWidth,
 
-                height:300,
+                height: 300,
 
                 layout: {
 
-                background: {
-                color: "transparent"
-          },
+                    background: {
+                        color: "transparent"
+                    },
 
-                textColor: "#ffffff"
+                    textColor: "#ffffff"
 
-},
+                },
 
                 rightPriceScale: {
 
@@ -841,10 +767,6 @@ function createChart(
                     }
 
                 },
-                 
-                rightPriceScale: {
-                    borderVisible: false
-     },
 
                 timeScale: {
 
@@ -857,97 +779,89 @@ function createChart(
                     secondsVisible: false
 
                 },
-                
+
                 crosshair: {
 
-                     mode: LightweightCharts.CrosshairMode.Normal,
+                    mode:
+                        LightweightCharts
+                            .CrosshairMode
+                            .Normal,
 
-                     vertLine: {
+                    vertLine: {
 
-                     visible: true,
+                        visible: true,
 
-                     labelVisible: false
+                        labelVisible: false
 
-    },
+                    },
 
-               horzLine: {
+                    horzLine: {
 
-                      visible: true,
+                        visible: true,
 
-                      labelVisible: true
+                        labelVisible: true
 
-      }
+                    }
 
-},
+                }
+
+            }
+        );
+
 
     // =========================
-// LINE CHART
-// =========================
+    // LINE SERIES
+    // =========================
 
-const firstPrice =
-    uniquePrices[0].value;
+    const lineSeries =
+        chart.addLineSeries({
 
-const lastPrice =
-    uniquePrices[
-        uniquePrices.length - 1
-    ].value;
+            color: lineColor,
 
+            lineWidth: 2,
 
-const lineColor =
-    lastPrice >= firstPrice
-        color: linecolor,
-        : "#dc2626";
+            crosshairMarkerVisible: false,
 
+            crosshairMarkerRadius: 4,
 
-const lineSeries =
-    chart.addLineSeries({
+            lastValueVisible: false,
 
-        color: lineColor,
+            priceLineVisible: false
 
-        lineWidth: 2,
-
-        crosshairMarkerVisible: false,
-
-        crosshairMarkerRadius: 4,
-
-        lastValueVisible: false,
-
-        priceLineVisible: false
-
-    });
+        });
 
 
-lineSeries.setData(
-    uniquePrices
-);
+    lineSeries.setData(
+        uniquePrices
+    );
 
-chart.timeScale().fitContent();
 
-chart.timeScale().fitContent();
+    chart.timeScale().fitContent();
+
 
     // =========================
     // RESPONSIVE
     // =========================
 
     window.addEventListener(
-    "resize",
-    () => {
+        "resize",
+        () => {
 
-        if (chartContainer) {
+            if (chartContainer) {
 
-            chart.applyOptions({
+                chart.applyOptions({
 
-                width:
-                    chartContainer.clientWidth
+                    width:
+                        chartContainer.clientWidth
 
-            });
+                });
 
-            chart.timeScale().fitContent();
-
+                chart.timeScale().fitContent();
+            }
         }
+    );
+}
 
-    }
-);
 
 // =========================
 // ERROR DISPLAY
@@ -972,7 +886,10 @@ function showAssetError(
                 color:#8b949e;
                 margin-top:8px;
             ">
-                ${error?.message || "Connection failed"}
+                ${
+                    error?.message ||
+                    "Connection failed"
+                }
             </p>
 
             <button
@@ -994,7 +911,6 @@ function showAssetError(
         </div>
 
     `;
-
 }
 
 
@@ -1029,14 +945,13 @@ document.addEventListener(
 
                 }
             );
-
         }
-
     }
 );
+
 
 // =========================
 // START ASSET LOADING
 // =========================
 
-loadAsset(); xx
+loadAsset();
