@@ -1230,8 +1230,8 @@ setTimeout(() => {
     }
 
 
-    // Load 7-day chart
-    loadChartData(7);
+    // Load 24-hour chart
+    loadChartData(1);
 
 
     // ---------- TIME BUTTONS ----------
