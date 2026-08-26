@@ -2272,9 +2272,21 @@ function openAsset(symbol) {
 
     if (!asset) return;
 
+    const assetIds = {
+        BTC: "bitcoin",
+        ETH: "ethereum",
+        USDT: "tether",
+        SOL: "solana",
+        XRP: "ripple"
+    };
+
+    const coinId = assetIds[symbol];
+
+    if (!coinId) return;
+
     localStorage.setItem(
         "selectedAsset",
-        JSON.stringify(asset)
+        coinId
     );
 
     window.location.href = "asset.html";
