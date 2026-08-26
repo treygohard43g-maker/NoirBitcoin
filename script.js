@@ -1079,7 +1079,7 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
         },
 
         timeScale: {
-             Visible: true,
+             visible: true,
              timeVisible: true,
              secondsVisible: false
          },
