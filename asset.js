@@ -615,7 +615,7 @@ function displayAsset(
 
 
 // =========================
-// CREATE CHART
+// CREATE REALISTIC CHART
 // =========================
 
 function createChart(
@@ -650,11 +650,20 @@ function createChart(
     }
 
 
+    if (!chartContainer) {
+        return;
+    }
+
+
+    // =========================
+    // CLEAR OLD CHART
+    // =========================
+
     chartContainer.innerHTML = "";
 
 
     // =========================
-    // PREPARE DATA
+    // PREPARE PRICE DATA
     // =========================
 
     const prices =
@@ -673,6 +682,10 @@ function createChart(
             .filter(item =>
                 Number.isFinite(item.time) &&
                 Number.isFinite(item.value)
+            )
+            .sort(
+                (a, b) =>
+                    a.time - b.time
             );
 
 
@@ -703,17 +716,26 @@ function createChart(
             uniquePrices.push(
                 item
             );
+
         }
+
     }
 
 
-    if (!uniquePrices.length) {
+    if (
+        uniquePrices.length < 2
+    ) {
+
+        console.warn(
+            "Not enough chart data"
+        );
+
         return;
     }
 
 
     // =========================
-    // PRICE DIRECTION
+    // DETERMINE DIRECTION
     // =========================
 
     const firstPrice =
@@ -725,10 +747,30 @@ function createChart(
         ].value;
 
 
+    const isUp =
+        lastPrice >= firstPrice;
+
+
+    // =========================
+    // REALISTIC COLORS
+    // =========================
+
     const lineColor =
-        lastPrice >= firstPrice
+        isUp
             ? "#22c55e"
-            : "#dc2626";
+            : "#ef4444";
+
+
+    const topColor =
+        isUp
+            ? "rgba(34, 197, 94, 0.30)"
+            : "rgba(239, 68, 68, 0.30)";
+
+
+    const bottomColor =
+        isUp
+            ? "rgba(34, 197, 94, 0.00)"
+            : "rgba(239, 68, 68, 0.00)";
 
 
     // =========================
@@ -743,17 +785,58 @@ function createChart(
                 width:
                     chartContainer.clientWidth,
 
-                height: 300,
+                height:
+                    chartContainer.clientHeight ||
+                    300,
+
+
+                // =====================
+                // LAYOUT
+                // =====================
 
                 layout: {
 
                     background: {
-                        color: "transparent"
+                        color:
+                            "transparent"
                     },
 
-                    textColor: "#ffffff"
+                    textColor:
+                        "#8b949e"
 
                 },
+
+
+                // =====================
+                // GRID
+                // =====================
+
+                grid: {
+
+                    vertLines: {
+
+                        visible: true,
+
+                        color:
+                            "rgba(255,255,255,0.045)"
+
+                    },
+
+                    horzLines: {
+
+                        visible: true,
+
+                        color:
+                            "rgba(255,255,255,0.045)"
+
+                    }
+
+                },
+
+
+                // =====================
+                // PRICE SCALE
+                // =====================
 
                 rightPriceScale: {
 
@@ -762,11 +845,21 @@ function createChart(
                     borderVisible: false,
 
                     scaleMargins: {
-                        top: 0.15,
-                        bottom: 0.15
-                    }
+
+                        top: 0.08,
+
+                        bottom: 0.08
+
+                    },
+
+                    entireTextOnly: false
 
                 },
+
+
+                // =====================
+                // TIME SCALE
+                // =====================
 
                 timeScale: {
 
@@ -776,9 +869,20 @@ function createChart(
 
                     timeVisible: false,
 
-                    secondsVisible: false
+                    secondsVisible: false,
+
+                    rightOffset: 3,
+
+                    barSpacing: 6,
+
+                    minBarSpacing: 2
 
                 },
+
+
+                // =====================
+                // CROSSHAIR
+                // =====================
 
                 crosshair: {
 
@@ -787,7 +891,18 @@ function createChart(
                             .CrosshairMode
                             .Normal,
 
+
                     vertLine: {
+
+                        color:
+                            "rgba(255,255,255,0.45)",
+
+                        width: 1,
+
+                        style:
+                            LightweightCharts
+                                .LineStyle
+                                .Dashed,
 
                         visible: true,
 
@@ -795,7 +910,18 @@ function createChart(
 
                     },
 
+
                     horzLine: {
+
+                        color:
+                            "rgba(255,255,255,0.45)",
+
+                        width: 1,
+
+                        style:
+                            LightweightCharts
+                                .LineStyle
+                                .Dashed,
 
                         visible: true,
 
@@ -810,58 +936,159 @@ function createChart(
 
 
     // =========================
-    // LINE SERIES
+    // AREA SERIES
     // =========================
 
-    const lineSeries =
-        chart.addLineSeries({
+    const areaSeries =
+        chart.addAreaSeries({
 
-            color: lineColor,
+            lineColor:
+                lineColor,
 
-            lineWidth: 2,
+            topColor:
+                topColor,
 
-            crosshairMarkerVisible: false,
+            bottomColor:
+                bottomColor,
 
-            crosshairMarkerRadius: 4,
+            lineWidth:
+                2,
 
-            lastValueVisible: false,
 
-            priceLineVisible: false
+            // =====================
+            // CROSSHAIR POINT
+            // =====================
+
+            crosshairMarkerVisible:
+                true,
+
+            crosshairMarkerRadius:
+                4,
+
+            crosshairMarkerBorderColor:
+                "#ffffff",
+
+            crosshairMarkerBackgroundColor:
+                lineColor,
+
+
+            // =====================
+            // LAST PRICE
+            // =====================
+
+            lastValueVisible:
+                true,
+
+            priceLineVisible:
+                false
 
         });
 
 
-    lineSeries.setData(
+    // =========================
+    // SET DATA
+    // =========================
+
+    areaSeries.setData(
         uniquePrices
     );
 
 
-    chart.timeScale().fitContent();
+    // =========================
+    // FIT CONTENT
+    // =========================
+
+    chart.timeScale()
+        .fitContent();
 
 
     // =========================
-    // RESPONSIVE
+    // RESPONSIVE RESIZE
     // =========================
+
+    const resizeChart = () => {
+
+        if (
+            !chartContainer ||
+            !chart
+        ) {
+            return;
+        }
+
+
+        const width =
+            chartContainer.clientWidth;
+
+
+        const height =
+            chartContainer.clientHeight;
+
+
+        if (
+            width <= 0
+        ) {
+            return;
+        }
+
+
+        chart.applyOptions({
+
+            width:
+                width,
+
+            height:
+                height > 0
+                    ? height
+                    : 300
+
+        });
+
+    };
+
 
     window.addEventListener(
         "resize",
-        () => {
-
-            if (chartContainer) {
-
-                chart.applyOptions({
-
-                    width:
-                        chartContainer.clientWidth
-
-                });
-
-                chart.timeScale().fitContent();
-            }
-        }
+        resizeChart
     );
-}
 
+
+    // =========================
+    // MOBILE RESIZE
+    // =========================
+
+    if (
+        typeof ResizeObserver !==
+        "undefined"
+    ) {
+
+        const resizeObserver =
+            new ResizeObserver(
+                () => {
+
+                    resizeChart();
+
+                }
+            );
+
+
+        resizeObserver.observe(
+            chartContainer
+        );
+
+    }
+
+
+    // =========================
+    // STORE CHART REFERENCE
+    // =========================
+
+    chartContainer._chart =
+        chart;
+
+    chartContainer._areaSeries =
+        areaSeries;
+
+}
 
 // =========================
 // ERROR DISPLAY
