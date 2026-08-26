@@ -1383,30 +1383,6 @@ series.applyOptions({
 
 }
 
-// ---------- LIVE BITCOIN PRICE ----------
-
-let btcMarketIsUp = true;
-
-function updateBTCMarketColor(isUp) {
-
-    btcMarketIsUp = isUp;
-
-    const btcPriceElement =
-        document.getElementById("btcPrice");
-
-    if (btcPriceElement) {
-
-        btcPriceElement.style.setProperty(
-            "color",
-            isUp
-                ? "#22c55e"
-                : "#ef4444",
-            "important"
-        );
-
-    }
-}
-
 async function loadBitcoinPrice() {
 
     try {
