@@ -854,25 +854,25 @@ function createChart(
 
                 },
                 
-        crosshair: {
+                crosshair: {
 
-    mode: LightweightCharts.CrosshairMode.Normal,
+                     mode: LightweightCharts.CrosshairMode.Normal,
 
-    vertLine: {
+                     vertLine: {
 
-        visible: true,
+                     visible: true,
 
-        labelVisible: false
+                     labelVisible: false
 
     },
 
-    horzLine: {
+               horzLine: {
 
-        visible: true,
+                      visible: true,
 
-        labelVisible: true
+                      labelVisible: true
 
-    }
+      }
 
 },
 
