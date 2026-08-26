@@ -1407,8 +1407,6 @@ function updateBTCMarketColor(isUp) {
     }
 }
 
-let previousBitcoinPrice = null;
-
 async function loadBitcoinPrice() {
 
     try {
