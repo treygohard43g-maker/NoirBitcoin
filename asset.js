@@ -848,7 +848,7 @@ function createChart(
 
                     borderVisible: false,
 
-                    timeVisible: true,
+                    timeVisible: false,
 
                     secondsVisible: false
 
