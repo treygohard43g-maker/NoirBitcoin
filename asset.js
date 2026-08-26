@@ -868,9 +868,9 @@ const lineSeries =
 
         color: lineColor,
 
-        lineWidth: 3,
+        lineWidth: 2,
 
-        crosshairMarkerVisible: true,
+        crosshairMarkerVisible: false,
 
         crosshairMarkerRadius: 4,
 
