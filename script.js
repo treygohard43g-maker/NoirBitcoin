@@ -1059,10 +1059,16 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
 
         layout: {
             background: {
-                color: "transparent"
+                 color: document.body.classlist.contains("light-mode")
+                     ? "#ffffff"
+                     : "transparent"
+            
             },
-            textColor: "#8b949e"
-      },
+            
+            textColor: document.body.classlist.contains("light-mode")
+                ? "#6b7280"
+                : "#8b949e"
+    },
 
         grid: {
             vertLines: {
