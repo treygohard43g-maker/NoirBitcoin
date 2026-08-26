@@ -923,6 +923,8 @@ lineSeries.setData(
 
 chart.timeScale().fitContent();
 
+chart.timeScale().fitContent();
+
     // =========================
     // RESPONSIVE
     // =========================
