@@ -821,26 +821,25 @@ function createChart(
 
                 layout: {
 
-                    background: {
-                        color:"#1B1E24"
-                    },
+                background: {
+                color: "transparent"
+          },
 
-                    textColor:"#ffffff"
+                textColor: "#ffffff"
 
-                },
+},
 
-                grid: {
+        grid: {
 
-                    vertLines: {
-                        color:"#2A2F38"
-                    },
+          vertLines: {
+          visible: false
+     },
 
-                    horzLines: {
-                        color:"#2A2F38"
-                    }
+          horzLines: {
+          visible: false
+    }
 
-                }
-
+}
             }
         );
 
