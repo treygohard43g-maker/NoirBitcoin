@@ -1775,7 +1775,7 @@ if (assetsContainer) {
 
         assetsContainer.innerHTML += `
 
-        <div class="asset-card">
+        <div class="asset-card" onclick="openAsset('${asset.symbol}')">
    
          <img src="${asset.icon}" class="asset-icon">
 
@@ -2263,3 +2263,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+function openAsset(symbol) {
+
+    const asset = assets.find(function(item) {
+        return item.symbol === symbol;
+    });
+
+    if (!asset) return;
+
+    localStorage.setItem(
+        "selectedAsset",
+        JSON.stringify(asset)
+    );
+
+    window.location.href = "asset.html";
+}
+
+window.openAsset = openAsset;
