@@ -910,6 +910,8 @@ lineSeries.setData(
     uniquePrices
 );
 
+chart.timeScale().fitContent();
+
     // =========================
     // RESPONSIVE
     // =========================
