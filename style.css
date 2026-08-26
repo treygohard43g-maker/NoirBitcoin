@@ -7424,3 +7424,17 @@ body {
     }
 
 }
+
+@media (max-width: 600px) {
+
+    #btcChart {
+        height: 190px !important;
+        min-height: 190px !important;
+    }
+
+    .btc-chart-area {
+        height: 190px !important;
+        min-height: 190px !important;
+    }
+
+}
