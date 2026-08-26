@@ -817,7 +817,7 @@ function createChart(
                 width:
                     chartContainer.clientWidth,
 
-                height:chartContainer.clientHeight || 300,
+                height:300,
 
                 layout: {
 
