@@ -917,27 +917,24 @@ chart.timeScale().fitContent();
     // =========================
 
     window.addEventListener(
-        "resize",
-        () => {
+    "resize",
+    () => {
 
-            if (
-                chartContainer
-            ) {
+        if (chartContainer) {
 
-                chart.applyOptions({
+            chart.applyOptions({
 
-                    width:
-                        chartContainer.clientWidth
+                width:
+                    chartContainer.clientWidth
 
-                });
+            });
 
-            }
+            chart.timeScale().fitContent();
 
         }
-    );
 
-}
-
+    }
+);
 
 // =========================
 // ERROR DISPLAY
