@@ -1225,10 +1225,7 @@ setTimeout(() => {
             const isUp =
     lastPrice >= firstPrice;
 
-
-// Update the BTC price color too
-updateBTCMarketColor(isUp);
-
+   updateBTCMarketColor(isUp);
 
 // Update chart colors
 series.applyOptions({
