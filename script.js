@@ -1432,6 +1432,14 @@ async function loadBitcoinPrice() {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
             });
+         // Keep BTC price the same color as the chart
+        btcPriceElement.style.setProperty(
+        "color",
+        btcMarketIsUp
+            ? "#22c55e"
+            : "#ef4444",
+    "important"
+);
 
     } catch (error) {
 
