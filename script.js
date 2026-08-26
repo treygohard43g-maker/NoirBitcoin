@@ -1767,31 +1767,50 @@ const assets = [
 
 // ---------- DISPLAY DIGITAL ASSETS ----------
 
-const assetsContainer = document.getElementById("assetsContainer");
+const assetsContainer =
+    document.getElementById("assetsContainer");
 
 if (assetsContainer) {
 
-    assets.forEach(function(asset){
+    assets.forEach(function(asset) {
 
         assetsContainer.innerHTML += `
 
-        <div class="asset-card" onclick="openAsset('${asset.symbol}')">
-   
-         <img src="${asset.icon}" class="asset-icon">
+        <div
+            class="asset-card"
+            onclick="openAsset('${asset.symbol}')"
+        >
 
-            <h3>${asset.name} (${asset.symbol})</h3>
+            <img
+                src="${asset.icon}"
+                class="asset-icon"
+                alt="${asset.name}"
+            >
 
-            <p class="asset-price">
-                ${asset.price}
+            <h3>
+                ${asset.name} (${asset.symbol})
+            </h3>
+
+            <p
+                class="asset-price"
+                id="price-${asset.symbol}"
+            >
+                Loading...
             </p>
 
-            <p class="asset-movement ${asset.status}">
-                ${asset.movement}
+            <p
+                class="asset-movement"
+                id="movement-${asset.symbol}"
+            >
+                Loading...
             </p>
 
-            <button class="receive-btn" onclick="openReceive('${asset.symbol}')">
-    Receive
-</button>
+            <button
+                class="receive-btn"
+                onclick="event.stopPropagation(); openReceive('${asset.symbol}')"
+            >
+                Receive
+            </button>
 
         </div>
 
@@ -1800,6 +1819,128 @@ if (assetsContainer) {
     });
 
 }
+
+// ---------- LIVE DIGITAL ASSET PRICES ----------
+
+async function loadLiveAssetPrices() {
+
+    const coinIds = [
+        "bitcoin",
+        "ethereum",
+        "tether",
+        "solana",
+        "ripple"
+    ];
+
+    try {
+
+        const response = await fetch(
+            `https://api.coingecko.com/api/v3/simple/price?ids=${coinIds.join(",")}&vs_currencies=usd&include_24hr_change=true`,
+            {
+                headers: {
+                    "x-cg-demo-api-key":
+                        COINGECKO_API_KEY
+                }
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                `CoinGecko error: ${response.status}`
+            );
+        }
+
+        const data = await response.json();
+
+        const assetIds = {
+            BTC: "bitcoin",
+            ETH: "ethereum",
+            USDT: "tether",
+            SOL: "solana",
+            XRP: "ripple"
+        };
+
+        assets.forEach(function(asset) {
+
+            const coinId = assetIds[asset.symbol];
+
+            const coin = data[coinId];
+
+            if (!coin) return;
+
+            const priceElement =
+                document.getElementById(
+                    `price-${asset.symbol}`
+                );
+
+            const movementElement =
+                document.getElementById(
+                    `movement-${asset.symbol}`
+                );
+
+            const price =
+                coin.usd ?? 0;
+
+            const change =
+                coin.usd_24h_change ?? 0;
+
+            if (priceElement) {
+
+                priceElement.textContent =
+                    `$${Number(price).toLocaleString(
+                        undefined,
+                        {
+                            minimumFractionDigits:
+                                price < 1 ? 2 : 2,
+                            maximumFractionDigits:
+                                price < 1 ? 6 : 2
+                        }
+                    )}`;
+
+            }
+
+            if (movementElement) {
+
+                const isUp =
+                    change >= 0;
+
+                movementElement.textContent =
+                    `${isUp ? "+" : ""}${change.toFixed(2)}%`;
+
+                movementElement.classList.remove(
+                    "up",
+                    "down"
+                );
+
+                movementElement.classList.add(
+                    isUp ? "up" : "down"
+                );
+
+            }
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Live asset prices failed:",
+            error
+        );
+
+    }
+
+}
+
+
+// Load prices
+loadLiveAssetPrices();
+
+
+// Refresh every 60 seconds
+setInterval(
+    loadLiveAssetPrices,
+    60000
+);
 
 // ---------- PORTFOLIO STATISTICS ----------
 
