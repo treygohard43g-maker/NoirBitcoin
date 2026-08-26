@@ -7901,15 +7901,6 @@ body.light-mode a {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
-    border-radius: 0 !important;
-}
-
-.btc-chart-card {
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.btc-chart-card {
     border-radius: 20px !important;
     overflow: hidden;
 }
