@@ -1059,13 +1059,13 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
 
         layout: {
             background: {
-                 color: document.body.classlist.contains("light-mode")
+                 color: document.body.classList.contains("light-mode")
                      ? "#ffffff"
                      : "transparent"
             
             },
             
-            textColor: document.body.classlist.contains("light-mode")
+            textColor: document.body.classList.contains("light-mode")
                 ? "#6b7280"
                 : "#8b949e"
     },
