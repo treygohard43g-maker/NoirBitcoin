@@ -7903,3 +7903,8 @@ body.light-mode a {
     box-shadow: none !important;
     border-radius: 0 !important;
 }
+
+.btc-chart-card {
+    border-radius: 20px;
+    overflow: hidden;
+}
