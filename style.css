@@ -7407,7 +7407,7 @@ body {
 @media (max-width: 600px) {
 
     .btc-chart-card {
-        height: 280px;
+        height: 340px;
         min-height: 0;
         overflow: hidden;
     }
