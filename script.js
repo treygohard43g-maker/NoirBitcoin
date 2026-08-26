@@ -1198,15 +1198,21 @@ setTimeout(() => {
             const isUp =
                 lastPrice >= firstPrice;
 
+series.applyOptions({
 
-            series.applyOptions({
+    lineColor: isUp
+        ? "#22c55e"
+        : "#ef4444",
 
-                color:
-                    isUp
-                        ? "#22c55e"
-                        : "#ef4444"
+    topColor: isUp
+        ? "rgba(34, 197, 94, 0.30)"
+        : "rgba(239, 68, 68, 0.30)",
 
-            });
+    bottomColor: isUp
+        ? "rgba(34, 197, 94, 0)"
+        : "rgba(239, 68, 68, 0)"
+
+});
 
 
             series.setData(uniquePrices);
