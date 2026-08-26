@@ -1112,6 +1112,23 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
 
     });
 
+      window.addEventListener("resize", () => {
+
+    chart.resize(
+        chartContainer.clientWidth,
+        chartContainer.clientHeight
+    );
+
+});
+
+setTimeout(() => {
+
+    chart.resize(
+        chartContainer.clientWidth,
+        chartContainer.clientHeight
+    );
+
+}, 300);
 
     // ---------- LOAD BITCOIN CHART DATA ----------
 
