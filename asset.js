@@ -886,7 +886,7 @@ const lineSeries =
 
         crosshairMarkerRadius: 4,
 
-        lastValueVisible: true,
+        lastValueVisible: false,
 
         priceLineVisible: false
 
