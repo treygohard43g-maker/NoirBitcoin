@@ -1112,7 +1112,7 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
 
     lineColor: "#22c55e",
 
-    topColor: "rgba(34, 197, 94, 0.35)",
+    topColor: "rgba(34, 197, 94, 0.30)",
 
     bottomColor: "rgba(34, 197, 94, 0)",
 
@@ -1374,15 +1374,12 @@ async function loadBitcoinPrice() {
 
         const data = await response.json();
 
-        const price = data.bitcoin.usd;
+        const price = Number(data.bitcoin.usd);
 
         const btcPriceElement =
             document.getElementById("btcPrice");
 
-        if (!btcPriceElement) return;
-
-    // Remove the default orange color
-    btcPriceElement.style.color = "";
+        if (!btcPriceElement || !Number.isFinite(price)) return;
 
         // Display live price
         btcPriceElement.textContent =
@@ -1392,25 +1389,82 @@ async function loadBitcoinPrice() {
             });
 
 
-        // Determine price movement
+        // Set a definite color every time
         if (previousBitcoinPrice !== null) {
 
             if (price > previousBitcoinPrice) {
 
-                // Price went UP → green
-                btcPriceElement.style.color = "#22c55e";
+                // UP = GREEN
+                btcPriceElement.style.setProperty(
+                    "color",
+                    "#22c55e",
+                    "important"
+                );
 
             } else if (price < previousBitcoinPrice) {
 
-                // Price went DOWN → red
-                btcPriceElement.style.color = "#ef4444";
+                // DOWN = RED
+                btcPriceElement.style.setProperty(
+                    "color",
+                    "#ef4444",
+                    "important"
+                );
+
+            }
+
+        }
+
+        // On first load, determine color using 24h change
+        else {
+
+            try {
+
+                const marketResponse = await fetch(
+                    "https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false"
+                );
+
+                const marketData =
+                    await marketResponse.json();
+
+                const change24h =
+                    Number(
+                        marketData.market_data
+                            .price_change_percentage_24h
+                    );
+
+                if (change24h >= 0) {
+
+                    btcPriceElement.style.setProperty(
+                        "color",
+                        "#22c55e",
+                        "important"
+                    );
+
+                } else {
+
+                    btcPriceElement.style.setProperty(
+                        "color",
+                        "#ef4444",
+                        "important"
+                    );
+
+                }
+
+            } catch (error) {
+
+                // Keep a definite fallback color
+                btcPriceElement.style.setProperty(
+                    "color",
+                    "#22c55e",
+                    "important"
+                );
 
             }
 
         }
 
 
-        // Save current price for next update
+        // Save current price
         previousBitcoinPrice = price;
 
 
