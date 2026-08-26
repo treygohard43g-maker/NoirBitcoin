@@ -1079,7 +1079,7 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
         },
 
         timeScale: {
-             visible: false
+             visible: true
          },
         
         crosshair: {
