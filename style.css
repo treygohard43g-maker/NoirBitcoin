@@ -4701,7 +4701,7 @@ border:1px solid #2A2F38;
 
 #chart{
     width:100%;
-    background:#1B1E24;
+    background:transparent;
     border-radius:18px;
     margin:25px 0;
 }
