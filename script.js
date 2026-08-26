@@ -1432,10 +1432,6 @@ async function loadBitcoinPrice() {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
             });
-        
-        // Save current price
-        previousBitcoinPrice = price;
-
 
     } catch (error) {
 
