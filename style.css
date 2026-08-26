@@ -7892,3 +7892,14 @@ body.light-mode a {
     }
 
 }
+
+/* =========================================================
+   BTC CHART — REMOVE CARD / TRANSPARENT CONTAINER
+========================================================= */
+
+.btc-chart-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
