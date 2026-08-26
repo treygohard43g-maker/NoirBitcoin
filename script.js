@@ -1045,6 +1045,27 @@ async function forceRepairInvestmentHistory() {
 
 }
 
+// ---------- BTC MARKET COLOR ----------
+
+let btcMarketIsUp = true;
+
+function updateBTCMarketColor(isUp) {
+
+    btcMarketIsUp = isUp;
+
+    const btcPriceElement =
+        document.getElementById("btcPrice");
+
+    if (btcPriceElement) {
+
+        btcPriceElement.style.setProperty(
+            "color",
+            isUp ? "#22c55e" : "#ef4444",
+            "important"
+        );
+
+    }
+}
     
 // ---------- BITCOIN CHART ----------
 
@@ -1202,8 +1223,14 @@ setTimeout(() => {
 
 
             const isUp =
-                lastPrice >= firstPrice;
+    lastPrice >= firstPrice;
 
+
+// Update the BTC price color too
+updateBTCMarketColor(isUp);
+
+
+// Update chart colors
 series.applyOptions({
 
     lineColor: isUp
@@ -1219,7 +1246,6 @@ series.applyOptions({
         : "rgba(239, 68, 68, 0)"
 
 });
-
 
             series.setData(uniquePrices);
 
@@ -1362,6 +1388,28 @@ series.applyOptions({
 
 // ---------- LIVE BITCOIN PRICE ----------
 
+let btcMarketIsUp = true;
+
+function updateBTCMarketColor(isUp) {
+
+    btcMarketIsUp = isUp;
+
+    const btcPriceElement =
+        document.getElementById("btcPrice");
+
+    if (btcPriceElement) {
+
+        btcPriceElement.style.setProperty(
+            "color",
+            isUp
+                ? "#22c55e"
+                : "#ef4444",
+            "important"
+        );
+
+    }
+}
+
 let previousBitcoinPrice = null;
 
 async function loadBitcoinPrice() {
@@ -1387,83 +1435,7 @@ async function loadBitcoinPrice() {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
             });
-
-
-        // Set a definite color every time
-        if (previousBitcoinPrice !== null) {
-
-            if (price > previousBitcoinPrice) {
-
-                // UP = GREEN
-                btcPriceElement.style.setProperty(
-                    "color",
-                    "#22c55e",
-                    "important"
-                );
-
-            } else if (price < previousBitcoinPrice) {
-
-                // DOWN = RED
-                btcPriceElement.style.setProperty(
-                    "color",
-                    "#ef4444",
-                    "important"
-                );
-
-            }
-
-        }
-
-        // On first load, determine color using 24h change
-        else {
-
-            try {
-
-                const marketResponse = await fetch(
-                    "https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false"
-                );
-
-                const marketData =
-                    await marketResponse.json();
-
-                const change24h =
-                    Number(
-                        marketData.market_data
-                            .price_change_percentage_24h
-                    );
-
-                if (change24h >= 0) {
-
-                    btcPriceElement.style.setProperty(
-                        "color",
-                        "#22c55e",
-                        "important"
-                    );
-
-                } else {
-
-                    btcPriceElement.style.setProperty(
-                        "color",
-                        "#ef4444",
-                        "important"
-                    );
-
-                }
-
-            } catch (error) {
-
-                // Keep a definite fallback color
-                btcPriceElement.style.setProperty(
-                    "color",
-                    "#22c55e",
-                    "important"
-                );
-
-            }
-
-        }
-
-
+        
         // Save current price
         previousBitcoinPrice = price;
 
