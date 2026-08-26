@@ -533,11 +533,20 @@ function displayAsset(
                 }
             </div>
 
-            <div class="asset-price">
-                $${Number(
-                    currentPrice
-                ).toLocaleString()}
-            </div>
+            <div
+              class="asset-price"
+              style="
+                  color: ${
+                      change24h >= 0
+                          ? "#22c55e"
+                          : "#ef4444"
+        };
+    "
+>
+    $${Number(
+        currentPrice
+    ).toLocaleString()}
+</div>
 
         </div>
 
