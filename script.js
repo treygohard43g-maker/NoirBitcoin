@@ -1055,7 +1055,7 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
     const chart = LightweightCharts.createChart(chartContainer, {
 
         width: chartContainer.clientWidth,
-        height: 90,
+        height: chartContainer.clientHeight,
 
         layout: {
             background: {
