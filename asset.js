@@ -841,6 +841,10 @@ function createChart(
                     }
 
                 },
+                 
+                rightPriceScale: {
+                    borderVisible: false
+     },
 
                 timeScale: {
 
