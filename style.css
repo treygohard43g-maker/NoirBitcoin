@@ -7403,8 +7403,6 @@ body {
         white-space: nowrap;
     }
 
-}
-
 /* Mobile Bitcoin chart sizing */
 @media (max-width: 600px) {
 
@@ -7415,14 +7413,14 @@ body {
     }
 
     .btc-chart-area {
-        height: 115px;
-        min-height: 115px;
+        height: 140px;
+        min-height: 140px;
         overflow: hidden;
     }
 
     #btcChart {
         width: 100% !important;
-        height: 115px !important;
+        height: 140px !important;
     }
 
 }
