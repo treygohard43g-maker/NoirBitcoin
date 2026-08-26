@@ -7405,47 +7405,24 @@ body {
 
 }
 
-/* Mobile Bitcoin chart */
-@media (max-width: 600px) {
-
-    .btc-chart-area {
-        width: 100%;
-        overflow: hidden;
-    }
-
-    #btcChart {
-        width: 100% !important;
-        height: 360px !important;
-    }
-
-    .btc-chart-card {
-        overflow: hidden;
-    }
-
-}
-
+/* Mobile Bitcoin chart sizing */
 @media (max-width: 600px) {
 
     .btc-chart-card {
         height: 280px;
         min-height: 0;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .btc-chart-top {
-        flex-shrink: 0;
+        overflow: hidden;
     }
 
     .btc-chart-area {
-        flex: 1;
-        min-height: 0;
-        overflow: visible;
+        height: 115px;
+        min-height: 115px;
+        overflow: hidden;
     }
 
     #btcChart {
         width: 100% !important;
-        height: 100% !important;
+        height: 115px !important;
     }
 
 }
