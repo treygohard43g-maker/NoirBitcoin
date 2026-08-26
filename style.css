@@ -7402,6 +7402,7 @@ body {
         font-size: 12px;
         white-space: nowrap;
     }
+}
 
 /* Mobile Bitcoin chart sizing */
 @media (max-width: 600px) {
