@@ -854,20 +854,7 @@ function createChart(
 
                 },
                 
-        grid: {
-
-          vertLines: {
-          visible: false
-     },
-
-          horzLines: {
-          visible: false
-    }
-
-}
-            }
-        );
-
+        
 
     // =========================
 // LINE CHART
