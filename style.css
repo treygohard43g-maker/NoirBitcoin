@@ -7439,3 +7439,456 @@ body {
     }
 
 }
+
+/* =========================================================
+   NOIRBITCOIN — GLOBAL LIGHT MODE
+   Dark mode remains the default
+========================================================= */
+
+body.light-mode {
+    background: #f4f6f8 !important;
+    color: #171a1f !important;
+}
+
+
+/* =========================
+   MAIN DASHBOARD
+========================= */
+
+body.light-mode .dashboard-container {
+    background: transparent !important;
+    color: #171a1f !important;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+body.light-mode .balance-card,
+body.light-mode .portfolio-card,
+body.light-mode .plan-card,
+body.light-mode .asset-card,
+body.light-mode .transaction-history,
+body.light-mode .btc-chart-card,
+body.light-mode .top-trading-banner {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.96),
+            rgba(244,246,248,0.92)
+        ) !important;
+
+    border-color: rgba(20,25,30,0.10) !important;
+
+    box-shadow:
+        0 15px 35px rgba(20,25,30,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.90) !important;
+
+    color: #171a1f !important;
+}
+
+
+/* =========================
+   CARD TEXT
+========================= */
+
+body.light-mode .balance-card *,
+body.light-mode .portfolio-card *,
+body.light-mode .plan-card *,
+body.light-mode .asset-card *,
+body.light-mode .transaction-history *,
+body.light-mode .top-trading-banner * {
+    color: inherit;
+}
+
+
+body.light-mode .balance-label,
+body.light-mode .portfolio-card h2,
+body.light-mode .portfolio-card h3,
+body.light-mode .asset-card h3,
+body.light-mode .history-item h3 {
+    color: #171a1f !important;
+}
+
+
+/* =========================
+   AVAILABLE BALANCE
+========================= */
+
+body.light-mode #availableBalance {
+
+    color: #30363d !important;
+
+    -webkit-text-fill-color: #30363d !important;
+
+    background: none !important;
+
+    text-shadow: none !important;
+
+    animation: none !important;
+}
+
+
+/* =========================
+   USERNAME
+========================= */
+
+body.light-mode #balanceUserName {
+    color: #9a6700 !important;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+body.light-mode .search-container input {
+
+    background: rgba(255,255,255,0.90) !important;
+
+    color: #171a1f !important;
+
+    border-color: rgba(20,25,30,0.12) !important;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        0 8px 20px rgba(20,25,30,0.06) !important;
+}
+
+
+body.light-mode .search-container input::placeholder {
+    color: #7b8490 !important;
+}
+
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+body.light-mode .action-card {
+
+    background:
+        rgba(255,255,255,0.90) !important;
+
+    color: #171a1f !important;
+
+    border-color:
+        rgba(20,25,30,0.10) !important;
+
+    box-shadow:
+        0 8px 20px rgba(20,25,30,0.07) !important;
+}
+
+
+body.light-mode .action-card:hover {
+
+    background:
+        rgba(255,255,255,1) !important;
+
+    border-color:
+        rgba(20,25,30,0.18) !important;
+}
+
+
+/* =========================
+   HISTORY
+========================= */
+
+body.light-mode .history-item,
+body.light-mode .website-history-item {
+
+    background:
+        rgba(255,255,255,0.78) !important;
+
+    border-color:
+        rgba(20,25,30,0.09) !important;
+
+    color: #171a1f !important;
+}
+
+
+body.light-mode .history-item:hover,
+body.light-mode .website-history-item:hover {
+
+    border-color:
+        rgba(20,25,30,0.18) !important;
+}
+
+
+body.light-mode .history-details {
+
+    background:
+        rgba(245,247,249,0.94) !important;
+
+    border-top-color:
+        rgba(20,25,30,0.08) !important;
+
+    color: #30363d !important;
+}
+
+
+body.light-mode .history-info p,
+body.light-mode .history-details p,
+body.light-mode .chart-info {
+    color: #69727d !important;
+}
+
+
+/* =========================
+   ASSET MOVEMENT
+========================= */
+
+body.light-mode .asset-movement.up {
+    color: #16a34a !important;
+}
+
+
+body.light-mode .asset-movement.down {
+    color: #dc2626 !important;
+}
+
+
+/* =========================
+   ICON BUTTONS
+========================= */
+
+body.light-mode .icon-btn {
+
+    background:
+        rgba(255,255,255,0.80) !important;
+
+    color: #30363d !important;
+
+    border-color:
+        rgba(20,25,30,0.10) !important;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        0 8px 20px rgba(20,25,30,0.08) !important;
+}
+
+
+body.light-mode .icon-btn:hover {
+
+    background:
+        rgba(255,255,255,1) !important;
+
+    border-color:
+        rgba(20,25,30,0.18) !important;
+}
+
+
+/* =========================
+   TIME BUTTONS
+========================= */
+
+body.light-mode .time-btn {
+
+    background:
+        rgba(20,25,30,0.045) !important;
+
+    color: #69727d !important;
+
+    border-color:
+        rgba(20,25,30,0.07) !important;
+}
+
+
+body.light-mode .time-btn:hover {
+
+    background:
+        rgba(20,25,30,0.08) !important;
+
+    color: #171a1f !important;
+}
+
+
+body.light-mode .time-btn.active {
+
+    background:
+        rgba(247,147,26,0.14) !important;
+
+    color: #171a1f !important;
+
+    border-color:
+        rgba(247,147,26,0.30) !important;
+
+    box-shadow:
+        0 4px 15px rgba(247,147,26,0.08) !important;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+body.light-mode .modal-content input,
+body.light-mode .investment-card input,
+body.light-mode .settings-card input {
+
+    background:
+        rgba(255,255,255,0.90) !important;
+
+    color: #171a1f !important;
+
+    border-color:
+        rgba(20,25,30,0.12) !important;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9) !important;
+}
+
+
+body.light-mode input::placeholder {
+    color: #8a929c !important;
+}
+
+
+/* =========================
+   MODALS
+========================= */
+
+body.light-mode .modal {
+
+    background:
+        rgba(20,25,30,0.25) !important;
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+
+body.light-mode .modal-content,
+body.light-mode .receive-content,
+body.light-mode .investment-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.96),
+            rgba(244,246,248,0.94)
+        ) !important;
+
+    border-color:
+        rgba(20,25,30,0.12) !important;
+
+    color: #171a1f !important;
+
+    box-shadow:
+        0 30px 80px rgba(20,25,30,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.95) !important;
+}
+
+
+/* =========================
+   SETTINGS
+========================= */
+
+body.light-mode .settings-container {
+    color: #171a1f !important;
+}
+
+
+body.light-mode .settings-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.96),
+            rgba(244,246,248,0.92)
+        ) !important;
+
+    border-color:
+        rgba(20,25,30,0.10) !important;
+
+    color: #171a1f !important;
+
+    box-shadow:
+        0 15px 35px rgba(20,25,30,0.09),
+        inset 0 1px 0 rgba(255,255,255,0.95) !important;
+}
+
+
+/* =========================
+   SETTINGS LABELS
+========================= */
+
+body.light-mode .settings-card label {
+    color: #30363d !important;
+}
+
+
+/* =========================
+   WELCOME MESSAGE
+========================= */
+
+body.light-mode .welcome-message {
+    color: #8a6500 !important;
+
+    text-shadow: none !important;
+}
+
+
+/* =========================
+   NOTIFICATIONS / MENUS
+========================= */
+
+body.light-mode .profile-menu,
+body.light-mode .notification-menu {
+
+    background:
+        rgba(255,255,255,0.96) !important;
+
+    color: #171a1f !important;
+
+    border-color:
+        rgba(20,25,30,0.10) !important;
+
+    box-shadow:
+        0 20px 45px rgba(20,25,30,0.14) !important;
+}
+
+
+body.light-mode .notification-item {
+    color: #30363d !important;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+body.light-mode button {
+    color: inherit;
+}
+
+
+/* =========================
+   BODY LINKS / GENERAL TEXT
+========================= */
+
+body.light-mode a {
+    color: #8a6500;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    body.light-mode .balance-card,
+    body.light-mode .portfolio-card,
+    body.light-mode .plan-card,
+    body.light-mode .asset-card,
+    body.light-mode .transaction-history {
+
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.90),
+            0 15px 35px rgba(20,25,30,0.09) !important;
+    }
+
+}
