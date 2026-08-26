@@ -1079,22 +1079,24 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
         },
 
         timeScale: {
-             visible: true
+             Visible: true,
+             timeVisible: true,
+             secondsVisible: false
          },
         
         crosshair: {
-    mode: LightweightCharts.CrosshairMode.Normal,
+            mode: LightweightCharts.CrosshairMode.Normal,
 
-    vertLine: {
-        visible: false,
-        labelVisible: false
-    },
+           vertLine: {
+               visible: false,
+               labelVisible: false
+       },
 
-    horzLine: {
-        visible: false,
-        labelVisible: false
-    }
-}
+           horzLine: {
+               visible: false,
+               labelVisible: false
+     }
+  }
 
 });
 
