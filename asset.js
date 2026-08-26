@@ -829,6 +829,31 @@ function createChart(
 
 },
 
+                rightPriceScale: {
+
+                    visible: true,
+
+                    borderVisible: false,
+
+                    scaleMargins: {
+                        top: 0.15,
+                        bottom: 0.15
+                    }
+
+                },
+
+                timeScale: {
+
+                    visible: true,
+
+                    borderVisible: false,
+
+                    timeVisible: true,
+
+                    secondsVisible: false
+
+                },
+                
         grid: {
 
           vertLines: {
