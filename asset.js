@@ -1313,7 +1313,7 @@ crosshair: {
                 4,
 
             crosshairMarkerBorderColor:
-                "#ffffff",
+               lineColor,
 
             crosshairMarkerBackgroundColor:
                 lineColor,
