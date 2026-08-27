@@ -1220,7 +1220,7 @@ function createChart(
 
                     borderVisible: false,
 
-                    timeVisible: false,
+                    timeVisible: true,
 
                     secondsVisible: false,
 
