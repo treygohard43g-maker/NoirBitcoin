@@ -8377,3 +8377,45 @@ body.light-mode a {
         0 4px 12px rgba(247, 147, 26, 0.15);
 
 }
+
+/* =========================
+   MODERN RECEIVE BUTTON
+========================= */
+
+.receive-btn {
+    width: 100%;
+    height: 42px;
+
+    margin-top: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: #ffffff;
+
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.receive-btn:hover {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+.receive-btn:active {
+    transform: scale(0.97);
+}
