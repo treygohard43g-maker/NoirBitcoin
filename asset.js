@@ -33,11 +33,24 @@ function getCache(key) {
             return null;
         }
 
-        return JSON.parse(saved);
+        const parsed =
+            JSON.parse(saved);
+
+        if (
+            !parsed ||
+            typeof parsed !== "object"
+        ) {
+            return null;
+        }
+
+        return parsed;
 
     } catch (error) {
 
-        console.warn("Cache read error:", error);
+        console.warn(
+            "Cache read error:",
+            error
+        );
 
         return null;
     }
@@ -58,19 +71,29 @@ function setCache(key, data) {
 
     } catch (error) {
 
-        console.warn("Cache save error:", error);
+        console.warn(
+            "Cache save error:",
+            error
+        );
     }
 }
 
 
-function isCacheFresh(cache, maxAge) {
+function isCacheFresh(
+    cache,
+    maxAge
+) {
 
-    if (!cache) {
+    if (
+        !cache ||
+        !cache.timestamp
+    ) {
         return false;
     }
 
     return (
-        Date.now() - cache.timestamp < maxAge
+        Date.now() - cache.timestamp <
+        maxAge
     );
 }
 
@@ -85,7 +108,7 @@ async function fetchWithRetry(
     retries = 2
 ) {
 
-    let lastError;
+    let lastError = null;
 
     for (
         let attempt = 0;
@@ -93,18 +116,21 @@ async function fetchWithRetry(
         attempt++
     ) {
 
-        let timeout;
+        let timeout = null;
 
         try {
 
             const controller =
                 new AbortController();
 
-            timeout = setTimeout(() => {
 
-                controller.abort();
-
-            }, 15000);
+            timeout =
+                setTimeout(
+                    () => {
+                        controller.abort();
+                    },
+                    15000
+                );
 
 
             const response =
@@ -112,7 +138,8 @@ async function fetchWithRetry(
                     url,
                     {
                         ...options,
-                        signal: controller.signal
+                        signal:
+                            controller.signal
                     }
                 );
 
@@ -120,23 +147,54 @@ async function fetchWithRetry(
             clearTimeout(timeout);
 
 
-            if (response.ok) {
+            if (
+                response.ok
+            ) {
 
                 return response;
 
             }
 
 
+            let message =
+                `CoinGecko error: ${response.status}`;
+
+
+            if (
+                response.status === 401
+            ) {
+
+                message =
+                    "CoinGecko API key is invalid or unauthorized.";
+
+            }
+
+
+            if (
+                response.status === 429
+            ) {
+
+                message =
+                    "CoinGecko rate limit reached. Please try again shortly.";
+
+            }
+
+
             throw new Error(
-                `CoinGecko error: ${response.status}`
+                message
             );
 
 
         } catch (error) {
 
-            clearTimeout(timeout);
+            if (timeout) {
+                clearTimeout(timeout);
+            }
 
-            lastError = error;
+
+            lastError =
+                error;
+
 
             console.warn(
                 `CoinGecko request failed (${attempt + 1}/${retries}):`,
@@ -153,7 +211,8 @@ async function fetchWithRetry(
                     resolve =>
                         setTimeout(
                             resolve,
-                            1500 * (attempt + 1)
+                            1500 *
+                            (attempt + 1)
                         )
                 );
 
@@ -163,7 +222,13 @@ async function fetchWithRetry(
 
     }
 
-    throw lastError;
+
+    throw (
+        lastError ||
+        new Error(
+            "CoinGecko request failed."
+        )
+    );
 }
 
 
@@ -174,8 +239,14 @@ async function fetchWithRetry(
 async function loadAsset() {
 
     if (assetLoading) {
+
+        console.log(
+            "Asset is already loading."
+        );
+
         return;
     }
+
 
     assetLoading = true;
 
@@ -187,19 +258,27 @@ async function loadAsset() {
 
 
     const assetHeader =
-        document.getElementById("assetHeader");
+        document.getElementById(
+            "assetHeader"
+        );
+
 
     const assetStats =
-        document.getElementById("assetStats");
+        document.getElementById(
+            "assetStats"
+        );
+
 
     const chartContainer =
-        document.getElementById("chart");
+        document.getElementById(
+            "chart"
+        );
 
 
     if (!assetHeader) {
 
         console.error(
-            "assetHeader element not found"
+            "ERROR: #assetHeader was not found."
         );
 
         assetLoading = false;
@@ -215,6 +294,7 @@ async function loadAsset() {
     const assetCacheKey =
         `noir_asset_${assetId}`;
 
+
     const chartCacheKey =
         `noir_chart_${assetId}`;
 
@@ -224,33 +304,58 @@ async function loadAsset() {
     // =========================
 
     const cachedAsset =
-        getCache(assetCacheKey);
+        getCache(
+            assetCacheKey
+        );
+
 
     const cachedChart =
-        getCache(chartCacheKey);
+        getCache(
+            chartCacheKey
+        );
 
 
     // =========================
     // SHOW CACHED ASSET
     // =========================
 
-    if (cachedAsset) {
+    if (
+        cachedAsset &&
+        cachedAsset.data
+    ) {
 
-        displayAsset(
-            cachedAsset.data,
-            assetHeader,
-            assetStats
-        );
+        try {
+
+            displayAsset(
+                cachedAsset.data,
+                assetHeader,
+                assetStats
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "Cached asset display failed:",
+                error
+            );
+
+        }
 
     } else {
 
         assetHeader.innerHTML = `
+
             <div style="
+                width:100%;
                 padding:20px;
+                box-sizing:border-box;
                 color:#8b949e;
             ">
+
                 Loading asset...
+
             </div>
+
         `;
 
     }
@@ -262,13 +367,25 @@ async function loadAsset() {
 
     if (
         cachedChart &&
+        cachedChart.data &&
         chartContainer
     ) {
 
-        createChart(
-            cachedChart.data,
-            chartContainer
-        );
+        try {
+
+            createChart(
+                cachedChart.data,
+                chartContainer
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "Cached chart failed:",
+                error
+            );
+
+        }
 
     }
 
@@ -287,7 +404,7 @@ async function loadAsset() {
         ) {
 
             console.log(
-                "Asset cache is still fresh"
+                "Using fresh asset cache."
             );
 
         } else {
@@ -297,24 +414,45 @@ async function loadAsset() {
             );
 
 
+            const assetUrl =
+                `https://api.coingecko.com/api/v3/coins/${encodeURIComponent(assetId)}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
+
+
             const response =
                 await fetchWithRetry(
-
-                    `https://api.coingecko.com/api/v3/coins/${encodeURIComponent(assetId)}`,
-
+                    assetUrl,
                     {
+                        method:
+                            "GET",
+
                         headers: {
+
+                            "Accept":
+                                "application/json",
+
                             "x-cg-demo-api-key":
                                 COINGECKO_API_KEY
+
                         }
                     },
-
                     2
                 );
 
 
             const asset =
                 await response.json();
+
+
+            if (
+                !asset ||
+                !asset.id
+            ) {
+
+                throw new Error(
+                    "CoinGecko returned invalid asset data."
+                );
+
+            }
 
 
             console.log(
@@ -346,13 +484,32 @@ async function loadAsset() {
         );
 
 
-        if (cachedAsset) {
+        if (
+            cachedAsset &&
+            cachedAsset.data
+        ) {
 
-            displayAsset(
-                cachedAsset.data,
-                assetHeader,
-                assetStats
+            console.log(
+                "Using cached asset because fresh request failed."
             );
+
+
+            try {
+
+                displayAsset(
+                    cachedAsset.data,
+                    assetHeader,
+                    assetStats
+                );
+
+            } catch (displayError) {
+
+                showAssetError(
+                    assetHeader,
+                    displayError
+                );
+
+            }
 
         } else {
 
@@ -382,8 +539,20 @@ async function loadAsset() {
             ) {
 
                 console.log(
-                    "Chart cache is still fresh"
+                    "Using fresh chart cache."
                 );
+
+
+                if (
+                    cachedChart.data
+                ) {
+
+                    createChart(
+                        cachedChart.data,
+                        chartContainer
+                    );
+
+                }
 
             } else {
 
@@ -392,18 +561,27 @@ async function loadAsset() {
                 );
 
 
+                const chartUrl =
+                    `https://api.coingecko.com/api/v3/coins/${encodeURIComponent(assetId)}/market_chart?vs_currency=usd&days=7&interval=hourly`;
+
+
                 const chartResponse =
                     await fetchWithRetry(
-
-                        `https://api.coingecko.com/api/v3/coins/${encodeURIComponent(assetId)}/market_chart?vs_currency=usd&days=7`,
-
+                        chartUrl,
                         {
+                            method:
+                                "GET",
+
                             headers: {
+
+                                "Accept":
+                                    "application/json",
+
                                 "x-cg-demo-api-key":
                                     COINGECKO_API_KEY
+
                             }
                         },
-
                         2
                     );
 
@@ -413,15 +591,25 @@ async function loadAsset() {
 
 
                 if (
-                    !chartData.prices ||
+                    !chartData ||
+                    !Array.isArray(
+                        chartData.prices
+                    ) ||
                     !chartData.prices.length
                 ) {
 
                     throw new Error(
-                        "No chart data available"
+                        "No chart data available."
                     );
 
                 }
+
+
+                console.log(
+                    "Fresh chart loaded:",
+                    chartData.prices.length,
+                    "points"
+                );
 
 
                 setCache(
@@ -446,29 +634,31 @@ async function loadAsset() {
             );
 
 
-            if (cachedChart) {
+            if (
+                cachedChart &&
+                cachedChart.data
+            ) {
 
-                createChart(
-                    cachedChart.data,
-                    chartContainer
-                );
+                try {
+
+                    createChart(
+                        cachedChart.data,
+                        chartContainer
+                    );
+
+                } catch (error) {
+
+                    showChartError(
+                        chartContainer
+                    );
+
+                }
 
             } else {
 
-                chartContainer.innerHTML = `
-                    <div style="
-                        height:300px;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        text-align:center;
-                        color:#8b949e;
-                        padding:20px;
-                        box-sizing:border-box;
-                    ">
-                        Chart temporarily unavailable.
-                    </div>
-                `;
+                showChartError(
+                    chartContainer
+                );
 
             }
 
@@ -477,7 +667,16 @@ async function loadAsset() {
     }
 
 
+    // =========================
+    // FINISHED
+    // =========================
+
     assetLoading = false;
+
+
+    console.log(
+        "Asset loading finished."
+    );
 }
 
 
@@ -491,6 +690,15 @@ function displayAsset(
     assetStats
 ) {
 
+    if (
+        !asset ||
+        !assetHeader
+    ) {
+
+        return;
+    }
+
+
     const marketData =
         asset.market_data || {};
 
@@ -500,25 +708,44 @@ function displayAsset(
     // =========================
 
     const currentPrice =
-        marketData.current_price?.usd ?? 0;
+        Number(
+            marketData.current_price?.usd
+        ) || 0;
+
 
     const marketCap =
-        marketData.market_cap?.usd ?? 0;
+        Number(
+            marketData.market_cap?.usd
+        ) || 0;
+
 
     const volume =
-        marketData.total_volume?.usd ?? 0;
+        Number(
+            marketData.total_volume?.usd
+        ) || 0;
+
 
     const change24h =
-        marketData.price_change_percentage_24h ?? 0;
+        Number(
+            marketData.price_change_percentage_24h
+        ) || 0;
+
 
     const high24h =
-        marketData.high_24h?.usd ?? 0;
+        Number(
+            marketData.high_24h?.usd
+        ) || 0;
+
 
     const low24h =
-        marketData.low_24h?.usd ?? 0;
+        Number(
+            marketData.low_24h?.usd
+        ) || 0;
+
 
     const rank =
-        asset.market_cap_rank ?? "N/A";
+        asset.market_cap_rank ??
+        "N/A";
 
 
     // =========================
@@ -528,8 +755,10 @@ function displayAsset(
     const circulatingSupply =
         marketData.circulating_supply;
 
+
     const totalSupply =
         marketData.total_supply;
+
 
     const maxSupply =
         marketData.max_supply;
@@ -560,11 +789,12 @@ function displayAsset(
         if (
             value === null ||
             value === undefined ||
-            !Number.isFinite(Number(value))
+            !Number.isFinite(
+                Number(value)
+            )
         ) {
 
             return "N/A";
-
         }
 
 
@@ -572,44 +802,60 @@ function displayAsset(
             Number(value);
 
 
-        if (number >= 1e12) {
+        if (
+            number >= 1e12
+        ) {
 
             return (
                 "$" +
-                (number / 1e12).toFixed(2) +
+                (
+                    number / 1e12
+                ).toFixed(2) +
                 "T"
             );
 
         }
 
 
-        if (number >= 1e9) {
+        if (
+            number >= 1e9
+        ) {
 
             return (
                 "$" +
-                (number / 1e9).toFixed(2) +
+                (
+                    number / 1e9
+                ).toFixed(2) +
                 "B"
             );
 
         }
 
 
-        if (number >= 1e6) {
+        if (
+            number >= 1e6
+        ) {
 
             return (
                 "$" +
-                (number / 1e6).toFixed(2) +
+                (
+                    number / 1e6
+                ).toFixed(2) +
                 "M"
             );
 
         }
 
 
-        if (number >= 1e3) {
+        if (
+            number >= 1e3
+        ) {
 
             return (
                 "$" +
-                (number / 1e3).toFixed(2) +
+                (
+                    number / 1e3
+                ).toFixed(2) +
                 "K"
             );
 
@@ -621,7 +867,8 @@ function displayAsset(
             number.toLocaleString(
                 undefined,
                 {
-                    maximumFractionDigits: 2
+                    maximumFractionDigits:
+                        2
                 }
             )
         );
@@ -638,11 +885,12 @@ function displayAsset(
         if (
             value === null ||
             value === undefined ||
-            !Number.isFinite(Number(value))
+            !Number.isFinite(
+                Number(value)
+            )
         ) {
 
             return "N/A";
-
         }
 
 
@@ -650,40 +898,56 @@ function displayAsset(
             Number(value);
 
 
-        if (number >= 1e12) {
+        if (
+            number >= 1e12
+        ) {
 
             return (
-                (number / 1e12).toFixed(2) +
+                (
+                    number / 1e12
+                ).toFixed(2) +
                 "T"
             );
 
         }
 
 
-        if (number >= 1e9) {
+        if (
+            number >= 1e9
+        ) {
 
             return (
-                (number / 1e9).toFixed(2) +
+                (
+                    number / 1e9
+                ).toFixed(2) +
                 "B"
             );
 
         }
 
 
-        if (number >= 1e6) {
+        if (
+            number >= 1e6
+        ) {
 
             return (
-                (number / 1e6).toFixed(2) +
+                (
+                    number / 1e6
+                ).toFixed(2) +
                 "M"
             );
 
         }
 
 
-        if (number >= 1e3) {
+        if (
+            number >= 1e3
+        ) {
 
             return (
-                (number / 1e3).toFixed(2) +
+                (
+                    number / 1e3
+                ).toFixed(2) +
                 "K"
             );
 
@@ -693,9 +957,47 @@ function displayAsset(
         return number.toLocaleString(
             undefined,
             {
-                maximumFractionDigits: 2
+                maximumFractionDigits:
+                    2
             }
         );
+
+    }
+
+
+    // =========================
+    // FORMAT PRICE
+    // =========================
+
+    let formattedPrice;
+
+
+    if (
+        currentPrice < 1
+    ) {
+
+        formattedPrice =
+            currentPrice.toLocaleString(
+                undefined,
+                {
+                    minimumFractionDigits:
+                        2,
+
+                    maximumFractionDigits:
+                        8
+                }
+            );
+
+    } else {
+
+        formattedPrice =
+            currentPrice.toLocaleString(
+                undefined,
+                {
+                    maximumFractionDigits:
+                        2
+                }
+            );
 
     }
 
@@ -712,38 +1014,44 @@ function displayAsset(
                 asset.image?.small ||
                 ""
             }"
-            alt="${asset.name || "Asset"}"
+            alt="${
+                asset.name ||
+                "Asset"
+            }"
         >
 
         <div>
 
             <div class="asset-name">
-                ${asset.name || "Unknown"}
+
+                ${
+                    asset.name ||
+                    "Unknown"
+                }
+
             </div>
 
+
             <div class="asset-symbol">
+
                 ${
                     asset.symbol
                         ? asset.symbol.toUpperCase()
                         : ""
                 }
+
             </div>
+
 
             <div
                 class="asset-price"
-                style="color:${changeColor};"
+                style="
+                    color:${changeColor};
+                "
             >
-                $${Number(
-                    currentPrice
-                ).toLocaleString(
-                    undefined,
-                    {
-                        maximumFractionDigits:
-                            currentPrice < 1
-                                ? 6
-                                : 2
-                    }
-                )}
+
+                $${formattedPrice}
+
             </div>
 
         </div>
@@ -766,7 +1074,9 @@ function displayAsset(
                 </div>
 
                 <div class="stat-value">
-                    ${formatMoney(marketCap)}
+                    ${formatMoney(
+                        marketCap
+                    )}
                 </div>
 
             </div>
@@ -780,11 +1090,15 @@ function displayAsset(
 
                 <div
                     class="stat-value"
-                    style="color:${changeColor};"
+                    style="
+                        color:${changeColor};
+                    "
                 >
-                    ${changeSign}${Number(
-                        change24h
-                    ).toFixed(2)}%
+
+                    ${changeSign}${
+                        change24h.toFixed(2)
+                    }%
+
                 </div>
 
             </div>
@@ -797,7 +1111,11 @@ function displayAsset(
                 </div>
 
                 <div class="stat-value">
-                    ${formatMoney(volume)}
+
+                    ${formatMoney(
+                        volume
+                    )}
+
                 </div>
 
             </div>
@@ -810,7 +1128,9 @@ function displayAsset(
                 </div>
 
                 <div class="stat-value">
+
                     #${rank}
+
                 </div>
 
             </div>
@@ -823,7 +1143,11 @@ function displayAsset(
                 </div>
 
                 <div class="stat-value">
-                    ${formatMoney(high24h)}
+
+                    ${formatMoney(
+                        high24h
+                    )}
+
                 </div>
 
             </div>
@@ -836,7 +1160,11 @@ function displayAsset(
                 </div>
 
                 <div class="stat-value">
-                    ${formatMoney(low24h)}
+
+                    ${formatMoney(
+                        low24h
+                    )}
+
                 </div>
 
             </div>
@@ -856,16 +1184,25 @@ function displayAsset(
         );
 
 
-    if (descriptionElement) {
+    if (
+        descriptionElement
+    ) {
 
         let description =
-            asset.description?.en || "";
+            asset.description?.en ||
+            "";
 
 
         description =
             description
-                .replace(/<[^>]*>/g, "")
-                .replace(/\s+/g, " ")
+                .replace(
+                    /<[^>]*>/g,
+                    ""
+                )
+                .replace(
+                    /\s+/g,
+                    " "
+                )
                 .trim();
 
 
@@ -873,13 +1210,16 @@ function displayAsset(
 
             description =
                 `Learn more about ${
-                    asset.name || "this asset"
+                    asset.name ||
+                    "this asset"
                 } and its market data.`;
 
         }
 
 
-        if (description.length > 600) {
+        if (
+            description.length > 600
+        ) {
 
             description =
                 description.substring(
@@ -906,10 +1246,12 @@ function displayAsset(
             "circulatingSupply"
         );
 
+
     const totalElement =
         document.getElementById(
             "totalSupply"
         );
+
 
     const maxElement =
         document.getElementById(
@@ -917,7 +1259,9 @@ function displayAsset(
         );
 
 
-    if (circulatingElement) {
+    if (
+        circulatingElement
+    ) {
 
         circulatingElement.textContent =
             formatSupply(
@@ -927,7 +1271,9 @@ function displayAsset(
     }
 
 
-    if (totalElement) {
+    if (
+        totalElement
+    ) {
 
         totalElement.textContent =
             formatSupply(
@@ -937,7 +1283,9 @@ function displayAsset(
     }
 
 
-    if (maxElement) {
+    if (
+        maxElement
+    ) {
 
         maxElement.textContent =
             formatSupply(
@@ -956,14 +1304,18 @@ function displayAsset(
         asset.name || ""
     );
 
+
     localStorage.setItem(
         "currentAssetSymbol",
         asset.symbol || ""
     );
 
+
     localStorage.setItem(
         "currentAssetPrice",
-        String(currentPrice)
+        String(
+            currentPrice
+        )
     );
 
 }
@@ -984,7 +1336,11 @@ function createChart(
     ) {
 
         console.error(
-            "LightweightCharts is not loaded"
+            "LightweightCharts is not loaded."
+        );
+
+        showChartError(
+            chartContainer
         );
 
         return;
@@ -993,19 +1349,28 @@ function createChart(
 
     if (
         !chartData ||
-        !chartData.prices ||
+        !Array.isArray(
+            chartData.prices
+        ) ||
         !chartData.prices.length
     ) {
 
         console.warn(
-            "No chart prices available"
+            "No chart prices available."
+        );
+
+        showChartError(
+            chartContainer
         );
 
         return;
     }
 
 
-    if (!chartContainer) {
+    if (
+        !chartContainer
+    ) {
+
         return;
     }
 
@@ -1018,25 +1383,37 @@ function createChart(
 
 
     // =========================
-    // PREPARE PRICE DATA
+    // PREPARE DATA
     // =========================
 
     const prices =
         chartData.prices
-            .map(price => ({
+            .map(
+                price => ({
 
-                time:
-                    Math.floor(
-                        price[0] / 1000
-                    ),
+                    time:
+                        Math.floor(
+                            Number(
+                                price[0]
+                            ) / 1000
+                        ),
 
-                value:
-                    Number(price[1])
+                    value:
+                        Number(
+                            price[1]
+                        )
 
-            }))
-            .filter(item =>
-                Number.isFinite(item.time) &&
-                Number.isFinite(item.value)
+                })
+            )
+            .filter(
+                item =>
+                    Number.isFinite(
+                        item.time
+                    ) &&
+                    Number.isFinite(
+                        item.value
+                    ) &&
+                    item.value > 0
             )
             .sort(
                 (a, b) =>
@@ -1045,7 +1422,7 @@ function createChart(
 
 
     // =========================
-    // REMOVE DUPLICATES
+    // REMOVE DUPLICATE TIMES
     // =========================
 
     const uniquePrices = [];
@@ -1082,7 +1459,11 @@ function createChart(
     ) {
 
         console.warn(
-            "Not enough chart data"
+            "Not enough chart data."
+        );
+
+        showChartError(
+            chartContainer
         );
 
         return;
@@ -1096,6 +1477,7 @@ function createChart(
     const firstPrice =
         uniquePrices[0].value;
 
+
     const lastPrice =
         uniquePrices[
             uniquePrices.length - 1
@@ -1107,7 +1489,7 @@ function createChart(
 
 
     // =========================
-    // COLORS
+    // REALISTIC COLORS
     // =========================
 
     const lineColor =
@@ -1118,344 +1500,442 @@ function createChart(
 
     const topColor =
         isUp
-            ? "rgba(34, 197, 94, 0.30)"
-            : "rgba(239, 68, 68, 0.30)";
+            ? "rgba(34,197,94,0.30)"
+            : "rgba(239,68,68,0.30)";
 
 
     const bottomColor =
         isUp
-            ? "rgba(34, 197, 94, 0.00)"
-            : "rgba(239, 68, 68, 0.00)";
+            ? "rgba(34,197,94,0)"
+            : "rgba(239,68,68,0)";
 
 
     // =========================
     // CREATE CHART
     // =========================
 
-    const chart =
-        LightweightCharts.createChart(
-            chartContainer,
-            {
-
-                width:
-                    chartContainer.clientWidth,
-
-                height:
-                    chartContainer.clientHeight ||
-                    300,
+    let chart;
 
 
-                // =====================
-                // LAYOUT
-                // =====================
+    try {
 
-                layout: {
+        chart =
+            LightweightCharts.createChart(
+                chartContainer,
+                {
 
-                    background: {
-                        color:
-                            "transparent"
-                    },
+                    width:
+                        chartContainer.clientWidth ||
+                        600,
 
-                    textColor:
-                        "#8b949e"
-
-                },
+                    height:
+                        chartContainer.clientHeight ||
+                        300,
 
 
-                // =====================
-                // GRID
-                // =====================
+                    // =====================
+                    // LAYOUT
+                    // =====================
 
-                grid: {
+                    layout: {
 
-                    vertLines: {
+                        background: {
 
-                        visible: true,
+                            color:
+                                "transparent"
 
-                        color:
-                            "rgba(255,255,255,0.045)"
+                        },
+
+                        textColor:
+                            "#8b949e"
 
                     },
 
-                    horzLines: {
 
-                        visible: true,
+                    // =====================
+                    // GRID
+                    // =====================
 
-                        color:
-                            "rgba(255,255,255,0.045)"
+                    grid: {
+
+                        vertLines: {
+
+                            visible:
+                                true,
+
+                            color:
+                                "rgba(255,255,255,0.045)"
+
+                        },
+
+                        horzLines: {
+
+                            visible:
+                                true,
+
+                            color:
+                                "rgba(255,255,255,0.045)"
+
+                        }
+
+                    },
+
+
+                    // =====================
+                    // PRICE SCALE
+                    // =====================
+
+                    rightPriceScale: {
+
+                        visible:
+                            true,
+
+                        borderVisible:
+                            false,
+
+                        scaleMargins: {
+
+                            top:
+                                0.08,
+
+                            bottom:
+                                0.08
+
+                        },
+
+                        entireTextOnly:
+                            false
+
+                    },
+
+
+                    // =====================
+                    // TIME SCALE
+                    // =====================
+
+                    timeScale: {
+
+                        visible:
+                            true,
+
+                        borderVisible:
+                            false,
+
+                        timeVisible:
+                            true,
+
+                        secondsVisible:
+                            false,
+
+                        rightOffset:
+                            3,
+
+                        barSpacing:
+                            6,
+
+                        minBarSpacing:
+                            2
+
+                    },
+
+
+                    // =====================
+                    // CROSSHAIR
+                    // =====================
+
+                    crosshair: {
+
+                        mode:
+                            LightweightCharts
+                                .CrosshairMode
+                                .Normal,
+
+
+                        vertLine: {
+
+                            color:
+                                "rgba(255,255,255,0.25)",
+
+                            width:
+                                1,
+
+                            style:
+                                LightweightCharts
+                                    .LineStyle
+                                    .Dashed,
+
+                            visible:
+                                true,
+
+                            labelVisible:
+                                false
+
+                        },
+
+
+                        horzLine: {
+
+                            color:
+                                "rgba(255,255,255,0.25)",
+
+                            width:
+                                1,
+
+                            style:
+                                LightweightCharts
+                                    .LineStyle
+                                    .Dashed,
+
+                            visible:
+                                true,
+
+                            labelVisible:
+                                true
+
+                        }
 
                     }
-
-                },
-
-
-                // =====================
-                // PRICE SCALE
-                // =====================
-
-                rightPriceScale: {
-
-                    visible: true,
-
-                    borderVisible: false,
-
-                    scaleMargins: {
-
-                        top: 0.08,
-
-                        bottom: 0.08
-
-                    },
-
-                    entireTextOnly: false
-
-                },
-
-
-                // =====================
-                // TIME SCALE
-                // =====================
-
-                timeScale: {
-
-                    visible: true,
-
-                    borderVisible: false,
-
-                    timeVisible: true,
-
-                    secondsVisible: false,
-
-                    rightOffset: 3,
-
-                    barSpacing: 6,
-
-                    minBarSpacing: 2
-
-                },
-
-
-                // =====================
-                // CROSSHAIR
-                // =====================
-
-                crosshair: {
-
-                    mode:
-                        LightweightCharts
-                            .CrosshairMode
-                            .Normal,
-
-
-                    vertLine: {
-
-                        color:
-                            "rgba(255,255,255,0.25)",
-
-                        width: 1,
-
-                        style:
-                            LightweightCharts
-                                .LineStyle
-                                .Dashed,
-
-                        visible: true,
-
-                        labelVisible: false
-
-                    },
-
-
-                    horzLine: {
-
-                        color:
-                            "rgba(255,255,255,0.25)",
-
-                        width: 1,
-
-                        style:
-                            LightweightCharts
-                                .LineStyle
-                                .Dashed,
-
-                        visible: true,
-
-                        labelVisible: true
-
-                    }
-
-                }
-
-            }
-        );
-
-
-    // =========================
-    // AREA SERIES
-    // =========================
-
-    const areaSeries =
-        chart.addAreaSeries({
-
-            lineColor:
-                lineColor,
-
-            topColor:
-                topColor,
-
-            bottomColor:
-                bottomColor,
-
-            lineWidth:
-                2,
-
-
-            // =====================
-            // CROSSHAIR POINT
-            // =====================
-
-            crosshairMarkerVisible:
-                true,
-
-            crosshairMarkerRadius:
-                4,
-
-            crosshairMarkerBorderColor:
-                lineColor,
-
-            crosshairMarkerBackgroundColor:
-                lineColor,
-
-
-            // =====================
-            // LAST PRICE
-            // =====================
-
-            lastValueVisible:
-                true,
-
-            priceLineVisible:
-                true,
-
-            priceLineColor:
-                lineColor,
-
-            priceLineWidth:
-                1,
-
-            priceLineStyle:
-                LightweightCharts
-                    .LineStyle
-                    .Dashed
-
-        });
-
-
-    // =========================
-    // SET DATA
-    // =========================
-
-    areaSeries.setData(
-        uniquePrices
-    );
-
-
-    // =========================
-    // FIT CONTENT
-    // =========================
-
-    chart.timeScale()
-        .fitContent();
-
-
-    // =========================
-    // RESPONSIVE RESIZE
-    // =========================
-
-    const resizeChart = () => {
-
-        if (
-            !chartContainer ||
-            !chart
-        ) {
-            return;
-        }
-
-
-        const width =
-            chartContainer.clientWidth;
-
-        const height =
-            chartContainer.clientHeight;
-
-
-        if (width <= 0) {
-            return;
-        }
-
-
-        chart.applyOptions({
-
-            width:
-                width,
-
-            height:
-                height > 0
-                    ? height
-                    : 300
-
-        });
-
-    };
-
-
-    window.addEventListener(
-        "resize",
-        resizeChart
-    );
-
-
-    // =========================
-    // RESIZE OBSERVER
-    // =========================
-
-    if (
-        typeof ResizeObserver !==
-        "undefined"
-    ) {
-
-        const resizeObserver =
-            new ResizeObserver(
-                () => {
-
-                    resizeChart();
 
                 }
             );
 
 
-        resizeObserver.observe(
+        // =========================
+        // AREA SERIES
+        // =========================
+
+        const areaSeries =
+            chart.addAreaSeries({
+
+                lineColor:
+                    lineColor,
+
+                topColor:
+                    topColor,
+
+                bottomColor:
+                    bottomColor,
+
+                lineWidth:
+                    2,
+
+
+                // =====================
+                // CROSSHAIR POINT
+                // =====================
+
+                crosshairMarkerVisible:
+                    true,
+
+                crosshairMarkerRadius:
+                    4,
+
+                crosshairMarkerBorderColor:
+                    lineColor,
+
+                crosshairMarkerBackgroundColor:
+                    lineColor,
+
+
+                // =====================
+                // LAST PRICE
+                // =====================
+
+                lastValueVisible:
+                    true,
+
+                priceLineVisible:
+                    true,
+
+                priceLineColor:
+                    lineColor,
+
+                priceLineWidth:
+                    1,
+
+                priceLineStyle:
+                    LightweightCharts
+                        .LineStyle
+                        .Dashed
+
+            });
+
+
+        // =========================
+        // SET DATA
+        // =========================
+
+        areaSeries.setData(
+            uniquePrices
+        );
+
+
+        // =========================
+        // FIT CONTENT
+        // =========================
+
+        chart.timeScale()
+            .fitContent();
+
+
+        // =========================
+        // RESIZE
+        // =========================
+
+        const resizeChart =
+            () => {
+
+                if (
+                    !chartContainer ||
+                    !chart
+                ) {
+
+                    return;
+                }
+
+
+                const width =
+                    chartContainer.clientWidth;
+
+
+                const height =
+                    chartContainer.clientHeight;
+
+
+                if (
+                    width <= 0
+                ) {
+
+                    return;
+                }
+
+
+                chart.applyOptions({
+
+                    width:
+                        width,
+
+                    height:
+                        height > 0
+                            ? height
+                            : 300
+
+                });
+
+            };
+
+
+        window.addEventListener(
+            "resize",
+            resizeChart
+        );
+
+
+        // =========================
+        // RESIZE OBSERVER
+        // =========================
+
+        if (
+            typeof ResizeObserver !==
+            "undefined"
+        ) {
+
+            const resizeObserver =
+                new ResizeObserver(
+                    () => {
+
+                        resizeChart();
+
+                    }
+                );
+
+
+            resizeObserver.observe(
+                chartContainer
+            );
+
+
+            chartContainer
+                ._resizeObserver =
+                resizeObserver;
+
+        }
+
+
+        // =========================
+        // STORE REFERENCES
+        // =========================
+
+        chartContainer._chart =
+            chart;
+
+
+        chartContainer._areaSeries =
+            areaSeries;
+
+
+        console.log(
+            "Realistic chart created successfully."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Chart creation error:",
+            error
+        );
+
+
+        showChartError(
             chartContainer
         );
 
     }
 
+}
 
-    // =========================
-    // STORE CHART REFERENCE
-    // =========================
 
-    chartContainer._chart =
-        chart;
+// =========================
+// CHART ERROR
+// =========================
 
-    chartContainer._areaSeries =
-        areaSeries;
+function showChartError(
+    chartContainer
+) {
+
+    if (
+        !chartContainer
+    ) {
+
+        return;
+    }
+
+
+    chartContainer.innerHTML = `
+
+        <div style="
+            height:300px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            color:#8b949e;
+            padding:20px;
+            box-sizing:border-box;
+        ">
+
+            Chart temporarily unavailable.
+
+        </div>
+
+    `;
 
 }
 
 
 // =========================
-// ERROR DISPLAY
+// ASSET ERROR
 // =========================
 
 function showAssetError(
@@ -1463,28 +1943,43 @@ function showAssetError(
     error
 ) {
 
+    if (
+        !assetHeader
+    ) {
+
+        return;
+    }
+
+
     assetHeader.innerHTML = `
 
         <div style="
             width:100%;
+            padding:20px;
+            box-sizing:border-box;
         ">
 
             <h2>
                 Unable to load asset
             </h2>
 
+
             <p style="
                 color:#8b949e;
                 margin-top:8px;
+                line-height:1.5;
             ">
+
                 ${
                     error?.message ||
-                    "Connection failed"
+                    "Connection failed."
                 }
+
             </p>
 
+
             <button
-                onclick="loadAsset()"
+                onclick="retryAssetLoad()"
                 style="
                     margin-top:15px;
                     padding:10px 18px;
@@ -1496,12 +1991,27 @@ function showAssetError(
                     cursor:pointer;
                 "
             >
+
                 Try Again
+
             </button>
 
         </div>
 
     `;
+
+}
+
+
+// =========================
+// RETRY
+// =========================
+
+function retryAssetLoad() {
+
+    assetLoading = false;
+
+    loadAsset();
 
 }
 
@@ -1550,6 +2060,17 @@ function addToWatchlist() {
 
 
     if (
+        !Array.isArray(
+            watchlist
+        )
+    ) {
+
+        watchlist = [];
+
+    }
+
+
+    if (
         !watchlist.includes(
             assetId
         )
@@ -1584,8 +2105,59 @@ function addToWatchlist() {
 
 
 // =========================
+// INVEST BUTTON
+// =========================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const investButton =
+            document.querySelector(
+                ".invest-btn"
+            );
+
+
+        if (
+            investButton
+        ) {
+
+            investButton.addEventListener(
+                "click",
+                () => {
+
+                    investAsset();
+
+                }
+            );
+
+        }
+
+    }
+);
+
+
+// =========================
 // START ASSET LOADING
 // =========================
+
+function startAssetPage() {
+
+    console.log(
+        "Asset page ready."
+    );
+
+
+    console.log(
+        "Selected asset:",
+        assetId
+    );
+
+
+    loadAsset();
+
+}
+
 
 if (
     document.readyState ===
@@ -1594,23 +2166,11 @@ if (
 
     document.addEventListener(
         "DOMContentLoaded",
-        () => {
-
-            console.log(
-                "Asset page ready"
-            );
-
-            loadAsset();
-
-        }
+        startAssetPage
     );
 
 } else {
 
-    console.log(
-        "Asset page already ready"
-    );
-
-    loadAsset();
+    startAssetPage();
 
 }
