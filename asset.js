@@ -1261,31 +1261,29 @@ crosshair: {
 
     },
 
-    horzLine: {
+                    horzLine: {
 
-        color:
-            "rgba(255,255,255,0.25)",
+                    color:
+                        "rgba(255,255,255,0.25)",
 
-        width: 1,
+                    width: 1,
 
-        style:
-            LightweightCharts
-                .LineStyle
-                .Dashed,
+                    style:
+                        LightweightCharts
+                            .LineStyle
+                            .Dashed,
 
-        visible: true,
+                    visible: true,
 
-        labelVisible: true
+                    labelVisible: true
 
-      }
+                }
+
+            }
+
+        }
+    );
     
-   }
-
- }
-
-},
-
-
     // =========================
     // AREA SERIES
     // =========================
