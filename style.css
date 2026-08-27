@@ -8029,15 +8029,113 @@ body.light-mode a {
    ABOUT ASSET DROPDOWN
 ========================= */
 
-.asset-description {
-    display: none !important;
+.asset-info-title {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+
+    transition: opacity 0.2s ease;
 }
 
-.asset-description.about-open {
-    display: block !important;
+
+/* Press effect */
+
+.asset-info-title:active {
+    opacity: 0.65;
 }
+
+
+/* =========================
+   ARROW
+========================= */
 
 .about-asset-arrow {
-    display: inline-block;
-    transition: transform 0.25s ease;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    margin-left: 15px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.06);
+
+    color: #8b949e;
+
+    font-size: 13px;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.asset-description {
+    color: #9da5af;
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+    padding-top: 14px;
+
+    margin-top: 12px;
+
+    border-top: 1px solid
+        rgba(255,255,255,0.06);
+
+    animation:
+        aboutAssetOpen 0.25s ease;
+}
+
+
+/* =========================
+   OPEN ANIMATION
+========================= */
+
+@keyframes aboutAssetOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
 }
