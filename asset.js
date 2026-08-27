@@ -1277,7 +1277,11 @@ crosshair: {
 
         labelVisible: true
 
-    }
+      }
+    
+   }
+
+ }
 
 },
 
