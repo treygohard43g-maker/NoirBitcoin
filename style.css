@@ -8200,3 +8200,83 @@ body.light-mode a {
     }
 
 }
+
+/* =========================
+   LIVE MARKET HORIZONTAL ROW
+========================= */
+
+.digital-assets .assets-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+
+    gap: 14px;
+
+    width: 100%;
+
+    overflow-x: auto !important;
+    overflow-y: hidden;
+
+    padding: 0 0 8px 0;
+
+    box-sizing: border-box;
+
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.digital-assets .assets-grid::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================
+   FIXED MARKET CARD WIDTH
+========================= */
+
+.digital-assets .assets-grid .asset-card {
+
+    flex: 0 0 180px !important;
+
+    width: 180px !important;
+    min-width: 180px !important;
+    max-width: 180px !important;
+
+    margin: 0 !important;
+
+    padding: 18px !important;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================
+   MARKET CARD CONTENT
+========================= */
+
+.digital-assets .asset-card img,
+.digital-assets .asset-card .asset-logo {
+
+    width: 58px;
+    height: 58px;
+
+    object-fit: contain;
+
+}
+
+
+/* Prevent long prices from breaking
+   the card layout */
+
+.digital-assets .asset-card .asset-price {
+
+    font-size: 20px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
