@@ -2175,85 +2175,38 @@ if (
 
 }
 
-// =========================
-// ABOUT ASSET DROPDOWN
-// =========================
+<!-- =========================
+     ABOUT THIS ASSET
+========================= -->
 
-function toggleAboutAsset() {
+<div class="asset-info">
 
-    const description =
-        document.getElementById(
-            "assetDescription"
-        );
+    <button
+        type="button"
+        class="asset-info-title"
+        onclick="toggleAboutAsset()"
+        aria-expanded="false"
+    >
 
-    const arrow =
-        document.getElementById(
-            "aboutAssetArrow"
-        );
+        <span>
+            About this asset
+        </span>
 
-    const title =
-        document.querySelector(
-            ".asset-info-title"
-        );
+        <span
+            id="aboutAssetArrow"
+            class="about-asset-arrow"
+        >
+            ▼
+        </span>
 
-
-    if (!description) {
-        return;
-    }
-
-
-    const isOpen =
-        description.classList.contains(
-            "about-open"
-        );
+    </button>
 
 
-    if (isOpen) {
+    <div
+        id="assetDescription"
+        class="asset-description"
+    >
+        Loading description...
+    </div>
 
-        description.classList.remove(
-            "about-open"
-        );
-
-        if (arrow) {
-
-            arrow.style.transform =
-                "rotate(0deg)";
-
-        }
-
-        if (title) {
-
-            title.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-        }
-
-    } else {
-
-        description.classList.add(
-            "about-open"
-        );
-
-        if (arrow) {
-
-            arrow.style.transform =
-                "rotate(180deg)";
-
-        }
-
-        if (title) {
-
-            title.setAttribute(
-                "aria-expanded",
-                "true"
-            );
-
-        }
-
-    }
-    
-}
-
-console.log("ABOUT DROPDOWN FUNCTION LOADED");
+</div>
