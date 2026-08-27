@@ -1529,6 +1529,60 @@ document.addEventListener(
     }
 );
 
+// =========================
+// ASSET ACTIONS
+// =========================
+
+function investAsset() {
+
+    localStorage.setItem(
+        "selectedInvestment",
+        assetId
+    );
+
+    window.location.href =
+        "investment.html";
+}
+
+
+function addToWatchlist() {
+
+    let watchlist = [];
+
+    try {
+
+        watchlist =
+            JSON.parse(
+                localStorage.getItem(
+                    "noirWatchlist"
+                )
+            ) || [];
+
+    } catch (error) {
+
+        watchlist = [];
+
+    }
+
+
+    if (!watchlist.includes(assetId)) {
+
+        watchlist.push(assetId);
+
+        localStorage.setItem(
+            "noirWatchlist",
+            JSON.stringify(watchlist)
+        );
+
+        alert("Added to Watchlist");
+
+    } else {
+
+        alert("Already in Watchlist");
+
+    }
+
+}
 
 // =========================
 // START ASSET LOADING
