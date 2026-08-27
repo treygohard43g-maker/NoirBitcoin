@@ -2175,38 +2175,89 @@ if (
 
 }
 
-<!-- =========================
-     ABOUT THIS ASSET
-========================= -->
+// =========================
+// ABOUT ASSET DROPDOWN
+// =========================
 
-<div class="asset-info">
+function toggleAboutAsset() {
 
-    <button
-        type="button"
-        class="asset-info-title"
-        onclick="toggleAboutAsset()"
-        aria-expanded="false"
-    >
+    const description =
+        document.getElementById(
+            "assetDescription"
+        );
 
-        <span>
-            About this asset
-        </span>
+    const arrow =
+        document.getElementById(
+            "aboutAssetArrow"
+        );
 
-        <span
-            id="aboutAssetArrow"
-            class="about-asset-arrow"
-        >
-            ▼
-        </span>
+    const title =
+        document.querySelector(
+            ".asset-info-title"
+        );
 
-    </button>
+    if (!description) {
 
+        console.error(
+            "assetDescription element not found."
+        );
 
-    <div
-        id="assetDescription"
-        class="asset-description"
-    >
-        Loading description...
-    </div>
+        return;
+    }
 
-</div>
+    const isOpen =
+        description.classList.contains(
+            "about-open"
+        );
+
+    if (isOpen) {
+
+        description.classList.remove(
+            "about-open"
+        );
+
+        if (arrow) {
+
+            arrow.style.transform =
+                "rotate(0deg)";
+
+        }
+
+        if (title) {
+
+            title.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+    } else {
+
+        description.classList.add(
+            "about-open"
+        );
+
+        if (arrow) {
+
+            arrow.style.transform =
+                "rotate(180deg)";
+
+        }
+
+        if (title) {
+
+            title.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+
+        }
+
+    }
+
+}
+
+console.log(
+    "ABOUT DROPDOWN FUNCTION LOADED"
+);
