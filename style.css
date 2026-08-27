@@ -7913,80 +7913,114 @@ body.light-mode a {
 }
 
 /* =========================
-   ABOUT THIS ASSET DROPDOWN
+   ABOUT THIS ASSET
+========================= */
+
+.asset-info {
+    width: 100%;
+    margin-top: 20px;
+
+    /* REMOVE CARD LOOK */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    padding: 0 !important;
+}
+
+
+/* =========================
+   ABOUT TITLE
 ========================= */
 
 .asset-info-title {
-
     width: 100%;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
-    background: none;
+    padding: 14px 0;
 
-    border: none;
-
-    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 
     color: #ffffff;
 
     font-size: 17px;
-
     font-weight: 600;
 
     text-align: left;
 
     cursor: pointer;
 
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 
-/* Arrow */
+/* =========================
+   ARROW
+========================= */
 
 .about-asset-arrow {
-
     color: #8b949e;
 
     font-size: 18px;
 
+    line-height: 1;
+
     transition:
         transform 0.25s ease;
-
 }
 
 
-/* Closed description */
+/* =========================
+   HIDE DESCRIPTION
+========================= */
 
-.asset-description {
+.asset-info .asset-description {
 
-    max-height: 0;
+    display: block !important;
 
-    overflow: hidden;
+    max-height: 0 !important;
 
-    opacity: 0;
+    height: 0 !important;
 
-    margin-top: 0;
+    overflow: hidden !important;
+
+    opacity: 0 !important;
+
+    visibility: hidden !important;
+
+    margin-top: 0 !important;
+
+    padding: 0 !important;
 
     transition:
         max-height 0.35s ease,
         opacity 0.25s ease,
         margin-top 0.25s ease;
-
 }
 
 
-/* Open description */
+/* =========================
+   SHOW DESCRIPTION
+========================= */
 
+.asset-info
 .asset-description.about-open {
 
-    max-height: 600px;
+    max-height: 600px !important;
 
-    opacity: 1;
+    height: auto !important;
 
-    margin-top: 14px;
+    opacity: 1 !important;
 
+    visibility: visible !important;
+
+    margin-top: 10px !important;
+
+    padding: 0 0 16px 0 !important;
 }
