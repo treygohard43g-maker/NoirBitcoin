@@ -466,7 +466,6 @@ async function loadAsset() {
     assetLoading = false;
 }
 
-
 // =========================
 // DISPLAY ASSET
 // =========================
@@ -477,31 +476,214 @@ function displayAsset(
     assetStats
 ) {
 
+    // =========================
+    // BASIC MARKET DATA
+    // =========================
+
+    const marketData =
+        asset.market_data || {};
+
+
     const currentPrice =
-        asset.market_data
-            ?.current_price
-            ?.usd ?? 0;
+        marketData.current_price?.usd ?? 0;
 
 
     const marketCap =
-        asset.market_data
-            ?.market_cap
-            ?.usd ?? 0;
+        marketData.market_cap?.usd ?? 0;
 
 
     const volume =
-        asset.market_data
-            ?.total_volume
-            ?.usd ?? 0;
+        marketData.total_volume?.usd ?? 0;
 
 
     const change24h =
-        asset.market_data
-            ?.price_change_percentage_24h ?? 0;
+        marketData.price_change_percentage_24h ?? 0;
+
+
+    const high24h =
+        marketData.high_24h?.usd ?? 0;
+
+
+    const low24h =
+        marketData.low_24h?.usd ?? 0;
 
 
     const rank =
         asset.market_cap_rank ?? "N/A";
+
+
+    // =========================
+    // SUPPLY DATA
+    // =========================
+
+    const circulatingSupply =
+        marketData.circulating_supply;
+
+
+    const totalSupply =
+        marketData.total_supply;
+
+
+    const maxSupply =
+        marketData.max_supply;
+
+
+    // =========================
+    // COLORS
+    // =========================
+
+    const changeColor =
+        change24h >= 0
+            ? "#22c55e"
+            : "#ef4444";
+
+
+    const changeSign =
+        change24h > 0
+            ? "+"
+            : "";
+
+
+    // =========================
+    // FORMATTERS
+    // =========================
+
+    function formatMoney(value) {
+
+        if (
+            value === null ||
+            value === undefined ||
+            !Number.isFinite(Number(value))
+        ) {
+
+            return "N/A";
+
+        }
+
+
+        const number =
+            Number(value);
+
+
+        if (number >= 1e12) {
+
+            return (
+                "$" +
+                (number / 1e12)
+                    .toFixed(2) +
+                "T"
+            );
+
+        }
+
+
+        if (number >= 1e9) {
+
+            return (
+                "$" +
+                (number / 1e9)
+                    .toFixed(2) +
+                "B"
+            );
+
+        }
+
+
+        if (number >= 1e6) {
+
+            return (
+                "$" +
+                (number / 1e6)
+                    .toFixed(2) +
+                "M"
+            );
+
+        }
+
+
+        if (number >= 1e3) {
+
+            return (
+                "$" +
+                (number / 1e3)
+                    .toFixed(2) +
+                "K"
+            );
+
+        }
+
+
+        return (
+            "$" +
+            number.toLocaleString(
+                undefined,
+                {
+                    maximumFractionDigits: 2
+                }
+            )
+        );
+
+    }
+
+
+    function formatSupply(value) {
+
+        if (
+            value === null ||
+            value === undefined ||
+            !Number.isFinite(Number(value))
+        ) {
+
+            return "N/A";
+
+        }
+
+
+        const number =
+            Number(value);
+
+
+        if (number >= 1e12) {
+
+            return (
+                (number / 1e12)
+                    .toFixed(2) +
+                "T"
+            );
+
+        }
+
+
+        if (number >= 1e9) {
+
+            return (
+                (number / 1e9)
+                    .toFixed(2) +
+                "B"
+            );
+
+        }
+
+
+        if (number >= 1e6) {
+
+            return (
+                (number / 1e6)
+                    .toFixed(2) +
+                "M"
+            );
+
+        }
+
+
+        return number.toLocaleString(
+            undefined,
+            {
+                maximumFractionDigits: 2
+            }
+        );
+
+    }
 
 
     // =========================
@@ -525,6 +707,7 @@ function displayAsset(
                 ${asset.name || "Unknown"}
             </div>
 
+
             <div class="asset-symbol">
                 ${
                     asset.symbol
@@ -533,20 +716,25 @@ function displayAsset(
                 }
             </div>
 
+
             <div
-              class="asset-price"
-              style="
-                  color: ${
-                      change24h >= 0
-                          ? "#22c55e"
-                          : "#ef4444"
-        };
-    "
->
-    $${Number(
-        currentPrice
-    ).toLocaleString()}
-</div>
+                class="asset-price"
+                style="
+                    color:${changeColor};
+                "
+            >
+                $${Number(
+                    currentPrice
+                ).toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits:
+                            currentPrice < 1
+                                ? 6
+                                : 2
+                    }
+                )}
+            </div>
 
         </div>
 
@@ -554,7 +742,7 @@ function displayAsset(
 
 
     // =========================
-    // STATS
+    // MARKET STATISTICS
     // =========================
 
     if (assetStats) {
@@ -568,9 +756,7 @@ function displayAsset(
                 </div>
 
                 <div class="stat-value">
-                    $${Number(
-                        marketCap
-                    ).toLocaleString()}
+                    ${formatMoney(marketCap)}
                 </div>
 
             </div>
@@ -582,8 +768,13 @@ function displayAsset(
                     24h Change
                 </div>
 
-                <div class="stat-value">
-                    ${Number(
+                <div
+                    class="stat-value"
+                    style="
+                        color:${changeColor};
+                    "
+                >
+                    ${changeSign}${Number(
                         change24h
                     ).toFixed(2)}%
                 </div>
@@ -594,13 +785,11 @@ function displayAsset(
             <div class="stat-card">
 
                 <div class="stat-title">
-                    Volume
+                    24h Volume
                 </div>
 
                 <div class="stat-value">
-                    $${Number(
-                        volume
-                    ).toLocaleString()}
+                    ${formatMoney(volume)}
                 </div>
 
             </div>
@@ -609,7 +798,7 @@ function displayAsset(
             <div class="stat-card">
 
                 <div class="stat-title">
-                    Rank
+                    Market Rank
                 </div>
 
                 <div class="stat-value">
@@ -618,10 +807,165 @@ function displayAsset(
 
             </div>
 
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    24h High
+                </div>
+
+                <div class="stat-value">
+                    ${formatMoney(high24h)}
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    24h Low
+                </div>
+
+                <div class="stat-value">
+                    ${formatMoney(low24h)}
+                </div>
+
+            </div>
+
         `;
     }
-}
 
+
+    // =========================
+    // DESCRIPTION
+    // =========================
+
+    const descriptionElement =
+        document.getElementById(
+            "assetDescription"
+        );
+
+
+    if (descriptionElement) {
+
+        let description =
+            asset.description?.en || "";
+
+
+        // Remove HTML tags
+        description =
+            description
+                .replace(/<[^>]*>/g, "")
+                .replace(/\s+/g, " ")
+                .trim();
+
+
+        if (!description) {
+
+            description =
+                `Learn more about ${
+                    asset.name || "this asset"
+                } and its market data.`;
+
+        }
+
+
+        // Keep the page compact
+        if (
+            description.length > 600
+        ) {
+
+            description =
+                description.substring(
+                    0,
+                    600
+                ) +
+                "...";
+
+        }
+
+
+        descriptionElement.textContent =
+            description;
+
+    }
+
+
+    // =========================
+    // SUPPLY INFORMATION
+    // =========================
+
+    const circulatingElement =
+        document.getElementById(
+            "circulatingSupply"
+        );
+
+
+    const totalElement =
+        document.getElementById(
+            "totalSupply"
+        );
+
+
+    const maxElement =
+        document.getElementById(
+            "maxSupply"
+        );
+
+
+    if (circulatingElement) {
+
+        circulatingElement.textContent =
+            formatSupply(
+                circulatingSupply
+            );
+
+    }
+
+
+    if (totalElement) {
+
+        totalElement.textContent =
+            formatSupply(
+                totalSupply
+            );
+
+    }
+
+
+    if (maxElement) {
+
+        maxElement.textContent =
+            formatSupply(
+                maxSupply
+            );
+
+    }
+
+
+    // =========================
+    // STORE CURRENT ASSET
+    // =========================
+
+    localStorage.setItem(
+        "currentAssetName",
+        asset.name || ""
+    );
+
+
+    localStorage.setItem(
+        "currentAssetSymbol",
+        asset.symbol || ""
+    );
+
+
+    localStorage.setItem(
+        "currentAssetPrice",
+        String(currentPrice)
+    );
+
+}
 
 // =========================
 // CREATE REALISTIC CHART
