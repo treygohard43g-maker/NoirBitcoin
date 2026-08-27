@@ -1593,10 +1593,20 @@ function addToWatchlist() {
 // START ASSET LOADING
 // =========================
 
-document.addEventListener("DOMContentLoaded", () => {
+if (document.readyState === "loading") {
 
-    console.log("Asset page ready");
+    document.addEventListener("DOMContentLoaded", () => {
+
+        console.log("Asset page ready");
+
+        loadAsset();
+
+    });
+
+} else {
+
+    console.log("Asset page already ready");
 
     loadAsset();
 
-});
+}
