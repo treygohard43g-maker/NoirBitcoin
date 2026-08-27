@@ -2285,3 +2285,186 @@ console.log(
     "ABOUT DROPDOWN FUNCTION LOADED"
 );
 
+// =========================
+// PREMIUM WATCHLIST
+// =========================
+
+function addToWatchlist() {
+
+    const assetId =
+        localStorage.getItem("selectedAsset");
+
+    if (!assetId) return;
+
+    let watchlist =
+        JSON.parse(
+            localStorage.getItem("watchlist")
+        ) || [];
+
+    const index =
+        watchlist.indexOf(assetId);
+
+    const button =
+        document.getElementById("watchlistBtn");
+
+    const star =
+        button?.querySelector(".watchlist-star");
+
+    const text =
+        button?.querySelector(".watchlist-text");
+
+    // Remove from watchlist
+    if (index !== -1) {
+
+        watchlist.splice(index, 1);
+
+        localStorage.setItem(
+            "watchlist",
+            JSON.stringify(watchlist)
+        );
+
+        if (button) {
+            button.classList.remove("watchlisted");
+        }
+
+        if (star) {
+            star.textContent = "☆";
+        }
+
+        if (text) {
+            text.textContent = "Watchlist";
+        }
+
+        showWatchlistToast(
+            "Removed from Watchlist",
+            false
+        );
+
+        return;
+    }
+
+    // Add to watchlist
+    watchlist.push(assetId);
+
+    localStorage.setItem(
+        "watchlist",
+        JSON.stringify(watchlist)
+    );
+
+    if (button) {
+        button.classList.add("watchlisted");
+    }
+
+    if (star) {
+        star.textContent = "★";
+    }
+
+    if (text) {
+        text.textContent = "Watchlisted";
+    }
+
+    showWatchlistToast(
+        "Added to Watchlist",
+        true
+    );
+}
+
+
+// =========================
+// WATCHLIST TOAST
+// =========================
+
+function showWatchlistToast(message, added = true) {
+
+    let toast =
+        document.getElementById(
+            "watchlistToast"
+        );
+
+    if (!toast) {
+
+        toast =
+            document.createElement("div");
+
+        toast.id =
+            "watchlistToast";
+
+        toast.className =
+            "watchlist-toast";
+
+        document.body.appendChild(toast);
+    }
+
+    toast.innerHTML = `
+        <i class="fa-solid ${
+            added
+                ? "fa-star"
+                : "fa-check"
+        }"></i>
+        <span>${message}</span>
+    `;
+
+    toast.classList.add("show");
+
+    clearTimeout(
+        window.watchlistToastTimer
+    );
+
+    window.watchlistToastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 2200);
+}
+
+
+// =========================
+// RESTORE WATCHLIST STATE
+// =========================
+
+function restoreWatchlistState() {
+
+    const assetId =
+        localStorage.getItem("selectedAsset");
+
+    const button =
+        document.getElementById("watchlistBtn");
+
+    if (!assetId || !button) return;
+
+    const watchlist =
+        JSON.parse(
+            localStorage.getItem("watchlist")
+        ) || [];
+
+    if (watchlist.includes(assetId)) {
+
+        button.classList.add(
+            "watchlisted"
+        );
+
+        const star =
+            button.querySelector(
+                ".watchlist-star"
+            );
+
+        const text =
+            button.querySelector(
+                ".watchlist-text"
+            );
+
+        if (star) {
+            star.textContent = "★";
+        }
+
+        if (text) {
+            text.textContent = "Watchlisted";
+        }
+    }
+}
+
+document.addEventListener(
+    "DOMContentLoaded",
+    restoreWatchlistState
+);
