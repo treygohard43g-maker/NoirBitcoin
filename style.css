@@ -3118,24 +3118,46 @@ p {
 
 .assets-grid {
 
-    display: grid;
+    display: flex;
 
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    flex-wrap: nowrap;
 
-    gap: 20px;
+    gap: 14px;
+
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 2px 2px 8px 2px;
+
+    box-sizing: border-box;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
 
 }
 
+.assets-grid::-webkit-scrollbar {
+
+    display: none;
+
+}
 
 .asset-card {
 
     background: #161b22;
 
-    padding: 20px;
+    padding: 16px;
 
     border-radius: 16px;
 
     border: 1px solid rgba(255,255,255,0.08);
+    
+    flex: 0 0 18px;
+    
+    box-sizing: border-box
 
 }
 
@@ -5094,36 +5116,97 @@ border:1px solid #2A2F38;
 ========================= */
 
 .asset-card {
-    width: 100%;
+
+    flex: 0 0 180px;
+
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
+
     box-sizing: border-box;
+
     margin: 0;
-    padding: 32px 36px;
+    padding: 20px;
+
     border-radius: 18px;
+
     background: #1b1e24;
+
     border: 1px solid #2a2f38;
+
     overflow: hidden;
+
 }
 
-/* Make the Digital Assets section use the same width */
+
+/* =========================
+   DIGITAL ASSETS SECTION
+========================= */
+
 .digital-assets {
+
     width: 100%;
+
     box-sizing: border-box;
+
     padding: 0 26px;
+
 }
 
-/* Asset logo */
+
+/* =========================
+   HORIZONTAL ASSET ROW
+========================= */
+
+.digital-assets .assets-grid {
+
+    display: flex;
+
+    flex-wrap: nowrap;
+
+    gap: 14px;
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    padding: 2px 2px 8px;
+
+    box-sizing: border-box;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+
+}
+
+
+/* Hide scrollbar */
+
+.digital-assets .assets-grid::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+
+/* =========================
+   ASSET LOGO
+========================= */
+
 .asset-card img,
 .asset-logo {
-    width: 68px;
-    height: 68px;
-    object-fit: contain;
-    display: block;
-}
 
-/* Prevent the asset card from becoming narrower */
-.digital-assets .asset-card {
-    width: 100%;
-    max-width: none;
+    width: 68px;
+
+    height: 68px;
+
+    object-fit: contain;
+
+    display: block;
+
 }
 
 /* =========================================
