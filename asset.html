@@ -1,43 +1,416 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NoirBitcoin Test</title>
+
+    <title>Asset | NoirBitcoin</title>
+
+    <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
 
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
         html,
         body {
             margin: 0;
             padding: 0;
             width: 100%;
             min-height: 100%;
-            background: #0d1117;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
         }
 
         body {
-            padding: 40px 20px;
+            background: #0d1117;
+            color: #ffffff;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
         }
 
-        h1 {
-            margin: 0;
-            font-size: 30px;
+        .asset-page {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 20px 50px;
         }
 
-        p {
+        .back-btn {
+            width: 48px;
+            height: 48px;
+            border: 1px solid #2a2f38;
+            border-radius: 15px;
+            background: #181c22;
+            color: #ffffff;
+            font-size: 27px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-bottom: 28px;
+        }
+
+        #assetHeader {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-height: 82px;
+            margin-bottom: 20px;
+        }
+
+        #assetHeader img {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .asset-name {
+            font-size: 27px;
+            font-weight: 700;
+        }
+
+        .asset-symbol {
+            margin-top: 4px;
             color: #8b949e;
-            font-size: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
         }
+
+        .asset-price {
+            margin-top: 7px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .chart-card {
+            width: 100%;
+            height: 350px;
+            background: #11161d;
+            border: 1px solid #222831;
+            border-radius: 22px;
+            overflow: hidden;
+            margin-bottom: 22px;
+            padding: 8px 4px 4px;
+        }
+
+        #chart {
+            width: 100%;
+            height: 335px;
+        }
+
+        .section-title {
+            margin: 4px 0 13px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        #assetStats {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, #1b1e24, #15191f);
+            border: 1px solid #2a2f38;
+            border-radius: 17px;
+            padding: 17px;
+            min-height: 92px;
+        }
+
+        .stat-title {
+            color: #8b949e;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 650;
+            word-break: break-word;
+        }
+
+        .asset-info {
+            margin-bottom: 22px;
+            background: linear-gradient(145deg, #1b1e24, #15191f);
+            border: 1px solid #2a2f38;
+            border-radius: 18px;
+            padding: 19px;
+        }
+
+        .asset-info-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .asset-description {
+            color: #9da5af;
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .supply-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .supply-item {
+            background: #15191f;
+            border: 1px solid #252b34;
+            border-radius: 15px;
+            padding: 14px;
+        }
+
+        .supply-label {
+            color: #8b949e;
+            font-size: 11px;
+            margin-bottom: 7px;
+        }
+
+        .supply-value {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .asset-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 5px;
+        }
+
+        .asset-action,
+        .invest-btn {
+            height: 58px;
+            border-radius: 17px;
+            border: 1px solid #2a2f38;
+            background: #181c22;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .asset-action:active,
+        .invest-btn:active {
+            transform: scale(0.97);
+        }
+
+        .invest-btn {
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 600px) {
+
+            .asset-page {
+                padding: 20px 16px 40px;
+            }
+
+            .back-btn {
+                width: 46px;
+                height: 46px;
+                margin-bottom: 22px;
+            }
+
+            .asset-name {
+                font-size: 24px;
+            }
+
+            .asset-price {
+                font-size: 21px;
+            }
+
+            .chart-card {
+                height: 315px;
+                border-radius: 20px;
+            }
+
+            #chart {
+                height: 305px;
+            }
+
+            .stat-card {
+                padding: 14px;
+                min-height: 88px;
+            }
+
+            .stat-value {
+                font-size: 15px;
+            }
+
+            .supply-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
     </style>
+
 </head>
 
 <body>
 
-    <h1>NoirBitcoin TEST</h1>
+    <main class="asset-page">
 
-    <p>asset.html is loading correctly.</p>
+        <button
+            class="back-btn"
+            onclick="history.back()"
+            aria-label="Go back"
+        >
+            ←
+        </button>
+
+        <section id="assetHeader">
+
+            <div style="color:#8b949e;">
+                Loading asset...
+            </div>
+
+        </section>
+
+        <section class="chart-card">
+
+            <div id="chart"></div>
+
+        </section>
+
+        <div class="section-title">
+            Market Statistics
+        </div>
+
+        <section id="assetStats">
+
+            <div class="stat-card">
+                <div class="stat-title">Market Cap</div>
+                <div class="stat-value">Loading...</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-title">24h Change</div>
+                <div class="stat-value">Loading...</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-title">24h Volume</div>
+                <div class="stat-value">Loading...</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-title">Market Rank</div>
+                <div class="stat-value">Loading...</div>
+            </div>
+
+        </section>
+
+        <section class="asset-info">
+
+            <div class="asset-info-title">
+                About this asset
+            </div>
+
+            <div
+                id="assetDescription"
+                class="asset-description"
+            >
+                Loading asset information...
+            </div>
+
+        </section>
+
+        <div class="section-title">
+            Supply
+        </div>
+
+        <section class="supply-grid">
+
+            <div class="supply-item">
+                <div class="supply-label">
+                    Circulating Supply
+                </div>
+
+                <div
+                    id="circulatingSupply"
+                    class="supply-value"
+                >
+                    Loading...
+                </div>
+            </div>
+
+            <div class="supply-item">
+                <div class="supply-label">
+                    Total Supply
+                </div>
+
+                <div
+                    id="totalSupply"
+                    class="supply-value"
+                >
+                    Loading...
+                </div>
+            </div>
+
+            <div class="supply-item">
+                <div class="supply-label">
+                    Max Supply
+                </div>
+
+                <div
+                    id="maxSupply"
+                    class="supply-value"
+                >
+                    Loading...
+                </div>
+            </div>
+
+        </section>
+
+        <section class="asset-actions">
+
+            <button
+                class="asset-action"
+                onclick="investAsset()"
+            >
+                Invest
+            </button>
+
+            <button
+                class="asset-action"
+                onclick="addToWatchlist()"
+            >
+                ☆ Watchlist
+            </button>
+
+        </section>
+
+        <button
+            class="invest-btn"
+            onclick="investAsset()"
+        >
+            Invest in this asset
+        </button>
+
+    </main>
+
+    <script src="asset.js?v=3"></script>
 
 </body>
+
 </html>
