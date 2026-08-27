@@ -8471,3 +8471,51 @@ body.light-mode a {
 .assets-grid .asset-card {
     min-width: 190px;
 }
+
+/* =========================
+   PREMIUM ASSET HEADER
+========================= */
+
+#assetHeader {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-height: 90px;
+    margin-bottom: 22px;
+}
+
+#assetHeader img {
+    width: 60px;
+    height: 60px;
+    padding: 7px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.asset-name {
+    font-size: 27px;
+    font-weight: 750;
+    letter-spacing: -0.4px;
+    line-height: 1.15;
+}
+
+.asset-symbol {
+    margin-top: 5px;
+    color: #8b949e;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+}
+
+.asset-price {
+    margin-top: 8px;
+    font-size: 25px;
+    font-weight: 750;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    white-space: nowrap;
+}
