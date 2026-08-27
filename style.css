@@ -8749,3 +8749,18 @@ body.light-mode a {
     color: #f59e0b;
     font-size: 16px;
 }
+
+
+
+/* =========================
+ REMOVE ALL DIAMOND BACKGROUND PATTERNS
+========================= */
+
+.chart-container,
+.btc-chart-card,
+.chart-card,
+.chart-container::before,
+.btc-chart-card::before,
+.chart-card::before {
+    background-image: none !important;
+}
