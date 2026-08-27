@@ -7911,3 +7911,82 @@ body.light-mode a {
     border-radius: 20px !important;
     overflow: hidden;
 }
+
+/* =========================
+   ABOUT THIS ASSET DROPDOWN
+========================= */
+
+.asset-info-title {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: none;
+
+    border: none;
+
+    padding: 0;
+
+    color: #ffffff;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    cursor: pointer;
+
+}
+
+
+/* Arrow */
+
+.about-asset-arrow {
+
+    color: #8b949e;
+
+    font-size: 18px;
+
+    transition:
+        transform 0.25s ease;
+
+}
+
+
+/* Closed description */
+
+.asset-description {
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    margin-top: 0;
+
+    transition:
+        max-height 0.35s ease,
+        opacity 0.25s ease,
+        margin-top 0.25s ease;
+
+}
+
+
+/* Open description */
+
+.asset-description.about-open {
+
+    max-height: 600px;
+
+    opacity: 1;
+
+    margin-top: 14px;
+
+}
