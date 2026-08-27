@@ -101,7 +101,9 @@ async function fetchWithRetry(
                 new AbortController();
 
             timeout = setTimeout(() => {
+
                 controller.abort();
+
             }, 15000);
 
 
@@ -119,7 +121,9 @@ async function fetchWithRetry(
 
 
             if (response.ok) {
+
                 return response;
+
             }
 
 
@@ -248,6 +252,7 @@ async function loadAsset() {
                 Loading asset...
             </div>
         `;
+
     }
 
 
@@ -264,6 +269,7 @@ async function loadAsset() {
             cachedChart.data,
             chartContainer
         );
+
     }
 
 
@@ -328,6 +334,7 @@ async function loadAsset() {
                 assetHeader,
                 assetStats
             );
+
         }
 
 
@@ -353,7 +360,9 @@ async function loadAsset() {
                 assetHeader,
                 error
             );
+
         }
+
     }
 
 
@@ -411,6 +420,7 @@ async function loadAsset() {
                     throw new Error(
                         "No chart data available"
                     );
+
                 }
 
 
@@ -424,6 +434,7 @@ async function loadAsset() {
                     chartData,
                     chartContainer
                 );
+
             }
 
 
@@ -458,13 +469,17 @@ async function loadAsset() {
                         Chart temporarily unavailable.
                     </div>
                 `;
+
             }
+
         }
+
     }
 
 
     assetLoading = false;
 }
+
 
 // =========================
 // DISPLAY ASSET
@@ -476,53 +491,45 @@ function displayAsset(
     assetStats
 ) {
 
-    // =========================
-    // BASIC MARKET DATA
-    // =========================
-
     const marketData =
         asset.market_data || {};
 
 
+    // =========================
+    // MARKET DATA
+    // =========================
+
     const currentPrice =
         marketData.current_price?.usd ?? 0;
-
 
     const marketCap =
         marketData.market_cap?.usd ?? 0;
 
-
     const volume =
         marketData.total_volume?.usd ?? 0;
-
 
     const change24h =
         marketData.price_change_percentage_24h ?? 0;
 
-
     const high24h =
         marketData.high_24h?.usd ?? 0;
 
-
     const low24h =
         marketData.low_24h?.usd ?? 0;
-
 
     const rank =
         asset.market_cap_rank ?? "N/A";
 
 
     // =========================
-    // SUPPLY DATA
+    // SUPPLY
     // =========================
 
     const circulatingSupply =
         marketData.circulating_supply;
 
-
     const totalSupply =
         marketData.total_supply;
-
 
     const maxSupply =
         marketData.max_supply;
@@ -545,7 +552,7 @@ function displayAsset(
 
 
     // =========================
-    // FORMATTERS
+    // FORMAT MONEY
     // =========================
 
     function formatMoney(value) {
@@ -569,8 +576,7 @@ function displayAsset(
 
             return (
                 "$" +
-                (number / 1e12)
-                    .toFixed(2) +
+                (number / 1e12).toFixed(2) +
                 "T"
             );
 
@@ -581,8 +587,7 @@ function displayAsset(
 
             return (
                 "$" +
-                (number / 1e9)
-                    .toFixed(2) +
+                (number / 1e9).toFixed(2) +
                 "B"
             );
 
@@ -593,8 +598,7 @@ function displayAsset(
 
             return (
                 "$" +
-                (number / 1e6)
-                    .toFixed(2) +
+                (number / 1e6).toFixed(2) +
                 "M"
             );
 
@@ -605,8 +609,7 @@ function displayAsset(
 
             return (
                 "$" +
-                (number / 1e3)
-                    .toFixed(2) +
+                (number / 1e3).toFixed(2) +
                 "K"
             );
 
@@ -625,6 +628,10 @@ function displayAsset(
 
     }
 
+
+    // =========================
+    // FORMAT SUPPLY
+    // =========================
 
     function formatSupply(value) {
 
@@ -646,8 +653,7 @@ function displayAsset(
         if (number >= 1e12) {
 
             return (
-                (number / 1e12)
-                    .toFixed(2) +
+                (number / 1e12).toFixed(2) +
                 "T"
             );
 
@@ -657,8 +663,7 @@ function displayAsset(
         if (number >= 1e9) {
 
             return (
-                (number / 1e9)
-                    .toFixed(2) +
+                (number / 1e9).toFixed(2) +
                 "B"
             );
 
@@ -668,9 +673,18 @@ function displayAsset(
         if (number >= 1e6) {
 
             return (
-                (number / 1e6)
-                    .toFixed(2) +
+                (number / 1e6).toFixed(2) +
                 "M"
+            );
+
+        }
+
+
+        if (number >= 1e3) {
+
+            return (
+                (number / 1e3).toFixed(2) +
+                "K"
             );
 
         }
@@ -707,7 +721,6 @@ function displayAsset(
                 ${asset.name || "Unknown"}
             </div>
 
-
             <div class="asset-symbol">
                 ${
                     asset.symbol
@@ -716,12 +729,9 @@ function displayAsset(
                 }
             </div>
 
-
             <div
                 class="asset-price"
-                style="
-                    color:${changeColor};
-                "
+                style="color:${changeColor};"
             >
                 $${Number(
                     currentPrice
@@ -770,9 +780,7 @@ function displayAsset(
 
                 <div
                     class="stat-value"
-                    style="
-                        color:${changeColor};
-                    "
+                    style="color:${changeColor};"
                 >
                     ${changeSign}${Number(
                         change24h
@@ -834,6 +842,7 @@ function displayAsset(
             </div>
 
         `;
+
     }
 
 
@@ -853,7 +862,6 @@ function displayAsset(
             asset.description?.en || "";
 
 
-        // Remove HTML tags
         description =
             description
                 .replace(/<[^>]*>/g, "")
@@ -871,10 +879,7 @@ function displayAsset(
         }
 
 
-        // Keep the page compact
-        if (
-            description.length > 600
-        ) {
+        if (description.length > 600) {
 
             description =
                 description.substring(
@@ -901,12 +906,10 @@ function displayAsset(
             "circulatingSupply"
         );
 
-
     const totalElement =
         document.getElementById(
             "totalSupply"
         );
-
 
     const maxElement =
         document.getElementById(
@@ -953,12 +956,10 @@ function displayAsset(
         asset.name || ""
     );
 
-
     localStorage.setItem(
         "currentAssetSymbol",
         asset.symbol || ""
     );
-
 
     localStorage.setItem(
         "currentAssetPrice",
@@ -966,6 +967,7 @@ function displayAsset(
     );
 
 }
+
 
 // =========================
 // CREATE REALISTIC CHART
@@ -1043,7 +1045,7 @@ function createChart(
 
 
     // =========================
-    // REMOVE DUPLICATE TIMES
+    // REMOVE DUPLICATES
     // =========================
 
     const uniquePrices = [];
@@ -1105,7 +1107,7 @@ function createChart(
 
 
     // =========================
-    // REALISTIC COLORS
+    // COLORS
     // =========================
 
     const lineColor =
@@ -1232,58 +1234,62 @@ function createChart(
 
                 },
 
- // =====================
-// CROSSHAIR
-// =====================
 
-crosshair: {
+                // =====================
+                // CROSSHAIR
+                // =====================
 
-    mode:
-        LightweightCharts
-            .CrosshairMode
-            .Normal,
+                crosshair: {
 
-    vertLine: {
+                    mode:
+                        LightweightCharts
+                            .CrosshairMode
+                            .Normal,
 
-        color:
-            "rgba(255,255,255,0.25)",
 
-        width: 1,
+                    vertLine: {
 
-        style:
-            LightweightCharts
-                .LineStyle
-                .Dashed,
+                        color:
+                            "rgba(255,255,255,0.25)",
 
-        visible: true,
+                        width: 1,
 
-        labelVisible: false
+                        style:
+                            LightweightCharts
+                                .LineStyle
+                                .Dashed,
 
-    },
+                        visible: true,
+
+                        labelVisible: false
+
+                    },
+
 
                     horzLine: {
 
-                    color:
-                        "rgba(255,255,255,0.25)",
+                        color:
+                            "rgba(255,255,255,0.25)",
 
-                    width: 1,
+                        width: 1,
 
-                    style:
-                        LightweightCharts
-                            .LineStyle
-                            .Dashed,
+                        style:
+                            LightweightCharts
+                                .LineStyle
+                                .Dashed,
 
-                    visible: true,
+                        visible: true,
 
-                    labelVisible: true
+                        labelVisible: true
+
+                    }
 
                 }
 
             }
+        );
 
-        }
-    );
-    
+
     // =========================
     // AREA SERIES
     // =========================
@@ -1315,34 +1321,34 @@ crosshair: {
                 4,
 
             crosshairMarkerBorderColor:
-               lineColor,
+                lineColor,
 
             crosshairMarkerBackgroundColor:
                 lineColor,
 
 
-// =====================
-// LAST PRICE
-// =====================
+            // =====================
+            // LAST PRICE
+            // =====================
 
-lastValueVisible:
-    true,
+            lastValueVisible:
+                true,
 
-priceLineVisible:
-    true,
+            priceLineVisible:
+                true,
 
-priceLineColor:
-    lineColor,
+            priceLineColor:
+                lineColor,
 
-priceLineWidth:
-    1,
+            priceLineWidth:
+                1,
 
-priceLineStyle:
-    LightweightCharts
-        .LineStyle
-        .Dashed
+            priceLineStyle:
+                LightweightCharts
+                    .LineStyle
+                    .Dashed
 
- });
+        });
 
 
     // =========================
@@ -1379,14 +1385,11 @@ priceLineStyle:
         const width =
             chartContainer.clientWidth;
 
-
         const height =
             chartContainer.clientHeight;
 
 
-        if (
-            width <= 0
-        ) {
+        if (width <= 0) {
             return;
         }
 
@@ -1413,7 +1416,7 @@ priceLineStyle:
 
 
     // =========================
-    // MOBILE RESIZE
+    // RESIZE OBSERVER
     // =========================
 
     if (
@@ -1449,6 +1452,7 @@ priceLineStyle:
         areaSeries;
 
 }
+
 
 // =========================
 // ERROR DISPLAY
@@ -1498,46 +1502,12 @@ function showAssetError(
         </div>
 
     `;
+
 }
 
 
 // =========================
-// INVEST BUTTON
-// =========================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        const investButton =
-            document.querySelector(
-                ".invest-btn"
-            );
-
-
-        if (investButton) {
-
-            investButton.addEventListener(
-                "click",
-                () => {
-
-                    localStorage.setItem(
-                        "selectedInvestment",
-                        assetId
-                    );
-
-
-                    window.location.href =
-                        "investment.html";
-
-                }
-            );
-        }
-    }
-);
-
-// =========================
-// ASSET ACTIONS
+// INVEST ASSET
 // =========================
 
 function investAsset() {
@@ -1547,14 +1517,21 @@ function investAsset() {
         assetId
     );
 
+
     window.location.href =
         "investment.html";
+
 }
 
+
+// =========================
+// WATCHLIST
+// =========================
 
 function addToWatchlist() {
 
     let watchlist = [];
+
 
     try {
 
@@ -1572,42 +1549,67 @@ function addToWatchlist() {
     }
 
 
-    if (!watchlist.includes(assetId)) {
+    if (
+        !watchlist.includes(
+            assetId
+        )
+    ) {
 
-        watchlist.push(assetId);
+        watchlist.push(
+            assetId
+        );
+
 
         localStorage.setItem(
             "noirWatchlist",
-            JSON.stringify(watchlist)
+            JSON.stringify(
+                watchlist
+            )
         );
 
-        alert("Added to Watchlist");
+
+        alert(
+            "Added to Watchlist"
+        );
 
     } else {
 
-        alert("Already in Watchlist");
+        alert(
+            "Already in Watchlist"
+        );
 
     }
 
 }
 
+
 // =========================
 // START ASSET LOADING
 // =========================
 
-if (document.readyState === "loading") {
+if (
+    document.readyState ===
+    "loading"
+) {
 
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener(
+        "DOMContentLoaded",
+        () => {
 
-        console.log("Asset page ready");
+            console.log(
+                "Asset page ready"
+            );
 
-        loadAsset();
+            loadAsset();
 
-    });
+        }
+    );
 
 } else {
 
-    console.log("Asset page already ready");
+    console.log(
+        "Asset page already ready"
+    );
 
     loadAsset();
 
