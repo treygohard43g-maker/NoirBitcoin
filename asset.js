@@ -1007,22 +1007,13 @@ function displayAsset(
     // =========================
 
     assetHeader.innerHTML = `
+    
+    <img
+        src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
+        alt="Bitcoin"
+    >
 
-       <img
-    src="${
-        asset.id === "bitcoin"
-            ? "https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
-            : (
-                asset.image?.large ||
-                asset.image?.small ||
-                ""
-            )
-    }"
-    alt="${
-        asset.name ||
-        "Asset"
-    }"
->
+    <div>
 
         <div>
 
