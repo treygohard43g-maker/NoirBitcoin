@@ -1319,17 +1319,28 @@ crosshair: {
                 lineColor,
 
 
-            // =====================
-            // LAST PRICE
-            // =====================
+// =====================
+// LAST PRICE
+// =====================
 
-            lastValueVisible:
-                true,
+lastValueVisible:
+    true,
 
-            priceLineVisible:
-                false
+priceLineVisible:
+    true,
 
-        });
+priceLineColor:
+    lineColor,
+
+priceLineWidth:
+    1,
+
+priceLineStyle:
+    LightweightCharts
+        .LineStyle
+        .Dashed
+
+ });
 
 
     // =========================
