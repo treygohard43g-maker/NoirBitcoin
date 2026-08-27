@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Asset | NoirBitcoin</title>
+    <title>Asset | NoirBitcoin">
 
 
     <!-- =========================
@@ -63,7 +63,7 @@
 
             margin: 0 auto;
 
-            padding: 30px 20px 50px;
+            padding: 24px 20px 50px;
 
         }
 
@@ -74,19 +74,19 @@
 
         .back-btn {
 
-            width: 78px;
+            width: 48px;
 
-            height: 78px;
+            height: 48px;
 
-            border: none;
+            border: 1px solid #2a2f38;
 
-            border-radius: 22px;
+            border-radius: 15px;
 
-            background: #1b1e24;
+            background: #181c22;
 
             color: #ffffff;
 
-            font-size: 42px;
+            font-size: 27px;
 
             display: flex;
 
@@ -96,7 +96,7 @@
 
             cursor: pointer;
 
-            margin-bottom: 35px;
+            margin-bottom: 28px;
 
             transition: 0.2s ease;
 
@@ -105,7 +105,7 @@
 
         .back-btn:active {
 
-            transform: scale(0.95);
+            transform: scale(0.94);
 
         }
 
@@ -116,24 +116,24 @@
 
         #assetHeader {
 
-            min-height: 110px;
-
             display: flex;
 
             align-items: center;
 
-            gap: 18px;
+            gap: 15px;
 
-            margin-bottom: 25px;
+            min-height: 82px;
+
+            margin-bottom: 20px;
 
         }
 
 
         #assetHeader img {
 
-            width: 72px;
+            width: 58px;
 
-            height: 72px;
+            height: 58px;
 
             object-fit: contain;
 
@@ -144,24 +144,24 @@
 
         .asset-name {
 
-            font-size: 30px;
+            font-size: 27px;
 
             font-weight: 700;
 
-            line-height: 1.2;
+            line-height: 1.15;
 
         }
 
 
         .asset-symbol {
 
-            margin-top: 5px;
+            margin-top: 4px;
 
             color: #8b949e;
 
-            font-size: 15px;
+            font-size: 14px;
 
-            font-weight: 500;
+            font-weight: 600;
 
             text-transform: uppercase;
 
@@ -170,11 +170,11 @@
 
         .asset-price {
 
-            margin-top: 10px;
+            margin-top: 7px;
 
-            color: #f59e0b;
+            color: #ffffff;
 
-            font-size: 25px;
+            font-size: 24px;
 
             font-weight: 700;
 
@@ -182,24 +182,26 @@
 
 
         /* =========================
-           CHART CARD
+           CHART AREA
         ========================== */
 
         .chart-card {
 
             width: 100%;
 
-            height: 320px;
+            height: 350px;
 
-            background: #1b1e24;
+            background: #11161d;
 
-            border-radius: 24px;
+            border: 1px solid #222831;
+
+            border-radius: 22px;
 
             overflow: hidden;
 
-            margin-bottom: 25px;
+            margin-bottom: 22px;
 
-            padding: 10px;
+            padding: 8px 4px 4px;
 
         }
 
@@ -208,7 +210,24 @@
 
             width: 100%;
 
-            height: 300px;
+            height: 335px;
+
+        }
+
+
+        /* =========================
+           STATISTICS HEADER
+        ========================== */
+
+        .section-title {
+
+            margin: 4px 0 13px;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color: #ffffff;
 
         }
 
@@ -224,24 +243,29 @@
             grid-template-columns:
                 repeat(2, minmax(0, 1fr));
 
-            gap: 14px;
+            gap: 12px;
 
-            margin-bottom: 30px;
+            margin-bottom: 22px;
 
         }
 
 
         .stat-card {
 
-            background: #181c22;
+            background:
+                linear-gradient(
+                    145deg,
+                    #1b1e24,
+                    #15191f
+                );
 
             border: 1px solid #2a2f38;
 
-            border-radius: 18px;
+            border-radius: 17px;
 
-            padding: 18px;
+            padding: 17px;
 
-            min-height: 95px;
+            min-height: 92px;
 
         }
 
@@ -250,9 +274,11 @@
 
             color: #8b949e;
 
-            font-size: 13px;
+            font-size: 12px;
 
-            margin-bottom: 9px;
+            font-weight: 500;
+
+            margin-bottom: 8px;
 
         }
 
@@ -261,11 +287,177 @@
 
             color: #ffffff;
 
+            font-size: 16px;
+
+            font-weight: 650;
+
+            line-height: 1.25;
+
+            word-break: break-word;
+
+        }
+
+
+        /* =========================
+           ASSET INFORMATION
+        ========================== */
+
+        .asset-info {
+
+            margin-top: 5px;
+
+            margin-bottom: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #1b1e24,
+                    #15191f
+                );
+
+            border: 1px solid #2a2f38;
+
+            border-radius: 18px;
+
+            padding: 19px;
+
+        }
+
+
+        .asset-info-title {
+
             font-size: 17px;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .asset-description {
+
+            color: #9da5af;
+
+            font-size: 14px;
+
+            line-height: 1.65;
+
+        }
+
+
+        /* =========================
+           SUPPLY INFORMATION
+        ========================== */
+
+        .supply-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 10px;
+
+            margin-top: 12px;
+
+            margin-bottom: 24px;
+
+        }
+
+
+        .supply-item {
+
+            background: #15191f;
+
+            border: 1px solid #252b34;
+
+            border-radius: 15px;
+
+            padding: 14px;
+
+        }
+
+
+        .supply-label {
+
+            color: #8b949e;
+
+            font-size: 11px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .supply-value {
+
+            color: #ffffff;
+
+            font-size: 14px;
 
             font-weight: 600;
 
             word-break: break-word;
+
+        }
+
+
+        /* =========================
+           ACTION BUTTONS
+        ========================== */
+
+        .asset-actions {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 12px;
+
+            margin-top: 5px;
+
+        }
+
+
+        .asset-action {
+
+            height: 58px;
+
+            border-radius: 17px;
+
+            border: 1px solid #2a2f38;
+
+            background: #181c22;
+
+            color: #ffffff;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .asset-action:active {
+
+            transform: scale(0.97);
+
+        }
+
+
+        .asset-action.primary {
+
+            background: #f59e0b;
+
+            border-color: #f59e0b;
+
+            color: #ffffff;
 
         }
 
@@ -278,23 +470,25 @@
 
             width: 100%;
 
-            height: 95px;
+            height: 58px;
 
             border: none;
 
-            border-radius: 24px;
+            border-radius: 17px;
 
             background: #f59e0b;
 
             color: #ffffff;
 
-            font-size: 25px;
+            font-size: 17px;
 
             font-weight: 700;
 
             cursor: pointer;
 
             transition: 0.2s ease;
+
+            margin-top: 12px;
 
         }
 
@@ -315,73 +509,84 @@
             .asset-page {
 
                 padding:
-                    30px 32px 50px;
+                    20px 16px 40px;
 
             }
 
 
             .back-btn {
 
-                width: 78px;
+                width: 46px;
 
-                height: 78px;
+                height: 46px;
 
-                margin-bottom: 35px;
+                margin-bottom: 22px;
 
             }
 
 
             #assetHeader {
 
-                min-height: 100px;
+                gap: 13px;
 
-                gap: 15px;
+                margin-bottom: 17px;
 
             }
 
 
             #assetHeader img {
 
-                width: 62px;
+                width: 54px;
 
-                height: 62px;
+                height: 54px;
 
             }
 
 
             .asset-name {
 
-                font-size: 26px;
+                font-size: 24px;
 
             }
 
 
             .asset-price {
 
-                font-size: 22px;
+                font-size: 21px;
 
             }
 
 
             .chart-card {
 
-                height: 320px;
+                height: 315px;
 
-                border-radius: 22px;
+                border-radius: 20px;
+
+                padding: 5px 2px 2px;
+
+            }
+
+
+            #chart {
+
+                height: 305px;
 
             }
 
 
             #assetStats {
 
-                gap: 12px;
+                gap: 10px;
 
             }
 
 
             .stat-card {
 
-                padding: 15px;
+                padding: 14px;
+
+                min-height: 88px;
 
             }
 
@@ -393,11 +598,18 @@
             }
 
 
-            .invest-btn {
+            .supply-grid {
 
-                height: 95px;
+                grid-template-columns:
+                    1fr;
 
-                font-size: 24px;
+            }
+
+
+            .asset-actions {
+
+                grid-template-columns:
+                    1fr 1fr;
 
             }
 
@@ -412,35 +624,42 @@
 
             .asset-page {
 
-                padding-left: 20px;
+                padding-left: 13px;
 
-                padding-right: 20px;
+                padding-right: 13px;
 
             }
 
 
             .asset-name {
 
-                font-size: 23px;
+                font-size: 22px;
 
             }
 
 
             .asset-price {
 
-                font-size: 20px;
+                font-size: 19px;
 
             }
 
 
             .stat-title {
 
-                font-size: 12px;
+                font-size: 11px;
 
             }
 
 
             .stat-value {
+
+                font-size: 14px;
+
+            }
+
+
+            .asset-action {
 
                 font-size: 14px;
 
@@ -473,14 +692,14 @@
 
 
         <!-- =========================
-             ASSET INFORMATION
+             ASSET HEADER
         ========================== -->
 
         <section id="assetHeader">
 
             <div style="
                 color:#8b949e;
-                padding:20px;
+                padding:10px 0;
             ">
                 Loading asset...
             </div>
@@ -500,8 +719,13 @@
 
 
         <!-- =========================
-             STATISTICS
+             MARKET STATISTICS
         ========================== -->
+
+        <div class="section-title">
+            Market Statistics
+        </div>
+
 
         <section id="assetStats">
 
@@ -535,7 +759,7 @@
             <div class="stat-card">
 
                 <div class="stat-title">
-                    Volume
+                    24h Volume
                 </div>
 
                 <div class="stat-value">
@@ -548,7 +772,7 @@
             <div class="stat-card">
 
                 <div class="stat-title">
-                    Rank
+                    Market Rank
                 </div>
 
                 <div class="stat-value">
@@ -562,13 +786,121 @@
 
 
         <!-- =========================
-             INVEST
+             ASSET INFORMATION
+        ========================== -->
+
+        <section class="asset-info">
+
+            <div class="asset-info-title">
+                About this asset
+            </div>
+
+            <div
+                id="assetDescription"
+                class="asset-description"
+            >
+                Loading asset information...
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SUPPLY
+        ========================== -->
+
+        <div class="section-title">
+            Supply
+        </div>
+
+
+        <section class="supply-grid">
+
+
+            <div class="supply-item">
+
+                <div class="supply-label">
+                    Circulating Supply
+                </div>
+
+                <div
+                    id="circulatingSupply"
+                    class="supply-value"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <div class="supply-item">
+
+                <div class="supply-label">
+                    Total Supply
+                </div>
+
+                <div
+                    id="totalSupply"
+                    class="supply-value"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <div class="supply-item">
+
+                <div class="supply-label">
+                    Max Supply
+                </div>
+
+                <div
+                    id="maxSupply"
+                    class="supply-value"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================
+             ACTIONS
+        ========================== -->
+
+        <section class="asset-actions">
+
+            <button
+                class="asset-action primary"
+                onclick="investAsset()"
+            >
+                Invest
+            </button>
+
+
+            <button
+                class="asset-action"
+                onclick="addToWatchlist()"
+            >
+                ☆ Watchlist
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             BUY
         ========================== -->
 
         <button
             class="invest-btn"
+            onclick="investAsset()"
         >
-            Invest
+            Invest in this asset
         </button>
 
 
@@ -579,7 +911,7 @@
          ASSET JAVASCRIPT
     ========================== -->
 
-     <script src="asset.js?v=2"></script>
+    <script src="asset.js?v=2"></script>
 
 
 </body>
