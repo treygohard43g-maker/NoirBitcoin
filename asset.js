@@ -1232,60 +1232,54 @@ function createChart(
 
                 },
 
+ // =====================
+// CROSSHAIR
+// =====================
 
-                // =====================
-                // CROSSHAIR
-                // =====================
+crosshair: {
 
-                crosshair: {
+    mode:
+        LightweightCharts
+            .CrosshairMode
+            .Normal,
 
-                    mode:
-                        LightweightCharts
-                            .CrosshairMode
-                            .Normal,
+    vertLine: {
 
+        color:
+            "rgba(255,255,255,0.25)",
 
-                    vertLine: {
+        width: 1,
 
-                        color:
-                            "rgba(255,255,255,0.45)",
+        style:
+            LightweightCharts
+                .LineStyle
+                .Dashed,
 
-                        width: 1,
+        visible: true,
 
-                        style:
-                            LightweightCharts
-                                .LineStyle
-                                .Dashed,
+        labelVisible: false
 
-                        visible: true,
+    },
 
-                        labelVisible: false
+    horzLine: {
 
-                    },
+        color:
+            "rgba(255,255,255,0.25)",
 
+        width: 1,
 
-                    horzLine: {
+        style:
+            LightweightCharts
+                .LineStyle
+                .Dashed,
 
-                        color:
-                            "rgba(255,255,255,0.45)",
+        visible: true,
 
-                        width: 1,
+        labelVisible: true
 
-                        style:
-                            LightweightCharts
-                                .LineStyle
-                                .Dashed,
+    }
 
-                        visible: true,
-
-                        labelVisible: true
-
-                    }
-
-                }
-
-            }
-        );
+}
 
 
     // =========================
