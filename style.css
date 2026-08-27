@@ -8280,3 +8280,100 @@ body.light-mode a {
     text-overflow: ellipsis;
 
 }
+
+/* =========================
+   MODERN RECEIVE BUTTON
+========================= */
+
+.receive-btn {
+
+    width: 100%;
+    height: 46px;
+
+    padding: 0 16px;
+    margin-top: 15px;
+
+    border: 1px solid rgba(247, 147, 26, 0.45);
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7931a,
+            #ff9f1c
+        );
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    box-shadow:
+        0 6px 18px rgba(247, 147, 26, 0.18),
+        inset 0 1px 0 rgba(255,255,255,0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+
+/* Receive icon */
+
+.receive-btn::before {
+
+    content: "↓";
+
+    width: 19px;
+    height: 19px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    border: 1.5px solid rgba(255,255,255,0.9);
+
+    border-radius: 50%;
+
+}
+
+
+/* Hover */
+
+.receive-btn:hover {
+
+    filter: brightness(1.08);
+
+    box-shadow:
+        0 8px 22px rgba(247, 147, 26, 0.25),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+
+}
+
+
+/* Press */
+
+.receive-btn:active {
+
+    transform: scale(0.97);
+
+    box-shadow:
+        0 4px 12px rgba(247, 147, 26, 0.15);
+
+}
