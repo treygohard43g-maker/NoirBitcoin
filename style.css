@@ -8658,3 +8658,94 @@ body.light-mode a {
 .stat-card:active {
     transform: scale(0.985);
 }
+
+/* =========================
+   PREMIUM WATCHLIST BUTTON
+========================= */
+
+.watchlist-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.watchlist-star {
+    font-size: 19px;
+    line-height: 1;
+    transition:
+        color 0.2s ease,
+        transform 0.25s ease;
+}
+
+.watchlist-btn.watchlisted {
+    border-color: rgba(245, 158, 11, 0.45);
+    background: rgba(245, 158, 11, 0.08);
+}
+
+.watchlist-btn.watchlisted .watchlist-star {
+    color: #f59e0b;
+    transform: scale(1.12);
+}
+
+/* =========================
+   WATCHLIST TOAST
+========================= */
+
+.watchlist-toast {
+    position: fixed;
+
+    left: 50%;
+    bottom: 28px;
+
+    transform:
+        translate(-50%, 20px);
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 13px 18px;
+
+    background: rgba(24, 28, 34, 0.96);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 14px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 650;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.35);
+
+    opacity: 0;
+    pointer-events: none;
+
+    z-index: 9999;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.watchlist-toast.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%, 0);
+}
+
+.watchlist-toast i {
+    color: #f59e0b;
+    font-size: 16px;
+}
