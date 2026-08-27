@@ -320,20 +320,33 @@
 
         </section>
 
-        <section class="asset-info">
+    <section class="asset-info">
 
-            <div class="asset-info-title">
-                About this asset
-            </div>
+    <button
+        type="button"
+        class="asset-info-title"
+        onclick="toggleAboutAsset()"
+        aria-expanded="false"
+    >
+        <span>About this asset</span>
 
-            <div
-                id="assetDescription"
-                class="asset-description"
-            >
-                Loading asset information...
-            </div>
+        <span
+            class="about-asset-arrow"
+            id="aboutAssetArrow"
+        >
+            ▾
+        </span>
+    </button>
 
-        </section>
+
+    <div
+        id="assetDescription"
+        class="asset-description"
+    >
+        Loading asset information...
+    </div>
+
+</section>
 
         <div class="section-title">
             Supply
