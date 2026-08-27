@@ -329,6 +329,134 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+        /* =========================
+   PREMIUM WATCHLIST
+========================= */
+
+#watchlistBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+#watchlistBtn .watchlist-star {
+    font-size: 19px;
+    line-height: 1;
+    color: #8b949e;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Active watchlist */
+
+#watchlistBtn.watchlisted {
+    border-color: rgba(245, 185, 66, 0.45);
+    background: rgba(245, 185, 66, 0.08);
+}
+
+#watchlistBtn.watchlisted .watchlist-star {
+    color: #f5b942;
+    transform: scale(1.08);
+}
+
+/* Press effect */
+
+#watchlistBtn:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================
+   WATCHLIST TOAST
+========================= */
+
+.watchlist-toast {
+    position: fixed;
+
+    left: 50%;
+    bottom: 28px;
+
+    transform: translate(-50%, 20px);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px 18px;
+
+    background: rgba(24, 28, 34, 0.96);
+
+    border: 1px solid #2a2f38;
+
+    border-radius: 14px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.45);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+/* Show toast */
+
+.watchlist-toast.show {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translate(-50%, 0);
+}
+
+
+/* Toast icon */
+
+.watchlist-toast i {
+    color: #f5b942;
+    font-size: 16px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .watchlist-toast {
+        bottom: 22px;
+
+        width: max-content;
+        max-width: calc(100% - 32px);
+
+        padding: 12px 16px;
+
+        font-size: 13px;
+    }
+
+}
 
     </style>
 
