@@ -1588,4 +1588,10 @@ function addToWatchlist() {
 // START ASSET LOADING
 // =========================
 
-loadAsset();
+document.addEventListener("DOMContentLoaded", () => {
+
+    console.log("Asset page ready");
+
+    loadAsset();
+
+});
