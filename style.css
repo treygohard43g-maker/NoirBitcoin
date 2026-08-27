@@ -3145,23 +3145,6 @@ p {
 
 }
 
-.asset-card {
-
-    background: #161b22;
-
-    padding: 16px;
-
-    border-radius: 16px;
-
-    border: 1px solid rgba(255,255,255,0.08);
-    
-    flex: 0 0 18px;
-    
-    box-sizing: border-box
-
-}
-
-
 .asset-card h3 {
 
     margin-bottom: 15px;
@@ -6927,29 +6910,6 @@ body {
     border: none !important;
     box-shadow: none !important;
 }
-
-
-    /* Digital assets */
-    .digital-assets {
-        padding: 0;
-        margin-top: 20px;
-    }
-
-
-    .digital-assets .asset-card {
-        width: 100%;
-        padding: 22px 20px;
-        border-radius: 18px;
-        margin-bottom: 12px;
-    }
-
-
-    .asset-card img,
-    .asset-logo {
-        width: 58px;
-        height: 58px;
-    }
-
 
     /* Transaction history */
     .transaction-history {
