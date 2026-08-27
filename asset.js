@@ -2174,3 +2174,84 @@ if (
     startAssetPage();
 
 }
+
+// =========================
+// ABOUT ASSET DROPDOWN
+// =========================
+
+function toggleAboutAsset() {
+
+    const description =
+        document.getElementById(
+            "assetDescription"
+        );
+
+    const arrow =
+        document.getElementById(
+            "aboutAssetArrow"
+        );
+
+    const title =
+        document.querySelector(
+            ".asset-info-title"
+        );
+
+
+    if (!description) {
+        return;
+    }
+
+
+    const isOpen =
+        description.classList.contains(
+            "about-open"
+        );
+
+
+    if (isOpen) {
+
+        description.classList.remove(
+            "about-open"
+        );
+
+        if (arrow) {
+
+            arrow.style.transform =
+                "rotate(0deg)";
+
+        }
+
+        if (title) {
+
+            title.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+    } else {
+
+        description.classList.add(
+            "about-open"
+        );
+
+        if (arrow) {
+
+            arrow.style.transform =
+                "rotate(180deg)";
+
+        }
+
+        if (title) {
+
+            title.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+
+        }
+
+    }
+
+}
