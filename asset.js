@@ -2253,5 +2253,7 @@ function toggleAboutAsset() {
         }
 
     }
-
+    
 }
+
+console.log("ABOUT DROPDOWN FUNCTION LOADED");
