@@ -2196,6 +2196,7 @@ function toggleAboutAsset() {
             ".asset-info-title"
         );
 
+
     if (!description) {
 
         console.error(
@@ -2205,38 +2206,25 @@ function toggleAboutAsset() {
         return;
     }
 
-    const isOpen =
-        description.classList.contains(
-            "about-open"
-        );
 
-    if (isOpen) {
+    // Check if currently hidden
 
-        description.classList.remove(
-            "about-open"
-        );
+    const isHidden =
+        description.hidden;
 
-        if (arrow) {
 
-            arrow.style.transform =
-                "rotate(0deg)";
+    // =========================
+    // OPEN
+    // =========================
 
-        }
+    if (isHidden) {
 
-        if (title) {
-
-            title.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-        }
-
-    } else {
+        description.hidden = false;
 
         description.classList.add(
             "about-open"
         );
+
 
         if (arrow) {
 
@@ -2244,6 +2232,7 @@ function toggleAboutAsset() {
                 "rotate(180deg)";
 
         }
+
 
         if (title) {
 
@@ -2254,10 +2243,45 @@ function toggleAboutAsset() {
 
         }
 
+
+    }
+
+    // =========================
+    // CLOSE
+    // =========================
+
+    else {
+
+        description.hidden = true;
+
+        description.classList.remove(
+            "about-open"
+        );
+
+
+        if (arrow) {
+
+            arrow.style.transform =
+                "rotate(0deg)";
+
+        }
+
+
+        if (title) {
+
+            title.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
     }
 
 }
 
+
 console.log(
     "ABOUT DROPDOWN FUNCTION LOADED"
 );
+
