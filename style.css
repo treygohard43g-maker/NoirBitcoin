@@ -8024,3 +8024,20 @@ body.light-mode a {
 
     padding: 0 0 16px 0 !important;
 }
+
+/* =========================
+   ABOUT ASSET DROPDOWN
+========================= */
+
+.asset-description {
+    display: none !important;
+}
+
+.asset-description.about-open {
+    display: block !important;
+}
+
+.about-asset-arrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
