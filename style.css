@@ -11342,4 +11342,95 @@ body {
 
 }
 
+/* =========================
+   INTERACTIVE PORTFOLIO ALLOCATION
+========================= */
 
+.portfolio-allocation-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.portfolio-allocation-card:active {
+    transform: scale(0.99);
+}
+
+.allocation-preview {
+    margin-top: 18px;
+}
+
+.allocation-preview-bar {
+    display: flex;
+    width: 100%;
+    height: 8px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #222;
+}
+
+.allocation-preview-bar span {
+    height: 100%;
+    display: block;
+}
+
+.preview-btc {
+    width: 50%;
+    background: #f7931a;
+}
+
+.preview-eth {
+    width: 25%;
+    background: #627eea;
+}
+
+.preview-sol {
+    width: 15%;
+    background: #8b5cf6;
+}
+
+.preview-other {
+    width: 10%;
+    background: #6b7280;
+}
+
+.allocation-preview-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 11px;
+    color: #8b929e;
+    white-space: nowrap;
+}
+
+.allocation-action {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.allocation-chevron {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.allocation-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0;
+    transition:
+        max-height 0.45s ease,
+        opacity 0.3s ease,
+        margin-top 0.3s ease;
+}
+
+.portfolio-allocation-card.allocation-open .allocation-content {
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 24px;
+}
+
+.portfolio-allocation-card.allocation-open .allocation-chevron {
+    transform: rotate(180deg);
+}
