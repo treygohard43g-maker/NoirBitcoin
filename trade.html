@@ -15,7 +15,61 @@
 
 <body>
 
-    <h1>Trade</h1>
+    <div class="trade-container">
+
+    <div class="trade-header">
+        <h1>Trade</h1>
+        <p>Markets</p>
+    </div>
+
+    <div class="market-card">
+
+        <div class="market-info">
+            <div class="coin-icon">₿</div>
+
+            <div>
+                <h2>Bitcoin</h2>
+                <span>BTC</span>
+            </div>
+        </div>
+
+        <div class="market-price">
+            <strong id="btcPrice">Loading...</strong>
+            <span id="btcChange">--</span>
+        </div>
+
+    </div>
+
+    <div class="trade-card">
+
+        <label for="tradeAmount">Amount</label>
+
+        <div class="amount-input">
+            <span>$</span>
+            <input
+                type="number"
+                id="tradeAmount"
+                placeholder="0.00"
+                min="0"
+                step="0.01"
+            >
+        </div>
+
+        <div class="trade-buttons">
+
+            <button id="buyBtn" class="buy-btn">
+                Buy
+            </button>
+
+            <button id="sellBtn" class="sell-btn">
+                Sell
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 
