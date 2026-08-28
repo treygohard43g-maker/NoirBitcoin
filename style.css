@@ -8764,3 +8764,471 @@ body.light-mode a {
 .chart-card::before {
     background-image: none !important;
 }
+
+/* =========================================================
+   NOIRBITCOIN — PREMIUM MOBILE WITHDRAWAL POLISH
+   Paste this entire block at the VERY BOTTOM of your CSS
+========================================================= */
+
+
+/* =========================
+   WITHDRAWAL OVERLAY
+========================= */
+
+.withdraw-modal,
+.withdrawal-modal,
+#withdrawModal,
+#withdrawalModal {
+
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+}
+
+
+/* =========================
+   MODAL CONTENT
+========================= */
+
+.withdraw-modal-content,
+.withdrawal-modal-content,
+.withdraw-modal .modal-content,
+.withdrawal-modal .modal-content {
+
+    width: min(92%, 440px);
+
+    max-width: 440px;
+
+    margin: 0 auto;
+
+    box-sizing: border-box;
+
+    border-radius: 22px;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27,30,36,0.98),
+            rgba(13,17,23,0.99)
+        );
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.55),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+
+    overflow: hidden;
+
+}
+
+
+/* =========================
+   WITHDRAWAL HEADER
+========================= */
+
+.withdraw-modal h2,
+.withdrawal-modal h2,
+.withdraw-modal-content h2,
+.withdrawal-modal-content h2 {
+
+    margin: 0 0 6px;
+
+    font-size: 20px;
+
+    line-height: 1.25;
+
+    font-weight: 700;
+
+    letter-spacing: -0.3px;
+
+    color: #ffffff;
+
+}
+
+
+.withdraw-modal p,
+.withdrawal-modal p,
+.withdraw-modal-content p,
+.withdrawal-modal-content p {
+
+    max-width: 100%;
+
+    margin: 0 0 16px;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    color: #8b949e;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+/* =========================
+   FORM GROUPS
+========================= */
+
+.withdraw-modal label,
+.withdrawal-modal label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #aeb6c2;
+
+    letter-spacing: 0.2px;
+
+}
+
+
+.withdraw-modal input,
+.withdrawal-modal input,
+.withdraw-modal textarea,
+.withdrawal-modal textarea,
+.withdrawal-modal select,
+.withdraw-modal select {
+
+    width: 100%;
+
+    max-width: 100%;
+
+    min-width: 0;
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    box-sizing: border-box;
+
+    border-radius: 13px;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    outline: none;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.withdraw-modal textarea,
+.withdrawal-modal textarea {
+
+    min-height: 90px;
+
+    height: auto;
+
+    padding-top: 13px;
+
+    padding-bottom: 13px;
+
+    resize: vertical;
+
+}
+
+
+.withdraw-modal input:focus,
+.withdrawal-modal input:focus,
+.withdraw-modal textarea:focus,
+.withdrawal-modal textarea:focus,
+.withdrawal-modal select:focus,
+.withdraw-modal select:focus {
+
+    border-color:
+        rgba(247,147,26,0.55);
+
+    background:
+        rgba(255,255,255,0.045);
+
+    box-shadow:
+        0 0 0 3px rgba(247,147,26,0.08);
+
+}
+
+
+/* =========================
+   AMOUNT / BALANCE AREA
+========================= */
+
+.withdraw-modal .balance,
+.withdrawal-modal .balance,
+.withdraw-modal .available-balance,
+.withdrawal-modal .available-balance {
+
+    font-size: 12px;
+
+    color: #7d8794;
+
+    margin-top: 7px;
+
+}
+
+
+.withdraw-modal .balance strong,
+.withdrawal-modal .balance strong,
+.withdraw-modal .available-balance strong,
+.withdrawal-modal .available-balance strong {
+
+    color: #f59e0b;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================
+   BUTTON ROW
+========================= */
+
+.withdraw-modal .button-row,
+.withdrawal-modal .button-row,
+.withdraw-modal .modal-buttons,
+.withdrawal-modal .modal-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+    width: 100%;
+
+    margin-top: 18px;
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.withdraw-modal button,
+.withdrawal-modal button {
+
+    min-height: 46px;
+
+    border-radius: 13px;
+
+    border: 1px solid transparent;
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+    letter-spacing: 0.1px;
+
+    transition:
+        transform 0.18s ease,
+        opacity 0.18s ease,
+        box-shadow 0.18s ease;
+
+}
+
+
+.withdraw-modal button:active,
+.withdrawal-modal button:active {
+
+    transform: scale(0.97);
+
+}
+
+
+/* =========================
+   PRIMARY WITHDRAW BUTTON
+========================= */
+
+.withdraw-modal .withdraw-btn,
+.withdrawal-modal .withdraw-btn,
+.withdraw-modal .confirm-btn,
+.withdrawal-modal .confirm-btn,
+.withdraw-modal button[type="submit"],
+.withdrawal-modal button[type="submit"] {
+
+    flex: 1;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #f7931a
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 22px rgba(245,158,11,0.18);
+
+}
+
+
+/* =========================
+   CANCEL BUTTON
+========================= */
+
+.withdraw-modal .cancel-btn,
+.withdrawal-modal .cancel-btn,
+.withdraw-modal .close-btn,
+.withdrawal-modal .close-btn {
+
+    flex: 0 0 auto;
+
+    min-width: 90px;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    color: #aeb6c2;
+
+    border-color:
+        rgba(255,255,255,0.07);
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .withdraw-modal-content,
+    .withdrawal-modal-content,
+    .withdraw-modal .modal-content,
+    .withdrawal-modal .modal-content {
+
+        width: calc(100% - 24px);
+
+        max-width: none;
+
+        padding: 18px;
+
+        border-radius: 20px;
+
+    }
+
+
+    .withdraw-modal h2,
+    .withdrawal-modal h2,
+    .withdraw-modal-content h2,
+    .withdrawal-modal-content h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .withdraw-modal input,
+    .withdrawal-modal input,
+    .withdraw-modal select,
+    .withdrawal-modal select {
+
+        height: 46px;
+
+        font-size: 14px;
+
+    }
+
+
+    .withdraw-modal .button-row,
+    .withdrawal-modal .button-row,
+    .withdraw-modal .modal-buttons,
+    .withdrawal-modal .modal-buttons {
+
+        gap: 8px;
+
+    }
+
+
+    .withdraw-modal button,
+    .withdrawal-modal button {
+
+        min-height: 45px;
+
+    }
+
+}
+
+
+/* =========================
+   VERY SMALL IPHONE SCREENS
+========================= */
+
+@media (max-width: 380px) {
+
+    .withdraw-modal-content,
+    .withdrawal-modal-content,
+    .withdraw-modal .modal-content,
+    .withdrawal-modal .modal-content {
+
+        width: calc(100% - 18px);
+
+        padding: 16px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .withdraw-modal h2,
+    .withdrawal-modal h2,
+    .withdraw-modal-content h2,
+    .withdrawal-modal-content h2 {
+
+        font-size: 18px;
+
+    }
+
+
+    .withdraw-modal p,
+    .withdrawal-modal p,
+    .withdraw-modal-content p,
+    .withdrawal-modal-content p {
+
+        font-size: 12px;
+
+    }
+
+}
+
+
+/* =========================
+   PREVENT HORIZONTAL OVERFLOW
+========================= */
+
+.withdraw-modal *,
+.withdrawal-modal *,
+.withdraw-modal-content *,
+.withdrawal-modal-content * {
+
+    max-width: 100%;
+
+    box-sizing: border-box;
+
+}
+
+
+html,
+body {
+
+    overflow-x: hidden;
+
+}
