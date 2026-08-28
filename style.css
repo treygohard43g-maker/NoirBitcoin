@@ -10454,3 +10454,186 @@ body {
 .plan-card button:active {
     transform: scale(0.97);
 }
+
+/* =====================================================
+   NOIRBITCOIN — PREMIUM HISTORY SECTION
+===================================================== */
+
+.history-section {
+    width: 100%;
+    margin-top: 24px;
+    padding: 18px 16px 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28, 32, 38, 0.96),
+            rgba(16, 19, 24, 0.98)
+        );
+
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 18px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 10px 28px rgba(0,0,0,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.025);
+}
+
+/* =========================
+   HISTORY HEADER
+========================= */
+
+.history-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+.history-title h2 {
+    margin: 0;
+
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+
+    color: #f5f5f5;
+    letter-spacing: -0.3px;
+}
+
+.history-title i {
+    font-size: 13px;
+    color: #727984;
+
+    transition: transform 0.2s ease;
+}
+
+/* =========================
+   RECENT HISTORY
+========================= */
+
+#recentHistory {
+    width: 100%;
+}
+
+/* Individual transaction rows */
+
+#recentHistory > * {
+    box-sizing: border-box;
+}
+
+/* =========================
+   VIEW ALL
+========================= */
+
+.view-all-container {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.view-all-btn {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 11px 14px;
+
+    border-radius: 11px;
+
+    border: 1px solid rgba(255,255,255,0.07);
+
+    background:
+        rgba(255,255,255,0.035);
+
+    color: #c9cdd3;
+
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.view-all-btn i {
+    font-size: 10px;
+    color: #7d848e;
+}
+
+.view-all-btn:hover {
+    background:
+        rgba(255,255,255,0.06);
+
+    border-color:
+        rgba(255,255,255,0.12);
+
+    transform: translateY(-1px);
+}
+
+.view-all-btn:active {
+    transform: scale(0.98);
+}
+
+/* =========================
+   MOBILE FIT
+========================= */
+
+@media (max-width: 600px) {
+
+    .history-section {
+        margin-top: 20px;
+        padding: 16px 13px 13px;
+        border-radius: 16px;
+    }
+
+    .history-title {
+        margin-bottom: 12px;
+    }
+
+    .history-title h2 {
+        font-size: 17px;
+    }
+
+    .history-title i {
+        font-size: 12px;
+    }
+
+    .view-all-container {
+        margin-top: 10px;
+    }
+
+    .view-all-btn {
+        padding: 10px 12px;
+        font-size: 11px;
+        border-radius: 10px;
+    }
+}
+
+/* =========================
+   DASHBOARD RECENT HISTORY
+   PROFIT / LOSS COLORS
+========================= */
+
+#recentHistory .positive,
+#recentHistory .profit,
+#recentHistory .gain,
+#recentHistory .success {
+    color: #22c55e !important;
+}
+
+#recentHistory .negative,
+#recentHistory .loss,
+#recentHistory .failed {
+    color: #ef4444 !important;
+}
