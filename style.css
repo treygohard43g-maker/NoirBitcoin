@@ -9386,3 +9386,33 @@ body {
 
     text-overflow: ellipsis;
 }
+
+/* =========================
+   MOBILE BTC WALLET CARD
+========================= */
+
+@media (max-width: 600px) {
+
+    .wallet-box {
+        height: 48px;
+        min-height: 48px;
+        padding: 0 9px;
+        border-radius: 9px;
+    }
+
+    .wallet-row {
+        gap: 8px;
+    }
+
+    #btcWallet {
+        font-size: 11px;
+        letter-spacing: 0.25px;
+    }
+
+    .copy-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 7px;
+    }
+
+}
