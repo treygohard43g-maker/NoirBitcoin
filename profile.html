@@ -5,7 +5,8 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>NoirBitcoin Profile</title>
 
@@ -16,33 +17,392 @@
 
 <link rel="stylesheet" href="style.css">
 
+<style>
+
+/* =========================
+   NOIRBITCOIN PROFILE PAGE
+========================= */
+
+.profile-page {
+
+    min-height: 100vh;
+
+    padding: 18px 18px 40px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ---------- HEADER ---------- */
+
+.profile-header {
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 18px;
+
+    position: relative;
+
+    box-sizing: border-box;
+
+}
+
+.profile-back-btn {
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+
+    border: 1px solid #2A2F38;
+
+    background: #181C22;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: 0.2s ease;
+
+}
+
+.profile-back-btn:active {
+
+    transform: scale(0.94);
+
+}
+
+.profile-header h1 {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    margin: 0;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.2px;
+
+    color: #ffffff;
+
+}
+
+
+/* ---------- PROFILE CARD ---------- */
+
+.profile-card {
+
+    width: 100%;
+
+    max-width: 520px;
+
+    margin: 18px auto 0;
+
+    padding: 34px 22px 30px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1B1E24,
+            #15181D
+        );
+
+    border: 1px solid #2A2F38;
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,0.28);
+
+}
+
+
+/* ---------- PHOTO ---------- */
+
+.profile-photo-wrapper {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 20px;
+
+}
+
+.profile-photo {
+
+    width: 118px;
+
+    height: 118px;
+
+    border-radius: 50%;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            145deg,
+            #242932,
+            #12151A
+        );
+
+    border: 3px solid #2A2F38;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.35);
+
+}
+
+
+/* Profile image */
+
+#profilePhoto {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: none;
+
+}
+
+
+/* Placeholder */
+
+#profilePhotoPlaceholder {
+
+    color: #8b949e;
+
+    font-size: 38px;
+
+}
+
+
+/* Camera badge */
+
+.profile-photo-camera {
+
+    position: absolute;
+
+    right: 3px;
+
+    bottom: 3px;
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f59e0b;
+
+    color: #111;
+
+    border: 3px solid #181C22;
+
+    font-size: 13px;
+
+}
+
+
+/* ---------- NAME ---------- */
+
+#profileDisplayName {
+
+    margin: 4px 0 7px;
+
+    color: #ffffff;
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+    letter-spacing: -0.3px;
+
+}
+
+
+/* ---------- EMAIL ---------- */
+
+#profileDisplayEmail {
+
+    margin: 0;
+
+    color: #8b949e;
+
+    font-size: 14px;
+
+    font-weight: 400;
+
+    word-break: break-word;
+
+}
+
+
+/* ---------- CHANGE PHOTO BUTTON ---------- */
+
+.change-photo-btn {
+
+    margin-top: 25px;
+
+    width: 100%;
+
+    max-width: 260px;
+
+    height: 46px;
+
+    border: 1px solid rgba(245,158,11,0.35);
+
+    border-radius: 13px;
+
+    background:
+        rgba(245,158,11,0.08);
+
+    color: #f59e0b;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+.change-photo-btn i {
+
+    margin-right: 8px;
+
+}
+
+.change-photo-btn:active {
+
+    transform: scale(0.97);
+
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 480px) {
+
+    .profile-page {
+
+        padding-left: 14px;
+
+        padding-right: 14px;
+
+    }
+
+    .profile-card {
+
+        margin-top: 12px;
+
+        padding: 30px 18px 26px;
+
+        border-radius: 21px;
+
+    }
+
+    .profile-photo {
+
+        width: 108px;
+
+        height: 108px;
+
+    }
+
+    #profileDisplayName {
+
+        font-size: 20px;
+
+    }
+
+}
+
+</style>
+
 </head>
 
+
 <body>
+
 
 <header class="profile-header">
 
     <button
         class="profile-back-btn"
+        type="button"
         onclick="window.location.href='dashboard.html'"
+        aria-label="Back"
     >
+
         <i class="fa-solid fa-arrow-left"></i>
+
     </button>
+
 
     <h1>Profile</h1>
 
 </header>
 
 
+
 <main class="profile-page">
 
     <section class="profile-card">
+
 
         <!-- PROFILE PHOTO -->
 
         <div class="profile-photo-wrapper">
 
-            <label for="profilePhotoInput" class="profile-photo">
+            <label
+                for="profilePhotoInput"
+                class="profile-photo"
+            >
 
                 <img
                     id="profilePhoto"
@@ -51,14 +411,20 @@
                 >
 
                 <div id="profilePhotoPlaceholder">
+
                     <i class="fa-solid fa-user"></i>
+
                 </div>
 
+
                 <div class="profile-photo-camera">
+
                     <i class="fa-solid fa-camera"></i>
+
                 </div>
 
             </label>
+
 
             <input
                 type="file"
@@ -70,25 +436,34 @@
         </div>
 
 
-        <!-- USER INFORMATION -->
+        <!-- USER NAME -->
 
         <h2 id="profileDisplayName">
             User
         </h2>
+
+
+        <!-- USER EMAIL -->
 
         <p id="profileDisplayEmail">
             —
         </p>
 
 
+        <!-- CHANGE PHOTO -->
+
         <button
             class="change-photo-btn"
             type="button"
             onclick="document.getElementById('profilePhotoInput').click()"
         >
+
             <i class="fa-solid fa-camera"></i>
+
             Change Profile Photo
+
         </button>
+
 
     </section>
 
