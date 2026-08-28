@@ -11,6 +11,183 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #0d1117;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.trade-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 24px 18px 40px;
+}
+
+.trade-header {
+    margin-bottom: 20px;
+}
+
+.trade-header h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.trade-header p {
+    margin: 6px 0 0;
+    color: #8b949e;
+    font-size: 14px;
+}
+
+.market-card,
+.trade-card {
+    background: linear-gradient(145deg, #1b1e24, #181c22);
+    border: 1px solid #2a2f38;
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 16px;
+}
+
+.market-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.market-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.coin-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #f7931a;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.market-info h2 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.market-info span {
+    display: block;
+    margin-top: 3px;
+    color: #8b949e;
+    font-size: 12px;
+}
+
+.market-price {
+    text-align: right;
+}
+
+.market-price strong {
+    display: block;
+    font-size: 17px;
+}
+
+.market-price span {
+    display: block;
+    margin-top: 4px;
+    color: #8b949e;
+    font-size: 12px;
+}
+
+.trade-card label {
+    display: block;
+    margin-bottom: 9px;
+    color: #8b949e;
+    font-size: 13px;
+}
+
+.amount-input {
+    display: flex;
+    align-items: center;
+    background: #0d1117;
+    border: 1px solid #2a2f38;
+    border-radius: 12px;
+    padding: 0 14px;
+    height: 52px;
+}
+
+.amount-input span {
+    color: #8b949e;
+    margin-right: 8px;
+}
+
+.amount-input input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.trade-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.trade-buttons button {
+    flex: 1;
+    height: 50px;
+    border: none;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.buy-btn {
+    background: #16803c;
+}
+
+.sell-btn {
+    background: #b42318;
+}
+
+.trade-buttons button:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 480px) {
+
+    .trade-container {
+        padding: 20px 14px 30px;
+    }
+
+    .market-card {
+        padding: 15px;
+    }
+
+    .trade-card {
+        padding: 15px;
+    }
+
+}
+
+</style>
+
 </head>
 
 <body>
