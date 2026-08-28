@@ -3200,15 +3200,9 @@ loadHeaderProfilePhoto();
 // PROFILE ACCOUNT DETAILS
 // =========================
 
-function loadProfileAccountDetails() {
+function updateProfileAccountDetails(user) {
 
-    const savedUser =
-        JSON.parse(
-            localStorage.getItem("noirUser")
-        );
-
-    if (!savedUser) return;
-
+    if (!user) return;
 
     const name =
         document.getElementById("profileInfoName");
@@ -3223,7 +3217,7 @@ function loadProfileAccountDetails() {
     if (name) {
 
         name.textContent =
-            savedUser.name || "User";
+            user.displayName || "User";
 
     }
 
@@ -3231,7 +3225,7 @@ function loadProfileAccountDetails() {
     if (email) {
 
         email.textContent =
-            savedUser.email || "—";
+            user.email || "—";
 
     }
 
@@ -3239,8 +3233,8 @@ function loadProfileAccountDetails() {
     if (accountId) {
 
         accountId.textContent =
-            savedUser.uid
-                ? savedUser.uid.substring(0, 12) + "..."
+            user.uid
+                ? user.uid.substring(0, 12) + "..."
                 : "—";
 
     }
@@ -3248,4 +3242,11 @@ function loadProfileAccountDetails() {
 }
 
 
-loadProfileAccountDetails();
+// Wait for Firebase authentication
+onAuthStateChanged(auth, function(user) {
+
+    if (!user) return;
+
+    updateProfileAccountDetails(user);
+
+});
