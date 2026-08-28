@@ -3040,38 +3040,112 @@ if (profilePhotoInput) {
 
             reader.onload = function (event) {
 
-                const photoData =
-                    event.target.result;
+    const image = new Image();
+
+    image.onload = function () {
+
+        const canvas = document.createElement("canvas");
+
+        const maxSize = 500;
+
+        let width = image.width;
+        let height = image.height;
+
+        // Resize large photos
+        if (width > height) {
+
+            if (width > maxSize) {
+
+                height =
+                    height * (maxSize / width);
+
+                width = maxSize;
+
+            }
+
+        } else {
+
+            if (height > maxSize) {
+
+                width =
+                    width * (maxSize / height);
+
+                height = maxSize;
+
+            }
+
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx =
+            canvas.getContext("2d");
+
+        ctx.drawImage(
+            image,
+            0,
+            0,
+            width,
+            height
+        );
+
+        // Compress the image
+        const photoData =
+            canvas.toDataURL(
+                "image/jpeg",
+                0.75
+            );
 
 
-                // Save photo locally
-                localStorage.setItem(
-                    "noirProfilePhoto",
-                    photoData
-                );
+        // Save compressed photo
+        try {
+
+            localStorage.setItem(
+                "noirProfilePhoto",
+                photoData
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Unable to save profile photo:",
+                error
+            );
+
+            alert(
+                "This photo is too large. Please choose another photo."
+            );
+
+            return;
+
+        }
 
 
-                // Display photo immediately
-                if (profilePhoto) {
+        // Display photo immediately
+        if (profilePhoto) {
 
-                    profilePhoto.src =
-                        photoData;
+            profilePhoto.src =
+                photoData;
 
-                    profilePhoto.style.display =
-                        "block";
+            profilePhoto.style.display =
+                "block";
 
-                }
+        }
 
 
-                if (profilePhotoPlaceholder) {
+        if (profilePhotoPlaceholder) {
 
-                    profilePhotoPlaceholder.style.display =
-                        "none";
+            profilePhotoPlaceholder.style.display =
+                "none";
 
-                }
+        }
 
-            };
+    };
 
+    image.src = event.target.result;
+
+};
 
             reader.readAsDataURL(file);
 
