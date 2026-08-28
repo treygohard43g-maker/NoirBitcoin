@@ -967,17 +967,17 @@ async function forceRepairInvestmentHistory() {
 
                         </div>
 
-                        <div class="history-right">
+                       <div class="history-right">
 
-                            <span>
-                                +$${formattedAmount}
+                            <span class="history-amount-positive">
+                                  +$${formattedAmount}
                             </span>
 
                             <i
                                 class="fa-solid fa-chevron-down history-chevron"
                             ></i>
 
-                        </div>
+                       </div>
 
                     </div>
 
