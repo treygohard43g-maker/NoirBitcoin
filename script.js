@@ -624,24 +624,28 @@ depositModal.style.display = "none";
 
 }
 
-
-// Copy Bitcoin Address
+// ---------- COPY DEPOSIT BITCOIN ADDRESS ----------
 
 const copyAddress = document.getElementById("copyAddress");
 
+if (copyAddress) {
 
-if(copyAddress){
+    copyAddress.onclick = function () {
 
-copyAddress.onclick = function(){
+        const walletAddress =
+            document.querySelector(".wallet-address").textContent.trim();
 
-navigator.clipboard.writeText("12345667990018682929");
+        navigator.clipboard.writeText(walletAddress)
+            .then(() => {
+                alert("Bitcoin address copied");
+            })
+            .catch(() => {
+                alert("Unable to copy Bitcoin address.");
+            });
 
-alert("Bitcoin address copied");
+    };
 
 }
-
-}
-
 
 function investNow(plan) {
 
