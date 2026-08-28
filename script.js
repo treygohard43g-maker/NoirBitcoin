@@ -1435,20 +1435,11 @@ loadBitcoinPrice();
 // Update every 30 seconds
 setInterval(loadBitcoinPrice, 30000);
 
-// ---------- LIVE BALANCE MOVEMENT ----------
+// ---------- LIVE BALANCE ----------
 
+// Balance remains unchanged until a real account transaction updates it.
 function updateLiveBalance() {
-
-    let change = Math.floor(Math.random() * 500) - 200;
-
-    balance += change;
-
-    if (balance < 0) {
-        balance = 0;
-    }
-
     updateBalance();
-
 }
 
 setInterval(updateLiveBalance, 5000);
