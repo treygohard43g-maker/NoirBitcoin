@@ -2521,3 +2521,55 @@ function openAsset(symbol) {
 }
 
 window.openAsset = openAsset;
+
+// =========================
+// PORTFOLIO ALLOCATION
+// =========================
+
+function updatePortfolioAllocation() {
+
+    const allocationTotal =
+        document.getElementById("allocationTotal");
+
+    if (!allocationTotal) return;
+
+    const totalPortfolio = balance;
+
+    allocationTotal.textContent =
+        "$" + totalPortfolio.toLocaleString("en-US", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        });
+
+    // Current allocation
+    const bitcoinPercent = 50;
+    const ethereumPercent = 25;
+    const solanaPercent = 15;
+    const otherPercent = 10;
+
+    const bitcoinElement =
+        document.getElementById("bitcoinAllocation");
+
+    const ethereumElement =
+        document.getElementById("ethereumAllocation");
+
+    const solanaElement =
+        document.getElementById("solanaAllocation");
+
+    const otherElement =
+        document.getElementById("otherAllocation");
+
+    if (bitcoinElement)
+        bitcoinElement.textContent = bitcoinPercent + "%";
+
+    if (ethereumElement)
+        ethereumElement.textContent = ethereumPercent + "%";
+
+    if (solanaElement)
+        solanaElement.textContent = solanaPercent + "%";
+
+    if (otherElement)
+        otherElement.textContent = otherPercent + "%";
+}
+
+updatePortfolioAllocation();
