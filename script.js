@@ -2334,22 +2334,38 @@ function closePendingModal() {
 
 function copyWallet() {
 
+    const walletElement =
+        document.getElementById("btcWallet");
+
+    if (!walletElement) return;
+
     const wallet =
-        document.getElementById("btcWallet").innerText.trim();
+        walletElement.textContent.trim();
 
-    navigator.clipboard.writeText(wallet);
+    navigator.clipboard.writeText(wallet)
+        .then(() => {
 
-    const btn =
-        document.querySelector(".copy-wallet-btn");
+            const btn =
+                document.querySelector(".copy-wallet-btn");
 
-    const oldText = btn.innerHTML;
+            if (!btn) return;
 
-    btn.innerHTML =
-        '<i class="fa-solid fa-check"></i> Wallet Copied!';
+            const oldText = btn.innerHTML;
 
-    setTimeout(() => {
-        btn.innerHTML = oldText;
-    }, 2000);
+            btn.innerHTML =
+                '<i class="fa-solid fa-check"></i> Wallet Copied!';
+
+            setTimeout(() => {
+                btn.innerHTML = oldText;
+            }, 2000);
+
+        })
+        .catch(() => {
+
+            alert("Unable to copy wallet address.");
+
+        });
+
 }
 
 // ===========================
