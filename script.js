@@ -2591,13 +2591,17 @@ updatePortfolioAllocation();
 // PORTFOLIO ALLOCATION TOGGLE
 // =========================
 
-function togglePortfolioAllocation() {
+document.addEventListener("DOMContentLoaded", function () {
 
-    const card = document.querySelector(".portfolio-allocation-card");
+    const card = document.getElementById("portfolioAllocationCard");
     const details = document.getElementById("allocationDetails");
 
     if (!card || !details) return;
 
-    card.classList.toggle("allocation-open");
+    card.addEventListener("click", function () {
 
-}
+        card.classList.toggle("allocation-open");
+
+    });
+
+});
