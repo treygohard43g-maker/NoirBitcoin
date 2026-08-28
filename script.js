@@ -2891,6 +2891,8 @@ async function executeTrade(type) {
 
     }
 
+  }
+
 }
 
 // =========================
