@@ -3496,7 +3496,6 @@ try {
 
 
 // Load profile when page opens
-loadProfilePhoto();
 loadProfileInformation();
 
 // =========================
