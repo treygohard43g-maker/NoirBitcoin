@@ -9232,3 +9232,78 @@ body {
     overflow-x: hidden;
 
 }
+
+/* =========================
+   SLIM BTC WALLET CARD
+========================= */
+
+.wallet-box {
+    width: 100%;
+    height: 52px;
+    padding: 0 10px;
+
+    display: flex;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    overflow: hidden;
+}
+
+.wallet-row {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+#btcWallet {
+    flex: 1;
+    min-width: 0;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    color: #d7d9dd;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    letter-spacing: 0.15px;
+}
+
+.copy-btn {
+    flex-shrink: 0;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: #f59e0b;
+
+    cursor: pointer;
+}
