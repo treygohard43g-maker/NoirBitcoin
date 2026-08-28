@@ -24,7 +24,7 @@ import {
     runTransaction
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const db = getFirestore();
+const db = getFirestore(auth.app);
 
 alert("NOIR SCRIPT LOADED");
 
