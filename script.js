@@ -262,14 +262,17 @@ if (loginForm) {
 
 if (window.location.pathname.includes("dashboard.html")) {
 
-    if (localStorage.getItem("loggedIn") !== "true") {
+    onAuthStateChanged(auth, function(user) {
 
-        window.location.href = "login.html";
+        if (!user) {
 
-    }
+            window.location.replace("login.html");
+
+        }
+
+    });
 
 }
-
 
 
 // ---------- DISPLAY USER NAME ----------
