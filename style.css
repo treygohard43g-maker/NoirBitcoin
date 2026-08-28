@@ -9363,4 +9363,26 @@ body {
 .copy-btn:active {
     transform: scale(0.94);
 }
+
+/* =========================
+   BTC ADDRESS TYPOGRAPHY
+========================= */
+
+#btcWallet {
+    font-family:
+        "SFMono-Regular",
+        "Roboto Mono",
+        "Cascadia Code",
+        monospace;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    letter-spacing: 0.35px;
+
+    line-height: 1;
+
+    text-overflow: ellipsis;
 }
