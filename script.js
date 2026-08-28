@@ -2939,3 +2939,148 @@ if (tradeSellButton) {
 
 // Make trading function available globally
 window.executeTrade = executeTrade;
+
+// =========================
+// PROFILE PHOTO
+// =========================
+
+const profilePhotoInput =
+    document.getElementById("profilePhotoInput");
+
+const profilePhoto =
+    document.getElementById("profilePhoto");
+
+const profilePhotoPlaceholder =
+    document.getElementById("profilePhotoPlaceholder");
+
+const profileDisplayName =
+    document.getElementById("profileDisplayName");
+
+const profileDisplayEmail =
+    document.getElementById("profileDisplayEmail");
+
+
+// Load saved profile photo
+function loadProfilePhoto() {
+
+    const savedPhoto =
+        localStorage.getItem("noirProfilePhoto");
+
+    if (!savedPhoto) return;
+
+    if (profilePhoto) {
+
+        profilePhoto.src = savedPhoto;
+        profilePhoto.style.display = "block";
+
+    }
+
+    if (profilePhotoPlaceholder) {
+
+        profilePhotoPlaceholder.style.display = "none";
+
+    }
+
+}
+
+
+// Display logged-in user's information
+function loadProfileInformation() {
+
+    const savedUser =
+        JSON.parse(
+            localStorage.getItem("noirUser")
+        );
+
+    if (!savedUser) return;
+
+    if (profileDisplayName) {
+
+        profileDisplayName.textContent =
+            savedUser.name || "User";
+
+    }
+
+    if (profileDisplayEmail) {
+
+        profileDisplayEmail.textContent =
+            savedUser.email || "";
+
+    }
+
+}
+
+
+// Select profile photo
+if (profilePhotoInput) {
+
+    profilePhotoInput.addEventListener(
+        "change",
+        function () {
+
+            const file =
+                profilePhotoInput.files[0];
+
+            if (!file) return;
+
+
+            // Make sure it is an image
+            if (!file.type.startsWith("image/")) {
+
+                alert("Please select an image.");
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload = function (event) {
+
+                const photoData =
+                    event.target.result;
+
+
+                // Save photo locally
+                localStorage.setItem(
+                    "noirProfilePhoto",
+                    photoData
+                );
+
+
+                // Display photo immediately
+                if (profilePhoto) {
+
+                    profilePhoto.src =
+                        photoData;
+
+                    profilePhoto.style.display =
+                        "block";
+
+                }
+
+
+                if (profilePhotoPlaceholder) {
+
+                    profilePhotoPlaceholder.style.display =
+                        "none";
+
+                }
+
+            };
+
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+}
+
+
+// Load profile when page opens
+loadProfilePhoto();
+loadProfileInformation();
