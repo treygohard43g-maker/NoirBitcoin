@@ -1492,17 +1492,42 @@ if (saveSettingsBtn) {
 
         // ---------- UPDATE USERNAME ----------
 
-        if (newUsername !== "") {
+if (newUsername !== "") {
 
-            savedUser.name = newUsername;
+    const currentUser = auth.currentUser;
 
-            localStorage.setItem(
-                "noirUser",
-                JSON.stringify(savedUser)
-            );
+    if (!currentUser) {
 
-        }
+        alert("Your login session has expired. Please log in again.");
+        return;
 
+    }
+
+    try {
+
+        // Save username permanently in Firebase
+        await updateProfile(currentUser, {
+            displayName: newUsername
+        });
+
+        // Update local copy
+        savedUser.name = newUsername;
+
+        localStorage.setItem(
+            "noirUser",
+            JSON.stringify(savedUser)
+        );
+
+    } catch (error) {
+
+        console.error("Username update error:", error);
+
+        alert("Unable to update username. Please try again.");
+        return;
+
+    }
+
+}
 
         // ---------- UPDATE PASSWORD ----------
 
