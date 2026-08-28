@@ -2323,8 +2323,15 @@ function showWithdrawalPending() {
     const amount = document.getElementById("withdrawUSD").value.trim();
     const wallet = document.getElementById("withdrawWallet").value.trim();
 
-    if (amount === "" || wallet === "") {
-        alert("Please enter the withdrawal amount and your Bitcoin wallet address.");
+    const numericAmount = Number(amount);
+
+    if (
+        amount === "" ||
+        !Number.isFinite(numericAmount) ||
+        numericAmount <= 0 ||
+        wallet === ""
+    ) {
+        alert("Please enter a valid withdrawal amount and your Bitcoin wallet address.");
         return;
     }
 
