@@ -186,6 +186,59 @@ body {
 
 }
 
+.chart-card {
+    background: linear-gradient(145deg, #1b1e24, #181c22);
+    border: 1px solid #2a2f38;
+    border-radius: 18px;
+    padding: 15px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.chart-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.chart-top strong {
+    display: block;
+    font-size: 15px;
+}
+
+.chart-top span {
+    display: block;
+    color: #8b949e;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.chart-timeframes {
+    display: flex;
+    gap: 4px;
+}
+
+.chart-timeframes button {
+    background: transparent;
+    border: none;
+    color: #8b949e;
+    font-size: 11px;
+    padding: 5px 6px;
+    border-radius: 6px;
+}
+
+.chart-timeframes button.active {
+    background: #2a2f38;
+    color: #ffffff;
+}
+
+#tradeChart {
+    width: 100%;
+    height: 360px;
+}
+
 </style>
 
 <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
