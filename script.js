@@ -2242,11 +2242,11 @@ if (allocationTotal) {
 
 }
 
-onAuthStateChanged(auth, function(user) {
+onAuthStateChanged(auth, async function(user) {
 
     if (!user) return;
-     
-    loadUserBalance();
+
+    await loadUserBalance();
     
     // ---------- SYNC USERNAME FROM FIREBASE ----------
 
