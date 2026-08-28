@@ -369,6 +369,95 @@ loadBTCMarket();
 
 setInterval(loadBTCMarket, 30000);
 
+// =========================
+// BTC TRADING CANDLESTICK CHART
+// =========================
+
+const chartContainer = document.getElementById("tradeChart");
+
+const tradeChart = LightweightCharts.createChart(chartContainer, {
+    width: chartContainer.clientWidth,
+    height: 360,
+
+    layout: {
+        background: {
+            color: "#181c22"
+        },
+        textColor: "#8b949e"
+    },
+
+    grid: {
+        vertLines: {
+            color: "#222831"
+        },
+        horzLines: {
+            color: "#222831"
+        }
+    },
+
+    rightPriceScale: {
+        borderColor: "#2a2f38"
+    },
+
+    timeScale: {
+        borderColor: "#2a2f38",
+        timeVisible: true,
+        secondsVisible: false
+    }
+});
+
+const candleSeries = tradeChart.addCandlestickSeries({
+    upColor: "#16803c",
+    downColor: "#b42318",
+    borderUpColor: "#16803c",
+    borderDownColor: "#b42318",
+    wickUpColor: "#16803c",
+    wickDownColor: "#b42318"
+});
+
+async function loadTradingChart() {
+
+    try {
+
+        const response = await fetch(
+            "https://api.coingecko.com/api/v3/coins/bitcoin/ohlc?vs_currency=usd&days=1"
+        );
+
+        const data = await response.json();
+
+        const candles = data.map(item => ({
+            time: Math.floor(item[0] / 1000),
+            open: item[1],
+            high: item[2],
+            low: item[3],
+            close: item[4]
+        }));
+
+        candleSeries.setData(candles);
+
+        tradeChart.timeScale().fitContent();
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load Bitcoin trading chart:",
+            error
+        );
+
+    }
+
+}
+
+loadTradingChart();
+
+window.addEventListener("resize", () => {
+
+    tradeChart.applyOptions({
+        width: chartContainer.clientWidth
+    });
+
+});
+
 </script>
 
 </body>
