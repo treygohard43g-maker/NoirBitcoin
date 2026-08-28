@@ -3158,3 +3158,40 @@ if (profilePhotoInput) {
 // Load profile when page opens
 loadProfilePhoto();
 loadProfileInformation();
+
+// =========================
+// HEADER PROFILE PHOTO
+// =========================
+
+function loadHeaderProfilePhoto() {
+
+    const savedPhoto =
+        localStorage.getItem("noirProfilePhoto");
+
+    const photo =
+        document.getElementById("headerProfilePhoto");
+
+    const icon =
+        document.getElementById("headerProfileIcon");
+
+    if (!photo || !icon) return;
+
+    if (savedPhoto) {
+
+        photo.src = savedPhoto;
+
+        photo.style.display = "block";
+
+        icon.style.display = "none";
+
+    } else {
+
+        photo.style.display = "none";
+
+        icon.style.display = "block";
+
+    }
+
+}
+
+loadHeaderProfilePhoto();
