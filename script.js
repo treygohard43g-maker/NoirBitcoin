@@ -2141,7 +2141,20 @@ async function updatePortfolio() {
                 });
 
         }
+        
+const allocationTotal =
+    document.getElementById("allocationTotal");
 
+if (allocationTotal) {
+
+    allocationTotal.textContent =
+        "$" +
+        portfolioValue.toLocaleString("en-US", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        });
+
+}
 
     } catch (error) {
 
