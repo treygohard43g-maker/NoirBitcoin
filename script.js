@@ -502,33 +502,6 @@ if (historyBtn && transactionHistory) {
 
 }
 
-// ---------- PROFILE MENU ----------
-
-
-const profileBtn = document.getElementById("profileBtn");
-
-const profileMenu = document.getElementById("profileMenu");
-
-
-if(profileBtn && profileMenu){
-
-    profileBtn.addEventListener("click", function(){
-
-        if(profileMenu.style.display === "block"){
-
-            profileMenu.style.display = "none";
-
-        } else {
-
-            profileMenu.style.display = "block";
-
-        }
-
-    });
-
-}
-
-
 // Display profile details
 
 const profileName = document.getElementById("profileName");
