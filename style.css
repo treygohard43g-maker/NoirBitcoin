@@ -11618,3 +11618,29 @@ body.light-mode .notification-menu *,
 body.light-mode .profile-menu * {
     color: #111827 !important;
 }
+
+/* =========================
+   HISTORY DETAILS — LIGHT MODE
+========================= */
+
+body.light-mode .history-details {
+    color: #111827 !important;
+}
+
+body.light-mode .history-details p {
+    color: #6b7280 !important;
+}
+
+body.light-mode .history-details span {
+    color: #6b7280 !important;
+}
+
+body.light-mode .history-details strong {
+    color: #111827 !important;
+}
+
+/* Keep positive amounts green */
+body.light-mode .history-details .history-detail-amount,
+body.light-mode .history-amount-positive {
+    color: #22c55e !important;
+}
