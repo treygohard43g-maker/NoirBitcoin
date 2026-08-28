@@ -11474,3 +11474,25 @@ body {
     border: none;
     box-shadow: none;
 }
+
+/* =========================
+   DASHBOARD TRANSACTION HISTORY
+   SURFACE STYLE
+========================= */
+
+.transaction-history,
+.history-section,
+.history-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Keep the transaction rows visible */
+.transaction-history .transaction-item,
+.history-section .transaction-item,
+.history-card .transaction-item {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.025);
+    box-shadow: none;
+}
