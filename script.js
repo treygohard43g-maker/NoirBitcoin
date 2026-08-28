@@ -1445,21 +1445,22 @@ if (chartContainer && typeof LightweightCharts !== "undefined") {
 
 
    // Create Bitcoin price area chart
-   const series = chart.addAreaSeries({
+   const series = chart.addSeries(
+    LightweightCharts.AreaSeries,
+    {
+        lineColor: "#22c55e",
 
-    lineColor: "#22c55e",
+        topColor: "rgba(34, 197, 94, 0.30)",
 
-    topColor: "rgba(34, 197, 94, 0.30)",
+        bottomColor: "rgba(34, 197, 94, 0)",
 
-    bottomColor: "rgba(34, 197, 94, 0)",
+        lineWidth: 2,
 
-    lineWidth: 2,
+        priceLineVisible: false,
 
-    priceLineVisible: false,
-
-    lastValueVisible: false
-
-});
+        lastValueVisible: false
+    }
+);
 
       window.addEventListener("resize", () => {
 
