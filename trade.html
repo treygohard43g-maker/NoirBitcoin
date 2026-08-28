@@ -415,12 +415,19 @@ const candleSeries = tradeChart.addCandlestickSeries({
     wickDownColor: "#b42318"
 });
 
-async function loadTradingChart() {
+// =========================
+// TRADING TIMEFRAMES
+// =========================
+
+const timeframeButtons =
+    document.querySelectorAll(".chart-timeframes button");
+
+async function loadTradingChart(days) {
 
     try {
 
         const response = await fetch(
-            "https://api.coingecko.com/api/v3/coins/bitcoin/ohlc?vs_currency=usd&days=1"
+            `https://api.coingecko.com/api/v3/coins/bitcoin/ohlc?vs_currency=usd&days=${days}`
         );
 
         const data = await response.json();
@@ -448,7 +455,65 @@ async function loadTradingChart() {
 
 }
 
-loadTradingChart();
+
+// 1H
+timeframeButtons[0].addEventListener("click", () => {
+
+    timeframeButtons.forEach(button =>
+        button.classList.remove("active")
+    );
+
+    timeframeButtons[0].classList.add("active");
+
+    loadTradingChart(1);
+
+});
+
+
+// 4H
+timeframeButtons[1].addEventListener("click", () => {
+
+    timeframeButtons.forEach(button =>
+        button.classList.remove("active")
+    );
+
+    timeframeButtons[1].classList.add("active");
+
+    loadTradingChart(1);
+
+});
+
+
+// 1D
+timeframeButtons[2].addEventListener("click", () => {
+
+    timeframeButtons.forEach(button =>
+        button.classList.remove("active")
+    );
+
+    timeframeButtons[2].classList.add("active");
+
+    loadTradingChart(1);
+
+});
+
+
+// 1W
+timeframeButtons[3].addEventListener("click", () => {
+
+    timeframeButtons.forEach(button =>
+        button.classList.remove("active")
+    );
+
+    timeframeButtons[3].classList.add("active");
+
+    loadTradingChart(7);
+
+});
+
+
+// Initial chart
+loadTradingChart(1);
 
 window.addEventListener("resize", () => {
 
