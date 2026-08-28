@@ -2445,26 +2445,28 @@ async function updatePortfolio() {
 
         // ---------- PORTFOLIO BALANCE ----------
 
-        if (portfolioBalanceElement) {
+const portfolioValue =
+    balance +
+    totalInvested +
+    totalProfit;
 
-            const portfolioValue =
-                balance +
-                totalInvested +
-                totalProfit;
+if (portfolioBalanceElement) {
+
+    portfolioBalanceElement.textContent =
+        "$" +
+        portfolioValue.toLocaleString("en-US", {
+
+            minimumFractionDigits: 2,
+
+            maximumFractionDigits: 2
+
+        });
+
+}
 
 
-            portfolioBalanceElement.textContent =
-                "$" +
-                portfolioValue.toLocaleString("en-US", {
+// ---------- ALLOCATION TOTAL ----------
 
-                    minimumFractionDigits: 2,
-
-                    maximumFractionDigits: 2
-
-                });
-
-        }
-        
 const allocationTotal =
     document.getElementById("allocationTotal");
 
@@ -2473,8 +2475,11 @@ if (allocationTotal) {
     allocationTotal.textContent =
         "$" +
         portfolioValue.toLocaleString("en-US", {
+
             minimumFractionDigits: 0,
+
             maximumFractionDigits: 0
+
         });
 
 }
