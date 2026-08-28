@@ -310,6 +310,7 @@ let balanceVisible = true;
 let balance = 500000;
 let bitcoinPrice = 0;
 let showingBTC = false;
+let balanceLoaded = false;
 
 function updateBalance() {
 
@@ -347,6 +348,76 @@ function updateBalance() {
 
 }
  updateBalance();
+
+// =========================
+// FIREBASE USER BALANCE
+// =========================
+
+async function loadUserBalance() {
+
+    const user = auth.currentUser;
+
+    if (!user) return;
+
+    try {
+
+        const balanceRef = doc(
+            db,
+            "users",
+            user.uid
+        );
+
+        const balanceSnapshot =
+            await getDoc(balanceRef);
+
+        if (balanceSnapshot.exists()) {
+
+            const userData =
+                balanceSnapshot.data();
+
+            if (
+                typeof userData.balance === "number"
+            ) {
+
+                balance = userData.balance;
+
+            }
+
+        } else {
+
+            // Create the user's starting balance
+            await setDoc(
+                balanceRef,
+                {
+                    balance: balance,
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    merge: true
+                }
+            );
+
+        }
+
+        balanceLoaded = true;
+
+        updateBalance();
+
+        console.log(
+            "User balance loaded:",
+            balance
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load user balance:",
+            error
+        );
+
+    }
+
+}
 
 // ---------- HIDE / SHOW BALANCE ----------
 
@@ -2174,7 +2245,9 @@ if (allocationTotal) {
 onAuthStateChanged(auth, function(user) {
 
     if (!user) return;
-
+     
+    loadUserBalance();
+    
     // ---------- SYNC USERNAME FROM FIREBASE ----------
 
     const firebaseName = user.displayName || "User";
