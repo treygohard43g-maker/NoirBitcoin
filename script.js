@@ -1377,7 +1377,10 @@ async function loadBitcoinPrice() {
         const data = await response.json();
 
         const price = Number(data.bitcoin.usd);
-
+        
+        bitcoinPrice = price;
+        updateWithdrawBTC();
+        
         const btcPriceElement =
             document.getElementById("btcPrice");
 
