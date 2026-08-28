@@ -9559,3 +9559,456 @@ body {
     }
 
 }
+
+/* =========================
+   PREMIUM INVESTMENT PAGE
+========================= */
+
+.investment-container {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 28px 18px 40px;
+    box-sizing: border-box;
+}
+
+
+/* NoirBitcoin Header */
+
+.investment-container > h1 {
+    margin: 0 0 28px;
+    text-align: center;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+
+    color: #f5f7fa;
+}
+
+.investment-container > h1 i {
+    margin-right: 7px;
+    color: #f59e0b;
+}
+
+
+/* Page Title */
+
+.investment-container > h2 {
+    margin: 0 0 14px;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+
+    color: #f5f7fa;
+}
+
+
+/* Main Investment Card */
+
+.investment-card {
+    position: relative;
+
+    width: 100%;
+    padding: 22px 18px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30, 34, 42, 0.98),
+            rgba(15, 18, 23, 0.98)
+        );
+
+    border: 1px solid #2a2f38;
+    border-radius: 18px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+    overflow: hidden;
+}
+
+
+/* Premium top highlight */
+
+.investment-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 25%;
+    right: 25%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(245, 158, 11, 0.65),
+            transparent
+        );
+}
+
+
+/* Investment Icon */
+
+.investment-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 14px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(245, 158, 11, 0.08);
+
+    border: 1px solid
+        rgba(245, 158, 11, 0.18);
+
+    color: #f59e0b;
+
+    font-size: 20px;
+
+    box-shadow:
+        0 6px 18px rgba(245, 158, 11, 0.08);
+}
+
+
+/* Selected Plan */
+
+#selectedPlan {
+    margin: 0;
+
+    text-align: center;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 20px;
+    font-weight: 750;
+
+    letter-spacing: -0.25px;
+
+    color: #ffffff;
+}
+
+
+/* Plan Information */
+
+#planReturn,
+#planMinimum {
+    margin: 9px 0 0;
+
+    text-align: center;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    color: #8b949e;
+}
+
+
+/* Amount Input */
+
+#investmentAmount {
+    width: 100%;
+
+    margin-top: 20px;
+    padding: 14px 15px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #303640;
+    border-radius: 11px;
+
+    background: #11151b;
+
+    color: #ffffff;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#investmentAmount::placeholder {
+    color: #66707d;
+}
+
+
+#investmentAmount:focus {
+    border-color:
+        rgba(245, 158, 11, 0.55);
+
+    box-shadow:
+        0 0 0 3px rgba(245, 158, 11, 0.07);
+}
+
+
+/* Calculate Profit */
+
+.investment-card > button:not(.confirm-btn):not(.back-btn) {
+    width: 100%;
+
+    margin-top: 10px;
+
+    min-height: 44px;
+
+    border: 1px solid #303640;
+    border-radius: 11px;
+
+    background: #1b2027;
+
+    color: #d9dee5;
+
+    font-size: 14px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.investment-card > button:not(.confirm-btn):not(.back-btn):hover {
+    background: #222831;
+
+    border-color:
+        rgba(245, 158, 11, 0.3);
+}
+
+
+.investment-card > button:not(.confirm-btn):not(.back-btn):active {
+    transform: scale(0.98);
+}
+
+
+/* Profit Box */
+
+.profit-box {
+    margin-top: 18px;
+    padding: 16px;
+
+    border-radius: 13px;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    border: 1px solid #292f38;
+
+    text-align: center;
+}
+
+
+.profit-box h2 {
+    margin: 0;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    color: #f5f7fa;
+}
+
+
+/* Confirm Investment */
+
+.confirm-btn {
+    width: 100%;
+
+    margin-top: 14px;
+
+    min-height: 46px;
+
+    border: 1px solid
+        rgba(245, 158, 11, 0.35);
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f7b733 0%,
+            #e89a0c 100%
+        );
+
+    color: #0d1117;
+
+    font-size: 14px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 20px
+        rgba(245, 158, 11, 0.14),
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.confirm-btn:hover {
+    filter: brightness(1.06);
+
+    box-shadow:
+        0 8px 24px
+        rgba(245, 158, 11, 0.2);
+}
+
+
+.confirm-btn:active {
+    transform: scale(0.98);
+}
+
+
+/* Back Button */
+
+.back-btn {
+    width: 100%;
+
+    margin-top: 12px;
+
+    min-height: 43px;
+
+    border: 1px solid #292f38;
+    border-radius: 11px;
+
+    background: transparent;
+
+    color: #8b949e;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.back-btn:hover {
+    color: #f5f7fa;
+
+    border-color: #3a414c;
+
+    background: rgba(255, 255, 255, 0.025);
+}
+
+
+/* Success Message */
+
+.success-message {
+    margin-top: 18px;
+    padding: 18px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(34, 197, 94, 0.06);
+
+    border: 1px solid
+        rgba(34, 197, 94, 0.2);
+
+    text-align: center;
+}
+
+
+.success-icon {
+    font-size: 28px;
+
+    color: #22c55e;
+
+    margin-bottom: 8px;
+}
+
+
+.success-message h2 {
+    margin: 0 0 7px;
+
+    font-size: 17px;
+
+    color: #f5f7fa;
+}
+
+
+.success-message p {
+    margin: 5px 0;
+
+    font-size: 13px;
+
+    color: #8b949e;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .investment-container {
+        padding:
+            22px 14px 35px;
+    }
+
+    .investment-card {
+        padding: 20px 15px;
+        border-radius: 17px;
+    }
+
+}
