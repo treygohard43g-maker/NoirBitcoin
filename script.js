@@ -981,35 +981,51 @@ async function forceRepairInvestmentHistory() {
 
                     </div>
 
-                    <div class="history-details">
+                  <div class="history-details">
 
-                        <p>
-                            Investment Plan:
-                            ${investment.plan}
-                        </p>
+                   <p>
+                        <span>Investment Plan:</span>
+                        <strong>${investment.plan}</strong>
+                   </p>
 
-                        <p>
-                            Amount:
-                            $${formattedAmount}
-                        </p>
+                   <p>
+                      <span>Amount:</span>
+                      <strong class="history-detail-amount">
+                        +$${formattedAmount}
+                     </strong>
+                   </p>
 
-                        <p>
-                            Status:
-                            ${investment.status}
-                        </p>
+                   <p>
+                     <span>Profit Rate:</span>
+                     <strong>${investment.profitRate || 0}%</strong>
+                   </p>
 
-                        <p>
-                            Date:
-                            ${formattedDate}
-                        </p>
+                   <p>
+                     <span>Monthly Profit:</span>
+                     <strong class="history-detail-amount">
+                     +$${Number(investment.monthlyProfit || 0).toLocaleString("en-US", {
+                         minimumFractionDigits: 2,
+                         maximumFractionDigits: 2
+                      })}
+                  </strong>
+               </p>
 
-                    </div>
+                   <p>
+                      <span>Status:</span>
+                      <strong>${investment.status}</strong>
+                   </p>
 
-                </div>
+                   <p>
+                      <span>Date:</span>
+                      <strong>${formattedDate}</strong>
+                   </p>
 
-                `;
+              </div>
+            </div>
 
-            });
+            `;
+
+          });
 
     } catch (error) {
 
