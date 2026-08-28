@@ -1383,18 +1383,18 @@ async function loadBitcoinPrice() {
         
         const change24h = Number(data.bitcoin.usd_24h_change);
 
-const btcMovementElement =
-    document.getElementById("btcMovement");
+        const btcMovementElement =
+            document.getElementById("btcMovement");
 
-if (btcMovementElement && Number.isFinite(change24h)) {
+        if (btcMovementElement && Number.isFinite(change24h)) {
 
-    const isUp = change24h >= 0;
+           const isUp = change24h >= 0;
 
-    btcMovementElement.textContent =
-        `${isUp ? "▲" : "▼"} ${isUp ? "+" : ""}${change24h.toFixed(2)}% (24h)`;
+           btcMovementElement.textContent =
+                `${isUp ? "▲" : "▼"} ${isUp ? "+" : ""}${change24h.toFixed(2)}% (24h)`;
 
-    btcMovementElement.style.color =
-        isUp ? "#22c55e" : "#ef4444";
+           btcMovementElement.style.color =
+                 isUp ? "#22c55e" : "#ef4444";
 }
 
         const btcPriceElement =
