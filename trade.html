@@ -248,6 +248,52 @@ body {
 
 </div>
 
+<script>
+
+async function loadBTCMarket() {
+
+    try {
+
+        const response = await fetch(
+            "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true"
+        );
+
+        const data = await response.json();
+
+        const price = data.bitcoin.usd;
+        const change = data.bitcoin.usd_24h_change;
+
+        document.getElementById("btcPrice").textContent =
+            "$" + price.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+        document.getElementById("btcChange").textContent =
+            (change >= 0 ? "+" : "") +
+            change.toFixed(2) +
+            "% today";
+
+    } catch (error) {
+
+        console.error("Unable to load BTC market:", error);
+
+        document.getElementById("btcPrice").textContent =
+            "Unavailable";
+
+        document.getElementById("btcChange").textContent =
+            "Try again later";
+
+    }
+
+}
+
+loadBTCMarket();
+
+setInterval(loadBTCMarket, 30000);
+
+</script>
+
 </body>
 
 </html>
