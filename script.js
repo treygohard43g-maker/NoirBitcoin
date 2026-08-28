@@ -2586,3 +2586,18 @@ function updatePortfolioAllocation() {
 }
 
 updatePortfolioAllocation();
+
+// =========================
+// PORTFOLIO ALLOCATION TOGGLE
+// =========================
+
+function togglePortfolioAllocation() {
+
+    const card = document.querySelector(".portfolio-allocation-card");
+    const details = document.getElementById("allocationDetails");
+
+    if (!card || !details) return;
+
+    card.classList.toggle("allocation-open");
+
+}
