@@ -963,7 +963,7 @@ async function confirmInvestment() {
     }
 }
 
-async function forceRepairInvestmentHistory() {
+        async function forceRepairInvestmentHistory() {
 
     const container =
         document.getElementById("recentHistory");
@@ -973,49 +973,93 @@ async function forceRepairInvestmentHistory() {
     const user = auth.currentUser;
 
     if (!user) {
-        console.log(
-            "No Firebase user logged in."
-        );
+        console.log("No Firebase user logged in.");
         return;
     }
 
     try {
 
-        const investmentsRef =
-            collection(db, "investments");
+        // =========================
+        // LOAD INVESTMENTS
+        // =========================
 
         const investmentsQuery = query(
-            investmentsRef,
+            collection(db, "investments"),
             where("userId", "==", user.uid)
-       );
-    
-        const snapshot =
+        );
+
+        const investmentSnapshot =
             await getDocs(investmentsQuery);
 
-        container.innerHTML = "";
+        const transactions = [];
 
-        const investments = [];
+        investmentSnapshot.forEach(function(doc) {
 
-        snapshot.forEach(function(doc) {
-
-            investments.push({
+            transactions.push({
                 id: doc.id,
+                transactionType: "investment",
                 ...doc.data()
             });
 
         });
-      
-    investments.sort(function(a, b) {
-          return new Date(b.date) - new Date(a.date);
-       });
 
-        // Show only latest 3 transactions
-        investments
+
+        // =========================
+        // LOAD TRADES
+        // =========================
+
+        const tradesQuery = query(
+            collection(db, "trades"),
+            where("userId", "==", user.uid)
+        );
+
+        const tradeSnapshot =
+            await getDocs(tradesQuery);
+
+        tradeSnapshot.forEach(function(doc) {
+
+            transactions.push({
+                id: doc.id,
+                transactionType: "trade",
+                ...doc.data()
+            });
+
+        });
+
+
+        // =========================
+        // SORT NEWEST FIRST
+        // =========================
+
+        transactions.sort(function(a, b) {
+
+            return new Date(b.date) - new Date(a.date);
+
+        });
+
+
+        // =========================
+        // CLEAR HISTORY
+        // =========================
+
+        container.innerHTML = "";
+
+
+        // =========================
+        // SHOW LATEST 3
+        // =========================
+
+        transactions
             .slice(0, 3)
-            .forEach(function(investment) {
+            .forEach(function(transaction) {
 
                 const amount =
-                    Number(investment.amount) || 0;
+                    Number(
+                        transaction.amountUSD ??
+                        transaction.amount ??
+                        0
+                    );
+
 
                 const formattedAmount =
                     amount.toLocaleString("en-US", {
@@ -1023,12 +1067,160 @@ async function forceRepairInvestmentHistory() {
                         maximumFractionDigits: 2
                     });
 
+
                 const formattedDate =
-                    investment.date
+                    transaction.date
                         ? new Date(
-                            investment.date
+                            transaction.date
                         ).toLocaleString()
                         : "";
+
+
+                // =========================
+                // TRADE
+                // =========================
+
+                if (
+                    transaction.transactionType === "trade"
+                ) {
+
+                    const isBuy =
+                        transaction.type === "BUY";
+
+                    const sign =
+                        isBuy ? "-" : "+";
+
+
+                    const colorClass =
+                        isBuy
+                            ? "history-amount-negative"
+                            : "history-amount-positive";
+
+
+                    const icon =
+                        isBuy
+                            ? "fa-bitcoin-sign"
+                            : "fa-arrow-trend-up";
+
+
+                    container.innerHTML += `
+
+                    <div class="history-item">
+
+                        <div
+                            class="history-header"
+                            onclick="toggleHistory(this)"
+                        >
+
+                            <div class="history-info">
+
+                                <h3>
+                                    <i class="fa-brands fa-bitcoin"></i>
+                                    Bitcoin
+                                </h3>
+
+                                <p>
+                                    ${isBuy ? "Bought BTC" : "Sold BTC"}
+                                    • ${formattedDate}
+                                </p>
+
+                            </div>
+
+                            <div class="history-right">
+
+                                <span class="${colorClass}">
+                                    ${sign}$${formattedAmount}
+                                </span>
+
+                                <i
+                                    class="fa-solid fa-chevron-down history-chevron"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="history-details">
+
+                            <p>
+                                <span>Transaction:</span>
+                                <strong>
+                                    ${isBuy ? "Buy Bitcoin" : "Sell Bitcoin"}
+                                </strong>
+                            </p>
+
+                            <p>
+                                <span>Amount:</span>
+
+                                <strong class="${colorClass}">
+                                    ${sign}$${formattedAmount}
+                                </strong>
+                            </p>
+
+                            <p>
+                                <span>BTC Received:</span>
+
+                                <strong>
+                                    ${Number(
+                                        transaction.btcAmount || 0
+                                    ).toFixed(8)} BTC
+                                </strong>
+                            </p>
+
+                            <p>
+                                <span>Bitcoin Price:</span>
+
+                                <strong>
+                                    $${Number(
+                                        transaction.price || 0
+                                    ).toLocaleString("en-US", {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
+                                    })}
+                                </strong>
+                            </p>
+
+                            <p>
+                                <span>Status:</span>
+
+                                <strong>
+                                    ${transaction.status || "Completed"}
+                                </strong>
+                            </p>
+
+                            <p>
+                                <span>Date:</span>
+
+                                <strong>
+                                    ${formattedDate}
+                                </strong>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    `;
+
+                    return;
+                }
+
+
+                // =========================
+                // INVESTMENT
+                // =========================
+
+                const investmentAmount =
+                    Number(transaction.amount) || 0;
+
+
+                const investmentFormatted =
+                    investmentAmount.toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+
 
                 container.innerHTML += `
 
@@ -1043,80 +1235,111 @@ async function forceRepairInvestmentHistory() {
 
                             <h3>
                                 <i class="fa-solid fa-chart-line"></i>
-                                ${investment.plan}
+                                ${transaction.plan || "Investment"}
                             </h3>
 
                             <p>
-                                ${investment.status}
+                                ${transaction.status || "Active"}
                                 • ${formattedDate}
                             </p>
 
                         </div>
 
-                       <div class="history-right">
+
+                        <div class="history-right">
 
                             <span class="history-amount-positive">
-                                  +$${formattedAmount}
+                                +$${investmentFormatted}
                             </span>
 
                             <i
                                 class="fa-solid fa-chevron-down history-chevron"
                             ></i>
 
-                       </div>
+                        </div>
 
                     </div>
 
-                  <div class="history-details">
 
-                   <p>
-                        <span>Investment Plan:</span>
-                        <strong>${investment.plan}</strong>
-                   </p>
+                    <div class="history-details">
 
-                   <p>
-                      <span>Amount:</span>
-                      <strong class="history-detail-amount">
-                        +$${formattedAmount}
-                     </strong>
-                   </p>
+                        <p>
+                            <span>Investment Plan:</span>
 
-                   <p>
-                     <span>Profit Rate:</span>
-                     <strong>${investment.profitRate || 0}%</strong>
-                   </p>
+                            <strong>
+                                ${transaction.plan || "Investment"}
+                            </strong>
+                        </p>
 
-                   <p>
-                     <span>Monthly Profit:</span>
-                     <strong class="history-detail-amount">
-                     +$${Number(investment.monthlyProfit || 0).toLocaleString("en-US", {
-                         minimumFractionDigits: 2,
-                         maximumFractionDigits: 2
-                      })}
-                  </strong>
-               </p>
 
-                   <p>
-                      <span>Status:</span>
-                      <strong>${investment.status}</strong>
-                   </p>
+                        <p>
+                            <span>Amount:</span>
 
-                   <p>
-                      <span>Date:</span>
-                      <strong>${formattedDate}</strong>
-                   </p>
+                            <strong class="history-detail-amount">
+                                +$${investmentFormatted}
+                            </strong>
+                        </p>
 
-              </div>
-            </div>
 
-            `;
+                        <p>
+                            <span>Profit Rate:</span>
 
-          });
+                            <strong>
+                                ${transaction.profitRate || 0}%
+                            </strong>
+                        </p>
+
+
+                        <p>
+                            <span>Monthly Profit:</span>
+
+                            <strong class="history-detail-amount">
+                                +$${Number(
+                                    transaction.monthlyProfit || 0
+                                ).toLocaleString("en-US", {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                })}
+                            </strong>
+                        </p>
+
+
+                        <p>
+                            <span>Status:</span>
+
+                            <strong>
+                                ${transaction.status || "Active"}
+                            </strong>
+                        </p>
+
+
+                        <p>
+                            <span>Date:</span>
+
+                            <strong>
+                                ${formattedDate}
+                            </strong>
+                        </p>
+
+                    </div>
+
+                </div>
+
+                `;
+
+            });
+
+
+        console.log(
+            "Transaction history loaded:",
+            transactions
+        );
+
 
     } catch (error) {
 
         console.error(
-            "Error loading investment history:",
+            "Error loading transaction history:",
             error
         );
 
