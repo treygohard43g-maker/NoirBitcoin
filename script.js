@@ -2874,27 +2874,24 @@ async function executeTrade(type) {
 
     } catch (error) {
 
-        console.error(
-            "Trade error:",
-            error
+    console.error("TRADE ERROR:", error);
+    console.error("Error code:", error.code);
+    console.error("Error message:", error.message);
+
+    if (error.message === "INSUFFICIENT_BALANCE") {
+
+        alert("Insufficient available balance.");
+
+    } else {
+
+        alert(
+            "Trade failed:\n\n" +
+            (error.message || "Unknown error")
         );
-
-        if (error.message === "INSUFFICIENT_BALANCE") {
-
-            alert("Insufficient available balance.");
-
-        } else {
-
-            alert(
-                "Unable to complete the trade. Please try again."
-            );
-
-        }
 
     }
 
 }
-
 
 // =========================
 // BUY BUTTON
