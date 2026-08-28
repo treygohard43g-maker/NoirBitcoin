@@ -1352,11 +1352,17 @@ series.applyOptions({
 
 
     // Update Bitcoin chart every 30 seconds
-    setInterval(() => {
+setInterval(() => {
 
-        loadChartData(7);
+    const activeButton = document.querySelector(".time-btn.active");
 
-    }, 30000);
+    const days = activeButton
+        ? Number(activeButton.dataset.days)
+        : 1;
+
+    loadChartData(days);
+
+}, 30000);
 
 }
 
