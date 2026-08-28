@@ -11130,3 +11130,12 @@ body {
     }
 
 }
+
+/* =========================
+   HISTORY POSITIVE AMOUNT
+========================= */
+
+.history-amount-positive {
+    color: #22c55e !important;
+    font-weight: 600;
+}
