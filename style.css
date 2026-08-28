@@ -11885,3 +11885,20 @@ body.light-mode .auth-container a {
 
     font-size: 110px;
 }
+
+/* =========================
+   BITCOIN HISTORY LOGO
+========================= */
+
+.history-asset-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bitcoin-history-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    display: inline-block;
+}
