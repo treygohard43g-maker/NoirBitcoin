@@ -2682,3 +2682,250 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+// =========================
+// NOIRBITCOIN TRADING
+// =========================
+
+async function executeTrade(type) {
+
+    const amountInput =
+        document.getElementById("tradeAmount");
+
+    if (!amountInput) return;
+
+    const amount = Number(amountInput.value);
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+
+        alert("Please enter a valid amount.");
+
+        return;
+    }
+
+    const user = auth.currentUser;
+
+    if (!user) {
+
+        alert(
+            "Your login session has expired. Please log in again."
+        );
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+    if (!balanceLoaded) {
+
+        alert(
+            "Your balance is still loading. Please try again."
+        );
+
+        return;
+    }
+
+    if (!bitcoinPrice || bitcoinPrice <= 0) {
+
+        alert(
+            "Bitcoin price is unavailable. Please try again."
+        );
+
+        return;
+    }
+
+    // =========================
+    // BUY
+    // =========================
+
+    if (type === "BUY") {
+
+        if (amount > balance) {
+
+            alert("Insufficient available balance.");
+
+            return;
+        }
+
+    }
+
+    // =========================
+    // SELL
+    // =========================
+
+    if (type === "SELL") {
+
+        alert(
+            "Sell trading will be connected after the Bitcoin holdings system is added."
+        );
+
+        return;
+    }
+
+    const btcAmount =
+        amount / bitcoinPrice;
+
+    const balanceRef =
+        doc(db, "users", user.uid);
+
+    try {
+
+        await runTransaction(
+            db,
+            async (transaction) => {
+
+                const balanceSnapshot =
+                    await transaction.get(balanceRef);
+
+                let currentBalance = 0;
+
+                if (balanceSnapshot.exists()) {
+
+                    currentBalance =
+                        Number(
+                            balanceSnapshot.data().balance
+                        ) || 0;
+
+                }
+
+                if (amount > currentBalance) {
+
+                    throw new Error(
+                        "INSUFFICIENT_BALANCE"
+                    );
+
+                }
+
+                const newBalance =
+                    currentBalance - amount;
+
+                transaction.set(
+                    balanceRef,
+                    {
+                        balance: newBalance,
+                        updatedAt:
+                            new Date().toISOString()
+                    },
+                    {
+                        merge: true
+                    }
+                );
+
+            }
+        );
+
+        // Update local balance immediately
+        balance -= amount;
+
+        updateBalance();
+
+        // =========================
+        // SAVE TRADE HISTORY
+        // =========================
+
+        await addDoc(
+            collection(db, "trades"),
+            {
+                userId: user.uid,
+
+                type: "BUY",
+
+                asset: "Bitcoin",
+
+                symbol: "BTC",
+
+                amountUSD: amount,
+
+                btcAmount: btcAmount,
+
+                price: bitcoinPrice,
+
+                date: new Date().toISOString(),
+
+                status: "Completed"
+            }
+        );
+
+        amountInput.value = "";
+
+        alert(
+            `Bitcoin purchased successfully!\n\n` +
+            `Amount: $${amount.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })}\n` +
+            `BTC: ${btcAmount.toFixed(8)}\n` +
+            `Price: $${bitcoinPrice.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })}`
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Trade error:",
+            error
+        );
+
+        if (error.message === "INSUFFICIENT_BALANCE") {
+
+            alert("Insufficient available balance.");
+
+        } else {
+
+            alert(
+                "Unable to complete the trade. Please try again."
+            );
+
+        }
+
+    }
+
+}
+
+
+// =========================
+// BUY BUTTON
+// =========================
+
+const tradeBuyButton =
+    document.getElementById("buyBtn");
+
+if (tradeBuyButton) {
+
+    tradeBuyButton.addEventListener(
+        "click",
+        function () {
+
+            executeTrade("BUY");
+
+        }
+    );
+
+}
+
+
+// =========================
+// SELL BUTTON
+// =========================
+
+const tradeSellButton =
+    document.getElementById("sellBtn");
+
+if (tradeSellButton) {
+
+    tradeSellButton.addEventListener(
+        "click",
+        function () {
+
+            executeTrade("SELL");
+
+        }
+    );
+
+}
+
+
+// Make trading function available globally
+window.executeTrade = executeTrade;
