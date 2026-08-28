@@ -9433,3 +9433,12 @@ body {
 
     color: rgba(255, 255, 255, 0.48);
 }
+
+/* =========================
+   WALLET CARD SPACING
+========================= */
+
+.wallet-box {
+    margin-top: 0;
+    margin-bottom: 14px;
+}
