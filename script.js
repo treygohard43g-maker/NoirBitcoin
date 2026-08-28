@@ -2497,7 +2497,11 @@ onAuthStateChanged(auth, async function(user) {
     if (!user) return;
 
     await loadUserBalance(user);
-    
+
+    // ---------- LOAD PROFILE PHOTO FROM FIRESTORE ----------
+
+    await loadProfilePhoto();
+
     // ---------- SYNC USERNAME FROM FIREBASE ----------
 
     const firebaseName = user.displayName || "User";
