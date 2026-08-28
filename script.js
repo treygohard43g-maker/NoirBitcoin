@@ -304,7 +304,7 @@ const balanceElement = document.getElementById("availableBalance");
 let balanceVisible = true;
 
 let balance = 500000;
-let bitcoinPrice = 120000;
+let bitcoinPrice = 0;
 let showingBTC = false;
 
 function updateBalance() {
