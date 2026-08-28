@@ -3479,14 +3479,6 @@ function updateProfileAccountDetails(user) {
 }
 
 
-// Wait for Firebase authentication
-onAuthStateChanged(auth, function(user) {
-
-    if (!user) return;
-
-    updateProfileAccountDetails(user);
-
-});
 
 // =========================
 // PROFILE PHOTO VIEWER
