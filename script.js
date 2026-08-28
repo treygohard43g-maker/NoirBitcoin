@@ -2326,14 +2326,19 @@ function showWithdrawalPending() {
     const numericAmount = Number(amount);
 
     if (
-        amount === "" ||
-        !Number.isFinite(numericAmount) ||
-        numericAmount <= 0 ||
-        wallet === ""
-    ) {
-        alert("Please enter a valid withdrawal amount and your Bitcoin wallet address.");
-        return;
-    }
+    amount === "" ||
+    !Number.isFinite(numericAmount) ||
+    numericAmount <= 0 ||
+    wallet === ""
+) {
+    alert("Please enter a valid withdrawal amount and your Bitcoin wallet address.");
+    return;
+}
+
+if (numericAmount > balance) {
+    alert("Insufficient available balance.");
+    return;
+}
 
     document.getElementById("withdrawModal").style.display = "none";
 
