@@ -2257,7 +2257,7 @@ onAuthStateChanged(auth, async function(user) {
 
     if (!user) return;
 
-    await loadUserBalance();
+    await loadUserBalance(user);
     
     // ---------- SYNC USERNAME FROM FIREBASE ----------
 
