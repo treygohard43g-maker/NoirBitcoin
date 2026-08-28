@@ -353,11 +353,12 @@ function updateBalance() {
 // FIREBASE USER BALANCE
 // =========================
 
-async function loadUserBalance() {
+async function loadUserBalance(user) {
 
-    const user = auth.currentUser;
-
-    if (!user) return;
+    if (!user) {
+        console.log("No Firebase user available.");
+        return;
+    }
 
     try {
 
@@ -375,17 +376,21 @@ async function loadUserBalance() {
             const userData =
                 balanceSnapshot.data();
 
-            if (
-                typeof userData.balance === "number"
-            ) {
+            if (typeof userData.balance === "number") {
 
                 balance = userData.balance;
+
+            } else {
+
+                balance = 500000;
 
             }
 
         } else {
 
-            // Create the user's starting balance
+            // Create starting balance for this user
+            balance = 500000;
+
             await setDoc(
                 balanceRef,
                 {
@@ -399,12 +404,13 @@ async function loadUserBalance() {
 
         }
 
+        // Balance is now ready
         balanceLoaded = true;
 
         updateBalance();
 
         console.log(
-            "User balance loaded:",
+            "User balance loaded successfully:",
             balance
         );
 
@@ -414,6 +420,11 @@ async function loadUserBalance() {
             "Unable to load user balance:",
             error
         );
+
+        // Prevent the interface from being stuck forever
+        balanceLoaded = true;
+
+        updateBalance();
 
     }
 
