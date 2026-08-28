@@ -1009,9 +1009,9 @@ function displayAsset(
     assetHeader.innerHTML = `
     
     <img
-        src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
-        alt="Bitcoin"
-    >
+    src="${asset.image?.large || asset.image?.small || asset.image?.thumb || ''}"
+    alt="${asset.name || 'Asset'}"
+>
 
     <div>
 
