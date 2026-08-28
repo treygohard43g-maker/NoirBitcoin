@@ -3250,3 +3250,51 @@ onAuthStateChanged(auth, function(user) {
     updateProfileAccountDetails(user);
 
 });
+
+// =========================
+// PROFILE PHOTO VIEWER
+// =========================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const profilePhotoBtn = document.getElementById("profilePhotoBtn");
+    const viewer = document.getElementById("profilePhotoViewer");
+    const viewerImage = document.getElementById("profilePhotoViewerImage");
+    const viewerPlaceholder = document.getElementById("profilePhotoViewerPlaceholder");
+    const headerPhoto = document.getElementById("headerProfilePhoto");
+
+    if (!profilePhotoBtn || !viewer) return;
+
+    profilePhotoBtn.addEventListener("click", () => {
+
+        const photo = headerPhoto ? headerPhoto.src : "";
+
+        if (photo && photo !== window.location.href) {
+
+            viewerImage.src = photo;
+            viewerImage.style.display = "block";
+            viewerPlaceholder.style.display = "none";
+
+        } else {
+
+            viewerImage.src = "";
+            viewerImage.style.display = "none";
+            viewerPlaceholder.style.display = "flex";
+
+        }
+
+        viewer.style.display = "flex";
+
+    });
+
+
+    // Tap anywhere on the viewer to close
+    viewer.addEventListener("click", () => {
+
+        viewer.style.display = "none";
+
+        viewerImage.src = "";
+
+    });
+
+});
