@@ -9343,4 +9343,24 @@ body {
 .wallet-row {
     position: relative;
     z-index: 1;
+    
+    /* =========================
+   PREMIUM COPY BUTTON
+========================= */
+
+.copy-btn {
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.copy-btn:hover {
+    background: rgba(245, 158, 11, 0.10);
+    border-color: rgba(245, 158, 11, 0.35);
+}
+
+.copy-btn:active {
+    transform: scale(0.94);
+}
 }
