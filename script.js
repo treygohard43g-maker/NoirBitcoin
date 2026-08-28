@@ -1074,137 +1074,151 @@ async function confirmInvestment() {
                             transaction.date
                         ).toLocaleString()
                         : "";
+// =========================
+// TRADE
+// =========================
+
+if (
+    transaction.transactionType === "trade"
+) {
+
+    const isBuy =
+        String(transaction.type || "").toUpperCase() === "BUY";
+
+    const sign =
+        isBuy ? "-" : "+";
+
+    const colorClass =
+        isBuy
+            ? "history-amount-negative"
+            : "history-amount-positive";
+
+    const transactionTitle =
+        isBuy
+            ? "Bought Bitcoin"
+            : "Sold Bitcoin";
+
+    const btcAmount =
+        Number(transaction.btcAmount) || 0;
+
+    const bitcoinPrice =
+        Number(transaction.price) || 0;
 
 
-                // =========================
-                // TRADE
-                // =========================
+    container.innerHTML += `
 
-                if (
-                    transaction.transactionType === "trade"
-                ) {
+    <div class="history-item">
 
-                    const isBuy =
-                        transaction.type === "BUY";
+        <div
+            class="history-header"
+            onclick="toggleHistory(this)"
+        >
 
-                    const sign =
-                        isBuy ? "-" : "+";
+            <div class="history-info">
 
+                <h3 class="history-asset-title">
 
-                    const colorClass =
-                        isBuy
-                            ? "history-amount-negative"
-                            : "history-amount-positive";
+                    <img
+                        src="https://cryptologos.cc/logos/bitcoin-btc-logo.png"
+                        class="bitcoin-history-logo"
+                        alt="Bitcoin"
+                    >
 
+                    Bitcoin
 
-                    const icon =
-                        isBuy
-                            ? "fa-bitcoin-sign"
-                            : "fa-arrow-trend-up";
+                </h3>
 
+                <p>
+                    ${transactionTitle}
+                    • ${formattedDate}
+                </p>
 
-                    container.innerHTML += `
-
-                    <div class="history-item">
-
-                        <div
-                            class="history-header"
-                            onclick="toggleHistory(this)"
-                        >
-
-                            <div class="history-info">
-
-                                <h3>
-                                    <i class="fa-brands fa-bitcoin"></i>
-                                    Bitcoin
-                                </h3>
-
-                                <p>
-                                    ${isBuy ? "Bought BTC" : "Sold BTC"}
-                                    • ${formattedDate}
-                                </p>
-
-                            </div>
-
-                            <div class="history-right">
-
-                                <span class="${colorClass}">
-                                    ${sign}$${formattedAmount}
-                                </span>
-
-                                <i
-                                    class="fa-solid fa-chevron-down history-chevron"
-                                ></i>
-
-                            </div>
-
-                        </div>
+            </div>
 
 
-                        <div class="history-details">
+            <div class="history-right">
 
-                            <p>
-                                <span>Transaction:</span>
-                                <strong>
-                                    ${isBuy ? "Buy Bitcoin" : "Sell Bitcoin"}
-                                </strong>
-                            </p>
+                <span class="${colorClass}">
+                    ${sign}$${formattedAmount}
+                </span>
 
-                            <p>
-                                <span>Amount:</span>
+                <i
+                    class="fa-solid fa-chevron-down history-chevron"
+                ></i>
 
-                                <strong class="${colorClass}">
-                                    ${sign}$${formattedAmount}
-                                </strong>
-                            </p>
+            </div>
 
-                            <p>
-                                <span>BTC Received:</span>
+        </div>
 
-                                <strong>
-                                    ${Number(
-                                        transaction.btcAmount || 0
-                                    ).toFixed(8)} BTC
-                                </strong>
-                            </p>
 
-                            <p>
-                                <span>Bitcoin Price:</span>
+        <div class="history-details">
 
-                                <strong>
-                                    $${Number(
-                                        transaction.price || 0
-                                    ).toLocaleString("en-US", {
-                                        minimumFractionDigits: 2,
-                                        maximumFractionDigits: 2
-                                    })}
-                                </strong>
-                            </p>
+            <p>
+                <span>Transaction:</span>
 
-                            <p>
-                                <span>Status:</span>
+                <strong>
+                    ${isBuy ? "Buy Bitcoin" : "Sell Bitcoin"}
+                </strong>
+            </p>
 
-                                <strong>
-                                    ${transaction.status || "Completed"}
-                                </strong>
-                            </p>
 
-                            <p>
-                                <span>Date:</span>
+            <p>
+                <span>Amount:</span>
 
-                                <strong>
-                                    ${formattedDate}
-                                </strong>
-                            </p>
+                <strong class="${colorClass}">
+                    ${sign}$${formattedAmount}
+                </strong>
+            </p>
 
-                        </div>
 
-                    </div>
+            <p>
+                <span>BTC ${isBuy ? "Received" : "Sold"}:</span>
 
-                    `;
+                <strong>
+                    ${btcAmount.toFixed(8)} BTC
+                </strong>
+            </p>
 
-                    return;
-                }
+
+            <p>
+                <span>Bitcoin Price:</span>
+
+                <strong>
+                    $${bitcoinPrice.toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}
+                </strong>
+            </p>
+
+
+            <p>
+                <span>Status:</span>
+
+                <strong>
+                    ${transaction.status || "Completed"}
+                </strong>
+            </p>
+
+
+            <p>
+                <span>Date:</span>
+
+                <strong>
+                    ${formattedDate}
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+    `;
+
+    return;
+}
+                    
+}
 
 
                 // =========================
