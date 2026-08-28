@@ -175,14 +175,24 @@ if (loginForm) {
 
         e.preventDefault();
 
+        console.log("LOGIN BUTTON PRESSED");
+
         const email =
             document.getElementById("loginEmail").value.trim();
 
         const password =
             document.getElementById("loginPassword").value;
 
+        if (!email || !password) {
+
+            alert("Please enter your email and password.");
+
+            return;
+        }
 
         try {
+
+            console.log("Signing into Firebase...");
 
             const userCredential =
                 await signInWithEmailAndPassword(
@@ -191,21 +201,21 @@ if (loginForm) {
                     password
                 );
 
-
             const user =
                 userCredential.user;
 
+            console.log(
+                "Firebase login successful:",
+                user.uid
+            );
 
-            // Get permanent username from Firebase
             const name =
                 user.displayName || "User";
-
 
             localStorage.setItem(
                 "loggedIn",
                 "true"
             );
-
 
             localStorage.setItem(
                 "firebaseUser",
@@ -215,8 +225,6 @@ if (loginForm) {
                 })
             );
 
-
-            // Restore username locally
             localStorage.setItem(
                 "noirUser",
                 JSON.stringify({
@@ -227,29 +235,30 @@ if (loginForm) {
                 })
             );
 
+            localStorage.setItem(
+                "welcomeType",
+                "back"
+            );
 
-            if (!localStorage.getItem("welcomeType")) {
+            console.log(
+                "Login information saved."
+            );
 
-                localStorage.setItem(
-                    "welcomeType",
-                    "back"
-                );
-
-            }
-
-
-            window.location.href =
-                "dashboard.html";
-
+            window.location.replace(
+                "dashboard.html"
+            );
 
         } catch (error) {
 
             console.error(
-                "Login error:",
+                "Firebase login error:",
                 error
             );
 
-            alert(error.message);
+            alert(
+                "Login failed:\n\n" +
+                error.message
+            );
 
         }
 
@@ -259,7 +268,6 @@ if (loginForm) {
 
 
 // ---------- PROTECT DASHBOARD ----------
-
 if (window.location.pathname.includes("dashboard.html")) {
 
     onAuthStateChanged(auth, function(user) {
