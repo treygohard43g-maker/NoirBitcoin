@@ -9362,6 +9362,7 @@ body {
 
 .copy-btn:active {
     transform: scale(0.94);
+ }
 }
 
 /* =========================
@@ -9385,7 +9386,7 @@ body {
     line-height: 1;
 
     text-overflow: ellipsis;
-}
+ }
 
 /* =========================
    MOBILE BTC WALLET CARD
@@ -9415,4 +9416,20 @@ body {
         border-radius: 7px;
     }
 
+}
+
+/* =========================
+   WALLET SECTION TITLE
+========================= */
+
+.wallet-title {
+    margin: 18px 0 9px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+
+    color: rgba(255, 255, 255, 0.48);
 }
