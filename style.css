@@ -11820,3 +11820,68 @@ body.light-mode .auth-container a {
     font-size: 100px;
 
 }
+
+/* =========================
+   PROFILE PHOTO VIEWER
+========================= */
+
+.profile-photo-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.92);
+
+    padding: 24px;
+    box-sizing: border-box;
+
+    cursor: pointer;
+}
+
+.profile-photo-viewer-content {
+    width: min(86vw, 420px);
+    height: min(86vw, 420px);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #242932;
+
+    border: 3px solid #2A2F38;
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.65);
+
+    cursor: default;
+}
+
+#profilePhotoViewerImage {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: none;
+}
+
+.profile-photo-viewer-placeholder {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #8b949e;
+
+    font-size: 110px;
+}
