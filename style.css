@@ -11143,3 +11143,201 @@ body {
 .history-detail-amount {
     color: #22c55e !important;
 }
+
+/* =========================
+   PORTFOLIO ALLOCATION
+========================= */
+
+.portfolio-allocation-card {
+    width: 100%;
+    margin-top: 18px;
+    padding: 20px;
+    border-radius: 18px;
+    background: linear-gradient(
+        145deg,
+        #1b1e24,
+        #181c22
+    );
+    border: 1px solid #2a2f38;
+    box-sizing: border-box;
+}
+
+.allocation-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.allocation-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.allocation-header p {
+    margin: 5px 0 0;
+    font-size: 12px;
+    color: #8b949e;
+}
+
+.allocation-header > i {
+    font-size: 18px;
+    color: #f59e0b;
+}
+
+.allocation-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+}
+
+/* Hollow donut */
+
+.donut-chart {
+    width: 170px;
+    height: 170px;
+    flex-shrink: 0;
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #f59e0b 0deg 180deg,
+            #627eea 180deg 270deg,
+            #9945ff 270deg 324deg,
+            #3b424d 324deg 360deg
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+/* Creates the hollow center */
+
+.donut-chart::before {
+    content: "";
+    position: absolute;
+
+    width: 112px;
+    height: 112px;
+
+    border-radius: 50%;
+
+    background: #15181e;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.03);
+}
+
+/* Center information */
+
+.donut-center {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.donut-center span {
+    font-size: 10px;
+    color: #8b949e;
+    margin-bottom: 5px;
+}
+
+.donut-center strong {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Legend */
+
+.allocation-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.allocation-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.allocation-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.bitcoin-dot {
+    background: #f59e0b;
+}
+
+.ethereum-dot {
+    background: #627eea;
+}
+
+.solana-dot {
+    background: #9945ff;
+}
+
+.other-dot {
+    background: #3b424d;
+}
+
+.allocation-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.allocation-item strong {
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.allocation-item small {
+    font-size: 11px;
+    color: #8b949e;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .portfolio-allocation-card {
+        padding: 18px;
+    }
+
+    .allocation-content {
+        gap: 20px;
+    }
+
+    .donut-chart {
+        width: 145px;
+        height: 145px;
+    }
+
+    .donut-chart::before {
+        width: 96px;
+        height: 96px;
+    }
+
+    .donut-center strong {
+        font-size: 14px;
+    }
+
+}
