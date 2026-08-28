@@ -3199,29 +3199,87 @@ const profileDisplayEmail =
     document.getElementById("profileDisplayEmail");
 
 
-// Load saved profile photo
-function loadProfilePhoto() {
+// =========================
+// LOAD PROFILE PHOTO
+// =========================
 
-    const savedPhoto =
-        localStorage.getItem("noirProfilePhoto");
+async function loadProfilePhoto() {
 
-    if (!savedPhoto) return;
+    const user = auth.currentUser;
 
-    if (profilePhoto) {
+    if (!user) return;
 
-        profilePhoto.src = savedPhoto;
-        profilePhoto.style.display = "block";
+    try {
 
-    }
+        const userRef = doc(
+            db,
+            "users",
+            user.uid
+        );
 
-    if (profilePhotoPlaceholder) {
+        const userSnapshot =
+            await getDoc(userRef);
 
-        profilePhotoPlaceholder.style.display = "none";
+        if (!userSnapshot.exists()) return;
+
+        const userData =
+            userSnapshot.data();
+
+        const savedPhoto =
+            userData.profilePhoto;
+
+        if (!savedPhoto) return;
+
+        // Keep a local copy for faster loading
+        localStorage.setItem(
+            "noirProfilePhoto",
+            savedPhoto
+        );
+
+        // Show photo
+        if (profilePhoto) {
+
+            profilePhoto.src = savedPhoto;
+            profilePhoto.style.display = "block";
+
+        }
+
+        if (profilePhotoPlaceholder) {
+
+            profilePhotoPlaceholder.style.display = "none";
+
+        }
+
+        // Also update header photo
+        const headerPhoto =
+            document.getElementById("headerProfilePhoto");
+
+        const headerIcon =
+            document.getElementById("headerProfileIcon");
+
+        if (headerPhoto) {
+
+            headerPhoto.src = savedPhoto;
+            headerPhoto.style.display = "block";
+
+        }
+
+        if (headerIcon) {
+
+            headerIcon.style.display = "none";
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load profile photo:",
+            error
+        );
 
     }
 
 }
-
 
 // Display logged-in user's information
 function loadProfileInformation() {
@@ -3254,8 +3312,8 @@ function loadProfileInformation() {
 if (profilePhotoInput) {
 
     profilePhotoInput.addEventListener(
-        "change",
-        function () {
+    "change",
+    async function () {
 
             const file =
                 profilePhotoInput.files[0];
@@ -3337,28 +3395,66 @@ if (profilePhotoInput) {
             );
 
 
-        // Save compressed photo
-        try {
+        // =========================
+// SAVE PROFILE PHOTO
+// =========================
 
-            localStorage.setItem(
-                "noirProfilePhoto",
-                photoData
-            );
+const user = auth.currentUser;
 
-        } catch (error) {
+if (!user) {
 
-            console.error(
-                "Unable to save profile photo:",
-                error
-            );
+    alert(
+        "Your login session has expired. Please log in again."
+    );
 
-            alert(
-                "This photo is too large. Please choose another photo."
-            );
+    return;
 
-            return;
+}
 
+try {
+
+    // Save locally
+    localStorage.setItem(
+        "noirProfilePhoto",
+        photoData
+    );
+
+    // Save permanently to Firestore
+    const userRef = doc(
+        db,
+        "users",
+        user.uid
+    );
+
+    await setDoc(
+        userRef,
+        {
+            profilePhoto: photoData,
+            updatedAt: new Date().toISOString()
+        },
+        {
+            merge: true
         }
+    );
+
+    console.log(
+        "Profile photo saved to Firestore successfully."
+    );
+
+} catch (error) {
+
+    console.error(
+        "Unable to save profile photo:",
+        error
+    );
+
+    alert(
+        "Unable to save your profile photo. Please try again."
+    );
+
+    return;
+
+}
 
 
         // Display photo immediately
