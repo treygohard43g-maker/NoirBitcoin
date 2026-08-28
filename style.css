@@ -11496,3 +11496,71 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.025);
     box-shadow: none;
 }
+
+/* =========================
+   PORTFOLIO ALLOCATION
+   LIGHT MODE
+========================= */
+
+body.light-mode .portfolio-allocation-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Header */
+body.light-mode .allocation-header h2 {
+    color: #111827;
+}
+
+body.light-mode .allocation-header p {
+    color: #6b7280;
+}
+
+body.light-mode .allocation-header > i {
+    color: #f59e0b;
+}
+
+/* Expanded section */
+body.light-mode .portfolio-allocation-card .allocation-content {
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Donut hollow center */
+body.light-mode .portfolio-allocation-card .donut-chart::before {
+    background: #ffffff;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+/* Donut center text */
+body.light-mode .portfolio-allocation-card .donut-center span {
+    color: #6b7280;
+}
+
+body.light-mode .portfolio-allocation-card .donut-center strong {
+    color: #111827;
+}
+
+/* Allocation labels */
+body.light-mode .portfolio-allocation-card .allocation-item strong {
+    color: #111827;
+}
+
+body.light-mode .portfolio-allocation-card .allocation-item small {
+    color: #6b7280;
+}
+
+/* Preview bar */
+body.light-mode .portfolio-allocation-card .allocation-preview-bar {
+    background: #e5e7eb;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .portfolio-allocation-card .allocation-preview-info {
+    color: #6b7280;
+}
+
+/* Chevron */
+body.light-mode .portfolio-allocation-card .allocation-chevron {
+    color: #374151;
+}
