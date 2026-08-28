@@ -2126,6 +2126,31 @@ onAuthStateChanged(auth, function(user) {
 
     if (!user) return;
 
+    // ---------- SYNC USERNAME FROM FIREBASE ----------
+
+    const firebaseName = user.displayName || "User";
+
+    let savedUser =
+        JSON.parse(localStorage.getItem("noirUser")) || {};
+
+    savedUser.uid = user.uid;
+    savedUser.name = firebaseName;
+    savedUser.email = user.email || savedUser.email || "";
+
+    localStorage.setItem(
+        "noirUser",
+        JSON.stringify(savedUser)
+    );
+
+    // Update dashboard username
+    const balanceUserElement =
+        document.getElementById("balanceuserName");
+
+    if (balanceUserElement) {
+        balanceUserElement.textContent = firebaseName;
+    }
+
+    // Update portfolio and history
     updatePortfolio();
     forceRepairInvestmentHistory();
 
