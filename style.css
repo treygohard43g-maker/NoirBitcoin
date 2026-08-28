@@ -11564,3 +11564,57 @@ body.light-mode .portfolio-allocation-card .allocation-preview-info {
 body.light-mode .portfolio-allocation-card .allocation-chevron {
     color: #374151;
 }
+
+/* =========================
+   HEADER — LIGHT MODE
+========================= */
+
+body.light-mode .dashboard-header {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06) !important;
+}
+
+/* Header text */
+body.light-mode .dashboard-header h1,
+body.light-mode .dashboard-header h2,
+body.light-mode .dashboard-header h3,
+body.light-mode .dashboard-header p,
+body.light-mode .dashboard-header span {
+    color: #111827 !important;
+}
+
+/* Header icons */
+body.light-mode .dashboard-header i {
+    color: #111827 !important;
+}
+
+/* Keep NoirBitcoin gold accents */
+body.light-mode .dashboard-header .brand,
+body.light-mode .dashboard-header .logo,
+body.light-mode .dashboard-header .fa-bitcoin {
+    color: #f59e0b !important;
+}
+
+/* Hamburger / notification buttons */
+body.light-mode .dashboard-header button {
+    background: transparent !important;
+    color: #111827 !important;
+    border-color: transparent !important;
+}
+
+/* Notification & profile dropdowns */
+body.light-mode .notification-menu,
+body.light-mode .profile-menu {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,.10) !important;
+}
+
+/* Dropdown text */
+body.light-mode .notification-menu *,
+body.light-mode .profile-menu * {
+    color: #111827 !important;
+}
