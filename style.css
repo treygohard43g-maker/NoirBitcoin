@@ -10637,3 +10637,496 @@ body {
 #recentHistory .failed {
     color: #ef4444 !important;
 }
+
+/* =========================================================
+   PREMIUM DASHBOARD HISTORY
+   ========================================================= */
+
+.history-section {
+    width: 100%;
+    margin: 22px 0 0;
+    padding: 18px 16px 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27, 30, 36, 0.96),
+            rgba(18, 21, 27, 0.96)
+        );
+
+    border: 1px solid rgba(255,255,255,0.055);
+    border-radius: 18px;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.22);
+
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.history-title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+    padding: 0 2px;
+
+    box-sizing: border-box;
+}
+
+.history-title h2 {
+    margin: 0;
+
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+
+    color: #f5f7fa;
+}
+
+.history-title i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 9px;
+
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.055);
+
+    color: #8b949e;
+
+    font-size: 11px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.history-title i:hover {
+    background: rgba(255,255,255,0.08);
+    transform: translateX(2px);
+}
+
+
+/* =========================
+   TRANSACTION LIST
+========================= */
+
+#recentHistory {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   HISTORY ROW
+========================= */
+
+#recentHistory > div {
+    width: 100%;
+    min-height: 64px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 11px 10px;
+
+    margin-bottom: 8px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.035),
+            rgba(255,255,255,0.018)
+        );
+
+    border: 1px solid rgba(255,255,255,0.045);
+    border-radius: 13px;
+
+    box-sizing: border-box;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+#recentHistory > div:last-child {
+    margin-bottom: 0;
+}
+
+#recentHistory > div:hover {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.055),
+            rgba(255,255,255,0.025)
+        );
+
+    border-color: rgba(255,255,255,0.075);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   HISTORY ICON
+========================= */
+
+#recentHistory .history-icon,
+#recentHistory .transaction-icon {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 11px;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(247,147,26,0.16),
+            rgba(247,147,26,0.055)
+        );
+
+    border: 1px solid rgba(247,147,26,0.14);
+
+    color: #f7931a;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   HISTORY TEXT
+========================= */
+
+#recentHistory .history-info,
+#recentHistory .transaction-info {
+    min-width: 0;
+    flex: 1;
+}
+
+#recentHistory .history-info h4,
+#recentHistory .transaction-info h4,
+#recentHistory .history-name,
+#recentHistory .transaction-name {
+    margin: 0;
+
+    color: #f5f7fa;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#recentHistory .history-info p,
+#recentHistory .transaction-info p,
+#recentHistory .history-date,
+#recentHistory .transaction-date {
+    margin: 4px 0 0;
+
+    color: #7d8590;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================
+   AMOUNT
+========================= */
+
+#recentHistory .history-amount,
+#recentHistory .transaction-amount,
+#recentHistory .amount {
+    margin-left: 10px;
+
+    text-align: right;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* PROFIT */
+
+#recentHistory .profit,
+#recentHistory .positive,
+#recentHistory .success,
+#recentHistory .gain {
+    color: #22c55e !important;
+}
+
+
+/* LOSS */
+
+#recentHistory .loss,
+#recentHistory .negative,
+#recentHistory .danger,
+#recentHistory .declined {
+    color: #ef4444 !important;
+}
+
+
+/* =========================
+   VIEW ALL
+========================= */
+
+.view-all-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    margin-top: 13px;
+}
+
+.view-all-btn {
+    width: 100%;
+
+    min-height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 10px 16px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(255,255,255,0.065);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.045),
+            rgba(255,255,255,0.02)
+        );
+
+    color: #d7dce2;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.view-all-btn i {
+    font-size: 10px;
+    color: #8b949e;
+
+    transition:
+        transform 0.2s ease;
+}
+
+.view-all-btn:hover {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.075),
+            rgba(255,255,255,0.035)
+        );
+
+    border-color: rgba(255,255,255,0.10);
+
+    transform: translateY(-1px);
+}
+
+.view-all-btn:hover i {
+    transform: translateX(3px);
+}
+
+
+/* =========================
+   EMPTY HISTORY
+========================= */
+
+#recentHistory:empty::before {
+    content: "No recent transactions";
+
+    display: block;
+
+    padding: 22px 10px;
+
+    text-align: center;
+
+    color: #737b87;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .history-section {
+        margin-top: 18px;
+
+        padding:
+            16px 12px 13px;
+
+        border-radius: 17px;
+    }
+
+
+    .history-title {
+        margin-bottom: 12px;
+    }
+
+
+    .history-title h2 {
+        font-size: 16px;
+    }
+
+
+    .history-title i {
+        width: 28px;
+        height: 28px;
+
+        border-radius: 8px;
+    }
+
+
+    #recentHistory > div {
+        min-height: 60px;
+
+        padding: 9px 9px;
+
+        margin-bottom: 7px;
+
+        border-radius: 12px;
+    }
+
+
+    #recentHistory .history-icon,
+    #recentHistory .transaction-icon {
+        width: 35px;
+        height: 35px;
+
+        min-width: 35px;
+
+        margin-right: 9px;
+
+        border-radius: 10px;
+
+        font-size: 14px;
+    }
+
+
+    #recentHistory .history-info h4,
+    #recentHistory .transaction-info h4,
+    #recentHistory .history-name,
+    #recentHistory .transaction-name {
+        font-size: 12px;
+    }
+
+
+    #recentHistory .history-info p,
+    #recentHistory .transaction-info p,
+    #recentHistory .history-date,
+    #recentHistory .transaction-date {
+        font-size: 10px;
+
+        margin-top: 3px;
+    }
+
+
+    #recentHistory .history-amount,
+    #recentHistory .transaction-amount,
+    #recentHistory .amount {
+        font-size: 12px;
+
+        margin-left: 7px;
+    }
+
+
+    .view-all-container {
+        margin-top: 11px;
+    }
+
+
+    .view-all-btn {
+        min-height: 40px;
+
+        border-radius: 11px;
+
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .history-section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    #recentHistory > div {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+
+    #recentHistory .history-icon,
+    #recentHistory .transaction-icon {
+        width: 33px;
+        height: 33px;
+
+        min-width: 33px;
+
+        margin-right: 8px;
+    }
+
+
+    #recentHistory .history-amount,
+    #recentHistory .transaction-amount,
+    #recentHistory .amount {
+        font-size: 11px;
+    }
+
+}
