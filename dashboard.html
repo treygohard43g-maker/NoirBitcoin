@@ -367,7 +367,7 @@ stroke-width="2"/>
 
 <!-- PORTFOLIO ALLOCATION -->
 
-<div class="portfolio-allocation-card">
+<div class="portfolio-allocation-card" onclick="togglePortfolioAllocation()">
 
     <div class="allocation-header">
         <div>
@@ -375,15 +375,39 @@ stroke-width="2"/>
             <p>Your asset distribution</p>
         </div>
 
-        <i class="fa-solid fa-chart-pie"></i>
+        <div class="allocation-action">
+            <i class="fa-solid fa-chart-pie"></i>
+            <i class="fa-solid fa-chevron-down allocation-chevron"></i>
+        </div>
     </div>
 
-    <div class="allocation-content">
+    <div class="allocation-preview">
+
+        <div class="allocation-preview-bar">
+            <span class="preview-btc"></span>
+            <span class="preview-eth"></span>
+            <span class="preview-sol"></span>
+            <span class="preview-other"></span>
+        </div>
+
+        <div class="allocation-preview-info">
+            <span>50% Bitcoin</span>
+            <span>25% Ethereum</span>
+            <span>15% Solana</span>
+            <span>10% Other</span>
+        </div>
+
+    </div>
+
+    <!-- EXPANDED ALLOCATION -->
+
+    <div class="allocation-content" id="allocationDetails">
 
         <div class="donut-chart">
 
             <div class="donut-center">
                 <span>Total Portfolio</span>
+
                 <strong id="allocationTotal">
                     $500,000
                 </strong>
