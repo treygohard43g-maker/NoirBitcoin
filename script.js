@@ -3195,3 +3195,57 @@ function loadHeaderProfilePhoto() {
 }
 
 loadHeaderProfilePhoto();
+
+// =========================
+// PROFILE ACCOUNT DETAILS
+// =========================
+
+function loadProfileAccountDetails() {
+
+    const savedUser =
+        JSON.parse(
+            localStorage.getItem("noirUser")
+        );
+
+    if (!savedUser) return;
+
+
+    const name =
+        document.getElementById("profileInfoName");
+
+    const email =
+        document.getElementById("profileInfoEmail");
+
+    const accountId =
+        document.getElementById("profileInfoId");
+
+
+    if (name) {
+
+        name.textContent =
+            savedUser.name || "User";
+
+    }
+
+
+    if (email) {
+
+        email.textContent =
+            savedUser.email || "—";
+
+    }
+
+
+    if (accountId) {
+
+        accountId.textContent =
+            savedUser.uid
+                ? savedUser.uid.substring(0, 12) + "..."
+                : "—";
+
+    }
+
+}
+
+
+loadProfileAccountDetails();
