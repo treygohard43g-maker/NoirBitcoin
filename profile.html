@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NoirBitcoin Profile</title>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="profile-header">
+
+    <button
+        class="profile-back-btn"
+        onclick="window.location.href='dashboard.html'"
+    >
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <h1>Profile</h1>
+
+</header>
+
+
+<main class="profile-page">
+
+    <section class="profile-card">
+
+        <!-- PROFILE PHOTO -->
+
+        <div class="profile-photo-wrapper">
+
+            <label for="profilePhotoInput" class="profile-photo">
+
+                <img
+                    id="profilePhoto"
+                    src=""
+                    alt="Profile photo"
+                >
+
+                <div id="profilePhotoPlaceholder">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="profile-photo-camera">
+                    <i class="fa-solid fa-camera"></i>
+                </div>
+
+            </label>
+
+            <input
+                type="file"
+                id="profilePhotoInput"
+                accept="image/*"
+                hidden
+            >
+
+        </div>
+
+
+        <!-- USER INFORMATION -->
+
+        <h2 id="profileDisplayName">
+            User
+        </h2>
+
+        <p id="profileDisplayEmail">
+            —
+        </p>
+
+
+        <button
+            class="change-photo-btn"
+            type="button"
+            onclick="document.getElementById('profilePhotoInput').click()"
+        >
+            <i class="fa-solid fa-camera"></i>
+            Change Profile Photo
+        </button>
+
+    </section>
+
+</main>
+
+
+<script type="module" src="script.js"></script>
+
+</body>
+
+</html>
