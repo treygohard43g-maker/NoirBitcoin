@@ -3339,8 +3339,7 @@ if (profilePhotoInput) {
                 new FileReader();
 
 
-            reader.onload = function (event) {
-
+    reader.onload = async function (event) {
     const image = new Image();
 
     image.onload = function () {
