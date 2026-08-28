@@ -3408,10 +3408,10 @@ if (profilePhotoInput) {
             canvas.toDataURL(
                 "image/jpeg",
                 0.75
-            );
+        );
 
 
-        // =========================
+// =========================
 // SAVE PROFILE PHOTO
 // =========================
 
