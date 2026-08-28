@@ -9482,3 +9482,80 @@ body {
 
     color: rgba(255, 255, 255, 0.48);
 }
+
+/* =========================
+   PREMIUM INVEST NOW BUTTON
+========================= */
+
+.invest-btn {
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 18px;
+
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: 12px;
+
+    background: linear-gradient(
+        180deg,
+        #f7b733 0%,
+        #e89a0c 100%
+    );
+
+    color: #0d1117;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1px;
+
+    box-shadow:
+        0 5px 18px rgba(245, 158, 11, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+
+/* Hover */
+
+.invest-btn:hover {
+    filter: brightness(1.06);
+
+    box-shadow:
+        0 7px 22px rgba(245, 158, 11, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+
+/* Press */
+
+.invest-btn:active {
+    transform: scale(0.98);
+
+    box-shadow:
+        0 3px 12px rgba(245, 158, 11, 0.14);
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .invest-btn {
+        min-height: 44px;
+        border-radius: 11px;
+        font-size: 14px;
+    }
+
+}
