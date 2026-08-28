@@ -11644,3 +11644,48 @@ body.light-mode .history-details .history-detail-amount,
 body.light-mode .history-amount-positive {
     color: #22c55e !important;
 }
+
+/* =========================
+   LOGIN & REGISTER
+   LIGHT MODE
+========================= */
+
+body.light-mode .auth-container {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+body.light-mode .auth-container h1 {
+    color: #f59e0b !important;
+}
+
+/* Description */
+body.light-mode .auth-container p {
+    color: #6b7280 !important;
+}
+
+/* Inputs */
+body.light-mode .auth-container input {
+    background: #f3f4f6 !important;
+    color: #111827 !important;
+    border: 1px solid #d1d5db !important;
+}
+
+/* Input placeholder */
+body.light-mode .auth-container input::placeholder {
+    color: #9ca3af !important;
+}
+
+/* Login / Register button */
+body.light-mode .auth-container button {
+    background: #f59e0b !important;
+    color: #111827 !important;
+}
+
+/* Links */
+body.light-mode .auth-container a {
+    color: #d97706 !important;
+}
