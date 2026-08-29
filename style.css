@@ -12507,3 +12507,93 @@ body.light-mode .website-detail-row strong.history-amount-positive {
 body.light-mode .website-detail-row strong.history-amount-negative {
     color: #ef4444 !important;
 }
+
+/* =========================================
+   VIEW ALL HISTORY — COMPLETE LIGHT MODE
+========================================= */
+
+body.light-mode .history-page {
+    color: #111827 !important;
+}
+
+body.light-mode .history-page-header h2 {
+    color: #111827 !important;
+}
+
+body.light-mode .history-page-header p {
+    color: #6b7280 !important;
+}
+
+/* Transaction cards */
+body.light-mode .website-history-item {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Main transaction information */
+body.light-mode .website-history-info h3 {
+    color: #111827 !important;
+}
+
+body.light-mode .website-history-info p {
+    color: #6b7280 !important;
+}
+
+body.light-mode .website-history-info small {
+    color: #6b7280 !important;
+}
+
+/* Bitcoin / asset icon */
+body.light-mode .website-history-icon {
+    background: rgba(247, 147, 26, 0.12) !important;
+    color: #f7931a !important;
+}
+
+/* Right side */
+body.light-mode .website-history-right {
+    color: #111827 !important;
+}
+
+body.light-mode .history-chevron {
+    color: #6b7280 !important;
+}
+
+body.light-mode .history-chevron.rotate {
+    color: #f7931a !important;
+}
+
+/* Positive amounts stay GREEN */
+body.light-mode .history-amount,
+body.light-mode .history-amount-positive {
+    color: #22c55e !important;
+}
+
+/* Negative amounts stay RED */
+body.light-mode .history-amount-negative {
+    color: #ef4444 !important;
+}
+
+/* Status colors */
+body.light-mode .history-status.active {
+    color: #22c55e !important;
+}
+
+body.light-mode .history-status.pending {
+    color: #d97706 !important;
+}
+
+/* Expanded transaction details */
+body.light-mode .website-history-details {
+    background: transparent !important;
+    color: #111827 !important;
+}
+
+body.light-mode .website-history-details.active {
+    border-top-color: #e5e7eb !important;
+}
+
+body.light-mode .history-details-title {
+    color: #111827 !important;
+}
