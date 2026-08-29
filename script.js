@@ -4219,6 +4219,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 intro.style.display = "none";
 
                 mainSite.style.display = "block";
+                mainSite.style.background = "#F3A044";
 
                 document.body.style.background = "#F3A044";
 
