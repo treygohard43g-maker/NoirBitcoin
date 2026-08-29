@@ -3993,3 +3993,13 @@ document.addEventListener(
 
     }
 );
+
+/* Negative transaction amounts */
+.history-amount-negative {
+    color: #ef4444 !important;
+}
+
+/* Positive transaction amounts */
+.history-amount-positive {
+    color: #22c55e !important;
+}
