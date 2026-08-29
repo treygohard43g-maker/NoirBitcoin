@@ -2199,15 +2199,15 @@ async function loadLiveAssetPrices() {
 
     try {
 
-        const response = await fetch(
+       const response = await fetch(
             `https://api.coingecko.com/api/v3/simple/price?ids=${coinIds.join(",")}&vs_currencies=usd&include_24hr_change=true`,
             {
-                headers: {
-                    "x-cg-demo-api-key":
-                        COINGECKO_API_KEY
-                }
-            }
-        );
+              headers: {
+                  "x-cg-demo-api-key":
+                      "CG-AEbisio9spT8HodxYnx9iyHE"
+          }
+       }
+ );
 
         if (!response.ok) {
             throw new Error(
