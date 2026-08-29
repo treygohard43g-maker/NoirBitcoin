@@ -12261,3 +12261,96 @@ body:not(.dark-mode) .history-details-title {
     border-radius: 50%;
     display: inline-block;
 }
+
+/* =========================
+   HISTORY — LIGHT MODE
+========================= */
+
+/* Main history surfaces */
+body.light-mode .transaction-history,
+body.light-mode .history-section,
+body.light-mode .history-card {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Transaction rows */
+body.light-mode .transaction-history .transaction-item,
+body.light-mode .history-section .transaction-item,
+body.light-mode .history-card .transaction-item {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: none !important;
+}
+
+/* Transaction text */
+body.light-mode .transaction-history .transaction-item p,
+body.light-mode .history-section .transaction-item p,
+body.light-mode .history-card .transaction-item p,
+body.light-mode .transaction-history .transaction-item span,
+body.light-mode .history-section .transaction-item span,
+body.light-mode .history-card .transaction-item span {
+    color: #111827 !important;
+}
+
+/* Secondary text such as Date / Type */
+body.light-mode .transaction-history .transaction-item small,
+body.light-mode .history-section .transaction-item small,
+body.light-mode .history-card .transaction-item small {
+    color: #6b7280 !important;
+}
+
+/* History details when dropdown is opened */
+body.light-mode .history-details {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border-color: #e5e7eb !important;
+}
+
+/* Detail labels */
+body.light-mode .history-details p,
+body.light-mode .history-details span:first-child {
+    color: #6b7280 !important;
+}
+
+/* Detail values */
+body.light-mode .history-details strong,
+body.light-mode .history-details span:last-child {
+    color: #111827 !important;
+}
+
+/* Keep green amounts GREEN */
+body.light-mode .history-amount-positive,
+body.light-mode .history-details .history-detail-amount {
+    color: #22c55e !important;
+}
+
+/* Keep negative deductions RED */
+body.light-mode .history-amount-negative,
+body.light-mode .history-details .history-detail-amount.negative {
+    color: #ef4444 !important;
+}
+
+/* Keep Completed status GREEN */
+body.light-mode .status-badge.confirmed {
+    background: rgba(34, 197, 94, 0.15) !important;
+    color: #16a34a !important;
+}
+
+/* Keep Pending status ORANGE */
+body.light-mode .status-badge.pending {
+    background: rgba(245, 158, 11, 0.15) !important;
+    color: #d97706 !important;
+}
+
+/* History dropdown chevron */
+body.light-mode .history-chevron {
+    color: #6b7280 !important;
+}
+
+body.light-mode .history-chevron.rotate {
+    color: #f7931a !important;
+}
