@@ -12182,8 +12182,28 @@ body.light-mode .auth-container a {
         padding-left: 53px;
     }
 
-}
+    /* Keep dropdown details inside the screen */
 
+    .website-detail-row {
+        width: 100%;
+        gap: 10px;
+        box-sizing: border-box;
+    }
+
+    body.light-mode .website-detail-row span {
+        flex: 0 1 42%;
+        min-width: 0;
+    }
+
+    body.light-mode .website-detail-row strong {
+        flex: 0 1 58%;
+        max-width: 58%;
+        min-width: 0;
+        text-align: right;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+ }
 /* =========================================
    FLAT TRANSACTION DROPDOWN DETAILS
    ========================================= */
