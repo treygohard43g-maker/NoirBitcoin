@@ -11902,3 +11902,8 @@ body.light-mode .auth-container a {
     object-fit: contain;
     display: inline-block;
 }
+
+/* Negative transaction amounts */
+.history-amount-negative {
+    color: #ef4444 !important;
+}
