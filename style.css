@@ -13899,7 +13899,34 @@ body {
     }
 }
     
+/* =========================================
+   NOIRBITCOIN — ORANGE INTRO BACKGROUND
+========================================= */
 
+#noirIntro {
+    position: fixed !important;
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            #ffc46f 0%,
+            #f8aa4c 35%,
+            #ef922e 70%,
+            #e78320 100%
+        ) !important;
+
+    z-index: 999999 !important;
+
+    overflow: hidden !important;
+}
 
             
     
