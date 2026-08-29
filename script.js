@@ -4164,11 +4164,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!intro || !mainSite) return;
 
-    /* Keep landing page hidden during opening */
+
+    /* FORCE PREMIUM ORANGE INTRO */
+
+    document.body.style.background = "#F3A044";
+
+    intro.style.cssText = `
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+        radial-gradient(
+            circle at 50% 30%,
+            #FFC46F 0%,
+            #F8AA4C 35%,
+            #EF922E 70%,
+            #E78320 100%
+        );
+        z-index: 999999;
+        overflow: hidden;
+        opacity: 1;
+        visibility: visible;
+    `;
+
+
+    /* KEEP MAIN PAGE HIDDEN */
+
     mainSite.style.display = "none";
 
 
-    /* GET STARTED */
+    /* =========================================
+       GET STARTED
+    ========================================= */
 
     if (getStartedBtn) {
 
@@ -4177,10 +4208,9 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
 
             intro.style.transition =
-                "opacity 0.65s ease, transform 0.65s ease";
+                "opacity 0.7s ease, transform 0.7s ease";
 
             intro.style.opacity = "0";
-
             intro.style.transform = "scale(1.02)";
 
 
@@ -4190,9 +4220,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 mainSite.style.display = "block";
 
+                document.body.style.background = "#F3A044";
+
                 window.scrollTo(0, 0);
 
-            }, 650);
+            }, 700);
 
         });
 
