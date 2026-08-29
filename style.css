@@ -12375,3 +12375,15 @@ body.light-mode .history-card .transaction-item {
     border: none !important;
     box-shadow: none !important;
 }
+
+/* =========================
+   DASHBOARD HISTORY SURFACE
+========================= */
+
+body.light-mode .transaction-history,
+body.light-mode .history-section,
+body.light-mode .history-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
