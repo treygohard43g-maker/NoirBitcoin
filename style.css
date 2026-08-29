@@ -6378,26 +6378,103 @@ body {
     background: transparent !important;
 
     backdrop-filter: none !important;
-
     -webkit-backdrop-filter: none !important;
 
+    border: none !important;
     border-top: none !important;
 
     border-radius: 0 !important;
-
     box-shadow: none !important;
 
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
 }
+
+
+/* Each transaction detail */
 
 .history-item .history-details p {
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0;
+    padding: 9px 0;
+
     border-bottom: 1px solid #2a2f38;
 
+    color: #8b949e;
+
+    font-size: 14px;
+    font-weight: 400;
 }
+
+
+/* Remove line from final detail */
 
 .history-item .history-details p:last-child {
 
     border-bottom: none;
+
+}
+
+
+/* Detail values */
+
+.history-item .history-details p strong {
+
+    color: #d1d5db;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    text-align: right;
+}
+
+
+/* BTC received */
+
+.history-item .history-details p .btc-received {
+
+    color: #4ade80 !important;
+
+    font-size: 14px;
+    font-weight: 400;
+
+}
+
+
+/* Amount */
+
+.history-item .history-details p .amount-value {
+
+    color: #e5e7eb !important;
+
+    font-weight: 400;
+
+}
+
+
+/* Status */
+
+.history-item .history-details p .status-value {
+
+    color: #d1d5db !important;
+
+    font-weight: 400;
+
+}
+
+
+/* Date */
+
+.history-item .history-details p .date-value {
+
+    color: #a1a1aa !important;
+
+    font-weight: 400;
 
 }
 
