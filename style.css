@@ -3495,95 +3495,57 @@ input:not(:checked) + .slider:before {
 }
 
 /* ===========================
-   LIGHT MODE
+   LIGHT MODE — HISTORY & TRANSACTIONS
 =========================== */
 
-body.light-mode{
-background:#f4f7fb;
-color:#111827;
+body.light-mode .detail-row{
+    border-bottom:1px solid #e5e7eb;
 }
 
-body.light-mode .dashboard-header,
-body.light-mode .balance-card,
-body.light-mode .portfolio-card,
-body.light-mode .asset-card,
-body.light-mode .plan-card,
-body.light-mode .transaction-history,
-body.light-mode .transaction-card,
-body.light-mode .market-card,
-body.light-mode .btc-chart-card,
-body.light-mode .modal-content,
-body.light-mode .receive-content,
-body.light-mode .settings-card,
-body.light-mode .profile-menu,
-body.light-mode .notification-menu{
-background:#ffffff;
-color:#111827;
-box-shadow:0 8px 25px rgba(0,0,0,.08);
+body.light-mode .detail-row span:first-child{
+    color:#6b7280;
 }
 
-body.light-mode input{
-background:#f3f4f6;
-color:#111827;
-border:1px solid #d1d5db;
-}
-
-body.light-mode button{
+body.light-mode .detail-row span:last-child{
     color:#111827;
 }
 
-body.light-mode .wallet-address{
-background:#f3f4f6;
-color:#f7931a;
-border:1px solid #f7931a;
-}
-
-body.light-mode .setting-label i{
-color:#f7931a;
-}
-
-.status-badge.confirmed{
+/* Keep green status green */
+body.light-mode .status-badge.confirmed{
     background:rgba(34,197,94,.15);
-    color:#22c55e;
+    color:#16a34a;
 }
 
-.status-badge.pending{
+/* Keep pending status orange */
+body.light-mode .status-badge.pending{
     background:rgba(245,158,11,.15);
-    color:#f59e0b;
+    color:#d97706;
 }
 
-.detail-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:10px 0;
-    border-bottom:1px solid #2d333b;
+/* History dropdown */
+body.light-mode .history-chevron{
+    color:#6b7280;
 }
 
-.detail-row:last-child{
-    border-bottom:none;
-}
-
-.detail-row span:first-child{
-    color:#8b949e;
-    font-size:13px;
-}
-
-.detail-row span:last-child{
-    color:#fff;
-    font-weight:500;
-}
-
-.history-chevron{
-    margin-top:8px;
-    font-size:14px;
-    color:#8b949e;
-    transition:transform .3s ease,color .3s ease;
-}
-
-.history-chevron.rotate{
-    transform:rotate(180deg);
+body.light-mode .history-chevron.rotate{
     color:#f7931a;
+}
+
+/* Transaction amounts */
+body.light-mode .transaction-amount{
+    color:#111827;
+}
+
+/* Negative transaction/deduction */
+body.light-mode .transaction-amount.negative{
+    color:#ef4444;
+}
+
+/* History text */
+body.light-mode .transaction-card,
+body.light-mode .transaction-card p,
+body.light-mode .transaction-card span{
+    color:#111827;
 }
 
 /* ===== Portfolio Overview Premium ===== */
