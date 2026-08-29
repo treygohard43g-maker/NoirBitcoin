@@ -12707,7 +12707,7 @@ body.light-mode .empty-history p {
     
   
 /* =========================================================
-   NOIRBITCOIN — COMPLETE LANDING PAGE
+   NOIRBITCOIN PREMIUM ORANGE LANDING
 ========================================================= */
 
 * {
@@ -12721,67 +12721,30 @@ html {
 }
 
 body {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Arial, sans-serif;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-    background: #0d1117;
-    color: #ffffff;
+    background: #f59b32;
+
+    color: #17120d;
 
     min-height: 100vh;
+
     overflow-x: hidden;
 }
 
 
 /* =========================================================
-   GLOBAL BACKGROUND GLOW
-========================================================= */
-
-body::before {
-    content: "";
-    position: fixed;
-
-    width: 500px;
-    height: 500px;
-
-    top: -180px;
-    left: -180px;
-
-    background: rgba(247, 147, 26, 0.07);
-
-    filter: blur(120px);
-
-    border-radius: 50%;
-
-    pointer-events: none;
-    z-index: -5;
-}
-
-body::after {
-    content: "";
-    position: fixed;
-
-    width: 500px;
-    height: 500px;
-
-    right: -180px;
-    bottom: -180px;
-
-    background: rgba(255, 20, 20, 0.08);
-
-    filter: blur(120px);
-
-    border-radius: 50%;
-
-    pointer-events: none;
-    z-index: -5;
-}
-
-
-/* =========================================================
-   OPENING EXPERIENCE
+   PREMIUM INTRO
 ========================================================= */
 
 .noir-intro {
+
     position: fixed;
 
     inset: 0;
@@ -12789,60 +12752,104 @@ body::after {
     z-index: 9999;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     text-align: center;
 
-    padding: 25px;
+    overflow: hidden;
 
     background:
         radial-gradient(
-            circle at center,
-            rgba(247, 147, 26, 0.07),
-            transparent 35%
-        ),
-        #0d1117;
+            circle at 50% 35%,
+            #ffbf68 0%,
+            #f6a13d 38%,
+            #ed8d27 75%,
+            #e9821d 100%
+        );
 }
 
 
-/* Red atmospheric glow */
+/* =========================================================
+   SOFT ATMOSPHERIC GLOWS
+========================================================= */
 
-.noir-intro::before {
-    content: "";
+.intro-glow {
 
     position: absolute;
 
-    width: 360px;
-    height: 360px;
-
     border-radius: 50%;
 
-    background: rgba(255, 25, 25, 0.08);
-
-    filter: blur(100px);
-
-    animation: introRedGlow 4s ease-in-out infinite;
-
     pointer-events: none;
+
+    filter: blur(70px);
 }
 
 
-@keyframes introRedGlow {
+.intro-glow-one {
 
-    0% {
-        opacity: 0.25;
-        transform: scale(0.85);
+    width: 350px;
+    height: 350px;
+
+    top: -150px;
+    left: -100px;
+
+    background: rgba(255, 226, 174, 0.45);
+
+    animation:
+        softGlowOne
+        6s
+        ease-in-out
+        infinite;
+}
+
+
+.intro-glow-two {
+
+    width: 400px;
+    height: 400px;
+
+    right: -150px;
+    bottom: -170px;
+
+    background: rgba(198, 73, 0, 0.16);
+
+    animation:
+        softGlowTwo
+        7s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes softGlowOne {
+
+    0%,
+    100% {
+        transform: scale(0.9);
+        opacity: 0.6;
     }
 
     50% {
-        opacity: 0.75;
         transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+
+@keyframes softGlowTwo {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.45;
     }
 
-    100% {
-        opacity: 0.25;
-        transform: scale(0.85);
+    50% {
+        transform: scale(1.15);
+        opacity: 0.75;
     }
 }
 
@@ -12852,189 +12859,263 @@ body::after {
 ========================================================= */
 
 .intro-center {
+
     position: relative;
 
-    z-index: 2;
+    z-index: 5;
 
     width: 100%;
-    max-width: 520px;
+
+    max-width: 600px;
+
+    padding: 30px;
 
     display: flex;
+
     flex-direction: column;
 
     align-items: center;
+
+    justify-content: center;
 }
 
 
 /* =========================================================
-   INTRO BITCOIN
+   BITCOIN LOGO
 ========================================================= */
 
 .intro-bitcoin {
-    width: 96px;
-    height: 96px;
+
+    width: 108px;
+    height: 108px;
 
     border-radius: 50%;
 
     display: flex;
-    align-items: center;
-    justify-content: center;
 
-    font-size: 58px;
-    font-weight: 900;
-
-    color: #ffffff;
-
-    background:
-        radial-gradient(
-            circle at 30% 25%,
-            #ffc46e,
-            #f7931a 50%,
-            #c66a00
-        );
-
-    box-shadow:
-        0 0 25px rgba(247, 147, 26, 0.4),
-        0 0 80px rgba(247, 147, 26, 0.13);
-
-    animation: introBitcoinFloat 4s ease-in-out infinite;
-
-    margin-bottom: 25px;
-}
-
-
-@keyframes introBitcoinFloat {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-8px);
-    }
-}
-
-
-/* =========================================================
-   INTRO BRAND
-========================================================= */
-
-.intro-brand {
-    display: flex;
-
-    justify-content: center;
     align-items: center;
 
-    width: 100%;
-
-    margin-bottom: 28px;
-}
-
-
-.brand-main {
-    font-size: clamp(30px, 7vw, 52px);
-
-    font-weight: 900;
-
-    letter-spacing: 5px;
-
-    line-height: 1;
-
-    text-align: center;
+    justify-content: center;
 
     background:
         linear-gradient(
-            135deg,
-            #ffffff,
-            #d9dee7 55%,
-            #f7931a
+            145deg,
+            #ffbd61,
+            #f7931a 55%,
+            #d96c00
         );
 
-    -webkit-background-clip: text;
-    background-clip: text;
+    color: #ffffff;
 
-    -webkit-text-fill-color: transparent;
+    font-size: 67px;
 
-    filter:
-        drop-shadow(
-            0 0 18px rgba(247, 147, 26, 0.08)
-        );
+    box-shadow:
+        0 18px 40px rgba(91, 40, 0, 0.22),
+        0 0 0 10px rgba(255, 255, 255, 0.12);
+
+    opacity: 0;
+
+    transform:
+        translateY(25px)
+        scale(0.7);
+
+    animation:
+        logoEnter
+        0.9s
+        cubic-bezier(.2,.8,.2,1)
+        0.4s
+        forwards;
+}
+
+
+@keyframes logoEnter {
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
 
 
 /* =========================================================
-   INTRO MESSAGE
+   BRAND
+========================================================= */
+
+.intro-brand {
+
+    margin-top: 27px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 0;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    animation:
+        brandEnter
+        0.75s
+        ease
+        1.15s
+        forwards;
+}
+
+
+@keyframes brandEnter {
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+.brand-dark {
+
+    color: #17120d;
+
+    font-size: clamp(
+        34px,
+        8vw,
+        56px
+    );
+
+    font-weight: 950;
+
+    letter-spacing: 3px;
+}
+
+
+.brand-orange {
+
+    color: #b94e00;
+
+    font-size: clamp(
+        34px,
+        8vw,
+        56px
+    );
+
+    font-weight: 950;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================================================
+   SECURE INVESTMENT
 ========================================================= */
 
 .intro-message {
-    width: 100%;
 
-    margin-bottom: 32px;
+    margin-top: 22px;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    animation:
+        messageEnter
+        0.7s
+        ease
+        1.8s
+        forwards;
+}
+
+
+@keyframes messageEnter {
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
 }
 
 
 .intro-message h2 {
+
+    color: #17120d;
+
     font-size: 16px;
 
-    font-weight: 800;
+    font-weight: 950;
 
     letter-spacing: 4px;
 
-    color: #ffffff;
-
-    margin-bottom: 10px;
+    margin-bottom: 9px;
 }
 
 
 .intro-message p {
+
+    color: rgba(23, 18, 13, 0.65);
+
     font-size: 15px;
 
-    line-height: 1.7;
-
-    color: #929ba8;
-
-    max-width: 360px;
-
-    margin: 0 auto;
+    line-height: 1.6;
 }
 
 
 /* =========================================================
-   INTRO BUTTON
+   GET STARTED
 ========================================================= */
 
 .intro-button {
+
+    margin-top: 31px;
+
+    min-width: 210px;
+
+    padding: 16px 22px;
+
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
-    min-width: 180px;
+    gap: 16px;
 
-    padding: 14px 28px;
+    border-radius: 15px;
 
-    border-radius: 12px;
+    background: #17120d;
 
-    background:
-        linear-gradient(
-            135deg,
-            #f7931a,
-            #ffb347
-        );
-
-    color: #111111;
+    color: #ffffff;
 
     text-decoration: none;
 
-    font-size: 14px;
+    font-size: 13px;
 
     font-weight: 900;
 
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 
     box-shadow:
-        0 10px 35px rgba(247, 147, 26, 0.18);
+        0 15px 35px rgba(53, 24, 0, 0.2);
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    animation:
+        buttonEnter
+        0.7s
+        cubic-bezier(.2,.8,.2,1)
+        2.35s
+        forwards;
 
     transition:
         transform 0.25s ease,
@@ -13042,11 +13123,40 @@ body::after {
 }
 
 
+@keyframes buttonEnter {
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+.intro-button i {
+
+    color: #f7931a;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
 .intro-button:hover {
-    transform: translateY(-3px);
+
+    transform:
+        translateY(-4px);
 
     box-shadow:
-        0 15px 40px rgba(247, 147, 26, 0.3);
+        0 20px 45px rgba(53, 24, 0, 0.3);
+}
+
+
+.intro-button:hover i {
+
+    transform:
+        translateX(5px);
 }
 
 
@@ -13055,24 +13165,27 @@ body::after {
 ========================================================= */
 
 .main-site {
-    width: 100%;
+
+    display: none;
 
     min-height: 100vh;
 
-    background: #0d1117;
+    background: #f3a044;
+
+    color: #17120d;
 }
 
 
 /* =========================================================
-   HERO
+   MAIN HERO
 ========================================================= */
 
 .new-hero {
-    position: relative;
 
     min-height: 90vh;
 
-    width: 100%;
+    padding:
+        90px 8%;
 
     display: flex;
 
@@ -13082,17 +13195,21 @@ body::after {
 
     gap: 60px;
 
-    padding:
-        100px
-        8%;
+    position: relative;
 
     overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8b35c,
+            #ee922c
+        );
 }
 
 
-/* Hero red glow */
-
 .new-hero::before {
+
     content: "";
 
     position: absolute;
@@ -13100,33 +13217,15 @@ body::after {
     width: 500px;
     height: 500px;
 
-    right: 8%;
-    top: 10%;
-
-    background: rgba(255, 25, 25, 0.07);
-
-    filter: blur(110px);
+    right: -150px;
+    top: -150px;
 
     border-radius: 50%;
 
-    animation: heroGlow 5s ease-in-out infinite;
+    background:
+        rgba(255, 211, 151, 0.28);
 
-    pointer-events: none;
-}
-
-
-@keyframes heroGlow {
-
-    0%,
-    100% {
-        opacity: 0.3;
-        transform: scale(0.9);
-    }
-
-    50% {
-        opacity: 0.8;
-        transform: scale(1.1);
-    }
+    filter: blur(80px);
 }
 
 
@@ -13135,6 +13234,7 @@ body::after {
 ========================================================= */
 
 .new-hero .hero-content {
+
     position: relative;
 
     z-index: 2;
@@ -13146,136 +13246,86 @@ body::after {
 
 
 .hero-label {
+
     display: inline-block;
 
-    margin-bottom: 20px;
+    color: #8e3b00;
 
     font-size: 12px;
 
-    font-weight: 800;
+    font-weight: 950;
 
     letter-spacing: 4px;
 
-    color: #f7931a;
+    margin-bottom: 20px;
 }
 
 
 .new-hero h1 {
-    font-size: clamp(48px, 6vw, 82px);
+
+    color: #17120d;
+
+    font-size:
+        clamp(48px, 6vw, 80px);
 
     line-height: 0.98;
 
     letter-spacing: -4px;
 
-    font-weight: 900;
+    font-weight: 950;
 
-    margin-bottom: 28px;
+    margin-bottom: 25px;
 }
 
 
 .new-hero h1 span {
-    display: block;
 
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #d9dee7 55%,
-            #f7931a
-        );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    -webkit-text-fill-color: transparent;
+    color: #a94300;
 }
 
 
 .new-hero p {
+
     max-width: 570px;
 
-    color: #9ba4b0;
+    color:
+        rgba(23, 18, 13, 0.68);
 
     font-size: 17px;
 
     line-height: 1.8;
 
-    margin-bottom: 34px;
+    margin-bottom: 32px;
 }
 
 
 /* =========================================================
-   HERO ACTIONS
+   ACTIONS
 ========================================================= */
 
 .hero-actions {
+
     display: flex;
 
-    align-items: center;
-
-    gap: 14px;
+    gap: 13px;
 
     flex-wrap: wrap;
 }
 
 
 .primary-action {
+
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
-    padding: 14px 25px;
-
-    min-width: 155px;
+    padding: 15px 25px;
 
     border-radius: 12px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #f7931a,
-            #ffb347
-        );
-
-    color: #111111;
-
-    text-decoration: none;
-
-    font-size: 14px;
-
-    font-weight: 800;
-
-    box-shadow:
-        0 10px 30px rgba(247, 147, 26, 0.15);
-
-    transition: 0.25s ease;
-}
-
-
-.primary-action:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 15px 40px rgba(247, 147, 26, 0.28);
-}
-
-
-.secondary-action {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 13px 25px;
-
-    min-width: 120px;
-
-    border-radius: 12px;
-
-    border: 1px solid #2a3039;
-
-    background: rgba(255, 255, 255, 0.025);
+    background: #17120d;
 
     color: #ffffff;
 
@@ -13283,109 +13333,107 @@ body::after {
 
     font-size: 14px;
 
-    font-weight: 700;
+    font-weight: 850;
 
     transition: 0.25s ease;
 }
 
 
-.secondary-action:hover {
-    background: rgba(255, 255, 255, 0.06);
-
-    border-color: #454c57;
+.primary-action:hover {
 
     transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(50, 22, 0, 0.25);
+}
+
+
+.secondary-action {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 14px 25px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(23,18,13,0.25);
+
+    color: #17120d;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    background:
+        rgba(255,255,255,0.12);
+
+    transition: 0.25s ease;
 }
 
 
 /* =========================================================
-   HERO VISUAL
+   HERO BITCOIN
 ========================================================= */
 
 .hero-visual {
-    position: relative;
 
     width: 42%;
 
-    min-height: 430px;
+    min-height: 400px;
 
     display: flex;
 
     align-items: center;
 
     justify-content: center;
+
+    position: relative;
 
     z-index: 2;
 }
 
 
-/* =========================================================
-   BITCOIN ORBIT
-========================================================= */
-
 .bitcoin-orbit {
-    position: relative;
 
     width: 320px;
     height: 320px;
 
+    position: relative;
+
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 }
 
 
 .orbit-ring {
+
     position: absolute;
 
     inset: 0;
 
     border-radius: 50%;
 
-    border: 1px solid rgba(247, 147, 26, 0.25);
+    border:
+        1px solid rgba(23,18,13,0.22);
 
-    box-shadow:
-        0 0 35px rgba(247, 147, 26, 0.06);
-
-    animation: orbitRotate 12s linear infinite;
-}
-
-
-.orbit-ring::before,
-.orbit-ring::after {
-    content: "";
-
-    position: absolute;
-
-    width: 9px;
-    height: 9px;
-
-    border-radius: 50%;
-
-    background: #f7931a;
-
-    box-shadow:
-        0 0 18px rgba(247, 147, 26, 0.7);
-}
-
-
-.orbit-ring::before {
-    top: 25px;
-    left: 52px;
-}
-
-
-.orbit-ring::after {
-    bottom: 35px;
-    right: 45px;
+    animation:
+        orbitRotate
+        12s
+        linear
+        infinite;
 }
 
 
 @keyframes orbitRotate {
-    from {
-        transform: rotate(0deg);
-    }
 
     to {
         transform: rotate(360deg);
@@ -13393,12 +13441,7 @@ body::after {
 }
 
 
-/* =========================================================
-   BITCOIN SYMBOL
-========================================================= */
-
 .bitcoin-symbol {
-    position: relative;
 
     width: 145px;
     height: 145px;
@@ -13408,40 +13451,23 @@ body::after {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     background:
-        radial-gradient(
-            circle at 30% 25%,
-            #ffc66e,
-            #f7931a 50%,
-            #c66a00
+        linear-gradient(
+            145deg,
+            #ffbe68,
+            #f7931a,
+            #c76500
         );
-
-    font-size: 82px;
-
-    font-weight: 900;
 
     color: #ffffff;
 
+    font-size: 82px;
+
     box-shadow:
-        0 0 35px rgba(247, 147, 26, 0.3),
-        0 0 100px rgba(247, 147, 26, 0.1);
-
-    animation: centerBitcoin 4s ease-in-out infinite;
-}
-
-
-@keyframes centerBitcoin {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
+        0 25px 55px rgba(80,35,0,0.25);
 }
 
 
@@ -13450,22 +13476,16 @@ body::after {
 ========================================================= */
 
 .features-section {
-    width: 100%;
 
     padding:
-        100px
-        8%;
+        100px 8%;
 
-    background:
-        linear-gradient(
-            180deg,
-            #0d1117,
-            #10141a
-        );
+    background: #f6a84e;
 }
 
 
 .section-heading {
+
     text-align: center;
 
     max-width: 650px;
@@ -13477,13 +13497,14 @@ body::after {
 
 
 .section-heading span {
+
     display: block;
 
-    color: #f7931a;
+    color: #963c00;
 
     font-size: 11px;
 
-    font-weight: 800;
+    font-weight: 950;
 
     letter-spacing: 3px;
 
@@ -13492,137 +13513,101 @@ body::after {
 
 
 .section-heading h2 {
-    font-size: clamp(32px, 5vw, 48px);
+
+    color: #17120d;
+
+    font-size:
+        clamp(32px,5vw,48px);
 
     letter-spacing: -2px;
 
-    font-weight: 850;
+    font-weight: 950;
 }
 
 
-/* =========================================================
-   FEATURE GRID
-========================================================= */
-
 .feature-grid {
-    width: 100%;
 
     display: grid;
 
     grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+        repeat(3,1fr);
 
     gap: 20px;
 }
 
 
 .feature-card {
-    position: relative;
 
-    padding: 32px;
+    padding: 30px;
 
-    min-height: 235px;
+    min-height: 230px;
 
-    border-radius: 18px;
-
-    border: 1px solid #252b34;
+    border-radius: 20px;
 
     background:
-        linear-gradient(
-            145deg,
-            #181c22,
-            #11151b
-        );
+        rgba(255, 210, 151, 0.32);
 
-    overflow: hidden;
+    border:
+        1px solid rgba(23,18,13,0.13);
 
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-
-.feature-card::before {
-    content: "";
-
-    position: absolute;
-
-    width: 130px;
-    height: 130px;
-
-    right: -55px;
-    top: -55px;
-
-    border-radius: 50%;
-
-    background: rgba(247, 147, 26, 0.05);
-
-    filter: blur(20px);
+    box-shadow:
+        0 15px 35px rgba(89,40,0,0.08);
 
     transition: 0.3s ease;
 }
 
 
 .feature-card:hover {
-    transform: translateY(-7px);
 
-    border-color: #3a424d;
+    transform:
+        translateY(-6px);
 
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.28);
-}
-
-
-.feature-card:hover::before {
-    transform: scale(1.4);
-
-    background: rgba(247, 147, 26, 0.09);
+    background:
+        rgba(255, 224, 180, 0.5);
 }
 
 
 .feature-icon {
+
     width: 50px;
     height: 50px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     border-radius: 14px;
 
-    background: rgba(247, 147, 26, 0.1);
-
-    border: 1px solid rgba(247, 147, 26, 0.12);
+    background: #17120d;
 
     color: #f7931a;
 
     font-size: 21px;
 
-    font-weight: 800;
-
-    margin-bottom: 23px;
+    margin-bottom: 20px;
 }
 
 
 .feature-card h3 {
+
+    color: #17120d;
+
     font-size: 19px;
 
-    margin-bottom: 12px;
-
-    font-weight: 800;
+    margin-bottom: 11px;
 }
 
 
 .feature-card p {
-    color: #8f98a5;
+
+    color:
+        rgba(23,18,13,0.62);
 
     font-size: 14px;
 
     line-height: 1.7;
-
-    max-width: 320px;
 }
 
 
@@ -13631,79 +13616,38 @@ body::after {
 ========================================================= */
 
 .cta-section {
-    width: 100%;
 
     padding:
-        100px
-        8%;
-
-    display: flex;
-
-    justify-content: center;
+        100px 20px;
 
     text-align: center;
 
-    position: relative;
-
-    overflow: hidden;
-}
-
-
-.cta-section::before {
-    content: "";
-
-    position: absolute;
-
-    width: 400px;
-    height: 400px;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    border-radius: 50%;
-
-    background: rgba(255, 20, 20, 0.06);
-
-    filter: blur(100px);
-
-    animation: ctaGlow 5s ease-in-out infinite;
-}
-
-
-@keyframes ctaGlow {
-
-    0%,
-    100% {
-        opacity: 0.25;
-    }
-
-    50% {
-        opacity: 0.75;
-    }
+    background:
+        linear-gradient(
+            135deg,
+            #e98a25,
+            #f7ad54
+        );
 }
 
 
 .cta-content {
-    position: relative;
-
-    z-index: 2;
 
     max-width: 700px;
 
-    width: 100%;
+    margin: auto;
 }
 
 
 .cta-content > span {
+
     display: block;
 
-    color: #f7931a;
+    color: #8b3900;
 
     font-size: 11px;
 
-    font-weight: 800;
+    font-weight: 950;
 
     letter-spacing: 3px;
 
@@ -13712,28 +13656,26 @@ body::after {
 
 
 .cta-content h2 {
-    font-size: clamp(35px, 5vw, 58px);
+
+    color: #17120d;
+
+    font-size:
+        clamp(35px,5vw,58px);
 
     line-height: 1.05;
 
-    letter-spacing: -2.5px;
+    letter-spacing: -2px;
 
     margin-bottom: 20px;
 }
 
 
 .cta-content p {
-    color: #9099a6;
 
-    font-size: 15px;
+    color:
+        rgba(23,18,13,0.62);
 
-    line-height: 1.7;
-
-    max-width: 500px;
-
-    margin:
-        0 auto
-        30px;
+    margin-bottom: 30px;
 }
 
 
@@ -13742,79 +13684,74 @@ body::after {
 ========================================================= */
 
 .new-footer {
-    width: 100%;
 
     padding:
-        45px
-        8%;
+        45px 8%;
 
-    border-top: 1px solid #20252d;
+    background: #17120d;
 
-    background: #0b0f14;
+    color: #ffffff;
 
     display: grid;
 
-    grid-template-columns:
-        1fr
-        auto;
-
-    align-items: center;
+    grid-template-columns: 1fr auto;
 
     gap: 25px;
 }
 
 
 .footer-brand strong {
-    display: block;
 
     font-size: 17px;
 
     letter-spacing: 2px;
-
-    margin-bottom: 7px;
 }
 
 
 .footer-brand p {
-    color: #737d89;
+
+    color: #a69a8c;
 
     font-size: 13px;
+
+    margin-top: 7px;
 }
 
 
 .footer-links {
-    display: flex;
 
-    align-items: center;
+    display: flex;
 
     gap: 22px;
 }
 
 
 .footer-links a {
-    color: #858e9b;
+
+    color: #b8aa9b;
 
     text-decoration: none;
 
     font-size: 13px;
-
-    transition: 0.25s ease;
 }
 
 
 .footer-links a:hover {
-    color: #ffffff;
+
+    color: #f7931a;
 }
 
 
 .copyright {
+
     grid-column: 1 / -1;
 
-    padding-top: 25px;
+    padding-top: 22px;
 
-    border-top: 1px solid #1d232b;
+    border-top:
+        1px solid #302920;
 
-    color: #5e6874;
+    color: #817569;
 
     font-size: 12px;
 
@@ -13823,61 +13760,57 @@ body::after {
 
 
 /* =========================================================
-   TABLET
+   MOBILE
 ========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
 
     .new-hero {
-        min-height: auto;
 
         flex-direction: column;
 
         text-align: center;
 
         padding:
-            90px
-            6%
-            70px;
+            80px 20px;
     }
 
 
     .new-hero .hero-content {
-        width: 100%;
 
-        max-width: 700px;
+        width: 100%;
     }
 
 
     .new-hero p {
+
         margin-left: auto;
         margin-right: auto;
     }
 
 
     .hero-actions {
+
         justify-content: center;
     }
 
 
     .hero-visual {
+
         width: 100%;
 
-        min-height: 360px;
+        min-height: 320px;
     }
 
 
     .feature-grid {
+
         grid-template-columns: 1fr;
     }
 
 
-    .feature-card {
-        min-height: auto;
-    }
-
-
     .new-footer {
+
         grid-template-columns: 1fr;
 
         text-align: center;
@@ -13885,190 +13818,93 @@ body::after {
 
 
     .footer-links {
+
         justify-content: center;
     }
 }
 
 
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 600px) {
-
-    .noir-intro {
-        padding: 20px;
-    }
-
+@media (max-width: 500px) {
 
     .intro-bitcoin {
-        width: 82px;
-        height: 82px;
 
-        font-size: 50px;
+        width: 88px;
+        height: 88px;
+
+        font-size: 54px;
     }
 
 
-    .brand-main {
+    .brand-dark,
+    .brand-orange {
+
         font-size: 29px;
 
-        letter-spacing: 3px;
+        letter-spacing: 2px;
     }
 
 
     .intro-message h2 {
+
         font-size: 13px;
 
         letter-spacing: 3px;
     }
 
 
-    .intro-message p {
-        font-size: 14px;
-    }
-
-
     .intro-button {
+
         width: 100%;
 
-        max-width: 280px;
-    }
-
-
-    .new-hero {
-        padding:
-            75px
-            20px
-            60px;
+        max-width: 270px;
     }
 
 
     .new-hero h1 {
-        font-size: 48px;
+
+        font-size: 46px;
 
         letter-spacing: -2.5px;
     }
 
 
-    .new-hero p {
-        font-size: 15px;
-    }
-
-
     .hero-actions {
-        width: 100%;
 
         flex-direction: column;
+
+        width: 100%;
     }
 
 
     .primary-action,
     .secondary-action {
+
         width: 100%;
     }
 
 
-    .hero-visual {
-        min-height: 310px;
-    }
-
-
     .bitcoin-orbit {
+
         width: 245px;
         height: 245px;
     }
 
 
     .bitcoin-symbol {
+
         width: 112px;
         height: 112px;
 
         font-size: 64px;
     }
-
-
-    .features-section {
-        padding:
-            70px
-            20px;
-    }
-
-
-    .section-heading {
-        margin-bottom: 40px;
-    }
-
-
-    .section-heading h2 {
-        font-size: 34px;
-    }
-
-
-    .feature-grid {
-        gap: 15px;
-    }
-
-
-    .feature-card {
-        padding: 26px;
-    }
-
-
-    .cta-section {
-        padding:
-            80px
-            20px;
-    }
-
-
-    .cta-content h2 {
-        font-size: 38px;
-    }
-
-
-    .new-footer {
-        padding:
-            40px
-            20px;
-    }
-
-
-    .footer-links {
-        flex-wrap: wrap;
-
-        gap: 15px;
-    }
 }
+    
 
 
-/* =========================================================
-   VERY SMALL PHONES
-========================================================= */
-
-@media (max-width: 380px) {
-
-    .brand-main {
-        font-size: 25px;
-
-        letter-spacing: 2px;
-    }
+            
+    
+            
 
 
-    .new-hero h1 {
-        font-size: 41px;
-    }
-
-
-    .bitcoin-orbit {
-        width: 220px;
-        height: 220px;
-    }
-
-
-    .bitcoin-symbol {
-        width: 100px;
-        height: 100px;
-
-        font-size: 58px;
-    }
-}
+   
+    
