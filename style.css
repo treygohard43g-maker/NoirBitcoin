@@ -12192,3 +12192,17 @@ body:not(.dark-mode) .website-detail-row {
 body:not(.dark-mode) .history-details-title {
     background: transparent !important;
 }
+
+/* Remove touch/hover grey effect from dashboard history */
+.history-item:hover,
+.history-item:active,
+.history-header:hover,
+.history-header:active{
+    background:#161b22 !important;
+    filter:none !important;
+}
+
+/* Only show the separating line above the details */
+.history-details.active{
+    border-top:1px solid #2d333b !important;
+}
