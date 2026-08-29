@@ -3259,13 +3259,7 @@ const profilePhoto =
 
 const profilePhotoPlaceholder =
     document.getElementById("profilePhotoPlaceholder");
-
-const profileDisplayName =
-    document.getElementById("profileDisplayName");
-
-const profileDisplayEmail =
-    document.getElementById("profileDisplayEmail");
-
+    
 // =========================
 // PROFILE INFORMATION
 // =========================
