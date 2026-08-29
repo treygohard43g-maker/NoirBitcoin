@@ -12354,3 +12354,24 @@ body.light-mode .history-chevron {
 body.light-mode .history-chevron.rotate {
     color: #f7931a !important;
 }
+
+/* =========================
+   DASHBOARD HISTORY — SURFACE ONLY
+========================= */
+
+body.light-mode .transaction-history,
+body.light-mode .history-section,
+body.light-mode .history-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Transaction rows stay on the surface */
+body.light-mode .transaction-history .transaction-item,
+body.light-mode .history-section .transaction-item,
+body.light-mode .history-card .transaction-item {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
