@@ -6420,27 +6420,6 @@ body {
 
 }
 
-.history-item .history-details .btc-received{
-    color:#4ade80 !important;
-    font-weight:400 !important;
-}
-
-.history-item .history-details .status-value{
-    color:#4ade80 !important;
-    font-weight:400 !important;
-}
-
-.history-item .history-details .status-value::before{
-    content:"";
-    display:inline-block;
-    width:6px;
-    height:6px;
-    margin-right:7px;
-    border-radius:50%;
-    background:#4ade80;
-    vertical-align:middle;
-}
-
 /* Detail values */
 
 .history-item .history-details p strong {
