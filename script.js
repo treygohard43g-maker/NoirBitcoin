@@ -26,8 +26,6 @@ import {
 
 const db = getFirestore(auth.app);
 
-alert("NOIR SCRIPT LOADED");
-
 window.onerror = function (message, source, line, column, error) {
     alert("JS Error:\n" + message + "\nLine: " + line);
 };
