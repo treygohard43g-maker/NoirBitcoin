@@ -12376,3 +12376,17 @@ body.light-mode .history-card .transaction-item {
     box-shadow: none !important;
 }
 
+/* =========================
+RECENT HISTORY — LIGHT MODE SURFACE
+========================= */
+
+body.light-mode #recentHistory,
+body.light-mode #recentHistory > *,
+body.light-mode #recentHistory .history-item,
+body.light-mode #recentHistory .history-header,
+body.light-mode #recentHistory .history-info {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
