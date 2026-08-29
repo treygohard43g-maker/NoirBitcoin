@@ -13602,3 +13602,28 @@ body {
     }
 }
     
+/* FORCE MAIN LANDING PAGE ORANGE */
+
+#mainSite {
+    display: block !important;
+    background: #F3A044 !important;
+    color: #17120D !important;
+    min-height: 100vh !important;
+}
+
+#mainSite .new-hero {
+    background: #F3A044 !important;
+    color: #17120D !important;
+}
+
+#mainSite .features-section {
+    background: #F6AD55 !important;
+}
+
+#mainSite .cta-section {
+    background: #EE922E !important;
+}
+
+#mainSite .new-footer {
+    background: #17120D !important;
+}
