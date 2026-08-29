@@ -13736,3 +13736,91 @@ body {
         0 1px 1px rgba(255, 216, 160, 0.7),
         0 0 7px rgba(105, 39, 0, 0.2) !important;
 }
+
+/* =========================================================
+   NOIRBITCOIN — FINAL INTRO TEXT FINISH
+========================================================= */
+
+/* BRAND */
+#noirIntro .intro-brand .brand-dark {
+    color: #120b07 !important;
+    -webkit-text-fill-color: #120b07 !important;
+
+    font-weight: 950 !important;
+    letter-spacing: 2px !important;
+
+    text-shadow:
+        0 1px 0 rgba(255, 225, 180, 0.8),
+        0 0 8px rgba(25, 10, 2, 0.35),
+        0 5px 18px rgba(50, 18, 0, 0.22) !important;
+}
+
+
+/* BITCOIN — DEEP BURNT ORANGE */
+#noirIntro .intro-brand .brand-orange {
+    color: #7f2f00 !important;
+    -webkit-text-fill-color: #7f2f00 !important;
+
+    font-weight: 950 !important;
+    letter-spacing: 2px !important;
+
+    text-shadow:
+        0 1px 0 rgba(255, 220, 165, 0.9),
+        0 0 8px rgba(127, 47, 0, 0.45),
+        0 5px 18px rgba(111, 38, 0, 0.30) !important;
+}
+
+
+/* SECURE INVESTMENT */
+#noirIntro .intro-message h2 {
+    color: #170d07 !important;
+    -webkit-text-fill-color: #170d07 !important;
+
+    font-weight: 950 !important;
+    letter-spacing: 4px !important;
+
+    text-shadow:
+        0 1px 0 rgba(255, 226, 184, 0.8),
+        0 0 8px rgba(25, 10, 2, 0.28),
+        0 4px 14px rgba(55, 20, 0, 0.20) !important;
+}
+
+
+/* SUBTITLE */
+#noirIntro .intro-message p {
+    color: #71300e !important;
+    -webkit-text-fill-color: #71300e !important;
+
+    font-weight: 600 !important;
+
+    text-shadow:
+        0 1px 0 rgba(255, 222, 175, 0.75),
+        0 0 8px rgba(113, 48, 14, 0.22) !important;
+}
+
+
+/* SMALL DIVIDER */
+#noirIntro .intro-line {
+    background:
+        linear-gradient(
+            90deg,
+            #170d07,
+            #7f2f00
+        ) !important;
+
+    box-shadow:
+        0 0 10px rgba(127, 47, 0, 0.45) !important;
+}
+
+
+/* BUTTON TEXT */
+#noirIntro .intro-button span {
+    color: #fff8ef !important;
+}
+
+#noirIntro .intro-button i {
+    color: #d96b13 !important;
+
+    text-shadow:
+        0 0 8px rgba(217, 107, 19, 0.55) !important;
+}
