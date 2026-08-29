@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>About | NoirBitcoin</title>
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+/* =========================================
+   ABOUT PAGE
+========================================= */
+
+.about-page {
+
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 25px 0 60px;
+
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.about-hero {
+
+    position: relative;
+
+    padding: 35px 25px;
+
+    margin-bottom: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1b1e24,
+            #12151a
+        );
+
+    border: 1px solid #2a2f38;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+}
+
+
+.about-hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -70px;
+    top: -70px;
+
+    border-radius: 50%;
+
+    background: rgba(247,147,26,.08);
+
+}
+
+
+.about-hero-icon {
+
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 17px;
+
+    background: rgba(247,147,26,.12);
+
+    color: #f7931a;
+
+    font-size: 28px;
+
+}
+
+
+.about-hero h2 {
+
+    margin: 0 0 10px;
+
+    color: #ffffff;
+
+    font-size: 30px;
+
+    font-weight: 800;
+
+}
+
+
+.about-hero h2 span {
+
+    color: #f7931a;
+
+}
+
+
+.about-hero p {
+
+    max-width: 650px;
+
+    margin: 0;
+
+    color: #8b949e;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================
+   SECTION CARD
+========================================= */
+
+.about-card {
+
+    margin-bottom: 16px;
+
+    padding: 24px;
+
+    background: #181c22;
+
+    border: 1px solid #2a2f38;
+
+    border-radius: 18px;
+
+}
+
+
+.about-card h3 {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 0 0 12px;
+
+    color: #ffffff;
+
+    font-size: 17px;
+
+}
+
+
+.about-card h3 i {
+
+    color: #f7931a;
+
+    font-size: 16px;
+
+}
+
+
+.about-card p {
+
+    margin: 0;
+
+    color: #8b949e;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================
+   FEATURE GRID
+========================================= */
+
+.about-features {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-bottom: 16px;
+
+}
+
+
+.about-feature {
+
+    padding: 20px;
+
+    background: #181c22;
+
+    border: 1px solid #2a2f38;
+
+    border-radius: 17px;
+
+}
+
+
+.about-feature-icon {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+
+    border-radius: 13px;
+
+    background: rgba(247,147,26,.10);
+
+    color: #f7931a;
+
+}
+
+
+.about-feature h4 {
+
+    margin: 0 0 7px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+}
+
+
+.about-feature p {
+
+    margin: 0;
+
+    color: #8b949e;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================
+   VALUES
+========================================= */
+
+.about-values {
+
+    display: grid;
+
+    gap: 12px;
+
+    margin-top: 18px;
+
+}
+
+
+.about-value {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+}
+
+
+.about-value i {
+
+    margin-top: 3px;
+
+    color: #22c55e;
+
+}
+
+
+.about-value strong {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+}
+
+
+.about-value span {
+
+    color: #8b949e;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================
+   DISCLAIMER
+========================================= */
+
+.about-disclaimer {
+
+    padding: 18px;
+
+    background: rgba(245,158,11,.07);
+
+    border: 1px solid rgba(245,158,11,.20);
+
+    border-radius: 16px;
+
+}
+
+
+.about-disclaimer strong {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #f59e0b;
+
+    font-size: 13px;
+
+}
+
+
+.about-disclaimer p {
+
+    margin: 0;
+
+    color: #8b949e;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.about-footer {
+
+    padding: 25px 10px 0;
+
+    text-align: center;
+
+}
+
+
+.about-footer .bitcoin-mark {
+
+    color: #f7931a;
+
+    font-size: 25px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.about-footer p {
+
+    margin: 4px 0;
+
+    color: #6e7681;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================
+   LIGHT MODE
+========================================= */
+
+body.light-mode .about-hero {
+
+    background: #ffffff;
+
+    border-color: #e5e7eb;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.06);
+
+}
+
+
+body.light-mode .about-hero h2 {
+
+    color: #111827;
+
+}
+
+
+body.light-mode .about-hero p {
+
+    color: #6b7280;
+
+}
+
+
+body.light-mode .about-card,
+body.light-mode .about-feature {
+
+    background: #ffffff;
+
+    border-color: #e5e7eb;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.05);
+
+}
+
+
+body.light-mode .about-card h3,
+body.light-mode .about-feature h4 {
+
+    color: #111827;
+
+}
+
+
+body.light-mode .about-card p,
+body.light-mode .about-feature p {
+
+    color: #6b7280;
+
+}
+
+
+body.light-mode .about-value strong {
+
+    color: #111827;
+
+}
+
+
+body.light-mode .about-value span {
+
+    color: #6b7280;
+
+}
+
+
+body.light-mode .about-footer p {
+
+    color: #6b7280;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .about-page {
+
+        padding: 15px 0 45px;
+
+    }
+
+
+    .about-hero {
+
+        padding: 27px 20px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .about-hero h2 {
+
+        font-size: 24px;
+
+    }
+
+
+    .about-hero p {
+
+        font-size: 13px;
+
+    }
+
+
+    .about-card {
+
+        padding: 20px;
+
+        border-radius: 16px;
+
+    }
+
+
+    .about-features {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .about-feature {
+
+        padding: 18px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header class="dashboard-header">
+
+    <div class="logo">
+
+        <h1>
+
+            <i class="fa-brands fa-bitcoin"></i>
+
+            NOIRBITCOIN
+
+        </h1>
+
+    </div>
+
+
+    <div class="header-icons">
+
+        <button
+            class="icon-btn"
+            onclick="window.location.href='dashboard.html'"
+            aria-label="Back to dashboard"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     ABOUT CONTENT
+========================================= -->
+
+<div class="dashboard-container">
+
+<div class="about-page">
+
+
+    <!-- HERO -->
+
+    <section class="about-hero">
+
+        <div class="about-hero-icon">
+
+            <i class="fa-brands fa-bitcoin"></i>
+
+        </div>
+
+
+        <h2>
+
+            About <span>NoirBitcoin</span>
+
+        </h2>
+
+
+        <p>
+
+            NoirBitcoin is a modern digital asset platform
+            designed to provide a simple and intuitive
+            experience for managing cryptocurrency portfolios,
+            exploring markets, and monitoring digital asset activity.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- ABOUT -->
+
+    <section class="about-card">
+
+        <h3>
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            Our Platform
+
+        </h3>
+
+
+        <p>
+
+            NoirBitcoin brings portfolio management,
+            transaction tracking, market information,
+            and digital asset tools together in one
+            streamlined interface.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- FEATURES -->
+
+    <div class="about-features">
+
+
+        <div class="about-feature">
+
+            <div class="about-feature-icon">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+            </div>
+
+
+            <h4>
+
+                Market Insights
+
+            </h4>
+
+
+            <p>
+
+                Explore cryptocurrency market information
+                and monitor asset price movements.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="about-feature">
+
+            <div class="about-feature-icon">
+
+                <i class="fa-solid fa-wallet"></i>
+
+            </div>
+
+
+            <h4>
+
+                Portfolio Management
+
+            </h4>
+
+
+            <p>
+
+                Keep track of your portfolio balance,
+                investments, and transaction activity.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="about-feature">
+
+            <div class="about-feature-icon">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+            </div>
+
+
+            <h4>
+
+                Transaction History
+
+            </h4>
+
+
+            <p>
+
+                Review your investment and trading activity
+                with organized transaction records.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="about-feature">
+
+            <div class="about-feature-icon">
+
+                <i class="fa-solid fa-mobile-screen-button"></i>
+
+            </div>
+
+
+            <h4>
+
+                Mobile Friendly
+
+            </h4>
+
+
+            <p>
+
+                Designed to provide a clean experience
+                across phones, tablets, and desktop screens.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- OUR APPROACH -->
+
+    <section class="about-card">
+
+        <h3>
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            Our Approach
+
+        </h3>
+
+
+        <p>
+
+            We focus on creating a clear, user-friendly
+            experience where important portfolio information
+            is easy to understand and accessible when you need it.
+
+        </p>
+
+
+        <div class="about-values">
+
+
+            <div class="about-value">
+
+                <i class="fa-solid fa-check-circle"></i>
+
+                <div>
+
+                    <strong>
+
+                        Simplicity
+
+                    </strong>
+
+                    <span>
+
+                        Clean interfaces designed to make
+                        digital asset information easier to navigate.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="about-value">
+
+                <i class="fa-solid fa-check-circle"></i>
+
+                <div>
+
+                    <strong>
+
+                        Transparency
+
+                    </strong>
+
+                    <span>
+
+                        Clear transaction information and
+                        organized portfolio activity.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="about-value">
+
+                <i class="fa-solid fa-check-circle"></i>
+
+                <div>
+
+                    <strong>
+
+                        Accessibility
+
+                    </strong>
+
+                    <span>
+
+                        A responsive experience built for
+                        modern devices.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- DISCLAIMER -->
+
+    <section class="about-disclaimer">
+
+        <strong>
+
+            Important Information
+
+        </strong>
+
+
+        <p>
+
+            Cryptocurrency markets can be volatile and
+            digital asset values can change rapidly.
+            Information displayed on NoirBitcoin should
+            not be considered financial, investment, legal,
+            or tax advice. Always conduct your own research
+            and consider your individual circumstances before
+            making financial decisions.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="about-footer">
+
+        <div class="bitcoin-mark">
+
+            <i class="fa-brands fa-bitcoin"></i>
+
+        </div>
+
+
+        <p>
+
+            NOIRBITCOIN
+
+        </p>
+
+
+        <p>
+
+            Digital asset management platform
+
+        </p>
+
+
+        <p>
+
+            © 2026 NoirBitcoin. All rights reserved.
+
+        </p>
+
+    </footer>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================
+     LOAD SAVED THEME
+========================================= -->
+
+<script>
+
+const savedTheme =
+    localStorage.getItem("theme");
+
+if (savedTheme === "light") {
+
+    document.body.classList.add("light-mode");
+
+} else {
+
+    document.body.classList.remove("light-mode");
+
+}
+
+</script>
+
+
+</body>
+
+</html>
