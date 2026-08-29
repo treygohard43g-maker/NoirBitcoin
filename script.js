@@ -1245,22 +1245,22 @@ async function forceRepairInvestmentHistory() {
 
                             </p>
 
-
-                            <p>
-
-                                <span>
-                                    BTC ${isBuy
-                                        ? "Received"
-                                        : "Sold"}:
-                                </span>
-
-                                <strong>
-
-                                    ${btcAmount.toFixed(8)} BTC
-
-                                </strong>
-
-                            </p>
+                            
+                       <p>
+                           <span>
+                               BTC ${isBuy
+                                   ? "Received"
+                                   : "Sold"}:
+                           </span>
+                            
+                          <strong class="${isBuy ? "history-amount-positive" : ""}">
+                                 
+                                ${isBuy ? "+" : ""}${btcAmount.toFixed(8)} BTC
+                                
+                         </stron>
+                        
+                        </p>
+                            
 
 
                             <p>
@@ -1290,7 +1290,9 @@ async function forceRepairInvestmentHistory() {
                                     Status:
                                 </span>
 
-                                <strong>
+                                <strong class="history-status-completed">
+                                      
+                                    <span class="status-dot"></span>
 
                                     ${transaction.status ||
                                       "Completed"}
