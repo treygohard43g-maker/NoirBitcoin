@@ -3494,52 +3494,6 @@ async function loadProfilePhoto(user = null) {
 
 
 // =========================
-// LOAD PROFILE INFORMATION
-// =========================
-
-function loadProfileInformation(user = null) {
-
-    const currentUser =
-        user || auth.currentUser;
-
-
-    const savedUser =
-        JSON.parse(
-            localStorage.getItem("noirUser")
-        );
-
-
-    const name =
-        currentUser?.displayName ||
-        savedUser?.name ||
-        "User";
-
-
-    const email =
-        currentUser?.email ||
-        savedUser?.email ||
-        "";
-
-
-    if (profileDisplayName) {
-
-        profileDisplayName.textContent =
-            name;
-
-    }
-
-
-    if (profileDisplayEmail) {
-
-        profileDisplayEmail.textContent =
-            email;
-
-    }
-
-}
-
-
-// =========================
 // SELECT PROFILE PHOTO
 // =========================
 
