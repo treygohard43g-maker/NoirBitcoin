@@ -4153,7 +4153,7 @@ document.addEventListener(
 );
 
 /* =========================================
-   NOIRBITCOIN INTRO EXPERIENCE
+   NOIRBITCOIN PREMIUM INTRO
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -4164,35 +4164,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!intro || !mainSite) return;
 
-    /* Hide main website while intro is showing */
+    /* Keep landing page hidden during opening */
     mainSite.style.display = "none";
 
-    /* Show the main site after clicking GET STARTED */
+
+    /* GET STARTED */
+
     if (getStartedBtn) {
 
         getStartedBtn.addEventListener("click", (event) => {
 
             event.preventDefault();
 
-            intro.style.transition = "opacity 0.7s ease, visibility 0.7s ease";
+            intro.style.transition =
+                "opacity 0.65s ease, transform 0.65s ease";
+
             intro.style.opacity = "0";
-            intro.style.visibility = "hidden";
+
+            intro.style.transform = "scale(1.02)";
+
 
             setTimeout(() => {
 
                 intro.style.display = "none";
+
                 mainSite.style.display = "block";
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: "instant"
-                });
+                window.scrollTo(0, 0);
 
-            }, 700);
+            }, 650);
 
         });
 
     }
 
 });
-
