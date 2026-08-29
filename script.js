@@ -2513,6 +2513,59 @@ onAuthStateChanged(auth, async function(user) {
 
     await loadProfilePhoto();
 
+
+    // ---------- LOAD PROFILE INFORMATION ----------
+
+    const profileInfoName =
+        document.getElementById("profileInfoName");
+
+    const profileInfoEmail =
+        document.getElementById("profileInfoEmail");
+
+    const profileInfoId =
+        document.getElementById("profileInfoId");
+
+    const profileDisplayName =
+        document.getElementById("profileDisplayName");
+
+    const profileDisplayEmail =
+        document.getElementById("profileDisplayEmail");
+
+
+    const userName =
+        user.displayName ||
+        localStorage.getItem("noirUser") ||
+        "User";
+
+    const userEmail =
+        user.email ||
+        "—";
+
+    const accountId =
+        user.uid ||
+        "—";
+
+
+    if (profileInfoName) {
+        profileInfoName.textContent = userName;
+    }
+
+    if (profileInfoEmail) {
+        profileInfoEmail.textContent = userEmail;
+    }
+
+    if (profileInfoId) {
+        profileInfoId.textContent = accountId;
+    }
+
+    if (profileDisplayName) {
+        profileDisplayName.textContent = userName;
+    }
+
+    if (profileDisplayEmail) {
+        profileDisplayEmail.textContent = userEmail;
+    }
+    
     // ---------- SYNC USERNAME FROM FIREBASE ----------
 
     const firebaseName = user.displayName || "User";
