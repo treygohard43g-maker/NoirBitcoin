@@ -12125,3 +12125,50 @@ body.light-mode .auth-container a {
     }
 
 }
+
+/* =========================================
+   FLAT TRANSACTION DROPDOWN DETAILS
+   ========================================= */
+
+.website-history-details {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 4px 8px 61px !important;
+}
+
+.history-details-title {
+    padding: 16px 0 10px !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+.website-detail-row {
+    min-height: 42px;
+    padding: 0 !important;
+    border-top: 1px solid #2A2F38;
+    background: transparent !important;
+}
+
+.website-detail-row:last-child {
+    border-bottom: none;
+}
+
+.website-detail-row span,
+.website-detail-row strong {
+    background: transparent !important;
+}
+
+body:not(.dark-mode) .website-history-details {
+    background: transparent !important;
+}
+
+body:not(.dark-mode) .website-detail-row {
+    border-top: 1px solid #e5e7eb;
+}
+
+body:not(.dark-mode) .history-details-title {
+    background: transparent !important;
+}
