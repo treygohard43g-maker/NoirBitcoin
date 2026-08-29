@@ -974,7 +974,12 @@ async function confirmInvestment() {
     }
 }
 
-        async function forceRepairInvestmentHistory() {
+ // =========================
+// LOAD DASHBOARD TRANSACTION HISTORY
+// SHOW ONLY LATEST 3
+// =========================
+
+async function forceRepairInvestmentHistory() {
 
     const container =
         document.getElementById("recentHistory");
@@ -994,45 +999,64 @@ async function confirmInvestment() {
         // LOAD INVESTMENTS
         // =========================
 
-        const investmentsQuery = query(
-            collection(db, "investments"),
-            where("userId", "==", user.uid)
-        );
-
         const investmentSnapshot =
-            await getDocs(investmentsQuery);
-
-        const transactions = [];
-
-        investmentSnapshot.forEach(function(doc) {
-
-            transactions.push({
-                id: doc.id,
-                transactionType: "investment",
-                ...doc.data()
-            });
-
-        });
+            await getDocs(
+                query(
+                    collection(db, "investments"),
+                    where("userId", "==", user.uid)
+                )
+            );
 
 
         // =========================
         // LOAD TRADES
         // =========================
 
-        const tradesQuery = query(
-            collection(db, "trades"),
-            where("userId", "==", user.uid)
-        );
-
         const tradeSnapshot =
-            await getDocs(tradesQuery);
+            await getDocs(
+                query(
+                    collection(db, "trades"),
+                    where("userId", "==", user.uid)
+                )
+            );
+
+
+        const transactions = [];
+
+
+        // =========================
+        // ADD INVESTMENTS
+        // =========================
+
+        investmentSnapshot.forEach(function(doc) {
+
+            transactions.push({
+
+                id: doc.id,
+
+                transactionType: "investment",
+
+                ...doc.data()
+
+            });
+
+        });
+
+
+        // =========================
+        // ADD TRADES
+        // =========================
 
         tradeSnapshot.forEach(function(doc) {
 
             transactions.push({
+
                 id: doc.id,
+
                 transactionType: "trade",
+
                 ...doc.data()
+
             });
 
         });
@@ -1044,25 +1068,30 @@ async function confirmInvestment() {
 
         transactions.sort(function(a, b) {
 
-            return new Date(b.date) - new Date(a.date);
+            return new Date(b.date) -
+                   new Date(a.date);
 
         });
 
 
         // =========================
-        // CLEAR HISTORY
+        // CLEAR DASHBOARD HISTORY
         // =========================
 
         container.innerHTML = "";
 
 
         // =========================
-        // SHOW LATEST 3
+        // SHOW ONLY NEWEST 3
         // =========================
 
-        transactions
-            .slice(0, 3)
-            .forEach(function(transaction) {
+        const latestTransactions =
+            transactions.slice(0, 3);
+
+
+        latestTransactions.forEach(
+            function(transaction) {
+
 
                 const amount =
                     Number(
@@ -1073,10 +1102,13 @@ async function confirmInvestment() {
 
 
                 const formattedAmount =
-                    amount.toLocaleString("en-US", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    });
+                    amount.toLocaleString(
+                        "en-US",
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }
+                    );
 
 
                 const formattedDate =
@@ -1085,163 +1117,226 @@ async function confirmInvestment() {
                             transaction.date
                         ).toLocaleString()
                         : "";
-// =========================
-// TRADE
-// =========================
-
-if (
-    transaction.transactionType === "trade"
-) {
-
-    const isBuy =
-        String(transaction.type || "").toUpperCase() === "BUY";
-
-    const sign =
-        isBuy ? "-" : "+";
-
-    const colorClass =
-        isBuy
-            ? "history-amount-negative"
-            : "history-amount-positive";
-
-    const transactionTitle =
-        isBuy
-            ? "Bought Bitcoin"
-            : "Sold Bitcoin";
-
-    const btcAmount =
-        Number(transaction.btcAmount) || 0;
-
-    const bitcoinPrice =
-        Number(transaction.price) || 0;
 
 
-    container.innerHTML += `
+                // =========================
+                // TRADE
+                // =========================
 
-    <div class="history-item">
+                if (
+                    transaction.transactionType === "trade"
+                ) {
 
-        <div
-            class="history-header"
-            onclick="toggleHistory(this)"
-        >
-
-            <div class="history-info">
-
-                <h3 class="history-asset-title">
-
-                    <img
-                        src="https://cryptologos.cc/logos/bitcoin-btc-logo.png"
-                        class="bitcoin-history-logo"
-                        alt="Bitcoin"
-                    >
-
-                    Bitcoin
-
-                </h3>
-
-                <p>
-                    ${transactionTitle}
-                    • ${formattedDate}
-                </p>
-
-            </div>
+                    const isBuy =
+                        String(
+                            transaction.type || ""
+                        ).toUpperCase() === "BUY";
 
 
-            <div class="history-right">
-
-                <span class="${colorClass}">
-                    ${sign}$${formattedAmount}
-                </span>
-
-                <i
-                    class="fa-solid fa-chevron-down history-chevron"
-                ></i>
-
-            </div>
-
-        </div>
+                    const sign =
+                        isBuy ? "-" : "+";
 
 
-        <div class="history-details">
-
-            <p>
-                <span>Transaction:</span>
-
-                <strong>
-                    ${isBuy ? "Buy Bitcoin" : "Sell Bitcoin"}
-                </strong>
-            </p>
+                    const colorClass =
+                        isBuy
+                            ? "history-amount-negative"
+                            : "history-amount-positive";
 
 
-            <p>
-                <span>Amount:</span>
-
-                <strong class="${colorClass}">
-                    ${sign}$${formattedAmount}
-                </strong>
-            </p>
+                    const transactionTitle =
+                        isBuy
+                            ? "Bought Bitcoin"
+                            : "Sold Bitcoin";
 
 
-            <p>
-                <span>BTC ${isBuy ? "Received" : "Sold"}:</span>
-
-                <strong>
-                    ${btcAmount.toFixed(8)} BTC
-                </strong>
-            </p>
+                    const btcAmount =
+                        Number(
+                            transaction.btcAmount
+                        ) || 0;
 
 
-            <p>
-                <span>Bitcoin Price:</span>
-
-                <strong>
-                    $${bitcoinPrice.toLocaleString("en-US", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    })}
-                </strong>
-            </p>
+                    const bitcoinPrice =
+                        Number(
+                            transaction.price
+                        ) || 0;
 
 
-            <p>
-                <span>Status:</span>
+                    container.innerHTML += `
 
-                <strong>
-                    ${transaction.status || "Completed"}
-                </strong>
-            </p>
+                    <div class="history-item">
+
+                        <div
+                            class="history-header"
+                            onclick="toggleHistory(this)"
+                        >
+
+                            <div class="history-info">
+
+                                <h3 class="history-asset-title">
+
+                                    <img
+                                        src="https://cryptologos.cc/logos/bitcoin-btc-logo.png"
+                                        class="bitcoin-history-logo"
+                                        alt="Bitcoin"
+                                    >
+
+                                    Bitcoin
+
+                                </h3>
 
 
-            <p>
-                <span>Date:</span>
+                                <p>
 
-                <strong>
-                    ${formattedDate}
-                </strong>
-            </p>
+                                    ${transactionTitle}
 
-        </div>
+                                    • ${formattedDate}
 
-    </div>
+                                </p>
 
-    `;
+                            </div>
 
-    return;
-}
+
+                            <div class="history-right">
+
+                                <span class="${colorClass}">
+
+                                    ${sign}$${formattedAmount}
+
+                                </span>
+
+
+                                <i
+                                    class="fa-solid fa-chevron-down history-chevron"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="history-details">
+
+                            <p>
+
+                                <span>
+                                    Transaction:
+                                </span>
+
+                                <strong>
+                                    ${isBuy
+                                        ? "Buy Bitcoin"
+                                        : "Sell Bitcoin"}
+                                </strong>
+
+                            </p>
+
+
+                            <p>
+
+                                <span>
+                                    Amount:
+                                </span>
+
+                                <strong class="${colorClass}">
+
+                                    ${sign}$${formattedAmount}
+
+                                </strong>
+
+                            </p>
+
+
+                            <p>
+
+                                <span>
+                                    BTC ${isBuy
+                                        ? "Received"
+                                        : "Sold"}:
+                                </span>
+
+                                <strong>
+
+                                    ${btcAmount.toFixed(8)} BTC
+
+                                </strong>
+
+                            </p>
+
+
+                            <p>
+
+                                <span>
+                                    Bitcoin Price:
+                                </span>
+
+                                <strong>
+
+                                    $${bitcoinPrice.toLocaleString(
+                                        "en-US",
+                                        {
+                                            minimumFractionDigits: 2,
+                                            maximumFractionDigits: 2
+                                        }
+                                    )}
+
+                                </strong>
+
+                            </p>
+
+
+                            <p>
+
+                                <span>
+                                    Status:
+                                </span>
+
+                                <strong>
+
+                                    ${transaction.status ||
+                                      "Completed"}
+
+                                </strong>
+
+                            </p>
+
+
+                            <p>
+
+                                <span>
+                                    Date:
+                                </span>
+
+                                <strong>
+
+                                    ${formattedDate}
+
+                                </strong>
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    `;
+
+                    return;
+
+                }
+
 
                 // =========================
                 // INVESTMENT
                 // =========================
 
-                const investmentAmount =
-                    Number(transaction.amount) || 0;
-
-
                 const investmentFormatted =
-                    investmentAmount.toLocaleString("en-US", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    });
+                    amount.toLocaleString(
+                        "en-US",
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }
+                    );
 
 
                 container.innerHTML += `
@@ -1256,13 +1351,24 @@ if (
                         <div class="history-info">
 
                             <h3>
-                                <i class="fa-solid fa-chart-line"></i>
-                                ${transaction.plan || "Investment"}
+
+                                <i
+                                    class="fa-solid fa-chart-line"
+                                ></i>
+
+                                ${transaction.plan ||
+                                  "Investment"}
+
                             </h3>
 
+
                             <p>
-                                ${transaction.status || "Active"}
+
+                                ${transaction.status ||
+                                  "Active"}
+
                                 • ${formattedDate}
+
                             </p>
 
                         </div>
@@ -1271,8 +1377,11 @@ if (
                         <div class="history-right">
 
                             <span class="history-amount-positive">
+
                                 +$${investmentFormatted}
+
                             </span>
+
 
                             <i
                                 class="fa-solid fa-chevron-down history-chevron"
@@ -1286,61 +1395,107 @@ if (
                     <div class="history-details">
 
                         <p>
-                            <span>Investment Plan:</span>
+
+                            <span>
+                                Investment Plan:
+                            </span>
 
                             <strong>
-                                ${transaction.plan || "Investment"}
+
+                                ${transaction.plan ||
+                                  "Investment"}
+
                             </strong>
+
                         </p>
 
 
                         <p>
-                            <span>Amount:</span>
 
-                            <strong class="history-detail-amount">
+                            <span>
+                                Amount:
+                            </span>
+
+                            <strong
+                                class="history-detail-amount"
+                            >
+
                                 +$${investmentFormatted}
+
                             </strong>
+
                         </p>
 
 
                         <p>
-                            <span>Profit Rate:</span>
+
+                            <span>
+                                Profit Rate:
+                            </span>
 
                             <strong>
-                                ${transaction.profitRate || 0}%
+
+                                ${transaction.profitRate ||
+                                  0}%
+
                             </strong>
+
                         </p>
 
 
                         <p>
-                            <span>Monthly Profit:</span>
 
-                            <strong class="history-detail-amount">
+                            <span>
+                                Monthly Profit:
+                            </span>
+
+                            <strong
+                                class="history-detail-amount"
+                            >
+
                                 +$${Number(
                                     transaction.monthlyProfit || 0
-                                ).toLocaleString("en-US", {
-                                    minimumFractionDigits: 2,
-                                    maximumFractionDigits: 2
-                                })}
+                                ).toLocaleString(
+                                    "en-US",
+                                    {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
+                                    }
+                                )}
+
                             </strong>
+
                         </p>
 
 
                         <p>
-                            <span>Status:</span>
+
+                            <span>
+                                Status:
+                            </span>
 
                             <strong>
-                                ${transaction.status || "Active"}
+
+                                ${transaction.status ||
+                                  "Active"}
+
                             </strong>
+
                         </p>
 
 
                         <p>
-                            <span>Date:</span>
+
+                            <span>
+                                Date:
+                            </span>
 
                             <strong>
+
                                 ${formattedDate}
+
                             </strong>
+
                         </p>
 
                     </div>
@@ -1349,19 +1504,20 @@ if (
 
                 `;
 
-            });
+            }
+        );
 
 
         console.log(
-            "Transaction history loaded:",
-            transactions
+            "Latest 3 dashboard transactions:",
+            latestTransactions
         );
 
 
     } catch (error) {
 
         console.error(
-            "Error loading transaction history:",
+            "Error loading dashboard transaction history:",
             error
         );
 
