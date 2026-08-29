@@ -4152,3 +4152,47 @@ document.addEventListener(
     }
 );
 
+/* =========================================
+   NOIRBITCOIN INTRO EXPERIENCE
+========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const intro = document.getElementById("noirIntro");
+    const mainSite = document.getElementById("mainSite");
+    const getStartedBtn = document.getElementById("getStartedBtn");
+
+    if (!intro || !mainSite) return;
+
+    /* Hide main website while intro is showing */
+    mainSite.style.display = "none";
+
+    /* Show the main site after clicking GET STARTED */
+    if (getStartedBtn) {
+
+        getStartedBtn.addEventListener("click", (event) => {
+
+            event.preventDefault();
+
+            intro.style.transition = "opacity 0.7s ease, visibility 0.7s ease";
+            intro.style.opacity = "0";
+            intro.style.visibility = "hidden";
+
+            setTimeout(() => {
+
+                intro.style.display = "none";
+                mainSite.style.display = "block";
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "instant"
+                });
+
+            }, 700);
+
+        });
+
+    }
+
+});
+
