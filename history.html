@@ -109,50 +109,84 @@ const db = getFirestore(auth.app);
 // LOAD FIRESTORE INVESTMENT HISTORY
 // =========================================
 
+
+// =========================================
+// LOAD ALL TRANSACTION HISTORY
+// INVESTMENTS + TRADES
+// =========================================
+
 async function loadHistory(user) {
 
     const container =
         document.getElementById("investmentHistory");
 
-
     if (!container) return;
-
 
     container.innerHTML = "";
 
-
     try {
 
-        const investmentsRef =
-            collection(db, "investments");
+        // =========================================
+        // LOAD INVESTMENTS
+        // =========================================
 
+        const investmentsQuery = query(
+            collection(db, "investments"),
+            where("userId", "==", user.uid)
+        );
 
-        const investmentsQuery =
-            query(
-                investmentsRef,
-                where("userId", "==", user.uid)
-            );
-
-
-        const snapshot =
+        const investmentSnapshot =
             await getDocs(investmentsQuery);
 
+        const transactions = [];
 
-        const investments = [];
+        investmentSnapshot.forEach(function(doc) {
 
+            transactions.push({
 
-        snapshot.forEach(function(doc) {
-
-            investments.push({
                 id: doc.id,
+
+                transactionType: "investment",
+
                 ...doc.data()
+
             });
 
         });
 
 
-        // Newest investment first
-        investments.sort(function(a, b) {
+        // =========================================
+        // LOAD TRADES
+        // =========================================
+
+        const tradesQuery = query(
+            collection(db, "trades"),
+            where("userId", "==", user.uid)
+        );
+
+        const tradeSnapshot =
+            await getDocs(tradesQuery);
+
+        tradeSnapshot.forEach(function(doc) {
+
+            transactions.push({
+
+                id: doc.id,
+
+                transactionType: "trade",
+
+                ...doc.data()
+
+            });
+
+        });
+
+
+        // =========================================
+        // SORT NEWEST FIRST
+        // =========================================
+
+        transactions.sort(function(a, b) {
 
             return new Date(b.date) -
                    new Date(a.date);
@@ -160,7 +194,11 @@ async function loadHistory(user) {
         });
 
 
-        if (investments.length === 0) {
+        // =========================================
+        // NO TRANSACTIONS
+        // =========================================
+
+        if (transactions.length === 0) {
 
             container.innerHTML = `
 
@@ -189,11 +227,18 @@ async function loadHistory(user) {
         }
 
 
-        investments.forEach(function(investment) {
+        // =========================================
+        // DISPLAY ALL TRANSACTIONS
+        // =========================================
 
+        transactions.forEach(function(transaction) {
 
             const amount =
-                Number(investment.amount) || 0;
+                Number(
+                    transaction.amountUSD ??
+                    transaction.amount ??
+                    0
+                );
 
 
             const formattedAmount =
@@ -207,14 +252,13 @@ async function loadHistory(user) {
 
 
             let formattedDate =
-                investment.date || "N/A";
+                transaction.date || "N/A";
 
 
-            if (investment.date) {
+            if (transaction.date) {
 
                 const date =
-                    new Date(investment.date);
-
+                    new Date(transaction.date);
 
                 if (!isNaN(date.getTime())) {
 
@@ -238,8 +282,240 @@ async function loadHistory(user) {
             }
 
 
+            // =========================================
+            // TRADE
+            // =========================================
+
+            if (
+                transaction.transactionType === "trade"
+            ) {
+
+                const isBuy =
+                    String(
+                        transaction.type || ""
+                    ).toUpperCase() === "BUY";
+
+
+                const sign =
+                    isBuy ? "-" : "+";
+
+
+                const colorClass =
+                    isBuy
+                        ? "history-amount-negative"
+                        : "history-amount-positive";
+
+
+                const transactionTitle =
+                    isBuy
+                        ? "Bought Bitcoin"
+                        : "Sold Bitcoin";
+
+
+                const btcAmount =
+                    Number(
+                        transaction.btcAmount
+                    ) || 0;
+
+
+                const bitcoinPrice =
+                    Number(
+                        transaction.price
+                    ) || 0;
+
+
+                const status =
+                    transaction.status ||
+                    "Completed";
+
+
+                container.innerHTML += `
+
+                <div class="website-history-item">
+
+                    <div
+                        class="website-history-header"
+                        onclick="toggleHistory(this)"
+                    >
+
+                        <div class="website-history-left">
+
+                            <div class="website-history-icon">
+
+                                <img
+                                    src="https://cryptologos.cc/logos/bitcoin-btc-logo.png"
+                                    class="bitcoin-history-logo"
+                                    alt="Bitcoin"
+                                >
+
+                            </div>
+
+
+                            <div class="website-history-info">
+
+                                <h3>
+                                    Bitcoin
+                                </h3>
+
+                                <p>
+
+                                    ${transactionTitle}
+
+                                    <span>•</span>
+
+                                    <span class="history-status ${status.toLowerCase() === "completed" ? "active" : "pending"}">
+                                        ${status}
+                                    </span>
+
+                                </p>
+
+                                <small>
+                                    ${formattedDate}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="website-history-right">
+
+                            <strong class="${colorClass}">
+
+                                ${sign}$${formattedAmount}
+
+                            </strong>
+
+
+                            <i
+                                class="fa-solid fa-chevron-down history-chevron"
+                            ></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="website-history-details">
+
+                        <div class="history-details-title">
+
+                            Bitcoin Trade Details
+
+                        </div>
+
+
+                        <div class="website-detail-row">
+
+                            <span>
+                                Transaction
+                            </span>
+
+                            <strong>
+                                ${isBuy ? "Buy Bitcoin" : "Sell Bitcoin"}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="website-detail-row">
+
+                            <span>
+                                Amount
+                            </span>
+
+                            <strong class="${colorClass}">
+                                ${sign}$${formattedAmount}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="website-detail-row">
+
+                            <span>
+                                BTC ${isBuy ? "Received" : "Sold"}
+                            </span>
+
+                            <strong>
+                                ${btcAmount.toFixed(8)} BTC
+                            </strong>
+
+                        </div>
+
+
+                        <div class="website-detail-row">
+
+                            <span>
+                                Bitcoin Price
+                            </span>
+
+                            <strong>
+                                $${bitcoinPrice.toLocaleString("en-US", {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                })}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="website-detail-row">
+
+                            <span>
+                                Status
+                            </span>
+
+                            <strong>
+                                ${status}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="website-detail-row">
+
+                            <span>
+                                Date
+                            </span>
+
+                            <strong>
+                                ${formattedDate}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            // =========================================
+            // INVESTMENT
+            // =========================================
+
+            const investmentAmount =
+                Number(transaction.amount) || 0;
+
+
+            const investmentFormatted =
+                investmentAmount.toLocaleString("en-US", {
+
+                    minimumFractionDigits: 2,
+
+                    maximumFractionDigits: 2
+
+                });
+
+
             const status =
-                investment.status || "Pending";
+                transaction.status || "Pending";
 
 
             const statusClass =
@@ -252,15 +528,12 @@ async function loadHistory(user) {
 
             <div class="website-history-item">
 
-
                 <div
                     class="website-history-header"
                     onclick="toggleHistory(this)"
                 >
 
-
                     <div class="website-history-left">
-
 
                         <div class="website-history-icon">
 
@@ -272,7 +545,7 @@ async function loadHistory(user) {
                         <div class="website-history-info">
 
                             <h3>
-                                ${investment.plan}
+                                ${transaction.plan || "Investment"}
                             </h3>
 
                             <p>
@@ -293,16 +566,14 @@ async function loadHistory(user) {
 
                         </div>
 
-
                     </div>
 
 
                     <div class="website-history-right">
 
-
                         <strong class="history-amount">
 
-                            +$${formattedAmount}
+                            +$${investmentFormatted}
 
                         </strong>
 
@@ -311,15 +582,12 @@ async function loadHistory(user) {
                             class="fa-solid fa-chevron-down history-chevron"
                         ></i>
 
-
                     </div>
-
 
                 </div>
 
 
                 <div class="website-history-details">
-
 
                     <div class="history-details-title">
 
@@ -335,7 +603,7 @@ async function loadHistory(user) {
                         </span>
 
                         <strong>
-                            ${investment.plan}
+                            ${transaction.plan || "Investment"}
                         </strong>
 
                     </div>
@@ -348,7 +616,7 @@ async function loadHistory(user) {
                         </span>
 
                         <strong>
-                            $${formattedAmount}
+                            $${investmentFormatted}
                         </strong>
 
                     </div>
@@ -387,20 +655,24 @@ async function loadHistory(user) {
                         </span>
 
                         <strong>
-                            ${investment.profitRate || 0}%
+                            ${transaction.profitRate || 0}%
                         </strong>
 
                     </div>
 
-
                 </div>
-
 
             </div>
 
             `;
 
         });
+
+
+        console.log(
+            "All transaction history loaded:",
+            transactions
+        );
 
 
     } catch (error) {
@@ -436,7 +708,6 @@ async function loadHistory(user) {
     }
 
 }
-
 
 // =========================================
 // EXPAND / COLLAPSE
