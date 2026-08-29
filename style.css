@@ -2172,7 +2172,10 @@ p {
     opacity:0;
     overflow:hidden;
     padding:0 16px;
-    background:#0f172a;
+    background:transparent !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+
     transition:
         max-height .35s ease,
         opacity .35s ease,
@@ -2185,6 +2188,15 @@ p {
     padding:16px !important;
 }
 
+.history-details p{
+    margin:0 !important;
+    padding:12px 0 !important;
+    border-bottom:1px solid #2a2f38;
+}
+
+.history-details p:last-child{
+    border-bottom:none;
+}
 
 .arrow{
     display:inline-block;
