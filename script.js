@@ -3213,6 +3213,74 @@ const profileDisplayName =
 const profileDisplayEmail =
     document.getElementById("profileDisplayEmail");
 
+// =========================
+// PROFILE INFORMATION
+// =========================
+
+function loadProfileInformation(user) {
+
+    if (!user) return;
+
+    const profileInfoName =
+        document.getElementById("profileInfoName");
+
+    const profileInfoEmail =
+        document.getElementById("profileInfoEmail");
+
+    const profileInfoId =
+        document.getElementById("profileInfoId");
+
+    const profileDisplayName =
+        document.getElementById("profileDisplayName");
+
+    const profileDisplayEmail =
+        document.getElementById("profileDisplayEmail");
+
+
+    // USER NAME
+    const userName =
+        user.displayName ||
+        localStorage.getItem("noirUser") ||
+        "User";
+
+
+    // USER EMAIL
+    const userEmail =
+        user.email ||
+        "—";
+
+
+    // ACCOUNT ID
+    const accountId =
+        user.uid ||
+        "—";
+
+
+    // Profile information rows
+    if (profileInfoName) {
+        profileInfoName.textContent = userName;
+    }
+
+    if (profileInfoEmail) {
+        profileInfoEmail.textContent = userEmail;
+    }
+
+    if (profileInfoId) {
+        profileInfoId.textContent = accountId;
+    }
+
+
+    // Main profile name/email
+    if (profileDisplayName) {
+        profileDisplayName.textContent = userName;
+    }
+
+    if (profileDisplayEmail) {
+        profileDisplayEmail.textContent = userEmail;
+    }
+
+}
+
 
 // =========================
 // UID-SPECIFIC LOCAL STORAGE KEY
