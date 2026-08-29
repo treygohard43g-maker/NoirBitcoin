@@ -12706,9 +12706,9 @@ body.light-mode .empty-history p {
     color: #6b7280 !important;
     
   
-    /* ================================
-   NOIRBITCOIN — LANDING PAGE
-   ================================ */
+/* =========================================================
+   NOIRBITCOIN — COMPLETE LANDING PAGE
+========================================================= */
 
 * {
     margin: 0;
@@ -12721,151 +12721,72 @@ html {
 }
 
 body {
-    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Arial, sans-serif;
+
     background: #0d1117;
     color: #ffffff;
+
     min-height: 100vh;
     overflow-x: hidden;
 }
 
-/* ================================
-   BACKGROUND
-   ================================ */
+
+/* =========================================================
+   GLOBAL BACKGROUND GLOW
+========================================================= */
 
 body::before {
     content: "";
     position: fixed;
+
     width: 500px;
     height: 500px;
+
     top: -180px;
     left: -180px;
-    background: rgba(247, 147, 26, 0.08);
-    filter: blur(100px);
+
+    background: rgba(247, 147, 26, 0.07);
+
+    filter: blur(120px);
+
     border-radius: 50%;
+
     pointer-events: none;
-    z-index: -2;
+    z-index: -5;
 }
 
 body::after {
     content: "";
     position: fixed;
-    width: 550px;
-    height: 550px;
-    right: -200px;
-    bottom: -200px;
-    background: rgba(255, 35, 35, 0.08);
+
+    width: 500px;
+    height: 500px;
+
+    right: -180px;
+    bottom: -180px;
+
+    background: rgba(255, 20, 20, 0.08);
+
     filter: blur(120px);
+
     border-radius: 50%;
+
     pointer-events: none;
-    z-index: -2;
+    z-index: -5;
 }
 
-/* ================================
-   HEADER
-   ================================ */
 
-header {
-    width: 100%;
-    padding: 22px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 10;
-}
+/* =========================================================
+   OPENING EXPERIENCE
+========================================================= */
 
-/* ================================
-   LOGO
-   ================================ */
+.noir-intro {
+    position: fixed;
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: #ffffff;
-}
+    inset: 0;
 
-.logo-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: linear-gradient(
-        145deg,
-        #f7931a,
-        #ffb347
-    );
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: #ffffff;
-    font-size: 23px;
-    font-weight: 900;
-
-    box-shadow:
-        0 0 18px rgba(247, 147, 26, 0.35),
-        inset 0 0 8px rgba(255, 255, 255, 0.15);
-}
-
-.logo-text {
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-}
-
-/* ================================
-   NAVIGATION
-   ================================ */
-
-nav {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-}
-
-nav a {
-    color: #aeb5c0;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.25s ease;
-}
-
-nav a:hover {
-    color: #ffffff;
-}
-
-/* ================================
-   HEADER BUTTON
-   ================================ */
-
-.nav-button {
-    padding: 11px 20px;
-    border-radius: 10px;
-
-    background: #ffffff;
-    color: #0d1117;
-
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 800;
-
-    transition: 0.25s ease;
-}
-
-.nav-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.12);
-}
-
-/* ================================
-   HERO
-   ================================ */
-
-.hero {
-    min-height: calc(100vh - 82px);
+    z-index: 9999;
 
     display: flex;
     align-items: center;
@@ -12873,31 +12794,85 @@ nav a:hover {
 
     text-align: center;
 
-    padding: 70px 20px 100px;
+    padding: 25px;
 
-    position: relative;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(247, 147, 26, 0.07),
+            transparent 35%
+        ),
+        #0d1117;
 }
 
-/* ================================
-   HERO CONTENT
-   ================================ */
 
-.hero-content {
+/* Red atmospheric glow */
+
+.noir-intro::before {
+    content: "";
+
+    position: absolute;
+
+    width: 360px;
+    height: 360px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 25, 25, 0.08);
+
+    filter: blur(100px);
+
+    animation: introRedGlow 4s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes introRedGlow {
+
+    0% {
+        opacity: 0.25;
+        transform: scale(0.85);
+    }
+
+    50% {
+        opacity: 0.75;
+        transform: scale(1.15);
+    }
+
+    100% {
+        opacity: 0.25;
+        transform: scale(0.85);
+    }
+}
+
+
+/* =========================================================
+   INTRO CENTER
+========================================================= */
+
+.intro-center {
+    position: relative;
+
+    z-index: 2;
+
     width: 100%;
-    max-width: 900px;
+    max-width: 520px;
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
 }
 
-/* ================================
-   LARGE BITCOIN ICON
-   ================================ */
 
-.hero-bitcoin {
-    width: 105px;
-    height: 105px;
+/* =========================================================
+   INTRO BITCOIN
+========================================================= */
+
+.intro-bitcoin {
+    width: 96px;
+    height: 96px;
 
     border-radius: 50%;
 
@@ -12905,29 +12880,30 @@ nav a:hover {
     align-items: center;
     justify-content: center;
 
+    font-size: 58px;
+    font-weight: 900;
+
+    color: #ffffff;
+
     background:
         radial-gradient(
             circle at 30% 25%,
-            #ffbd63,
-            #f7931a 48%,
-            #c96b00 100%
+            #ffc46e,
+            #f7931a 50%,
+            #c66a00
         );
 
-    color: white;
-
-    font-size: 62px;
-    font-weight: 900;
-
     box-shadow:
-        0 0 25px rgba(247, 147, 26, 0.35),
-        0 0 70px rgba(247, 147, 26, 0.12);
+        0 0 25px rgba(247, 147, 26, 0.4),
+        0 0 80px rgba(247, 147, 26, 0.13);
 
-    margin-bottom: 30px;
+    animation: introBitcoinFloat 4s ease-in-out infinite;
 
-    animation: bitcoinFloat 4s ease-in-out infinite;
+    margin-bottom: 25px;
 }
 
-@keyframes bitcoinFloat {
+
+@keyframes introBitcoinFloat {
 
     0%,
     100% {
@@ -12939,55 +12915,302 @@ nav a:hover {
     }
 }
 
-/* ================================
-   BRAND NAME
-   ================================ */
 
-.hero h1 {
-    font-size: clamp(42px, 7vw, 78px);
+/* =========================================================
+   INTRO BRAND
+========================================================= */
+
+.intro-brand {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    margin-bottom: 28px;
+}
+
+
+.brand-main {
+    font-size: clamp(30px, 7vw, 52px);
 
     font-weight: 900;
 
-    letter-spacing: -3px;
+    letter-spacing: 5px;
 
     line-height: 1;
 
-    margin-bottom: 20px;
+    text-align: center;
 
-    background: linear-gradient(
-        135deg,
-        #ffffff 10%,
-        #d8dde5 55%,
-        #f7931a 100%
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #d9dee7 55%,
+            #f7931a
+        );
 
     -webkit-background-clip: text;
+    background-clip: text;
+
     -webkit-text-fill-color: transparent;
+
+    filter:
+        drop-shadow(
+            0 0 18px rgba(247, 147, 26, 0.08)
+        );
 }
 
-/* ================================
-   HERO DESCRIPTION
-   ================================ */
 
-.hero p {
-    max-width: 620px;
+/* =========================================================
+   INTRO MESSAGE
+========================================================= */
 
-    color: #9ca5b1;
+.intro-message {
+    width: 100%;
 
-    font-size: 17px;
+    margin-bottom: 32px;
+}
+
+
+.intro-message h2 {
+    font-size: 16px;
+
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    color: #ffffff;
+
+    margin-bottom: 10px;
+}
+
+
+.intro-message p {
+    font-size: 15px;
 
     line-height: 1.7;
 
-    margin-bottom: 35px;
+    color: #929ba8;
+
+    max-width: 360px;
+
+    margin: 0 auto;
 }
 
-/* ================================
-   HERO BUTTONS
-   ================================ */
 
-.hero-buttons {
-    display: flex;
+/* =========================================================
+   INTRO BUTTON
+========================================================= */
+
+.intro-button {
+    display: inline-flex;
+
+    align-items: center;
     justify-content: center;
+
+    min-width: 180px;
+
+    padding: 14px 28px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7931a,
+            #ffb347
+        );
+
+    color: #111111;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 10px 35px rgba(247, 147, 26, 0.18);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.intro-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 40px rgba(247, 147, 26, 0.3);
+}
+
+
+/* =========================================================
+   MAIN SITE
+========================================================= */
+
+.main-site {
+    width: 100%;
+
+    min-height: 100vh;
+
+    background: #0d1117;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.new-hero {
+    position: relative;
+
+    min-height: 90vh;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 60px;
+
+    padding:
+        100px
+        8%;
+
+    overflow: hidden;
+}
+
+
+/* Hero red glow */
+
+.new-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    right: 8%;
+    top: 10%;
+
+    background: rgba(255, 25, 25, 0.07);
+
+    filter: blur(110px);
+
+    border-radius: 50%;
+
+    animation: heroGlow 5s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes heroGlow {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.new-hero .hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: 55%;
+
+    max-width: 650px;
+}
+
+
+.hero-label {
+    display: inline-block;
+
+    margin-bottom: 20px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    color: #f7931a;
+}
+
+
+.new-hero h1 {
+    font-size: clamp(48px, 6vw, 82px);
+
+    line-height: 0.98;
+
+    letter-spacing: -4px;
+
+    font-weight: 900;
+
+    margin-bottom: 28px;
+}
+
+
+.new-hero h1 span {
+    display: block;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #d9dee7 55%,
+            #f7931a
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.new-hero p {
+    max-width: 570px;
+
+    color: #9ba4b0;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    margin-bottom: 34px;
+}
+
+
+/* =========================================================
+   HERO ACTIONS
+========================================================= */
+
+.hero-actions {
+    display: flex;
+
     align-items: center;
 
     gap: 14px;
@@ -12995,121 +13218,294 @@ nav a:hover {
     flex-wrap: wrap;
 }
 
-.primary-button {
+
+.primary-action {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
 
-    min-width: 150px;
-
     padding: 14px 25px;
+
+    min-width: 155px;
 
     border-radius: 12px;
 
-    background: linear-gradient(
-        135deg,
-        #f7931a,
-        #ffb347
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #f7931a,
+            #ffb347
+        );
 
     color: #111111;
 
     text-decoration: none;
 
-    font-size: 15px;
+    font-size: 14px;
+
     font-weight: 800;
 
     box-shadow:
-        0 8px 25px rgba(247, 147, 26, 0.18);
+        0 10px 30px rgba(247, 147, 26, 0.15);
 
     transition: 0.25s ease;
 }
 
-.primary-button:hover {
+
+.primary-action:hover {
     transform: translateY(-3px);
 
     box-shadow:
-        0 12px 35px rgba(247, 147, 26, 0.3);
+        0 15px 40px rgba(247, 147, 26, 0.28);
 }
 
-.secondary-button {
+
+.secondary-action {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
 
-    min-width: 150px;
-
     padding: 13px 25px;
+
+    min-width: 120px;
 
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid #2a3039;
 
-    border: 1px solid #2a2f38;
+    background: rgba(255, 255, 255, 0.025);
 
     color: #ffffff;
 
     text-decoration: none;
 
-    font-size: 15px;
+    font-size: 14px;
+
     font-weight: 700;
 
     transition: 0.25s ease;
 }
 
-.secondary-button:hover {
-    background: rgba(255, 255, 255, 0.07);
 
-    border-color: #444b57;
+.secondary-action:hover {
+    background: rgba(255, 255, 255, 0.06);
+
+    border-color: #454c57;
 
     transform: translateY(-3px);
 }
 
-/* ================================
-   RED ANIMATED GLOW
-   ================================ */
 
-.red-glow {
+/* =========================================================
+   HERO VISUAL
+========================================================= */
+
+.hero-visual {
+    position: relative;
+
+    width: 42%;
+
+    min-height: 430px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   BITCOIN ORBIT
+========================================================= */
+
+.bitcoin-orbit {
+    position: relative;
+
+    width: 320px;
+    height: 320px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.orbit-ring {
     position: absolute;
 
-    width: 420px;
-    height: 420px;
+    inset: 0;
 
     border-radius: 50%;
 
-    background: rgba(255, 25, 25, 0.07);
+    border: 1px solid rgba(247, 147, 26, 0.25);
 
-    filter: blur(90px);
+    box-shadow:
+        0 0 35px rgba(247, 147, 26, 0.06);
 
-    pointer-events: none;
-
-    animation: redPulse 5s ease-in-out infinite;
-
-    z-index: -1;
+    animation: orbitRotate 12s linear infinite;
 }
 
-@keyframes redPulse {
+
+.orbit-ring::before,
+.orbit-ring::after {
+    content: "";
+
+    position: absolute;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #f7931a;
+
+    box-shadow:
+        0 0 18px rgba(247, 147, 26, 0.7);
+}
+
+
+.orbit-ring::before {
+    top: 25px;
+    left: 52px;
+}
+
+
+.orbit-ring::after {
+    bottom: 35px;
+    right: 45px;
+}
+
+
+@keyframes orbitRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   BITCOIN SYMBOL
+========================================================= */
+
+.bitcoin-symbol {
+    position: relative;
+
+    width: 145px;
+    height: 145px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #ffc66e,
+            #f7931a 50%,
+            #c66a00
+        );
+
+    font-size: 82px;
+
+    font-weight: 900;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 0 35px rgba(247, 147, 26, 0.3),
+        0 0 100px rgba(247, 147, 26, 0.1);
+
+    animation: centerBitcoin 4s ease-in-out infinite;
+}
+
+
+@keyframes centerBitcoin {
 
     0%,
     100% {
-        opacity: 0.35;
-        transform: scale(0.9);
+        transform: translateY(0);
     }
 
     50% {
-        opacity: 0.75;
-        transform: scale(1.1);
+        transform: translateY(-10px);
     }
 }
 
-/* ================================
-   FEATURE SECTION
-   ================================ */
 
-.features {
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.features-section {
     width: 100%;
 
-    padding: 80px 7% 100px;
+    padding:
+        100px
+        8%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0d1117,
+            #10141a
+        );
+}
+
+
+.section-heading {
+    text-align: center;
+
+    max-width: 650px;
+
+    margin:
+        0 auto
+        55px;
+}
+
+
+.section-heading span {
+    display: block;
+
+    color: #f7931a;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 15px;
+}
+
+
+.section-heading h2 {
+    font-size: clamp(32px, 5vw, 48px);
+
+    letter-spacing: -2px;
+
+    font-weight: 850;
+}
+
+
+/* =========================================================
+   FEATURE GRID
+========================================================= */
+
+.feature-grid {
+    width: 100%;
 
     display: grid;
 
@@ -13119,172 +13515,560 @@ nav a:hover {
     gap: 20px;
 }
 
+
 .feature-card {
-    padding: 30px;
+    position: relative;
+
+    padding: 32px;
+
+    min-height: 235px;
+
+    border-radius: 18px;
+
+    border: 1px solid #252b34;
 
     background:
         linear-gradient(
             145deg,
-            #171b21,
+            #181c22,
             #11151b
         );
 
-    border: 1px solid #252b34;
+    overflow: hidden;
 
-    border-radius: 18px;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.feature-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    right: -55px;
+    top: -55px;
+
+    border-radius: 50%;
+
+    background: rgba(247, 147, 26, 0.05);
+
+    filter: blur(20px);
 
     transition: 0.3s ease;
 }
 
-.feature-card:hover {
-    transform: translateY(-6px);
 
-    border-color: #343b46;
+.feature-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #3a424d;
 
     box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.25);
+        0 20px 50px rgba(0, 0, 0, 0.28);
 }
 
+
+.feature-card:hover::before {
+    transform: scale(1.4);
+
+    background: rgba(247, 147, 26, 0.09);
+}
+
+
 .feature-icon {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border-radius: 13px;
+    border-radius: 14px;
 
     background: rgba(247, 147, 26, 0.1);
 
+    border: 1px solid rgba(247, 147, 26, 0.12);
+
     color: #f7931a;
 
-    font-size: 20px;
+    font-size: 21px;
 
-    margin-bottom: 20px;
+    font-weight: 800;
+
+    margin-bottom: 23px;
 }
+
 
 .feature-card h3 {
-    font-size: 18px;
+    font-size: 19px;
 
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+
+    font-weight: 800;
 }
+
 
 .feature-card p {
     color: #8f98a5;
 
     font-size: 14px;
 
-    line-height: 1.65;
+    line-height: 1.7;
+
+    max-width: 320px;
 }
 
-/* ================================
-   RESPONSIVE TABLET
-   ================================ */
 
-@media (max-width: 800px) {
+/* =========================================================
+   CTA
+========================================================= */
 
-    header {
-        padding: 20px 5%;
+.cta-section {
+    width: 100%;
+
+    padding:
+        100px
+        8%;
+
+    display: flex;
+
+    justify-content: center;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.cta-section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: rgba(255, 20, 20, 0.06);
+
+    filter: blur(100px);
+
+    animation: ctaGlow 5s ease-in-out infinite;
+}
+
+
+@keyframes ctaGlow {
+
+    0%,
+    100% {
+        opacity: 0.25;
     }
 
-    nav {
-        gap: 15px;
-    }
-
-    nav a:not(.nav-button) {
-        display: none;
-    }
-
-    .hero {
-        padding-top: 55px;
-    }
-
-    .features {
-        grid-template-columns: 1fr;
-        padding-left: 5%;
-        padding-right: 5%;
+    50% {
+        opacity: 0.75;
     }
 }
 
-/* ================================
-   RESPONSIVE PHONE
-   ================================ */
 
-@media (max-width: 500px) {
+.cta-content {
+    position: relative;
 
-    header {
-        padding: 18px 20px;
-    }
+    z-index: 2;
 
-    .logo-text {
-        font-size: 18px;
-    }
+    max-width: 700px;
 
-    .logo-icon {
-        width: 34px;
-        height: 34px;
-        font-size: 20px;
-    }
+    width: 100%;
+}
 
-    .nav-button {
-        padding: 9px 15px;
-        font-size: 13px;
-    }
 
-    .hero {
+.cta-content > span {
+    display: block;
+
+    color: #f7931a;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 18px;
+}
+
+
+.cta-content h2 {
+    font-size: clamp(35px, 5vw, 58px);
+
+    line-height: 1.05;
+
+    letter-spacing: -2.5px;
+
+    margin-bottom: 20px;
+}
+
+
+.cta-content p {
+    color: #9099a6;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    max-width: 500px;
+
+    margin:
+        0 auto
+        30px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.new-footer {
+    width: 100%;
+
+    padding:
+        45px
+        8%;
+
+    border-top: 1px solid #20252d;
+
+    background: #0b0f14;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        auto;
+
+    align-items: center;
+
+    gap: 25px;
+}
+
+
+.footer-brand strong {
+    display: block;
+
+    font-size: 17px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 7px;
+}
+
+
+.footer-brand p {
+    color: #737d89;
+
+    font-size: 13px;
+}
+
+
+.footer-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+}
+
+
+.footer-links a {
+    color: #858e9b;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    transition: 0.25s ease;
+}
+
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+
+.copyright {
+    grid-column: 1 / -1;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #1d232b;
+
+    color: #5e6874;
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .new-hero {
         min-height: auto;
 
+        flex-direction: column;
+
+        text-align: center;
+
         padding:
-            65px 20px
-            90px;
-    }
-
-    .hero-bitcoin {
-        width: 88px;
-        height: 88px;
-
-        font-size: 52px;
-
-        margin-bottom: 25px;
-    }
-
-    .hero h1 {
-        font-size: 44px;
-
-        letter-spacing: -2px;
-    }
-
-    .hero p {
-        font-size: 15px;
-
-        line-height: 1.65;
-    }
-
-    .hero-buttons {
-        width: 100%;
-    }
-
-    .primary-button,
-    .secondary-button {
-        width: 100%;
-    }
-
-    .features {
-        padding:
-            50px 20px
+            90px
+            6%
             70px;
     }
 
+
+    .new-hero .hero-content {
+        width: 100%;
+
+        max-width: 700px;
+    }
+
+
+    .new-hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+
+    .hero-visual {
+        width: 100%;
+
+        min-height: 360px;
+    }
+
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+
     .feature-card {
-        padding: 25px;
+        min-height: auto;
+    }
+
+
+    .new-footer {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+
+
+    .footer-links {
+        justify-content: center;
     }
 }
 
 
+/* =========================================================
+   MOBILE
+========================================================= */
 
-    
+@media (max-width: 600px) {
+
+    .noir-intro {
+        padding: 20px;
+    }
 
 
-   
-        
+    .intro-bitcoin {
+        width: 82px;
+        height: 82px;
+
+        font-size: 50px;
+    }
+
+
+    .brand-main {
+        font-size: 29px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .intro-message h2 {
+        font-size: 13px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .intro-message p {
+        font-size: 14px;
+    }
+
+
+    .intro-button {
+        width: 100%;
+
+        max-width: 280px;
+    }
+
+
+    .new-hero {
+        padding:
+            75px
+            20px
+            60px;
+    }
+
+
+    .new-hero h1 {
+        font-size: 48px;
+
+        letter-spacing: -2.5px;
+    }
+
+
+    .new-hero p {
+        font-size: 15px;
+    }
+
+
+    .hero-actions {
+        width: 100%;
+
+        flex-direction: column;
+    }
+
+
+    .primary-action,
+    .secondary-action {
+        width: 100%;
+    }
+
+
+    .hero-visual {
+        min-height: 310px;
+    }
+
+
+    .bitcoin-orbit {
+        width: 245px;
+        height: 245px;
+    }
+
+
+    .bitcoin-symbol {
+        width: 112px;
+        height: 112px;
+
+        font-size: 64px;
+    }
+
+
+    .features-section {
+        padding:
+            70px
+            20px;
+    }
+
+
+    .section-heading {
+        margin-bottom: 40px;
+    }
+
+
+    .section-heading h2 {
+        font-size: 34px;
+    }
+
+
+    .feature-grid {
+        gap: 15px;
+    }
+
+
+    .feature-card {
+        padding: 26px;
+    }
+
+
+    .cta-section {
+        padding:
+            80px
+            20px;
+    }
+
+
+    .cta-content h2 {
+        font-size: 38px;
+    }
+
+
+    .new-footer {
+        padding:
+            40px
+            20px;
+    }
+
+
+    .footer-links {
+        flex-wrap: wrap;
+
+        gap: 15px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .brand-main {
+        font-size: 25px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .new-hero h1 {
+        font-size: 41px;
+    }
+
+
+    .bitcoin-orbit {
+        width: 220px;
+        height: 220px;
+    }
+
+
+    .bitcoin-symbol {
+        width: 100px;
+        height: 100px;
+
+        font-size: 58px;
+    }
+}
