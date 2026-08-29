@@ -6378,20 +6378,31 @@ body {
 
 .history-item .history-details {
 
-    background:
-        rgba(13,17,23,0.62) !important;
+    background: transparent !important;
 
-    backdrop-filter:
-        blur(18px);
+    backdrop-filter: none !important;
 
-    -webkit-backdrop-filter:
-        blur(18px);
+    -webkit-backdrop-filter: none !important;
 
-    border-top:
-        1px solid rgba(255,255,255,0.07);
+    border-top: none !important;
+
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
 
 }
 
+.history-item .history-details p {
+
+    border-bottom: 1px solid #2a2f38;
+
+}
+
+.history-item .history-details p:last-child {
+
+    border-bottom: none;
+
+}
 
 /* =========================================================
    GLASS INPUTS
