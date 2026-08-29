@@ -380,13 +380,15 @@ async function loadHistory(user) {
 
                         <div class="website-history-right">
 
-                            <strong class="${colorClass}">
+                            <strong
+                                class="${colorClass}"
+                                style="color: ${isBuy ? '#ef4444' : ''} !important;"
+                            >
 
                                 ${sign}$${formattedAmount}
 
                             </strong>
-
-
+                            
                             <i
                                 class="fa-solid fa-chevron-down history-chevron"
                             ></i>
