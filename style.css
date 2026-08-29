@@ -13628,68 +13628,63 @@ body {
     background: #17120D !important;
 }
 
+
 /* =========================================
-   NOIRBITCOIN — GLASS GLOW TYPOGRAPHY
+   NOIRBITCOIN — DEEP GLASS GLOW TEXT
 ========================================= */
 
 .intro-brand {
+    position: relative;
 
     margin-top: 28px !important;
 
     display: flex !important;
-
     align-items: baseline !important;
-
     justify-content: center !important;
 
-    line-height: 1 !important;
-
-    letter-spacing: -1px !important;
+    font-family:
+        "Arial",
+        "Helvetica Neue",
+        sans-serif;
 
     filter:
-        drop-shadow(
-            0 4px 12px rgba(70, 28, 0, 0.12)
-        );
+        drop-shadow(0 8px 18px rgba(70, 25, 0, 0.18));
 }
 
 
 /* NOIR */
 
 .brand-dark {
+    color: #120d09 !important;
 
-    color: #17120d !important;
-
-    font-size:
-        clamp(36px, 9vw, 58px) !important;
+    font-size: clamp(38px, 9vw, 60px) !important;
 
     font-weight: 950 !important;
 
     letter-spacing: 2px !important;
 
     text-shadow:
-        0 1px 0 rgba(255, 211, 157, 0.35),
-        0 0 10px rgba(45, 20, 5, 0.16),
-        0 5px 18px rgba(71, 29, 0, 0.12);
+        0 1px 1px rgba(255, 224, 181, 0.65),
+        0 0 6px rgba(20, 10, 4, 0.35),
+        0 4px 16px rgba(42, 16, 0, 0.25) !important;
 }
 
 
 /* BITCOIN */
 
 .brand-orange {
+    color: #873000 !important;
 
-    color: #9a3c00 !important;
-
-    font-size:
-        clamp(36px, 9vw, 58px) !important;
+    font-size: clamp(38px, 9vw, 60px) !important;
 
     font-weight: 950 !important;
 
     letter-spacing: 2px !important;
 
     text-shadow:
-        0 1px 0 rgba(255, 203, 139, 0.55),
-        0 0 8px rgba(173, 67, 0, 0.25),
-        0 5px 18px rgba(137, 51, 0, 0.16);
+        0 1px 1px rgba(255, 220, 168, 0.75),
+        0 0 7px rgba(139, 48, 0, 0.45),
+        0 4px 18px rgba(116, 38, 0, 0.3) !important;
 }
 
 
@@ -13698,84 +13693,46 @@ body {
 ========================================= */
 
 .intro-message {
-
-    margin-top: 27px !important;
-
-    text-align: center !important;
+    margin-top: 28px !important;
 
     display: flex !important;
 
     flex-direction: column !important;
 
     align-items: center !important;
+
+    text-align: center !important;
 }
 
-
-/* Small glass divider */
-
-.intro-line {
-
-    width: 42px;
-
-    height: 3px;
-
-    border-radius: 50px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #17120d,
-            #9a3c00
-        );
-
-    box-shadow:
-        0 0 8px rgba(154, 60, 0, 0.35);
-
-    margin-bottom: 17px;
-}
-
-
-/* Main heading */
 
 .intro-message h2 {
+    color: #160e09 !important;
 
-    color: #21160f !important;
-
-    font-size: 14px !important;
+    font-size: 15px !important;
 
     font-weight: 950 !important;
 
     letter-spacing: 4px !important;
 
-    line-height: 1.3 !important;
-
-    margin: 0 0 10px 0 !important;
-
     text-shadow:
-        0 1px 0 rgba(255, 215, 167, 0.5),
-        0 0 9px rgba(50, 22, 5, 0.13);
+        0 1px 1px rgba(255, 221, 172, 0.7),
+        0 0 8px rgba(24, 10, 3, 0.3),
+        0 3px 12px rgba(53, 20, 0, 0.2) !important;
 }
 
 
-/* Subtitle */
-
 .intro-message p {
-
-    color: rgba(72, 35, 12, 0.68) !important;
+    color: #73310e !important;
 
     font-size: 15px !important;
 
-    font-weight: 500 !important;
-
-    letter-spacing: 0.2px !important;
+    font-weight: 600 !important;
 
     line-height: 1.6 !important;
 
-    margin: 0 !important;
-
-    max-width: 290px;
+    max-width: 300px !important;
 
     text-shadow:
-        0 1px 0 rgba(255, 214, 164, 0.45),
-        0 0 8px rgba(104, 43, 5, 0.10);
+        0 1px 1px rgba(255, 216, 160, 0.7),
+        0 0 7px rgba(105, 39, 0, 0.2) !important;
 }
