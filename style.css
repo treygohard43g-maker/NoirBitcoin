@@ -14006,3 +14006,29 @@ html body #noirIntro .intro-center .intro-message p {
     background-image: none !important;
     background-color: transparent !important;
 }
+
+/* ===== LANDING INTRO COLOR TEST ===== */
+
+#noirIntro {
+    color: #120b07 !important;
+}
+
+#noirIntro .brand-dark {
+    color: #120b07 !important;
+    -webkit-text-fill-color: #120b07 !important;
+}
+
+#noirIntro .brand-orange {
+    color: #7f2f00 !important;
+    -webkit-text-fill-color: #7f2f00 !important;
+}
+
+#noirIntro .intro-message h2 {
+    color: #120b07 !important;
+    -webkit-text-fill-color: #120b07 !important;
+}
+
+#noirIntro .intro-message p {
+    color: #71300e !important;
+    -webkit-text-fill-color: #71300e !important;
+}
