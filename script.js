@@ -4236,6 +4236,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =========================================
    NOIRBITCOIN NEW YEAR FIREWORKS
 ========================================= */
+document.addEventListener("DOMContentLoaded", () => {
 
 const fireworksBackground =
     document.getElementById("fireworksBackground");
@@ -4324,3 +4325,4 @@ setInterval(() => {
     }
 
 }, 2600);
+});
