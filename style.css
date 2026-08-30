@@ -14121,3 +14121,31 @@ html body #noirIntro .intro-center .intro-message p {
     color: #241a15 !important;
     -webkit-text-fill-color: #241a15 !important;
 }
+
+/* =========================================
+   MAIN HERO — HARD COLOR OVERRIDE
+========================================= */
+
+html body main#mainSite.main-site section.new-hero
+.hero-content h1 {
+    color: #120b07 !important;
+    -webkit-text-fill-color: #120b07 !important;
+}
+
+html body main#mainSite.main-site section.new-hero
+.hero-content h1 span {
+    color: #7f2f00 !important;
+    -webkit-text-fill-color: #7f2f00 !important;
+}
+
+html body main#mainSite.main-site section.new-hero
+.hero-content p {
+    color: #3f3028 !important;
+    -webkit-text-fill-color: #3f3028 !important;
+}
+
+html body main#mainSite.main-site section.new-hero
+.hero-content .hero-label {
+    color: #7f2f00 !important;
+    -webkit-text-fill-color: #7f2f00 !important;
+}
