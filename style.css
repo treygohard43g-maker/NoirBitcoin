@@ -13975,3 +13975,35 @@ body {
     color: #fff8ef !important;
     -webkit-text-fill-color: #fff8ef !important;
 }
+
+/* =========================================
+   FINAL NOIR INTRO COLOR LOCK
+========================================= */
+
+html body #noirIntro .intro-center .intro-brand .brand-dark {
+    color: #120b07 !important;
+    -webkit-text-fill-color: #120b07 !important;
+    background-image: none !important;
+    background-color: transparent !important;
+}
+
+html body #noirIntro .intro-center .intro-brand .brand-orange {
+    color: #7f2f00 !important;
+    -webkit-text-fill-color: #7f2f00 !important;
+    background-image: none !important;
+    background-color: transparent !important;
+}
+
+html body #noirIntro .intro-center .intro-message h2 {
+    color: #170d07 !important;
+    -webkit-text-fill-color: #170d07 !important;
+    background-image: none !important;
+    background-color: transparent !important;
+}
+
+html body #noirIntro .intro-center .intro-message p {
+    color: #71300e !important;
+    -webkit-text-fill-color: #71300e !important;
+    background-image: none !important;
+    background-color: transparent !important;
+}
