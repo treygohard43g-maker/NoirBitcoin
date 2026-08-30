@@ -13824,3 +13824,115 @@ body {
     text-shadow:
         0 0 8px rgba(217, 107, 19, 0.55) !important;
 }
+
+/* =========================================
+   NOIRBITCOIN — LANDING PAGE TEXT FIX
+========================================= */
+
+/* ---------- OPENING SCREEN ---------- */
+
+.noir-intro .intro-brand {
+    color: #111111 !important;
+}
+
+.noir-intro .brand-dark {
+    color: #111111 !important;
+    text-shadow:
+        0 1px 0 rgba(255,255,255,0.45),
+        0 0 10px rgba(0,0,0,0.12) !important;
+}
+
+.noir-intro .brand-orange {
+    color: #8f3f08 !important;
+    text-shadow:
+        0 1px 0 rgba(255,255,255,0.35),
+        0 0 10px rgba(143,63,8,0.18) !important;
+}
+
+.noir-intro .intro-message h2 {
+    color: #111111 !important;
+    text-shadow:
+        0 1px 0 rgba(255,255,255,0.4),
+        0 0 10px rgba(0,0,0,0.12) !important;
+}
+
+.noir-intro .intro-message p {
+    color: #3d3d3d !important;
+}
+
+
+/* ---------- MAIN LANDING PAGE ---------- */
+
+.new-hero .hero-label {
+    color: #8f3f08 !important;
+    text-shadow:
+        0 0 10px rgba(143,63,8,0.18) !important;
+}
+
+.new-hero h1 {
+    color: #111111 !important;
+    text-shadow:
+        0 1px 0 rgba(255,255,255,0.45),
+        0 0 12px rgba(0,0,0,0.12) !important;
+}
+
+.new-hero h1 span {
+    color: #8f3f08 !important;
+    text-shadow:
+        0 1px 0 rgba(255,255,255,0.35),
+        0 0 12px rgba(143,63,8,0.2) !important;
+}
+
+.new-hero .hero-content > p {
+    color: #3d3d3d !important;
+}
+
+
+/* ---------- FEATURES ---------- */
+
+.features-section .section-heading span {
+    color: #8f3f08 !important;
+}
+
+.features-section .section-heading h2 {
+    color: #111111 !important;
+}
+
+.feature-card h3 {
+    color: #111111 !important;
+}
+
+.feature-card p {
+    color: #3d3d3d !important;
+}
+
+
+/* ---------- CTA ---------- */
+
+.cta-section .cta-content > span {
+    color: #8f3f08 !important;
+}
+
+.cta-section .cta-content h2 {
+    color: #111111 !important;
+}
+
+.cta-section .cta-content p {
+    color: #3d3d3d !important;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+.new-footer .footer-brand strong {
+    color: #111111 !important;
+}
+
+.new-footer .footer-brand p,
+.new-footer .copyright {
+    color: #555555 !important;
+}
+
+.new-footer .footer-links a {
+    color: #333333 !important;
+}
