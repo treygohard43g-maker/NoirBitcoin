@@ -4334,3 +4334,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 2500);
 
 });
+
+const testFirework = document.getElementById("fireworksBackground");
+
+if (testFirework) {
+
+    const burst = document.createElement("div");
+
+    burst.style.cssText = `
+        position: fixed;
+        left: 50%;
+        top: 40%;
+        width: 180px;
+        height: 180px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: transparent;
+        z-index: 2147483647;
+    `;
+
+    for (let i = 0; i < 24; i++) {
+
+        const spark = document.createElement("div");
+
+        spark.style.cssText = `
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 6px;
+            height: 75px;
+            background: #ffffff;
+            box-shadow: 0 0 12px #ffffff, 0 0 25px #f7931a;
+            border-radius: 10px;
+            transform-origin: 50% 100%;
+            transform: translate(-50%, -100%) rotate(${i * 15}deg);
+        `;
+
+        burst.appendChild(spark);
+    }
+
+    testFirework.appendChild(burst);
+}
