@@ -12856,37 +12856,38 @@ body {
 }
 
 
-/* Brand */
+/* =========================================
+   NOIRBITCOIN BRAND
+========================================= */
 
-.intro-brand {
+#noirIntro .intro-brand {
     margin-top: 25px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
-    animation:
-        introText .7s ease 1s both;
+    animation: introText .7s ease 1s both;
 }
 
-.brand-dark,
-.brand-orange {
+#noirIntro .intro-brand .brand-dark {
     font-size: clamp(34px, 8vw, 57px);
-
     font-weight: 950;
-
     letter-spacing: 3px;
-
     line-height: 1;
+
+    color: #120b07 !important;
+    -webkit-text-fill-color: #120b07 !important;
 }
 
-.brand-dark {
-    color: #17120d;
-}
+#noirIntro .intro-brand .brand-orange {
+    font-size: clamp(34px, 8vw, 57px);
+    font-weight: 950;
+    letter-spacing: 3px;
+    line-height: 1;
 
-.brand-orange {
-    color: #a94200;
+    color: #7f2f00 !important;
+    -webkit-text-fill-color: #7f2f00 !important;
 }
 
 @keyframes introText {
@@ -12902,37 +12903,35 @@ body {
 }
 
 
-/* Intro message */
+/* =========================================
+   INTRO MESSAGE
+========================================= */
 
-.intro-message {
+#noirIntro .intro-message {
     margin-top: 23px;
-
     text-align: center;
 
-    animation:
-        introText .7s ease 1.6s both;
+    animation: introText .7s ease 1.6s both;
 }
 
-.intro-message h2 {
-    color: #17120d;
+#noirIntro .intro-message h2 {
+    color: #170d07 !important;
+    -webkit-text-fill-color: #170d07 !important;
 
     font-size: 15px;
-
-    font-weight: 900;
-
+    font-weight: 950;
     letter-spacing: 4px;
-
     margin-bottom: 9px;
 }
 
-.intro-message p {
-    color: rgba(23,18,13,.65);
+#noirIntro .intro-message p {
+    color: #71300e !important;
+    -webkit-text-fill-color: #71300e !important;
 
     font-size: 15px;
-
+    font-weight: 600;
     line-height: 1.6;
 }
-
 
 /* Intro button */
 
