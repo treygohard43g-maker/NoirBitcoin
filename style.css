@@ -14149,3 +14149,141 @@ html body main#mainSite.main-site section.new-hero
     color: #7f2f00 !important;
     -webkit-text-fill-color: #7f2f00 !important;
 }
+
+/* =========================================
+   NOIRBITCOIN NEW YEAR FIREWORKS
+========================================= */
+
+#fireworksBackground {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+#noirIntro,
+#mainSite {
+    position: relative;
+}
+
+#noirIntro {
+    z-index: 999999;
+}
+
+#mainSite {
+    z-index: 2;
+}
+
+
+/* Individual firework */
+
+.firework {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #f7931a;
+
+    box-shadow:
+        0 0 8px #f7931a,
+        0 0 18px rgba(247,147,26,.65);
+
+    animation:
+        fireworkBurst 1.7s ease-out forwards;
+}
+
+
+/* Firework rays */
+
+.firework-ray {
+    position: absolute;
+
+    width: 2px;
+    height: 55px;
+
+    left: 50%;
+    top: 50%;
+
+    transform-origin: 50% 100%;
+
+    background:
+        linear-gradient(
+            to top,
+            #f7931a,
+            rgba(247,147,26,0)
+        );
+
+    border-radius: 50%;
+
+    animation:
+        fireworkRay 1.7s ease-out forwards;
+}
+
+
+/* Burst */
+
+@keyframes fireworkBurst {
+
+    0% {
+        transform: scale(.1);
+        opacity: 0;
+    }
+
+    15% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    65% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+
+@keyframes fireworkRay {
+
+    0% {
+        height: 5px;
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    65% {
+        height: 55px;
+        opacity: .8;
+    }
+
+    100% {
+        height: 75px;
+        opacity: 0;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .firework-ray {
+        height: 40px;
+    }
+
+}
