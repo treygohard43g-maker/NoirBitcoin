@@ -4506,12 +4506,12 @@ if (fireworks) {
 
                 border-radius: 50%;
 
-                background: #ffffff;
+                background: #0d1117;
 
                 box-shadow:
-                    0 0 7px #ffffff,
-                    0 0 14px ${color};
-
+                    0 0 6px #0d1117,
+                    0 0 12px rgba(13, 17, 23, 0.7);
+                
                 transform:
                     translate(-50%, -50%);
 
@@ -4559,12 +4559,12 @@ if (fireworks) {
 
             border-radius: 50%;
 
-            background: #ffffff;
+            background: #0d1117;
 
             box-shadow:
-                0 0 12px #ffffff,
-                0 0 28px ${color},
-                0 0 55px ${color};
+                0 0 10px #0d1117,
+                0 0 24px rgba(13,17,23,0.8),
+                0 0 50px ${color};
 
             animation:
                 noirPremiumCenter
