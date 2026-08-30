@@ -4336,7 +4336,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* =========================================
-   NOIRBITCOIN — NEW YEAR FIREWORKS
+   NOIRBITCOIN — PREMIUM NEW YEAR FIREWORKS
 ========================================= */
 
 const fireworks =
@@ -4346,20 +4346,31 @@ if (fireworks) {
 
     function launchFirework() {
 
-        const burst =
-            document.createElement("div");
+        /* RANDOM POSITION */
 
         const x =
-            10 + Math.random() * 80;
+            8 + Math.random() * 84;
 
         const y =
             10 + Math.random() * 65;
 
+
+        /* RANDOM SIZE */
+
+        const isBig =
+            Math.random() > 0.72;
+
         const size =
-            100 + Math.random() * 100;
+            isBig
+                ? 180 + Math.random() * 90
+                : 110 + Math.random() * 70;
+
+
+        /* COLORS */
 
         const colors = [
             "#ffffff",
+            "#fff4d6",
             "#ffd27a",
             "#f7931a",
             "#ffb347"
@@ -4372,39 +4383,61 @@ if (fireworks) {
                 )
             ];
 
+
+        /* BURST */
+
+        const burst =
+            document.createElement("div");
+
         burst.style.cssText = `
             position: fixed;
             left: ${x}%;
             top: ${y}%;
+
             width: ${size}px;
             height: ${size}px;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
             background: transparent;
+
             z-index: 2147483647;
+
             pointer-events: none;
         `;
 
 
-        /* Create 24 sparks */
+        /* MAIN SPARKS */
 
-        for (let i = 0; i < 24; i++) {
+        const sparkCount =
+            isBig ? 32 : 24;
+
+
+        for (let i = 0; i < sparkCount; i++) {
 
             const spark =
                 document.createElement("div");
 
             const angle =
-                i * 15;
+                (360 / sparkCount) * i;
 
             const length =
-                55 + Math.random() * 45;
+                isBig
+                    ? 90 + Math.random() * 50
+                    : 60 + Math.random() * 40;
+
 
             spark.style.cssText = `
                 position: absolute;
+
                 left: 50%;
                 top: 50%;
-                width: 4px;
-                height: ${length}px;
+
+                width: 3px;
+                height: 5px;
+
+                border-radius: 999px;
 
                 background:
                     linear-gradient(
@@ -4417,9 +4450,8 @@ if (fireworks) {
                     0 0 8px ${color},
                     0 0 18px ${color};
 
-                border-radius: 10px;
-
-                transform-origin: 50% 100%;
+                transform-origin:
+                    50% 100%;
 
                 transform:
                     translate(-50%, -100%)
@@ -4428,28 +4460,99 @@ if (fireworks) {
                 opacity: 0;
 
                 animation:
-                    noirFireworkSpark
-                    1.8s
+                    noirPremiumSpark
+                    ${1.7 + Math.random() * .5}s
                     ease-out
                     forwards;
             `;
+
+
+            spark.style.setProperty(
+                "--spark-length",
+                `${length}px`
+            );
+
 
             burst.appendChild(spark);
         }
 
 
-        /* Bright center */
+        /* SECONDARY SPARKLES */
+
+        const sparkleCount =
+            isBig ? 30 : 18;
+
+
+        for (let i = 0; i < sparkleCount; i++) {
+
+            const sparkle =
+                document.createElement("div");
+
+            const angle =
+                Math.random() * 360;
+
+            const distance =
+                45 + Math.random() * 85;
+
+
+            sparkle.style.cssText = `
+                position: absolute;
+
+                left: 50%;
+                top: 50%;
+
+                width: 4px;
+                height: 4px;
+
+                border-radius: 50%;
+
+                background: #ffffff;
+
+                box-shadow:
+                    0 0 7px #ffffff,
+                    0 0 14px ${color};
+
+                transform:
+                    translate(-50%, -50%);
+
+                opacity: 0;
+
+                animation:
+                    noirPremiumSparkle
+                    ${1.5 + Math.random() * .8}s
+                    ease-out
+                    forwards;
+            `;
+
+
+            sparkle.style.setProperty(
+                "--spark-angle",
+                `${angle}deg`
+            );
+
+            sparkle.style.setProperty(
+                "--spark-distance",
+                `${distance}px`
+            );
+
+
+            burst.appendChild(sparkle);
+        }
+
+
+        /* BRIGHT CENTER */
 
         const center =
             document.createElement("div");
 
         center.style.cssText = `
             position: absolute;
+
             left: 50%;
             top: 50%;
 
-            width: 10px;
-            height: 10px;
+            width: ${isBig ? 14 : 10}px;
+            height: ${isBig ? 14 : 10}px;
 
             transform:
                 translate(-50%, -50%);
@@ -4459,16 +4562,17 @@ if (fireworks) {
             background: #ffffff;
 
             box-shadow:
-                0 0 10px #ffffff,
-                0 0 25px ${color},
-                0 0 45px ${color};
+                0 0 12px #ffffff,
+                0 0 28px ${color},
+                0 0 55px ${color};
 
             animation:
-                noirFireworkCenter
+                noirPremiumCenter
                 1.8s
                 ease-out
                 forwards;
         `;
+
 
         burst.appendChild(center);
 
@@ -4477,27 +4581,34 @@ if (fireworks) {
 
 
         setTimeout(() => {
+
             burst.remove();
-        }, 2000);
+
+        }, 2600);
     }
 
 
-    /* First explosions */
+    /* FIRST BURSTS */
 
     launchFirework();
 
     setTimeout(
         launchFirework,
-        600
+        450
     );
 
     setTimeout(
         launchFirework,
-        1200
+        950
+    );
+
+    setTimeout(
+        launchFirework,
+        1500
     );
 
 
-    /* Keep launching */
+    /* CONTINUOUS FIREWORKS */
 
     setInterval(() => {
 
@@ -4507,13 +4618,135 @@ if (fireworks) {
 
             setTimeout(
                 launchFirework,
-                450
+                350
             );
         }
 
-    }, 2200);
+        if (Math.random() > 0.78) {
+
+            setTimeout(
+                launchFirework,
+                700
+            );
+        }
+
+    }, 2100);
 }
 
+
+/* =========================================
+   PREMIUM FIREWORK ANIMATIONS
+========================================= */
+
+const premiumFireworkStyle =
+    document.createElement("style");
+
+
+premiumFireworkStyle.innerHTML = `
+
+@keyframes noirPremiumSpark {
+
+    0% {
+        height: 5px;
+        opacity: 0;
+    }
+
+    12% {
+        height: 18px;
+        opacity: 1;
+    }
+
+    55% {
+        height: var(--spark-length);
+        opacity: 1;
+    }
+
+    78% {
+        opacity: .65;
+    }
+
+    100% {
+        height:
+            calc(var(--spark-length) + 30px);
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes noirPremiumSparkle {
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            rotate(var(--spark-angle))
+            translateY(0);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: .9;
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            rotate(var(--spark-angle))
+            translateY(
+                calc(var(--spark-distance) * -1)
+            );
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes noirPremiumCenter {
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            scale(.2);
+
+        opacity: 0;
+    }
+
+    12% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.8);
+
+        opacity: 1;
+    }
+
+    55% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(.15);
+
+        opacity: 0;
+    }
+}
+
+`;
+
+
+document.head.appendChild(
+    premiumFireworkStyle
+);
 
 /* =========================================
    FIREWORK ANIMATIONS
