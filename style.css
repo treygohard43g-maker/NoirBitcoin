@@ -15746,3 +15746,117 @@ html body main#mainSite.main-site section.new-hero
     }
 
 }
+
+/* =========================================================
+   NOIRBITCOIN — PREMIUM OPENING ALIGNMENT
+========================================================= */
+
+.noir-intro {
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+.intro-center {
+    width: min(100%, 600px);
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+/* Bitcoin → Brand spacing */
+
+.intro-bitcoin {
+    margin-bottom: 20px;
+}
+
+
+/* Brand positioning */
+
+.intro-brand {
+    margin: 0 0 24px;
+}
+
+
+/* Message positioning */
+
+.intro-message {
+    width: 100%;
+    margin: 0 0 32px;
+}
+
+
+/* Keep the subtitle visually connected
+   to the heading */
+
+.intro-message h2 {
+    margin-bottom: 10px;
+}
+
+.intro-message p {
+    margin: 0 auto;
+}
+
+
+/* Button sits independently underneath
+   the message */
+
+.intro-button {
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   PREVENT TEXT FROM FEELING CRAMPED ON SMALL SCREENS
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .noir-intro {
+        padding: 24px 18px;
+    }
+
+    .intro-center {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .intro-bitcoin {
+        margin-bottom: 18px;
+    }
+
+    .intro-brand {
+        margin-bottom: 21px;
+    }
+
+    .intro-message {
+        margin-bottom: 28px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .intro-center {
+        max-width: 330px;
+    }
+
+    .intro-brand {
+        margin-bottom: 18px;
+    }
+
+    .intro-message {
+        margin-bottom: 25px;
+    }
+
+}
