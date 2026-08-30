@@ -12933,46 +12933,149 @@ body {
     line-height: 1.6;
 }
 
-/* Intro button */
+/* =========================================================
+   PREMIUM GET STARTED CARD
+========================================================= */
 
 .intro-button {
     margin-top: 31px;
 
-    min-width: 215px;
+    width: 235px;
+    min-height: 58px;
 
-    padding: 16px 23px;
+    padding: 0 22px;
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
-    gap: 15px;
+    box-sizing: border-box;
 
-    border-radius: 14px;
+    border-radius: 16px;
 
-    background: #17120d;
+    background:
+        linear-gradient(
+            145deg,
+            #211810 0%,
+            #120c08 48%,
+            #090706 100%
+        );
 
-    color: white;
+    border: 1px solid rgba(247, 147, 26, 0.28);
+
+    color: #ffffff;
 
     text-decoration: none;
 
     font-size: 13px;
-
     font-weight: 900;
 
-    letter-spacing: 1.5px;
+    letter-spacing: 1.7px;
 
     box-shadow:
-        0 18px 40px rgba(57,24,0,.22);
+        0 14px 35px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+
+    position: relative;
+    overflow: hidden;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
 
     animation:
         introText .7s ease 2.1s both;
 }
 
-.intro-button i {
-    color: #f7931a;
+
+/* Subtle glossy highlight */
+
+.intro-button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            110deg,
+            transparent,
+            rgba(255,255,255,.10),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition: left .7s ease;
 }
 
+
+/* Text stays above the shine */
+
+.intro-button span {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* Arrow */
+
+.intro-button i {
+    position: relative;
+    z-index: 2;
+
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(247, 147, 26, 0.12);
+
+    color: #f7931a;
+
+    font-size: 12px;
+
+    transition:
+        transform .25s ease,
+        background .25s ease;
+}
+
+
+/* Hover */
+
+.intro-button:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(247, 147, 26, 0.55);
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.32),
+        0 0 25px rgba(247, 147, 26, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+
+.intro-button:hover::before {
+    left: 130%;
+}
+
+
+.intro-button:hover i {
+    transform: translateX(3px);
+
+    background: rgba(247, 147, 26, 0.20);
+}
 
 /* =========================================================
    MAIN SITE
