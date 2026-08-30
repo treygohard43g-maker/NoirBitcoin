@@ -4339,3 +4339,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 2200);
 
 });
+
+const fireworksTest =
+    document.getElementById("fireworksBackground");
+
+console.log("FIREWORKS ELEMENT:", fireworksTest);
+
+if (fireworksTest) {
+    fireworksTest.innerHTML =
+        '<div style="position:absolute;left:50%;top:50%;width:100px;height:100px;background:red;border-radius:50%;z-index:999999999;"></div>';
+}
