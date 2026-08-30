@@ -14165,7 +14165,32 @@ html body main#mainSite.main-site section.new-hero
 
     overflow: hidden;
 
+    z-index: 1000000;
+}
+
+
+/* Keep all NoirBitcoin content above fireworks */
+
+#noirIntro .intro-center {
+    position: relative;
+    z-index: 1000002;
+}
+
+#noirIntro .intro-glow {
     z-index: 1;
+}
+
+
+/* Main landing page content stays above fireworks */
+
+#mainSite .hero-content,
+#mainSite .hero-visual,
+#mainSite .section-heading,
+#mainSite .feature-grid,
+#mainSite .cta-content,
+#mainSite .new-footer {
+    position: relative;
+    z-index: 1000002;
 }
 
 #noirIntro,
