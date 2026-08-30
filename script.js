@@ -4236,96 +4236,106 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =========================================
    NOIRBITCOIN NEW YEAR FIREWORKS
 ========================================= */
+
 document.addEventListener("DOMContentLoaded", () => {
 
-const fireworksBackground =
-    document.getElementById("fireworksBackground");
+    const fireworksBackground =
+        document.getElementById("fireworksBackground");
 
-function createFirework() {
+    if (!fireworksBackground) {
+        console.log("Fireworks background not found");
+        return;
+    }
 
-    if (!fireworksBackground) return;
+    function createFirework() {
 
-    const firework = document.createElement("div");
+        const firework =
+            document.createElement("div");
 
-    firework.className = "firework";
+        firework.className = "firework";
 
-    firework.style.left =
-        Math.random() * 90 + 5 + "%";
+        firework.style.left =
+            Math.random() * 80 + 10 + "%";
 
-    firework.style.top =
-        Math.random() * 70 + 5 + "%";
-
-
-    const colors = [
-        "#f7931a",
-        "#ffb347",
-        "#ffd27a",
-        "#fff0c2",
-        "#c65d00"
-    ];
-
-    const color =
-        colors[Math.floor(Math.random() * colors.length)];
-
-    firework.style.background = color;
-
-    firework.style.boxShadow = `
-        0 0 8px ${color},
-        0 0 18px ${color}
-    `;
+        firework.style.top =
+            Math.random() * 65 + 10 + "%";
 
 
-    /* Create rays */
+        const colors = [
+            "#ffffff",
+            "#ffd27a",
+            "#f7931a",
+            "#ffb347"
+        ];
 
-    for (let i = 0; i < 12; i++) {
+        const color =
+            colors[
+                Math.floor(Math.random() * colors.length)
+            ];
 
-        const ray =
-            document.createElement("span");
 
-        ray.className = "firework-ray";
+        firework.style.background = color;
 
-        ray.style.transform =
-            `translateX(-50%) rotate(${i * 30}deg)`;
+        firework.style.boxShadow =
+            `0 0 10px ${color},
+             0 0 25px ${color},
+             0 0 45px ${color}`;
 
-        ray.style.background =
-            `linear-gradient(
-                to top,
-                ${color},
-                transparent
-            )`;
 
-        firework.appendChild(ray);
+        for (let i = 0; i < 16; i++) {
+
+            const ray =
+                document.createElement("span");
+
+            ray.className = "firework-ray";
+
+            ray.style.transform =
+                `translateX(-50%)
+                 rotate(${i * 22.5}deg)`;
+
+            ray.style.background =
+                `linear-gradient(
+                    to top,
+                    ${color},
+                    transparent
+                )`;
+
+            firework.appendChild(ray);
+        }
+
+
+        fireworksBackground.appendChild(firework);
+
+
+        setTimeout(() => {
+
+            firework.remove();
+
+        }, 2000);
     }
 
 
-    fireworksBackground.appendChild(firework);
-
-
-    setTimeout(() => {
-        firework.remove();
-    }, 1800);
-}
-
-
-/* First fireworks */
-
-setTimeout(createFirework, 800);
-setTimeout(createFirework, 1600);
-setTimeout(createFirework, 2400);
-
-
-/* Continue every few seconds */
-
-setInterval(() => {
+    /* Start immediately */
 
     createFirework();
 
-    if (Math.random() > .45) {
-        setTimeout(createFirework, 450);
-    }
 
-}, 2600);
+    setTimeout(() => {
+        createFirework();
+    }, 700);
+
+
+    setTimeout(() => {
+        createFirework();
+    }, 1400);
+
+
+    /* Continue */
+
+    setInterval(() => {
+
+        createFirework();
+
+    }, 2200);
+
 });
-
-console.log("NOIRBITCOIN FIREWORK TEST");
-alert("FIREWORK SCRIPT IS RUNNING");
