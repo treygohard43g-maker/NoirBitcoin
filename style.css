@@ -14032,3 +14032,92 @@ html body #noirIntro .intro-center .intro-message p {
     color: #71300e !important;
     -webkit-text-fill-color: #71300e !important;
 }
+
+/* =========================================
+   NOIRBITCOIN MAIN LANDING PAGE
+   FINAL TEXT COLORS
+========================================= */
+
+#mainSite {
+    color: #17120d !important;
+}
+
+#mainSite .hero-label {
+    color: #7f2f00 !important;
+    -webkit-text-fill-color: #7f2f00 !important;
+}
+
+#mainSite .hero-content h1 {
+    color: #120b07 !important;
+    -webkit-text-fill-color: #120b07 !important;
+}
+
+#mainSite .hero-content h1 span {
+    color: #7f2f00 !important;
+    -webkit-text-fill-color: #7f2f00 !important;
+}
+
+#mainSite .hero-content > p {
+    color: #3f3028 !important;
+    -webkit-text-fill-color: #3f3028 !important;
+}
+
+
+/* FEATURES */
+
+#mainSite .section-heading span {
+    color: #7f2f00 !important;
+    -webkit-text-fill-color: #7f2f00 !important;
+}
+
+#mainSite .section-heading h2 {
+    color: #120b07 !important;
+    -webkit-text-fill-color: #120b07 !important;
+}
+
+#mainSite .feature-card h3 {
+    color: #120b07 !important;
+    -webkit-text-fill-color: #120b07 !important;
+}
+
+#mainSite .feature-card p {
+    color: #3f3028 !important;
+    -webkit-text-fill-color: #3f3028 !important;
+}
+
+
+/* CTA */
+
+#mainSite .cta-content > span {
+    color: #7f2f00 !important;
+    -webkit-text-fill-color: #7f2f00 !important;
+}
+
+#mainSite .cta-content h2 {
+    color: #120b07 !important;
+    -webkit-text-fill-color: #120b07 !important;
+}
+
+#mainSite .cta-content p {
+    color: #3f3028 !important;
+    -webkit-text-fill-color: #3f3028 !important;
+}
+
+
+/* FOOTER */
+
+#mainSite .footer-brand strong {
+    color: #120b07 !important;
+    -webkit-text-fill-color: #120b07 !important;
+}
+
+#mainSite .footer-brand p,
+#mainSite .copyright {
+    color: #4a3930 !important;
+    -webkit-text-fill-color: #4a3930 !important;
+}
+
+#mainSite .footer-links a {
+    color: #241a15 !important;
+    -webkit-text-fill-color: #241a15 !important;
+}
