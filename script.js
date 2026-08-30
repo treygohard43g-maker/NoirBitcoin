@@ -4326,3 +4326,6 @@ setInterval(() => {
 
 }, 2600);
 });
+
+console.log("NOIRBITCOIN FIREWORK TEST");
+alert("FIREWORK SCRIPT IS RUNNING");
