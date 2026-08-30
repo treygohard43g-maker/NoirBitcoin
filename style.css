@@ -14155,62 +14155,85 @@ html body main#mainSite.main-site section.new-hero
 ========================================= */
 
 #fireworksBackground {
-    position: fixed;
-    inset: 0;
+    position: fixed !important;
 
-    width: 100vw;
-    height: 100vh;
+    inset: 0 !important;
 
-    pointer-events: none;
-    overflow: hidden;
+    width: 100vw !important;
+    height: 100vh !important;
 
-    z-index: 999998;
+    pointer-events: none !important;
+
+    overflow: hidden !important;
+
+    z-index: 999998 !important;
+
+    background: transparent !important;
 }
 
 
 /* Firework */
 
-.firework {
+.new-year-firework {
+
     position: absolute;
 
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
 
     border-radius: 50%;
 
-    transform: translate(-50%, -50%);
+    background:
+        var(--firework-color);
+
+    box-shadow:
+        0 0 10px var(--firework-color),
+        0 0 25px var(--firework-color);
+
+    transform:
+        translate(-50%, -50%);
 
     animation:
-        fireworkCore 2s ease-out forwards;
+        fireworkAppear 2.2s ease-out forwards;
 }
 
 
-/* Firework rays */
+/* Particles */
 
-.firework-ray {
+.new-year-particle {
+
     position: absolute;
 
     left: 50%;
     top: 50%;
 
     width: 3px;
-    height: 100px;
-
-    margin-left: -1.5px;
-    margin-top: -100px;
+    height: 55px;
 
     border-radius: 999px;
 
-    transform-origin: 50% 100%;
+    background:
+        linear-gradient(
+            to top,
+            var(--firework-color),
+            transparent
+        );
+
+    transform-origin:
+        50% 100%;
+
+    transform:
+        translate(-50%, -100%)
+        rotate(var(--angle));
 
     animation:
-        fireworkRay 2s ease-out forwards;
+        fireworkParticle 2.2s ease-out forwards;
 }
 
 
-/* Core */
+/* Core animation */
 
-@keyframes fireworkCore {
+@keyframes fireworkAppear {
 
     0% {
         transform:
@@ -14228,27 +14251,23 @@ html body main#mainSite.main-site section.new-hero
         opacity: 1;
     }
 
-    60% {
-        transform:
-            translate(-50%, -50%)
-            scale(1);
-
+    70% {
         opacity: 1;
     }
 
     100% {
         transform:
             translate(-50%, -50%)
-            scale(.3);
+            scale(.2);
 
         opacity: 0;
     }
 }
 
 
-/* Rays */
+/* Particle explosion */
 
-@keyframes fireworkRay {
+@keyframes fireworkParticle {
 
     0% {
         height: 5px;
@@ -14256,61 +14275,17 @@ html body main#mainSite.main-site section.new-hero
     }
 
     15% {
-        height: 35px;
+        height: 25px;
         opacity: 1;
     }
 
     55% {
-        height: 100px;
+        height: 75px;
         opacity: 1;
     }
 
     100% {
-        height: 135px;
+        height: 120px;
         opacity: 0;
     }
-}
-
-
-/* Keep the NoirBitcoin content above the fireworks */
-
-.noir-intro .intro-center,
-.main-site .hero-content,
-.main-site .hero-visual,
-.main-site .section-heading,
-.main-site .feature-grid,
-.main-site .cta-content,
-.main-site .new-footer {
-    position: relative;
-    z-index: 1000001;
-}
-
-#fireworksBackground {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-
-    pointer-events: none !important;
-
-    z-index: 2147483647 !important;
-
-    background: transparent !important;
-}
-
-.firework {
-    position: absolute !important;
-
-    width: 30px !important;
-    height: 30px !important;
-
-    background: red !important;
-
-    border-radius: 50% !important;
-
-    z-index: 2147483647 !important;
 }
