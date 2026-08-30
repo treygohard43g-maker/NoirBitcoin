@@ -13936,3 +13936,42 @@ body {
 .new-footer .footer-links a {
     color: #333333 !important;
 }
+
+/* =========================================
+   FINAL INTRO TEXT OVERRIDE
+========================================= */
+
+#noirIntro .intro-center .intro-brand .brand-dark {
+    color: #120b07 !important;
+    -webkit-text-fill-color: #120b07 !important;
+    background: none !important;
+    opacity: 1 !important;
+}
+
+#noirIntro .intro-center .intro-brand .brand-orange {
+    color: #7f2f00 !important;
+    -webkit-text-fill-color: #7f2f00 !important;
+    background: none !important;
+    opacity: 1 !important;
+}
+
+#noirIntro .intro-center .intro-message h2 {
+    color: #170d07 !important;
+    -webkit-text-fill-color: #170d07 !important;
+    background: none !important;
+    opacity: 1 !important;
+}
+
+#noirIntro .intro-center .intro-message p {
+    color: #71300e !important;
+    -webkit-text-fill-color: #71300e !important;
+    background: none !important;
+    opacity: 1 !important;
+}
+
+
+/* Keep the button white */
+#noirIntro .intro-button span {
+    color: #fff8ef !important;
+    -webkit-text-fill-color: #fff8ef !important;
+}
