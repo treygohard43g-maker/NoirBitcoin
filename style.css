@@ -14284,3 +14284,33 @@ html body main#mainSite.main-site section.new-hero
     position: relative;
     z-index: 1000001;
 }
+
+#fireworksBackground {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    pointer-events: none !important;
+
+    z-index: 2147483647 !important;
+
+    background: transparent !important;
+}
+
+.firework {
+    position: absolute !important;
+
+    width: 30px !important;
+    height: 30px !important;
+
+    background: red !important;
+
+    border-radius: 50% !important;
+
+    z-index: 2147483647 !important;
+}
