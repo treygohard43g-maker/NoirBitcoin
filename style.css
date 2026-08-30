@@ -14289,3 +14289,39 @@ html body main#mainSite.main-site section.new-hero
         opacity: 0;
     }
 }
+
+/* =========================================
+   FIREWORK LAYER FIX
+========================================= */
+
+#fireworksBackground {
+    position: fixed !important;
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    pointer-events: none !important;
+    overflow: hidden !important;
+
+    z-index: 1000000 !important;
+}
+
+
+/* Fireworks above the backgrounds,
+   but below the writing */
+
+#noirIntro .intro-center {
+    position: relative !important;
+    z-index: 1000002 !important;
+}
+
+#mainSite .hero-content,
+#mainSite .hero-visual,
+#mainSite .section-heading,
+#mainSite .feature-grid,
+#mainSite .cta-content,
+#mainSite .new-footer {
+    position: relative !important;
+    z-index: 1000002 !important;
+}
