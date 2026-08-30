@@ -15860,3 +15860,164 @@ html body main#mainSite.main-site section.new-hero
     }
 
 }
+
+/* =========================================================
+   NOIRBITCOIN — PREMIUM GET STARTED CARD BUTTON
+========================================================= */
+
+.intro-button {
+    width: 225px;
+    height: 56px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    box-sizing: border-box;
+
+    padding: 0 24px;
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.10),
+            rgba(255,255,255,0.025)
+        );
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.13);
+
+    backdrop-filter: blur(12px);
+
+    text-decoration: none;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* Remove the previous inner-line effect */
+
+.intro-button::before {
+    display: none;
+}
+
+
+/* Subtle glossy sweep */
+
+.intro-button::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 60%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.10),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition: left 0.6s ease;
+
+    pointer-events: none;
+}
+
+
+/* Text */
+
+.intro-button span {
+    position: relative;
+    z-index: 2;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+
+    line-height: 1;
+}
+
+
+/* Arrow */
+
+.intro-button i {
+    position: relative;
+    z-index: 2;
+
+    font-size: 13px;
+
+    transition: transform 0.25s ease;
+}
+
+
+/* Hover */
+
+.intro-button:hover {
+
+    transform: translateY(-3px);
+
+    border-color: rgba(255,255,255,0.45);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(127,47,0,0.22),
+            rgba(255,255,255,0.045)
+        );
+
+    box-shadow:
+        0 16px 40px rgba(0,0,0,0.35),
+        0 0 25px rgba(127,47,0,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+
+.intro-button:hover::after {
+    left: 140%;
+}
+
+
+.intro-button:hover i {
+    transform: translateX(5px);
+}
+
+
+/* Press */
+
+.intro-button:active {
+    transform: translateY(-1px);
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .intro-button {
+        width: 210px;
+        height: 53px;
+
+        border-radius: 9px;
+    }
+
+}
