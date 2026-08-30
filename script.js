@@ -4239,26 +4239,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const fireworksBackground =
+    const container =
         document.getElementById("fireworksBackground");
 
-    if (!fireworksBackground) {
-        console.log("Fireworks background not found");
-        return;
-    }
+    if (!container) return;
+
 
     function createFirework() {
 
-        const firework =
+        const burst =
             document.createElement("div");
 
-        firework.className = "firework";
+        burst.className = "new-year-firework";
 
-        firework.style.left =
-            Math.random() * 80 + 10 + "%";
 
-        firework.style.top =
-            Math.random() * 65 + 10 + "%";
+        burst.style.left =
+            (10 + Math.random() * 80) + "%";
+
+        burst.style.top =
+            (10 + Math.random() * 65) + "%";
 
 
         const colors = [
@@ -4270,82 +4269,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const color =
             colors[
-                Math.floor(Math.random() * colors.length)
+                Math.floor(
+                    Math.random() * colors.length
+                )
             ];
 
 
-        firework.style.background = color;
-
-        firework.style.boxShadow =
-            `0 0 10px ${color},
-             0 0 25px ${color},
-             0 0 45px ${color}`;
+        burst.style.setProperty(
+            "--firework-color",
+            color
+        );
 
 
-        for (let i = 0; i < 16; i++) {
+        for (let i = 0; i < 20; i++) {
 
-            const ray =
+            const particle =
                 document.createElement("span");
 
-            ray.className = "firework-ray";
+            particle.className =
+                "new-year-particle";
 
-            ray.style.transform =
-                `translateX(-50%)
-                 rotate(${i * 22.5}deg)`;
+            particle.style.setProperty(
+                "--angle",
+                (i * 18) + "deg"
+            );
 
-            ray.style.background =
-                `linear-gradient(
-                    to top,
-                    ${color},
-                    transparent
-                )`;
-
-            firework.appendChild(ray);
+            burst.appendChild(particle);
         }
 
 
-        fireworksBackground.appendChild(firework);
+        container.appendChild(burst);
 
 
         setTimeout(() => {
-
-            firework.remove();
-
-        }, 2000);
+            burst.remove();
+        }, 2200);
     }
 
 
-    /* Start immediately */
+    /* Start with several bursts */
 
     createFirework();
 
+    setTimeout(createFirework, 500);
 
-    setTimeout(() => {
-        createFirework();
-    }, 700);
+    setTimeout(createFirework, 1000);
 
-
-    setTimeout(() => {
-        createFirework();
-    }, 1400);
+    setTimeout(createFirework, 1600);
 
 
-    /* Continue */
+    /* Continue throughout the page */
 
     setInterval(() => {
 
         createFirework();
 
-    }, 2200);
+        if (Math.random() > 0.55) {
+            setTimeout(
+                createFirework,
+                500
+            );
+        }
+
+    }, 2500);
 
 });
-
-const fireworksTest =
-    document.getElementById("fireworksBackground");
-
-console.log("FIREWORKS ELEMENT:", fireworksTest);
-
-if (fireworksTest) {
-    fireworksTest.innerHTML =
-        '<div style="position:absolute;left:50%;top:50%;width:100px;height:100px;background:red;border-radius:50%;z-index:999999999;"></div>';
-}
