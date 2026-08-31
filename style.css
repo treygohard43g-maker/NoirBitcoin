@@ -16455,3 +16455,124 @@ html body #mainSite .new-footer {
     color: #ff9f1c !important;
     -webkit-text-fill-color: #ff9f1c !important;
 }
+
+/* =========================================================
+   NOIRBITCOIN — PREMIUM ORANGE CURVED NAV
+========================================================= */
+
+html body .premium-nav {
+    position: relative;
+    z-index: 20;
+
+    width: calc(100% - 24px);
+    min-height: 78px;
+
+    margin: 12px 12px 0;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 24px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb347 0%,
+            #ff9f1c 48%,
+            #f7931a 100%
+        );
+
+    border-radius: 0 0 34px 34px;
+
+    box-shadow:
+        0 14px 30px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.30);
+}
+
+
+/* LEFT CURVED FLOW */
+
+html body .premium-nav::before {
+    content: "";
+
+    position: absolute;
+
+    left: -12px;
+    top: -12px;
+
+    width: 150px;
+    height: 110px;
+
+    background: #ff9f1c;
+
+    border-radius:
+        0 0 70px 0;
+
+    z-index: -1;
+}
+
+
+/* DARK NAVIGATION */
+
+html body .premium-nav .nav-menu-btn,
+html body .premium-nav .nav-links a,
+html body .premium-nav .nav-icon-btn,
+html body .premium-nav .nav-login {
+    color: #17120d !important;
+    -webkit-text-fill-color: #17120d !important;
+}
+
+
+/* ICONS */
+
+html body .premium-nav i {
+    color: #17120d !important;
+}
+
+
+/* REMOVE OLD BRAND SPACE */
+
+html body .premium-nav .nav-left {
+    display: flex;
+    align-items: center;
+}
+
+
+/* MENU BUTTON */
+
+html body .premium-nav .nav-menu-btn {
+    border: none;
+    background: transparent;
+
+    font-size: 20px;
+
+    padding: 8px;
+
+    cursor: pointer;
+}
+
+
+/* NAV LINKS */
+
+html body .premium-nav .nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+
+    margin-left: 30px;
+}
+
+
+/* RIGHT SIDE */
+
+html body .premium-nav .nav-right {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
