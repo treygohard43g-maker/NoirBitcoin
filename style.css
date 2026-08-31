@@ -13821,126 +13821,101 @@ body {
 }
 
 /* =========================================================
-   NOIRBITCOIN — FINAL INTRO TEXT FINISH
+   NOIRBITCOIN — PREMIUM ORANGE INTRO
 ========================================================= */
 
-/* BRAND */
-#noirIntro .intro-brand .brand-dark {
-    color: #120b07 !important;
-    -webkit-text-fill-color: #120b07 !important;
+#noirIntro .intro-brand .brand-dark,
+.noir-intro .brand-dark {
+    color: #ff7a00 !important;
+    -webkit-text-fill-color: #ff7a00 !important;
 
     font-weight: 950 !important;
     letter-spacing: 2px !important;
 
     text-shadow:
-        0 1px 0 rgba(255, 225, 180, 0.8),
-        0 0 8px rgba(25, 10, 2, 0.35),
-        0 5px 18px rgba(50, 18, 0, 0.22) !important;
+        0 0 8px rgba(255,122,0,.70),
+        0 0 20px rgba(255,122,0,.45),
+        0 0 40px rgba(255,122,0,.22) !important;
 }
 
 
-/* BITCOIN — DEEP BURNT ORANGE */
-#noirIntro .intro-brand .brand-orange {
-    color: #7f2f00 !important;
-    -webkit-text-fill-color: #7f2f00 !important;
+/* BITCOIN */
+
+#noirIntro .intro-brand .brand-orange,
+.noir-intro .brand-orange {
+    color: #ff9a3d !important;
+    -webkit-text-fill-color: #ff9a3d !important;
 
     font-weight: 950 !important;
     letter-spacing: 2px !important;
 
     text-shadow:
-        0 1px 0 rgba(255, 220, 165, 0.9),
-        0 0 8px rgba(127, 47, 0, 0.45),
-        0 5px 18px rgba(111, 38, 0, 0.30) !important;
+        0 0 8px rgba(255,154,61,.75),
+        0 0 22px rgba(255,122,0,.48),
+        0 0 42px rgba(255,122,0,.22) !important;
 }
 
 
 /* SECURE INVESTMENT */
-#noirIntro .intro-message h2 {
-    color: #170d07 !important;
-    -webkit-text-fill-color: #170d07 !important;
+
+#noirIntro .intro-message h2,
+.noir-intro .intro-message h2 {
+    color: #ff7a00 !important;
+    -webkit-text-fill-color: #ff7a00 !important;
 
     font-weight: 950 !important;
     letter-spacing: 4px !important;
 
     text-shadow:
-        0 1px 0 rgba(255, 226, 184, 0.8),
-        0 0 8px rgba(25, 10, 2, 0.28),
-        0 4px 14px rgba(55, 20, 0, 0.20) !important;
+        0 0 8px rgba(255,122,0,.70),
+        0 0 20px rgba(255,122,0,.42),
+        0 0 38px rgba(255,122,0,.18) !important;
 }
 
 
 /* SUBTITLE */
-#noirIntro .intro-message p {
-    color: #71300e !important;
-    -webkit-text-fill-color: #71300e !important;
+
+#noirIntro .intro-message p,
+.noir-intro .intro-message p {
+    color: #ffb15c !important;
+    -webkit-text-fill-color: #ffb15c !important;
 
     font-weight: 600 !important;
 
     text-shadow:
-        0 1px 0 rgba(255, 222, 175, 0.75),
-        0 0 8px rgba(113, 48, 14, 0.22) !important;
+        0 0 6px rgba(255,122,0,.32),
+        0 0 14px rgba(255,122,0,.16) !important;
 }
 
 
-/* SMALL DIVIDER */
+/* DIVIDER */
+
 #noirIntro .intro-line {
     background:
         linear-gradient(
             90deg,
-            #170d07,
-            #7f2f00
+            #ff7a00,
+            #ff9a3d
         ) !important;
 
     box-shadow:
-        0 0 10px rgba(127, 47, 0, 0.45) !important;
+        0 0 10px rgba(255,122,0,.55),
+        0 0 22px rgba(255,122,0,.22) !important;
 }
 
 
-/* BUTTON TEXT */
+/* BUTTON */
+
 #noirIntro .intro-button span {
     color: #fff8ef !important;
+    -webkit-text-fill-color: #fff8ef !important;
 }
 
 #noirIntro .intro-button i {
-    color: #d96b13 !important;
-
+    color: #ff8a00 !important;
     text-shadow:
-        0 0 8px rgba(217, 107, 19, 0.55) !important;
-}
-
-/* =========================================
-   NOIRBITCOIN — LANDING PAGE TEXT FIX
-========================================= */
-
-/* ---------- OPENING SCREEN ---------- */
-
-.noir-intro .intro-brand {
-    color: #111111 !important;
-}
-
-.noir-intro .brand-dark {
-    color: #111111 !important;
-    text-shadow:
-        0 1px 0 rgba(255,255,255,0.45),
-        0 0 10px rgba(0,0,0,0.12) !important;
-}
-
-.noir-intro .brand-orange {
-    color: #8f3f08 !important;
-    text-shadow:
-        0 1px 0 rgba(255,255,255,0.35),
-        0 0 10px rgba(143,63,8,0.18) !important;
-}
-
-.noir-intro .intro-message h2 {
-    color: #111111 !important;
-    text-shadow:
-        0 1px 0 rgba(255,255,255,0.4),
-        0 0 10px rgba(0,0,0,0.12) !important;
-}
-
-.noir-intro .intro-message p {
-    color: #3d3d3d !important;
+        0 0 8px rgba(255,138,0,.65),
+        0 0 18px rgba(255,122,0,.30) !important;
 }
 
 /* ---------- MAIN LANDING PAGE — ORANGE GLOW ---------- */
