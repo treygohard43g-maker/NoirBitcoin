@@ -14231,31 +14231,44 @@ html body #noirIntro .intro-center .intro-message p {
 }
 
 /* =========================================
-   MAIN HERO — HARD COLOR OVERRIDE
+   MAIN HERO — PREMIUM ORANGE GLOW
 ========================================= */
 
 html body main#mainSite.main-site section.new-hero
 .hero-content h1 {
-    color: #120b07 !important;
-    -webkit-text-fill-color: #120b07 !important;
+    color: #ff7a00 !important;
+    -webkit-text-fill-color: #ff7a00 !important;
+    text-shadow:
+        0 0 8px rgba(255,122,0,.60),
+        0 0 20px rgba(255,122,0,.40),
+        0 0 45px rgba(255,122,0,.20) !important;
 }
 
 html body main#mainSite.main-site section.new-hero
 .hero-content h1 span {
-    color: #7f2f00 !important;
-    -webkit-text-fill-color: #7f2f00 !important;
+    color: #ff9a3d !important;
+    -webkit-text-fill-color: #ff9a3d !important;
+    text-shadow:
+        0 0 8px rgba(255,154,61,.65),
+        0 0 22px rgba(255,122,0,.40) !important;
 }
 
 html body main#mainSite.main-site section.new-hero
 .hero-content p {
-    color: #3f3028 !important;
-    -webkit-text-fill-color: #3f3028 !important;
+    color: #ffb15c !important;
+    -webkit-text-fill-color: #ffb15c !important;
+    text-shadow:
+        0 0 6px rgba(255,122,0,.30),
+        0 0 15px rgba(255,122,0,.15) !important;
 }
 
 html body main#mainSite.main-site section.new-hero
 .hero-content .hero-label {
-    color: #7f2f00 !important;
-    -webkit-text-fill-color: #7f2f00 !important;
+    color: #ff8a00 !important;
+    -webkit-text-fill-color: #ff8a00 !important;
+    text-shadow:
+        0 0 8px rgba(255,138,0,.55),
+        0 0 18px rgba(255,122,0,.30) !important;
 }
 
 /* =========================================
