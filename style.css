@@ -14127,8 +14127,12 @@ html body #noirIntro .intro-center .intro-message p {
 }
 
 #noirIntro .brand-dark {
-    color: #120b07 !important;
-    -webkit-text-fill-color: #120b07 !important;
+    color: #ff7a00 !important;
+    -webkit-text-fill-color: #ff7a00 !important;
+    text-shadow:
+        0 0 8px rgba(255,122,0,.65),
+        0 0 20px rgba(255,122,0,.4),
+        0 0 40px rgba(255,122,0,.18);
 }
 
 #noirIntro .brand-orange {
