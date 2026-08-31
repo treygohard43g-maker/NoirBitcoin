@@ -16288,3 +16288,12 @@ html body #noirIntro > * {
 
 1;
 }
+
+/* LAYER 4 TEST — REMOVE INTRO OVERLAYS */
+
+html body #noirIntro::before,
+html body #noirIntro::after {
+    content: none !important;
+    display: none !important;
+    background: transparent !important;
+}
