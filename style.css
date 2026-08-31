@@ -16308,7 +16308,7 @@ html body #noirIntro .intro-center {
 }
 
 /* =========================================================
-   LANDING PAGE DIAGNOSTIC
+   NOIRBITCOIN — PREMIUM DIAMOND LANDING
 ========================================================= */
 
 html body #mainSite,
@@ -16316,6 +16316,64 @@ html body #mainSite .new-hero,
 html body #mainSite .features-section,
 html body #mainSite .cta-section,
 html body #mainSite .new-footer {
-    background: #080a0d !important;
-    background-image: none !important;
+
+    background-color: #080a0d !important;
+
+    background-image:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.045) 0%,
+            transparent 18%,
+            rgba(255,255,255,0.018) 32%,
+            transparent 50%,
+            rgba(255,255,255,0.035) 68%,
+            transparent 82%,
+            rgba(255,255,255,0.02) 100%
+        ) !important;
+}
+
+/* =========================================================
+   NOIRBITCOIN — PREMIUM DIAMOND DARK SYSTEM
+========================================================= */
+
+/* ---------- OPENING ---------- */
+
+html body #noirIntro {
+    background-color: #080a0d !important;
+
+    background-image:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.045) 0%,
+            transparent 18%,
+            rgba(255,255,255,0.018) 32%,
+            transparent 50%,
+            rgba(255,255,255,0.035) 68%,
+            transparent 82%,
+            rgba(255,255,255,0.02) 100%
+        ) !important;
+}
+
+
+/* ---------- LANDING PAGE ---------- */
+
+html body #mainSite,
+html body #mainSite .new-hero,
+html body #mainSite .features-section,
+html body #mainSite .cta-section,
+html body #mainSite .new-footer {
+
+    background-color: #080a0d !important;
+
+    background-image:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.045) 0%,
+            transparent 18%,
+            rgba(255,255,255,0.018) 32%,
+            transparent 50%,
+            rgba(255,255,255,0.035) 68%,
+            transparent 82%,
+            rgba(255,255,255,0.02) 100%
+        ) !important;
 }
