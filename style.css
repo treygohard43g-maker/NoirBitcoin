@@ -16328,3 +16328,47 @@ html body #mainSite .new-footer {
 #mainSite .footer-links a {
     color: #aeb4bb !important;
 }
+
+/* =========================================
+   NOIRBITCOIN — FINAL LANDING PAGE COLORS
+========================================= */
+
+#mainSite .new-hero .hero-label {
+    color: #ff9f1c !important;
+    -webkit-text-fill-color: #ff9f1c !important;
+}
+
+#mainSite .new-hero h1 {
+    color: #ff9f1c !important;
+    -webkit-text-fill-color: #ff9f1c !important;
+}
+
+#mainSite .new-hero h1 span {
+    color: #ffb347 !important;
+    -webkit-text-fill-color: #ffb347 !important;
+}
+
+#mainSite .new-hero .hero-content > p {
+    color: #d9dde2 !important;
+    -webkit-text-fill-color: #d9dde2 !important;
+}
+
+#mainSite .section-heading span {
+    color: #ff9f1c !important;
+    -webkit-text-fill-color: #ff9f1c !important;
+}
+
+#mainSite .section-heading h2 {
+    color: #d9dde2 !important;
+    -webkit-text-fill-color: #d9dde2 !important;
+}
+
+#mainSite .feature-card h3 {
+    color: #ff9f1c !important;
+    -webkit-text-fill-color: #ff9f1c !important;
+}
+
+#mainSite .feature-card p {
+    color: #d9dde2 !important;
+    -webkit-text-fill-color: #d9dde2 !important;
+}
