@@ -14450,7 +14450,7 @@ html body main#mainSite.main-site section.new-hero
 
 
 /* =========================================================
-   INTRO MESSAGE
+   INTRO MESSAGE — PREMIUM ORANGE GLOW
 ========================================================= */
 
 .intro-message {
@@ -14461,7 +14461,6 @@ html body main#mainSite.main-site section.new-hero
     margin-bottom: 34px;
 }
 
-
 .intro-message h2 {
     margin: 0 0 11px;
 
@@ -14469,21 +14468,20 @@ html body main#mainSite.main-site section.new-hero
 
     font-size: clamp(19px, 4vw, 27px);
 
-    font-weight: 700;
+    font-weight: 800;
 
     letter-spacing: 3px;
 
     line-height: 1.2;
 
-    color: #f1f1f1 !important;
-
-    -webkit-text-fill-color: #f1f1f1 !important;
+    color: #ff7a00 !important;
+    -webkit-text-fill-color: #ff7a00 !important;
 
     text-shadow:
-        0 1px 0 rgba(255,255,255,0.15),
-        0 8px 25px rgba(0,0,0,0.35);
+        0 0 8px rgba(255,122,0,.70),
+        0 0 20px rgba(255,122,0,.42),
+        0 0 38px rgba(255,122,0,.18) !important;
 }
-
 
 .intro-message p {
     max-width: 460px;
@@ -14494,17 +14492,19 @@ html body main#mainSite.main-site section.new-hero
 
     font-size: clamp(14px, 3vw, 17px);
 
-    font-weight: 400;
+    font-weight: 500;
 
     line-height: 1.7;
 
     letter-spacing: 0.2px;
 
-    color: rgba(255,255,255,0.68) !important;
+    color: #ffb15c !important;
+    -webkit-text-fill-color: #ffb15c !important;
 
-    -webkit-text-fill-color: rgba(255,255,255,0.68) !important;
+    text-shadow:
+        0 0 6px rgba(255,122,0,.32),
+        0 0 14px rgba(255,122,0,.15) !important;
 }
-
 
 /* =========================================================
    NOIRBITCOIN — PREMIUM GET STARTED BUTTON
