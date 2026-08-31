@@ -16148,3 +16148,142 @@ body,
             transparent 100%
         ) !important;
 }
+
+/* =========================================================
+   NOIRBITCOIN — PREMIUM CHARCOAL DIAMOND MASTER
+   STEP 2
+========================================================= */
+
+/* PAGE */
+
+html,
+body {
+    background: #080a0d !important;
+    background-color: #080a0d !important;
+}
+
+
+/* =========================================================
+   OPENING SCREEN
+========================================================= */
+
+html body #noirIntro {
+    background:
+        linear-gradient(
+            135deg,
+            #07090c 0%,
+            #11151a 24%,
+            #080a0d 48%,
+            #171b21 72%,
+            #080a0d 100%
+        ) !important;
+
+    background-color: #080a0d !important;
+}
+
+
+/* =========================================================
+   MAIN LANDING PAGE
+========================================================= */
+
+html body #mainSite {
+    display: block !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #080a0d 0%,
+            #11151a 24%,
+            #080a0d 50%,
+            #161a20 74%,
+            #080a0d 100%
+        ) !important;
+
+    background-color: #080a0d !important;
+
+    color: #f1f3f5 !important;
+}
+
+
+/* HERO */
+
+html body #mainSite .new-hero {
+    background: transparent !important;
+}
+
+
+/* FEATURES */
+
+html body #mainSite .features-section {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,24,29,0.96),
+            rgba(8,10,13,0.98)
+        ) !important;
+}
+
+
+/* CTA */
+
+html body #mainSite .cta-section {
+    background:
+        linear-gradient(
+            145deg,
+            #171b21,
+            #090b0e
+        ) !important;
+}
+
+
+/* FOOTER */
+
+html body #mainSite .new-footer {
+    background:
+        linear-gradient(
+            180deg,
+            #101419,
+            #06080b
+        ) !important;
+}
+
+
+/* =========================================================
+   DIAMOND SHINE
+========================================================= */
+
+html body #noirIntro::after,
+html body #mainSite::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0%,
+            rgba(255,255,255,0.035) 18%,
+            transparent 32%,
+            rgba(255,255,255,0.022) 48%,
+            transparent 64%,
+            rgba(255,255,255,0.032) 82%,
+            transparent 100%
+        );
+
+    opacity: .75;
+
+    z-index: 0;
+}
+
+
+/* KEEP CONTENT ABOVE THE SHINE */
+
+html body #mainSite > *,
+html body #noirIntro > * {
+    position: relative;
+    z-index: 1;
+}
