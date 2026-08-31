@@ -62,13 +62,25 @@ text-align:center;
 .hero h1{
 font-size:55px;
 margin-bottom:20px;
+color:#ff7a00;
+text-shadow:
+0 0 8px rgba(255,122,0,0.55),
+0 0 20px rgba(255,122,0,0.35),
+0 0 40px rgba(255,122,0,0.18);
+letter-spacing:2px;
+font-weight:800;
 }
 
 .hero p{
 max-width:700px;
 margin:auto;
 font-size:20px;
-color:#cbd5e1;
+color:#ffb15c;
+text-shadow:
+0 0 6px rgba(255,122,0,0.35),
+0 0 16px rgba(255,122,0,0.18);
+line-height:1.7;
+letter-spacing:.4px;
 }
 
 .hero-buttons{
