@@ -16655,99 +16655,125 @@ html body #noirIntro .intro-message p {
     }
 }
 
-/* =========================================
-   NOIRBITCOIN — PREMIUM COLOR TREATMENT
-========================================= */
+/* =========================================================
+   NOIRBITCOIN — ORANGE GLASS COLOR SYSTEM
+========================================================= */
 
-/* ---------- OPENING ---------- */
-
-#noirIntro .brand-dark {
-    color: #111316 !important;
-    -webkit-text-fill-color: #111316 !important;
-}
-
-#noirIntro .brand-orange {
-    color: #8f3b08 !important;
-    -webkit-text-fill-color: #8f3b08 !important;
-}
-
-#noirIntro .intro-message h2 {
-    color: #15171a !important;
-    -webkit-text-fill-color: #15171a !important;
-}
-
-#noirIntro .intro-message p {
-    color: #5a5049 !important;
-    -webkit-text-fill-color: #5a5049 !important;
+:root {
+    --noir-orange: #ff9f1c;
+    --noir-orange-bright: #ffad32;
+    --noir-orange-soft: rgba(255, 159, 28, 0.14);
+    --noir-orange-border: rgba(255, 159, 28, 0.28);
 }
 
 
-/* ---------- LANDING HERO ---------- */
+/* =========================================================
+   ALL LANDING TEXT
+========================================================= */
 
-#mainSite .hero-label {
-    color: #8f3b08 !important;
-    -webkit-text-fill-color: #8f3b08 !important;
-}
-
-#mainSite .hero-content h1 {
-    color: #111316 !important;
-    -webkit-text-fill-color: #111316 !important;
-}
-
-#mainSite .hero-content h1 span {
-    color: #8f3b08 !important;
-    -webkit-text-fill-color: #8f3b08 !important;
-}
-
-#mainSite .hero-content > p {
-    color: #4d4641 !important;
-    -webkit-text-fill-color: #4d4641 !important;
-}
-
-
-/* ---------- FEATURES ---------- */
-
+#mainSite .hero-label,
+#mainSite .hero-content h1,
+#mainSite .hero-content h1 span,
+#mainSite .hero-content > p,
 #mainSite .section-heading span,
-#mainSite .cta-content > span {
-    color: #8f3b08 !important;
-    -webkit-text-fill-color: #8f3b08 !important;
-}
-
 #mainSite .section-heading h2,
-#mainSite .feature-card h3 {
-    color: #111316 !important;
-    -webkit-text-fill-color: #111316 !important;
-}
-
+#mainSite .feature-card h3,
 #mainSite .feature-card p,
-#mainSite .cta-content p {
-    color: #4d4641 !important;
-    -webkit-text-fill-color: #4d4641 !important;
-}
-
-
-/* ---------- CTA ---------- */
-
-#mainSite .cta-content h2 {
-    color: #111316 !important;
-    -webkit-text-fill-color: #111316 !important;
-}
-
-
-/* ---------- FOOTER ---------- */
-
-#mainSite .footer-brand strong {
-    color: #111316 !important;
-    -webkit-text-fill-color: #111316 !important;
-}
-
+#mainSite .cta-content > span,
+#mainSite .cta-content h2,
+#mainSite .cta-content p,
+#mainSite .footer-brand strong,
 #mainSite .footer-brand p,
-#mainSite .copyright {
-    color: #5a5049 !important;
-    -webkit-text-fill-color: #5a5049 !important;
+#mainSite .copyright,
+#mainSite .footer-links a {
+
+    color: var(--noir-orange) !important;
+    -webkit-text-fill-color: var(--noir-orange) !important;
 }
 
-#mainSite .footer-links a {
-    color: #292522 !important;
-    -webkit-text-fill-color: #292522 !important;
+
+/* =========================================================
+   HERO GLASS CARD
+========================================================= */
+
+#mainSite .new-hero {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,159,28,0.075),
+            rgba(255,159,28,0.025)
+        ) !important;
+
+    border: 1px solid var(--noir-orange-border);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 20px 60px rgba(0,0,0,0.35);
+
+    backdrop-filter: blur(18px);
+}
+
+
+/* =========================================================
+   FEATURES GLASS CARDS
+========================================================= */
+
+#mainSite .feature-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,159,28,0.10),
+            rgba(255,159,28,0.025)
+        ) !important;
+
+    border: 1px solid var(--noir-orange-border);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 15px 45px rgba(0,0,0,0.35);
+
+    backdrop-filter: blur(16px);
+}
+
+
+/* =========================================================
+   CTA GLASS CARD
+========================================================= */
+
+#mainSite .cta-section {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,159,28,0.10),
+            rgba(255,159,28,0.025)
+        ) !important;
+
+    border: 1px solid var(--noir-orange-border);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 20px 60px rgba(0,0,0,0.40);
+
+    backdrop-filter: blur(18px);
+}
+
+
+/* =========================================================
+   SUBTLE ORANGE TEXT GLOSS
+========================================================= */
+
+#mainSite .hero-label,
+#mainSite .hero-content h1,
+#mainSite .hero-content h1 span,
+#mainSite .section-heading span,
+#mainSite .section-heading h2,
+#mainSite .feature-card h3,
+#mainSite .cta-content > span,
+#mainSite .cta-content h2 {
+
+    text-shadow:
+        0 0 14px rgba(255,159,28,0.18);
 }
