@@ -16290,16 +16290,6 @@ html body #noirIntro > * {
 }
 
 /* =========================================================
-   LAYER 5 TEST — INTRO CENTER
-========================================================= */
-
-html body #noirIntro .intro-center {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-}
-
-/* =========================================================
    LAYER 6 TEST — MAKE INTRO FULLY TRANSPARENT
 ========================================================= */
 
