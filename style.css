@@ -16373,3 +16373,85 @@ html body #mainSite .new-footer {
     color: #d9dde2 !important;
     -webkit-text-fill-color: #d9dde2 !important;
 }
+
+/* =========================================================
+   NOIRBITCOIN — PREMIUM OPENING COLOR SYSTEM
+========================================================= */
+
+/* BRAND */
+
+#noirIntro .intro-brand .brand-dark {
+    color: #ff9f1c !important;
+    -webkit-text-fill-color: #ff9f1c !important;
+
+    text-shadow:
+        0 0 3px rgba(255,255,255,.45),
+        0 0 8px rgba(255,159,28,.85),
+        0 0 18px rgba(255,159,28,.45);
+}
+
+#noirIntro .intro-brand .brand-orange {
+    color: #ffb347 !important;
+    -webkit-text-fill-color: #ffb347 !important;
+
+    text-shadow:
+        0 0 3px rgba(255,255,255,.50),
+        0 0 9px rgba(255,179,71,.90),
+        0 0 20px rgba(255,159,28,.45);
+}
+
+
+/* SECURE INVESTMENT */
+
+#noirIntro .intro-message h2 {
+    color: #ff9f1c !important;
+    -webkit-text-fill-color: #ff9f1c !important;
+
+    text-shadow:
+        0 0 3px rgba(255,255,255,.40),
+        0 0 8px rgba(255,159,28,.85),
+        0 0 18px rgba(255,159,28,.42);
+}
+
+
+/* SUBTITLE — DIAMOND */
+
+#noirIntro .intro-message p {
+    color: #d9dde2 !important;
+    -webkit-text-fill-color: #d9dde2 !important;
+
+    text-shadow:
+        0 1px 1px rgba(255,255,255,.25),
+        0 3px 8px rgba(0,0,0,.60);
+}
+
+
+/* BITCOIN LOGO */
+
+#noirIntro .intro-bitcoin {
+    background:
+        linear-gradient(
+            145deg,
+            #ffb347 0%,
+            #ff9f1c 48%,
+            #d96b08 100%
+        ) !important;
+}
+
+#noirIntro .intro-bitcoin i {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+
+/* GET STARTED TEXT */
+
+#noirIntro .intro-button span {
+    color: #fff8ef !important;
+    -webkit-text-fill-color: #fff8ef !important;
+}
+
+#noirIntro .intro-button i {
+    color: #ff9f1c !important;
+    -webkit-text-fill-color: #ff9f1c !important;
+}
