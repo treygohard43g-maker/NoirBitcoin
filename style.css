@@ -13708,22 +13708,22 @@ body {
 
 #mainSite {
     display: block !important;
-    background: #F3A044 !important;
+    background: #080a0d !important;
     color: #17120D !important;
     min-height: 100vh !important;
 }
 
 #mainSite .new-hero {
-    background: #F3A044 !important;
+    background: #080a0d !important;
     color: #17120D !important;
 }
 
 #mainSite .features-section {
-    background: #F6AD55 !important;
+    background: #11151a !important;
 }
 
 #mainSite .cta-section {
-    background: #EE922E !important;
+    background: #0d1014 !important;
 }
 
 #mainSite .new-footer {
