@@ -16306,3 +16306,16 @@ html body #noirIntro .intro-center {
     background-image: none !important;
     box-shadow: none !important;
 }
+
+/* =========================================================
+   LANDING PAGE DIAGNOSTIC
+========================================================= */
+
+html body #mainSite,
+html body #mainSite .new-hero,
+html body #mainSite .features-section,
+html body #mainSite .cta-section,
+html body #mainSite .new-footer {
+    background: #080a0d !important;
+    background-image: none !important;
+}
