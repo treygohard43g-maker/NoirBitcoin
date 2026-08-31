@@ -16487,3 +16487,170 @@ html body #noirIntro .intro-message p {
     font-weight: 500 !important;
     line-height: 1.7 !important;
 }
+
+/* =========================================
+   NOIRBITCOIN — LANDING PAGE TYPOGRAPHY
+   PREMIUM ALIGNMENT + SPACING
+========================================= */
+
+#mainSite .new-hero .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Small brand label */
+
+#mainSite .new-hero .hero-label {
+    margin-bottom: 18px !important;
+    line-height: 1 !important;
+}
+
+/* Main heading */
+
+#mainSite .new-hero h1 {
+    max-width: 650px !important;
+
+    margin: 0 0 22px 0 !important;
+
+    font-size: clamp(45px, 6vw, 76px) !important;
+    font-weight: 800 !important;
+
+    line-height: 0.98 !important;
+    letter-spacing: -3px !important;
+}
+
+/* Heading orange/second line */
+
+#mainSite .new-hero h1 span {
+    display: inline-block;
+}
+
+/* Description */
+
+#mainSite .new-hero .hero-content > p {
+    max-width: 500px !important;
+
+    margin: 0 0 30px 0 !important;
+
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+
+    letter-spacing: 0 !important;
+}
+
+/* Buttons */
+
+#mainSite .hero-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 12px !important;
+
+    margin-top: 2px;
+}
+
+/* =========================================
+   FEATURES TYPOGRAPHY
+========================================= */
+
+#mainSite .section-heading {
+    max-width: 680px !important;
+    margin: 0 auto 48px !important;
+}
+
+#mainSite .section-heading span {
+    margin-bottom: 13px !important;
+    line-height: 1 !important;
+}
+
+#mainSite .section-heading h2 {
+    margin: 0 !important;
+
+    font-size: clamp(32px, 5vw, 48px) !important;
+
+    line-height: 1.08 !important;
+    letter-spacing: -2px !important;
+}
+
+/* Feature cards */
+
+#mainSite .feature-card {
+    display: flex;
+    flex-direction: column;
+
+    padding: 28px !important;
+}
+
+#mainSite .feature-card h3 {
+    margin: 0 0 10px 0 !important;
+
+    line-height: 1.2 !important;
+}
+
+#mainSite .feature-card p {
+    margin: 0 !important;
+
+    max-width: 290px;
+
+    line-height: 1.65 !important;
+}
+
+/* =========================================
+   CTA TYPOGRAPHY
+========================================= */
+
+#mainSite .cta-content {
+    max-width: 680px !important;
+}
+
+#mainSite .cta-content > span {
+    margin-bottom: 15px !important;
+}
+
+#mainSite .cta-content h2 {
+    margin: 0 0 18px 0 !important;
+
+    font-size: clamp(35px, 5vw, 58px) !important;
+
+    line-height: 1.03 !important;
+    letter-spacing: -2.3px !important;
+}
+
+#mainSite .cta-content p {
+    max-width: 500px !important;
+
+    margin: 0 auto 28px !important;
+
+    line-height: 1.7 !important;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+    #mainSite .new-hero .hero-content {
+        align-items: center;
+        text-align: center;
+    }
+
+    #mainSite .new-hero h1 {
+        max-width: 600px !important;
+
+        font-size: clamp(42px, 11vw, 58px) !important;
+
+        line-height: 1 !important;
+        letter-spacing: -2px !important;
+    }
+
+    #mainSite .new-hero .hero-content > p {
+        max-width: 380px !important;
+    }
+
+    #mainSite .hero-actions {
+        justify-content: center;
+    }
+}
