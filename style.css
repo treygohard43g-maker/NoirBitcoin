@@ -13916,38 +13916,6 @@ body {
         0 0 18px rgba(255,122,0,.30) !important;
 }
 
-/* ---------- MAIN LANDING PAGE — ORANGE GLOW ---------- */
-
-.new-hero .hero-label {
-    color: #ff8a00 !important;
-    text-shadow:
-        0 0 8px rgba(255,138,0,.55),
-        0 0 18px rgba(255,122,0,.30) !important;
-}
-
-.new-hero h1 {
-    color: #ff7a00 !important;
-    text-shadow:
-        0 0 8px rgba(255,122,0,.60),
-        0 0 20px rgba(255,122,0,.40),
-        0 0 45px rgba(255,122,0,.20) !important;
-}
-
-.new-hero h1 span {
-    color: #ff9a3d !important;
-    text-shadow:
-        0 0 8px rgba(255,154,61,.65),
-        0 0 22px rgba(255,122,0,.40) !important;
-}
-
-.new-hero .hero-content > p {
-    color: #ffb15c !important;
-    text-shadow:
-        0 0 6px rgba(255,122,0,.30),
-        0 0 15px rgba(255,122,0,.15) !important;
-}
-
-
 /* ---------- FEATURES — ORANGE GLOW ---------- */
 
 .features-section .section-heading span {
