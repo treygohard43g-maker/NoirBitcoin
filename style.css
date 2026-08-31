@@ -14541,9 +14541,13 @@ html body main#mainSite.main-site section.new-hero
    BITCOIN LOGO
 ========================================================= */
 
-.intro-bitcoin {
-    width: 78px;
-    height: 78px;
+/* =========================================================
+   NOIRBITCOIN — PREMIUM OPENING BITCOIN LOGO
+========================================================= */
+
+#noirIntro .intro-bitcoin {
+    width: 105px;
+    height: 105px;
 
     display: flex;
     align-items: center;
@@ -14551,22 +14555,23 @@ html body main#mainSite.main-site section.new-hero
 
     margin-bottom: 22px;
 
-    border: 1px solid rgba(255, 255, 255, 0.20);
-
     border-radius: 50%;
 
+    border: 1px solid rgba(255,255,255,0.24);
+
     background:
-        radial-gradient(
-            circle at 35% 25%,
-            rgba(255, 255, 255, 0.12),
-            rgba(255, 255, 255, 0.025) 55%,
-            rgba(127, 47, 0, 0.12)
-        );
+        linear-gradient(
+            145deg,
+            #ffb52e 0%,
+            #f7931a 48%,
+            #d96b08 100%
+        ) !important;
 
     box-shadow:
-        0 0 0 1px rgba(127, 47, 0, 0.08),
-        0 15px 45px rgba(0, 0, 0, 0.45),
-        inset 0 1px 1px rgba(255, 255, 255, 0.12);
+        0 18px 45px rgba(0,0,0,0.42),
+        0 0 0 7px rgba(247,147,26,0.10),
+        inset 0 1px 1px rgba(255,255,255,0.32),
+        inset 0 -10px 20px rgba(60,20,0,0.20);
 
     backdrop-filter: blur(12px);
 
@@ -14574,16 +14579,17 @@ html body main#mainSite.main-site section.new-hero
 }
 
 
-.intro-bitcoin i {
-    font-size: 42px;
+#noirIntro .intro-bitcoin i {
+    font-size: 58px;
 
-    color: #9b3d00;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
 
     filter:
-        drop-shadow(0 0 8px rgba(127, 47, 0, 0.35));
+        drop-shadow(0 2px 4px rgba(0,0,0,0.25));
 
     text-shadow:
-        0 1px 0 rgba(255,255,255,0.12);
+        0 1px 1px rgba(255,255,255,0.18);
 }
 
 
