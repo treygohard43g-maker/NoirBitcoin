@@ -13690,13 +13690,11 @@ body {
 #mainSite {
     display: block !important;
     background: #080a0d !important;
-    color: #17120D !important;
     min-height: 100vh !important;
 }
 
 #mainSite .new-hero {
     background: #080a0d !important;
-    color: #17120D !important;
 }
 
 #mainSite .features-section {
