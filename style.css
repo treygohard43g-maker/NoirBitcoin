@@ -16654,3 +16654,100 @@ html body #noirIntro .intro-message p {
         justify-content: center;
     }
 }
+
+/* =========================================
+   NOIRBITCOIN — PREMIUM COLOR TREATMENT
+========================================= */
+
+/* ---------- OPENING ---------- */
+
+#noirIntro .brand-dark {
+    color: #111316 !important;
+    -webkit-text-fill-color: #111316 !important;
+}
+
+#noirIntro .brand-orange {
+    color: #8f3b08 !important;
+    -webkit-text-fill-color: #8f3b08 !important;
+}
+
+#noirIntro .intro-message h2 {
+    color: #15171a !important;
+    -webkit-text-fill-color: #15171a !important;
+}
+
+#noirIntro .intro-message p {
+    color: #5a5049 !important;
+    -webkit-text-fill-color: #5a5049 !important;
+}
+
+
+/* ---------- LANDING HERO ---------- */
+
+#mainSite .hero-label {
+    color: #8f3b08 !important;
+    -webkit-text-fill-color: #8f3b08 !important;
+}
+
+#mainSite .hero-content h1 {
+    color: #111316 !important;
+    -webkit-text-fill-color: #111316 !important;
+}
+
+#mainSite .hero-content h1 span {
+    color: #8f3b08 !important;
+    -webkit-text-fill-color: #8f3b08 !important;
+}
+
+#mainSite .hero-content > p {
+    color: #4d4641 !important;
+    -webkit-text-fill-color: #4d4641 !important;
+}
+
+
+/* ---------- FEATURES ---------- */
+
+#mainSite .section-heading span,
+#mainSite .cta-content > span {
+    color: #8f3b08 !important;
+    -webkit-text-fill-color: #8f3b08 !important;
+}
+
+#mainSite .section-heading h2,
+#mainSite .feature-card h3 {
+    color: #111316 !important;
+    -webkit-text-fill-color: #111316 !important;
+}
+
+#mainSite .feature-card p,
+#mainSite .cta-content p {
+    color: #4d4641 !important;
+    -webkit-text-fill-color: #4d4641 !important;
+}
+
+
+/* ---------- CTA ---------- */
+
+#mainSite .cta-content h2 {
+    color: #111316 !important;
+    -webkit-text-fill-color: #111316 !important;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+#mainSite .footer-brand strong {
+    color: #111316 !important;
+    -webkit-text-fill-color: #111316 !important;
+}
+
+#mainSite .footer-brand p,
+#mainSite .copyright {
+    color: #5a5049 !important;
+    -webkit-text-fill-color: #5a5049 !important;
+}
+
+#mainSite .footer-links a {
+    color: #292522 !important;
+    -webkit-text-fill-color: #292522 !important;
+}
