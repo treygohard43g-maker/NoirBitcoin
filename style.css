@@ -16083,3 +16083,68 @@ html body main#mainSite.main-site section.new-hero
 
 }
 
+/* =========================================================
+   NOIRBITCOIN — BACKGROUND MASTER OVERRIDE
+   STEP 2
+========================================================= */
+
+html,
+body,
+#noirIntro,
+#mainSite,
+.main-site {
+    background: #080a0d !important;
+    background-color: #080a0d !important;
+}
+
+
+/* MAIN LANDING PAGE */
+
+#mainSite,
+.main-site {
+    background:
+        linear-gradient(
+            135deg,
+            #080a0d 0%,
+            #11151a 25%,
+            #080a0d 50%,
+            #15191f 75%,
+            #080a0d 100%
+        ) !important;
+}
+
+
+/* INTRO SCREEN */
+
+#noirIntro,
+.noir-intro {
+    background:
+        linear-gradient(
+            135deg,
+            #080a0d 0%,
+            #15191f 30%,
+            #090b0e 55%,
+            #11151a 80%,
+            #080a0d 100%
+        ) !important;
+}
+
+
+/* DARK DIAMOND SHINE */
+
+#mainSite::before,
+.main-site::before,
+#noirIntro::before,
+.noir-intro::before {
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0%,
+            rgba(255,255,255,0.045) 18%,
+            transparent 35%,
+            rgba(255,255,255,0.025) 52%,
+            transparent 70%,
+            rgba(255,255,255,0.035) 88%,
+            transparent 100%
+        ) !important;
+}
