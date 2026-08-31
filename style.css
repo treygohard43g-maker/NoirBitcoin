@@ -16401,3 +16401,89 @@ html body #noirIntro .intro-message p {
     text-shadow:
         0 2px 9px rgba(0,0,0,.45) !important;
 }
+
+/* =========================================
+   NOIRBITCOIN — PREMIUM LANDING TYPOGRAPHY
+========================================= */
+
+#mainSite {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Hero label */
+
+#mainSite .hero-label {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    letter-spacing: 3px !important;
+}
+
+/* Main hero heading */
+
+#mainSite .new-hero h1 {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif !important;
+    font-size: clamp(46px, 7vw, 78px) !important;
+    font-weight: 800 !important;
+    line-height: 1.02 !important;
+    letter-spacing: -2.8px !important;
+}
+
+/* Hero paragraph */
+
+#mainSite .new-hero p {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    line-height: 1.75 !important;
+    letter-spacing: .1px !important;
+}
+
+/* Buttons */
+
+#mainSite .primary-action,
+#mainSite .secondary-action {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 750 !important;
+    letter-spacing: .6px !important;
+}
+
+/* Section labels */
+
+#mainSite .section-heading span,
+#mainSite .cta-content > span {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    letter-spacing: 3px !important;
+}
+
+/* Section headings */
+
+#mainSite .section-heading h2,
+#mainSite .cta-content h2 {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif !important;
+    font-weight: 800 !important;
+    letter-spacing: -2px !important;
+    line-height: 1.05 !important;
+}
+
+/* Feature titles */
+
+#mainSite .feature-card h3 {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 750 !important;
+    letter-spacing: -.3px !important;
+}
+
+/* Feature descriptions */
+
+#mainSite .feature-card p,
+#mainSite .cta-content p {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+}
