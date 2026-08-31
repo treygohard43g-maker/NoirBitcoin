@@ -12807,9 +12807,11 @@ body {
 }
 
 
-/* Bitcoin */
+/* =========================================================
+   NOIRBITCOIN — OPENING BITCOIN LOGO
+========================================================= */
 
-.intro-bitcoin {
+#noirIntro .intro-bitcoin {
     width: 105px;
     height: 105px;
 
@@ -12822,22 +12824,31 @@ body {
     background:
         linear-gradient(
             145deg,
-            #ffc36c,
-            #f7931a 55%,
-            #c96a00
-        );
+            #ffb52e 0%,
+            #f7931a 45%,
+            #d96b08 100%
+        ) !important;
 
-    color: white;
+    color: #ffffff !important;
 
     font-size: 64px;
 
+    border: 1px solid rgba(255,255,255,0.22);
+
     box-shadow:
-        0 18px 45px rgba(75, 31, 0, .22),
-        0 0 0 9px rgba(255,255,255,.12);
+        0 18px 45px rgba(0,0,0,0.42),
+        0 0 0 7px rgba(247,147,26,0.10),
+        inset 0 1px 1px rgba(255,255,255,0.30),
+        inset 0 -8px 18px rgba(60,20,0,0.20);
 
     animation:
         introLogo 1s cubic-bezier(.2,.8,.2,1)
         .2s both;
+}
+
+#noirIntro .intro-bitcoin i {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
 }
 
 @keyframes introLogo {
