@@ -12806,64 +12806,6 @@ body {
     background: rgba(186, 65, 0, .18);
 }
 
-
-/* =========================================================
-   NOIRBITCOIN — OPENING BITCOIN LOGO
-========================================================= */
-
-#noirIntro .intro-bitcoin {
-    width: 105px;
-    height: 105px;
-
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffb52e 0%,
-            #f7931a 45%,
-            #d96b08 100%
-        ) !important;
-
-    color: #ffffff !important;
-
-    font-size: 64px;
-
-    border: 1px solid rgba(255,255,255,0.22);
-
-    box-shadow:
-        0 18px 45px rgba(0,0,0,0.42),
-        0 0 0 7px rgba(247,147,26,0.10),
-        inset 0 1px 1px rgba(255,255,255,0.30),
-        inset 0 -8px 18px rgba(60,20,0,0.20);
-
-    animation:
-        introLogo 1s cubic-bezier(.2,.8,.2,1)
-        .2s both;
-}
-
-#noirIntro .intro-bitcoin i {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-}
-
-@keyframes introLogo {
-    from {
-        opacity: 0;
-        transform: scale(.7) translateY(25px);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-
-
 /* =========================================
    NOIRBITCOIN BRAND
 ========================================= */
@@ -14536,10 +14478,6 @@ html body main#mainSite.main-site section.new-hero
 
 }
 
-
-/* =========================================================
-   BITCOIN LOGO
-========================================================= */
 
 /* =========================================================
    NOIRBITCOIN — PREMIUM OPENING BITCOIN LOGO
