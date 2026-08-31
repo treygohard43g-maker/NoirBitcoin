@@ -14005,20 +14005,29 @@ body {
         0 0 12px rgba(255,122,0,.12) !important;
 }
 
-/* ---------- CTA ---------- */
+/* ---------- CTA — ORANGE GLOW ---------- */
 
 .cta-section .cta-content > span {
-    color: #8f3f08 !important;
+    color: #ff8a00 !important;
+    text-shadow:
+        0 0 8px rgba(255,138,0,.55),
+        0 0 18px rgba(255,122,0,.28) !important;
 }
 
 .cta-section .cta-content h2 {
-    color: #111111 !important;
+    color: #ff7a00 !important;
+    text-shadow:
+        0 0 8px rgba(255,122,0,.60),
+        0 0 22px rgba(255,122,0,.32),
+        0 0 40px rgba(255,122,0,.15) !important;
 }
 
 .cta-section .cta-content p {
-    color: #3d3d3d !important;
+    color: #ffb15c !important;
+    text-shadow:
+        0 0 6px rgba(255,122,0,.28),
+        0 0 14px rgba(255,122,0,.12) !important;
 }
-
 
 /* ---------- FOOTER ---------- */
 
