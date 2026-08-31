@@ -318,7 +318,7 @@ const balanceElement = document.getElementById("availableBalance");
 
 let balanceVisible = true;
 
-let balance = 500000;
+let balance = 0;
 let bitcoinPrice = 0;
 let showingBTC = false;
 let balanceLoaded = false;
@@ -358,7 +358,6 @@ function updateBalance() {
     }
 
 }
- updateBalance();
 
 // =========================
 // FIREBASE USER BALANCE
