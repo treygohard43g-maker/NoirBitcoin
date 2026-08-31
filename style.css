@@ -13975,24 +13975,35 @@ body {
 }
 
 
-/* ---------- FEATURES ---------- */
+/* ---------- FEATURES — ORANGE GLOW ---------- */
 
 .features-section .section-heading span {
-    color: #8f3f08 !important;
+    color: #ff8a00 !important;
+    text-shadow:
+        0 0 8px rgba(255,138,0,.55),
+        0 0 18px rgba(255,122,0,.28) !important;
 }
 
 .features-section .section-heading h2 {
-    color: #111111 !important;
+    color: #ff7a00 !important;
+    text-shadow:
+        0 0 8px rgba(255,122,0,.55),
+        0 0 22px rgba(255,122,0,.30) !important;
 }
 
 .feature-card h3 {
-    color: #111111 !important;
+    color: #ff9a3d !important;
+    text-shadow:
+        0 0 7px rgba(255,154,61,.50),
+        0 0 16px rgba(255,122,0,.22) !important;
 }
 
 .feature-card p {
-    color: #3d3d3d !important;
+    color: #ffb15c !important;
+    text-shadow:
+        0 0 5px rgba(255,122,0,.25),
+        0 0 12px rgba(255,122,0,.12) !important;
 }
-
 
 /* ---------- CTA ---------- */
 
