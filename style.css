@@ -14968,14 +14968,20 @@ html body main#mainSite.main-site section.new-hero
     overflow: hidden;
 
     background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,122,0,.08),
+            transparent 38%
+        ),
         linear-gradient(
             180deg,
-            #f7f4f1 0%,
-            #ffffff 42%,
-            #f8f5f2 100%
+            #050505 0%,
+            #090909 48%,
+            #050505 100%
         );
-}
 
+    color: #ff7a00;
+}
 
 /* =========================================================
    HERO
@@ -16894,4 +16900,41 @@ html body #noirIntro .intro-message p {
 #mainSite .primary-action,
 #mainSite .secondary-action {
     text-shadow: none !important;
+}
+
+/* =========================================================
+   NOIRBITCOIN — PREMIUM ORANGE TEXT MASTER
+========================================================= */
+
+html body #mainSite .new-hero .hero-label {
+    color: #ff8a00 !important;
+    -webkit-text-fill-color: #ff8a00 !important;
+    text-shadow:
+        0 0 8px rgba(255,138,0,.60),
+        0 0 20px rgba(255,122,0,.30) !important;
+}
+
+html body #mainSite .new-hero h1 {
+    color: #ff7a00 !important;
+    -webkit-text-fill-color: #ff7a00 !important;
+    text-shadow:
+        0 0 8px rgba(255,122,0,.65),
+        0 0 22px rgba(255,122,0,.40),
+        0 0 45px rgba(255,122,0,.20) !important;
+}
+
+html body #mainSite .new-hero h1 span {
+    color: #ff9a3d !important;
+    -webkit-text-fill-color: #ff9a3d !important;
+    text-shadow:
+        0 0 8px rgba(255,154,61,.70),
+        0 0 24px rgba(255,122,0,.42) !important;
+}
+
+html body #mainSite .new-hero .hero-content > p {
+    color: #ffb15c !important;
+    -webkit-text-fill-color: #ffb15c !important;
+    text-shadow:
+        0 0 6px rgba(255,122,0,.30),
+        0 0 15px rgba(255,122,0,.15) !important;
 }
