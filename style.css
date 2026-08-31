@@ -16760,3 +16760,70 @@ html body #noirIntro .intro-message p {
 #mainSite .secondary-action {
     text-shadow: none !important;
 }
+
+/* =========================================================
+   NOIRBITCOIN — FINAL TEXT COLOR & FINISH
+========================================================= */
+
+:root {
+    --nb-orange: #ff9f1c;
+}
+
+
+/* ---------- BRIGHT SHINY ORANGE ---------- */
+
+#mainSite .hero-label,
+#mainSite .new-hero h1,
+#mainSite .new-hero h1 span,
+#mainSite .section-heading span,
+#mainSite .feature-card h3,
+#mainSite .cta-content > span {
+
+    color: #ff9f1c !important;
+    -webkit-text-fill-color: #ff9f1c !important;
+
+    text-shadow:
+        0 0 2px rgba(255,255,255,0.65),
+        0 0 5px rgba(255,159,28,0.95),
+        0 0 11px rgba(255,159,28,0.65),
+        2px 0 3px rgba(255,159,28,0.28),
+        -2px 0 3px rgba(255,159,28,0.22);
+}
+
+
+/* ---------- DIAMOND / METALLIC TEXT ---------- */
+
+#mainSite .new-hero .hero-content > p,
+#mainSite .section-heading h2,
+#mainSite .feature-card p,
+#mainSite .cta-content h2 {
+
+    color: #d9dde2 !important;
+    -webkit-text-fill-color: #d9dde2 !important;
+
+    text-shadow:
+        0 1px 1px rgba(255,255,255,0.35),
+        0 2px 5px rgba(0,0,0,0.85);
+}
+
+
+/* ---------- FEATURE CARD TITLES ---------- */
+
+#mainSite .feature-card h3 {
+    font-weight: 750 !important;
+}
+
+
+/* ---------- CTA DESCRIPTION — KEEP EXISTING LOOK ---------- */
+
+#mainSite .cta-content p {
+    -webkit-text-fill-color: inherit;
+}
+
+
+/* ---------- DO NOT CHANGE BUTTONS ---------- */
+
+#mainSite .primary-action,
+#mainSite .secondary-action {
+    text-shadow: none !important;
+}
