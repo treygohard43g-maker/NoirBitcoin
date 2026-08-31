@@ -16298,3 +16298,21 @@ html body #noirIntro .intro-center {
     background-color: transparent !important;
     background-image: none !important;
 }
+
+/* =========================================================
+   LAYER 6 TEST — MAKE INTRO FULLY TRANSPARENT
+========================================================= */
+
+html body #noirIntro {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+html body #noirIntro .intro-glow,
+html body #noirIntro .intro-center {
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
