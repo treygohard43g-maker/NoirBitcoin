@@ -16786,3 +16786,27 @@ html body .premium-nav .nav-links a.active {
         font-size: 9px;
     }
 }
+
+/* =========================================================
+   NOIRBITCOIN — SUBTLE LEFT HEADER CURVE
+========================================================= */
+
+html body .premium-nav::before {
+    left: -8px !important;
+    top: -4px !important;
+
+    width: 138px !important;
+    height: 88px !important;
+
+    border-radius: 0 0 38px 0 !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb347 0%,
+            #ff9f1c 55%,
+            #f7931a 100%
+        ) !important;
+
+    box-shadow: none !important;
+}
