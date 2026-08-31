@@ -4167,7 +4167,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* FORCE PREMIUM ORANGE INTRO */
 
-    document.body.style.background = "#F3A044";
+     document.body.style.background = "#080a0d";
 
     intro.style.cssText = `
         position: fixed;
@@ -4179,12 +4179,11 @@ document.addEventListener("DOMContentLoaded", () => {
         justify-content: center;
         background:
         radial-gradient(
-            circle at 50% 30%,
-            #FFC46F 0%,
-            #F8AA4C 35%,
-            #EF922E 70%,
-            #E78320 100%
-        );
+        circle at 50% 30%,
+        rgba(255,122,0,.16) 0%,
+        rgba(8,10,13,.96) 48%,
+        #080a0d 100%
+    );
         z-index: 999999;
         overflow: hidden;
         opacity: 1;
