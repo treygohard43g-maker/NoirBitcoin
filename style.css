@@ -14925,9 +14925,8 @@ html body main#mainSite.main-site section.new-hero
     top: 8%;
     left: 8%;
 
-    background: #7f2f00;
+    background: rgba(255,255,255,0.06);
 }
-
 
 .intro-glow-two {
     width: 180px;
@@ -14936,9 +14935,8 @@ html body main#mainSite.main-site section.new-hero
     right: 8%;
     bottom: 12%;
 
-    background: #7f2f00;
+    background: rgba(255,255,255,0.04);
 }
-
 
 /* =========================================================
    MAIN SITE
