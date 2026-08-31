@@ -99,13 +99,21 @@ font-weight:bold;
 }
 
 .btn-primary{
-background:#f59e0b;
-color:black;
+background:linear-gradient(135deg,#ff8a00,#e85d00);
+color:#fff;
+box-shadow:
+0 0 10px rgba(255,122,0,0.45),
+0 0 25px rgba(255,122,0,0.22);
+transition:all .3s ease;
 }
 
 .btn-secondary{
-border:2px solid #f59e0b;
-color:white;
+border:2px solid #ff7a00;
+color:#ff9a3d;
+text-shadow:0 0 8px rgba(255,122,0,0.45);
+box-shadow:
+0 0 10px rgba(255,122,0,0.18);
+transition:all .3s ease;
 }
 
 section{
