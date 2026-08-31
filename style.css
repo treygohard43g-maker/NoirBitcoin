@@ -16656,124 +16656,107 @@ html body #noirIntro .intro-message p {
 }
 
 /* =========================================================
-   NOIRBITCOIN — ORANGE GLASS COLOR SYSTEM
+   NOIRBITCOIN — PREMIUM TEXT FINISH
 ========================================================= */
 
 :root {
-    --noir-orange: #ff9f1c;
-    --noir-orange-bright: #ffad32;
-    --noir-orange-soft: rgba(255, 159, 28, 0.14);
-    --noir-orange-border: rgba(255, 159, 28, 0.28);
+    --nb-orange: #ff9f1c;
+    --nb-orange-light: #ffb347;
+    --nb-diamond: #c7cbd1;
+    --nb-diamond-dark: #777d85;
 }
 
 
 /* =========================================================
-   ALL LANDING TEXT
-========================================================= */
-
-#mainSite .hero-label,
-#mainSite .hero-content h1,
-#mainSite .hero-content h1 span,
-#mainSite .hero-content > p,
-#mainSite .section-heading span,
-#mainSite .section-heading h2,
-#mainSite .feature-card h3,
-#mainSite .feature-card p,
-#mainSite .cta-content > span,
-#mainSite .cta-content h2,
-#mainSite .cta-content p,
-#mainSite .footer-brand strong,
-#mainSite .footer-brand p,
-#mainSite .copyright,
-#mainSite .footer-links a {
-
-    color: var(--noir-orange) !important;
-    -webkit-text-fill-color: var(--noir-orange) !important;
-}
-
-
-/* =========================================================
-   HERO GLASS CARD
-========================================================= */
-
-#mainSite .new-hero {
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,159,28,0.075),
-            rgba(255,159,28,0.025)
-        ) !important;
-
-    border: 1px solid var(--noir-orange-border);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 20px 60px rgba(0,0,0,0.35);
-
-    backdrop-filter: blur(18px);
-}
-
-
-/* =========================================================
-   FEATURES GLASS CARDS
-========================================================= */
-
-#mainSite .feature-card {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,159,28,0.10),
-            rgba(255,159,28,0.025)
-        ) !important;
-
-    border: 1px solid var(--noir-orange-border);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 15px 45px rgba(0,0,0,0.35);
-
-    backdrop-filter: blur(16px);
-}
-
-
-/* =========================================================
-   CTA GLASS CARD
-========================================================= */
-
-#mainSite .cta-section {
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,159,28,0.10),
-            rgba(255,159,28,0.025)
-        ) !important;
-
-    border: 1px solid var(--noir-orange-border);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 20px 60px rgba(0,0,0,0.40);
-
-    backdrop-filter: blur(18px);
-}
-
-
-/* =========================================================
-   SUBTLE ORANGE TEXT GLOSS
+   1. BRIGHT SHINY ORANGE TEXT
 ========================================================= */
 
 #mainSite .hero-label,
 #mainSite .hero-content h1,
 #mainSite .hero-content h1 span,
 #mainSite .section-heading span,
-#mainSite .section-heading h2,
 #mainSite .feature-card h3,
-#mainSite .cta-content > span,
-#mainSite .cta-content h2 {
+#mainSite .cta-content > span {
+
+    color: var(--nb-orange) !important;
+    -webkit-text-fill-color: var(--nb-orange) !important;
 
     text-shadow:
-        0 0 14px rgba(255,159,28,0.18);
+        0 0 3px rgba(255,179,71,0.95),
+        0 0 8px rgba(255,159,28,0.65),
+        0 0 16px rgba(255,159,28,0.28);
+}
+
+
+/* =========================================================
+   2. SUBTLE DIAMOND / METALLIC TEXT
+========================================================= */
+
+#mainSite .hero-content > p,
+#mainSite .section-heading h2,
+#mainSite .feature-card p,
+#mainSite .cta-content h2 {
+
+    color: var(--nb-diamond) !important;
+    -webkit-text-fill-color: var(--nb-diamond) !important;
+
+    background-image:
+        linear-gradient(
+            135deg,
+            #eef0f2 0%,
+            #9da3aa 28%,
+            #f5f6f7 48%,
+            #858b92 70%,
+            #d9dde1 100%
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    text-shadow:
+        0 1px 1px rgba(255,255,255,0.20),
+        0 3px 8px rgba(0,0,0,0.55);
+}
+
+
+/* =========================================================
+   3. FEATURE TITLES — ORANGE
+========================================================= */
+
+#mainSite .feature-card h3 {
+    color: var(--nb-orange) !important;
+    -webkit-text-fill-color: var(--nb-orange) !important;
+}
+
+
+/* =========================================================
+   4. CTA HEADING — DIAMOND
+========================================================= */
+
+#mainSite .cta-content h2 {
+    color: var(--nb-diamond) !important;
+    -webkit-text-fill-color: transparent !important;
+
+    background-image:
+        linear-gradient(
+            135deg,
+            #f1f3f5,
+            #8d939a 35%,
+            #ffffff 50%,
+            #858b92 72%,
+            #d8dce0
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+
+/* =========================================================
+   5. KEEP BUTTONS UNTOUCHED
+========================================================= */
+
+#mainSite .primary-action,
+#mainSite .secondary-action {
+    text-shadow: none !important;
 }
