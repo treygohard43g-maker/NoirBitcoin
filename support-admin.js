@@ -87,21 +87,30 @@ function loadCustomers() {
                 if (!customers.has(message.userId)) {
 
                     customers.set(
-                        message.userId,
-                        {
-                            userId: message.userId,
-                            lastMessage:
-                                message.message || "",
-                            sender:
-                                message.sender || "user",
-                            timestamp:
-                                message.timestamp
-                        }
-                    );
+    message.userId,
+    {
+        userId: message.userId,
 
-                }
+        userName:
+            message.userName || "",
 
-            });
+        userEmail:
+            message.userEmail || "",
+
+        lastMessage:
+            message.message || "",
+
+        sender:
+            message.sender || "user",
+
+        timestamp:
+            message.timestamp
+    }
+ );
+
+ }
+
+});
 
             renderCustomers(
                 Array.from(customers.values())
@@ -152,7 +161,7 @@ function renderCustomers(customers) {
 
     customerList.innerHTML = "";
 
-    customers.forEach((customer, index) => {
+    customers.forEach((customer) => {
 
         const item =
             document.createElement("button");
@@ -161,6 +170,16 @@ function renderCustomers(customers) {
             "customer-item";
 
         item.type = "button";
+
+
+        const customerName =
+            customer.userName ||
+            "Customer";
+
+        const customerEmail =
+            customer.userEmail ||
+            "No email available";
+
 
         item.innerHTML = `
 
@@ -171,8 +190,12 @@ function renderCustomers(customers) {
             <div class="customer-info">
 
                 <strong>
-                    Customer ${index + 1}
+                    ${escapeHTML(customerName)}
                 </strong>
+
+                <small>
+                    ${escapeHTML(customerEmail)}
+                </small>
 
                 <span>
                     ${escapeHTML(customer.lastMessage)}
@@ -182,20 +205,25 @@ function renderCustomers(customers) {
 
         `;
 
+
         item.addEventListener(
             "click",
             () => {
 
                 selectCustomer(
                     customer.userId,
-                    `Customer ${index + 1}`
+                    customerName,
+                    customerEmail
                 );
 
             }
         );
 
+
         customerList.appendChild(item);
+
     });
+
 }
 
 
