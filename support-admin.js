@@ -592,6 +592,34 @@ adminLogoutBtn.addEventListener(
     }
 );
 
+// ========================================
+// FORMAT MESSAGE TIME
+// ========================================
+
+function formatMessageTime(timestamp) {
+
+    if (!timestamp) {
+        return "";
+    }
+
+    const date =
+        timestamp.toDate
+            ? timestamp.toDate()
+            : new Date(timestamp);
+
+    if (Number.isNaN(date.getTime())) {
+        return "";
+    }
+
+    return date.toLocaleTimeString(
+        [],
+        {
+            hour: "numeric",
+            minute: "2-digit"
+        }
+    );
+
+}
 
 // ========================================
 // HTML ESCAPE
