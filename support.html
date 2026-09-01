@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>NoirBitcoin Support</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body class="support-page">
+
+    <!-- SUPPORT HEADER -->
+
+    <header class="support-header">
+
+        <button
+            class="support-back"
+            onclick="window.location.href='dashboard.html'">
+
+            <i class="fa-solid fa-chevron-left"></i>
+
+        </button>
+
+        <div class="support-title">
+
+            <div class="support-icon">
+                <i class="fa-regular fa-comments"></i>
+            </div>
+
+            <div>
+
+                <h1>NoirBitcoin Support</h1>
+
+                <span>
+                    <i class="fa-solid fa-circle"></i>
+                    Support available
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- CHAT AREA -->
+
+    <main class="support-chat">
+
+        <div
+            id="chatMessages"
+            class="chat-messages">
+
+            <!-- Initial support message -->
+
+            <div class="message-row support-message">
+
+                <div class="message-avatar">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+
+                <div class="message-content">
+
+                    <span class="message-name">
+                        NoirBitcoin Support
+                    </span>
+
+                    <div class="message-bubble">
+                        Hello! How can we help you today?
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MESSAGE INPUT -->
+
+        <div class="chat-input-area">
+
+            <input
+                type="text"
+                id="chatInput"
+                placeholder="Type your message..."
+                autocomplete="off">
+
+            <button
+                id="sendMessageBtn"
+                type="button"
+                aria-label="Send message">
+
+                <i class="fa-solid fa-arrow-up"></i>
+
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        const chatInput =
+            document.getElementById("chatInput");
+
+        const sendMessageBtn =
+            document.getElementById("sendMessageBtn");
+
+        const chatMessages =
+            document.getElementById("chatMessages");
+
+
+        function sendMessage() {
+
+            const text =
+                chatInput.value.trim();
+
+            if (!text) return;
+
+
+            const messageRow =
+                document.createElement("div");
+
+            messageRow.className =
+                "message-row user-message";
+
+
+            messageRow.innerHTML = `
+
+                <div class="message-content">
+
+                    <div class="message-bubble">
+                        ${text}
+                    </div>
+
+                </div>
+
+            `;
+
+
+            chatMessages.appendChild(messageRow);
+
+            chatInput.value = "";
+
+            chatMessages.scrollTop =
+                chatMessages.scrollHeight;
+        }
+
+
+        sendMessageBtn.addEventListener(
+            "click",
+            sendMessage
+        );
+
+
+        chatInput.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    sendMessage();
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
