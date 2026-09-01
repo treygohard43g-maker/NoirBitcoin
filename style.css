@@ -4776,17 +4776,37 @@ border:1px solid #2A2F38;
 
 .profile-menu a,
 .profile-menu button {
+
     width: 100%;
+
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 14px 16px;
-    background: none;
+
+    gap: 11px;
+
+    padding: 10px 12px;
+
+    margin: 2px 0;
+
+    background: transparent;
+
     border: none;
+
+    border-radius: 10px;
+
     color: white;
+
     text-decoration: none;
+
     cursor: pointer;
-    font-size: 15px;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 .profile-menu a:hover,
@@ -16967,4 +16987,90 @@ html,
 body {
     margin: 0 !important;
     padding: 0 !important;
+}
+
+/* =========================================================
+   NOIRBITCOIN — PROFILE MENU ICONS
+========================================================= */
+
+.profile-menu a i,
+.profile-menu button i {
+
+    width: 22px;
+    min-width: 22px;
+
+    height: 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #f59e0b;
+
+    font-size: 15px;
+
+    border-radius: 7px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(245, 158, 11, 0.22),
+            rgba(17, 24, 39, 0.85)
+        );
+
+    border:
+        1px solid rgba(245, 158, 11, 0.22);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Hover / tap */
+
+.profile-menu a:hover i,
+.profile-menu button:hover i {
+
+    color: #111827;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(245, 158, 11, 0.95),
+            rgba(245, 158, 11, 0.55)
+        );
+
+    transform: scale(1.05);
+}
+
+/* =========================================================
+   SUPPORT — DESIGNER ICON
+========================================================= */
+
+.profile-menu .support-menu-item i {
+
+    position: relative;
+
+    color: #f59e0b;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245, 158, 11, 0.95) 0%,
+            rgba(245, 158, 11, 0.45) 48%,
+            rgba(13, 17, 23, 0.95) 49%,
+            rgba(13, 17, 23, 0.95) 100%
+        );
+
+    border:
+        1px solid rgba(245, 158, 11, 0.35);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.20);
 }
