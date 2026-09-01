@@ -433,6 +433,29 @@ function selectCustomer(
 // ========================================
 // DISPLAY MESSAGE
 // ========================================
+function addAdminMessage(text, isSupport) {
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        isSupport
+            ? "admin-message-row support"
+            : "admin-message-row customer";
+
+    const bubble =
+        document.createElement("div");
+
+    bubble.className =
+        "admin-message-bubble";
+
+    bubble.textContent =
+        text;
+
+    row.appendChild(bubble);
+
+    adminMessages.appendChild(row);
+}
 
 // ========================================
 // DISPLAY ADMIN PHOTO
