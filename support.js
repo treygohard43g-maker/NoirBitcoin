@@ -277,9 +277,16 @@ async function sendMessage() {
                 selectedPhoto
             );
 
-            console.log(
-                "Photo uploaded successfully."
-            );
+            await uploadBytes(
+    storageRef,
+    selectedPhoto
+);
+
+alert("Photo uploaded successfully.");
+
+console.log(
+    "Photo uploaded successfully."
+);
 
             const photoURL =
                 await getDownloadURL(storageRef);
