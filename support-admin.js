@@ -299,27 +299,6 @@ function renderCustomers(customers) {
 
 }
 
-        item.addEventListener(
-            "click",
-            () => {
-
-                selectCustomer(
-                    customer.userId,
-                    customerName,
-                    customerEmail
-                );
-
-            }
-        );
-
-
-        customerList.appendChild(item);
-
-    });
-
-}
-
-
 // ========================================
 // SELECT CUSTOMER
 // ========================================
