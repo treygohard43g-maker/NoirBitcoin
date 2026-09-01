@@ -16867,3 +16867,16 @@ html body .premium-nav::before {
 
     box-shadow: none !important;
 }
+
+/* =========================================================
+   GET STARTED — FORCE ORANGE CARD
+========================================================= */
+
+#noirIntro .intro-button {
+    background: linear-gradient(
+        145deg,
+        #ff9a3c 0%,
+        #f7931a 50%,
+        #d96b13 100%
+    ) !important;
+}
