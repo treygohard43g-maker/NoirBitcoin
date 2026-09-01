@@ -14459,20 +14459,29 @@ html body main#mainSite.main-site section.new-hero
    GLOWING ORANGE OUTER CONTAINER
 ========================================================= */
 
+/* =========================================================
+   VISIBLE ORANGE BUTTON CONTAINER
+========================================================= */
+
 #noirIntro .intro-button::after {
     content: "";
 
     position: absolute;
 
-    inset: -5px;
+    top: -7px;
+    right: -7px;
+    bottom: -7px;
+    left: -7px;
 
-    border-radius: 20px;
+    border-radius: 21px;
 
-    border: 1px solid rgba(217, 107, 19, 0.42);
+    border: 2px solid #d96b13;
+
+    background: transparent;
 
     box-shadow:
-        0 0 10px rgba(217, 107, 19, 0.20),
-        0 0 22px rgba(217, 107, 19, 0.13);
+        0 0 8px rgba(217, 107, 19, 0.45),
+        0 0 18px rgba(217, 107, 19, 0.22);
 
     pointer-events: none;
 
