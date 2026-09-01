@@ -65,9 +65,67 @@
             id="chatMessages"
             class="chat-messages">
         </div>
+<!-- PHOTO PREVIEW -->
+
+<div
+    id="photoPreview"
+    class="photo-preview"
+    style="display:none;"
+>
+
+    <img
+        id="photoPreviewImage"
+        src=""
+        alt="Selected photo"
+    >
+
+    <button
+        id="removePhotoBtn"
+        type="button"
+        aria-label="Remove photo"
+    >
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+
+</div>
 
 
-        <!-- MESSAGE INPUT -->
+<!-- MESSAGE INPUT -->
+
+<div class="chat-input-area">
+
+    <button
+        id="photoBtn"
+        class="chat-photo-btn"
+        type="button"
+        aria-label="Send photo">
+
+        <i class="fa-solid fa-camera"></i>
+
+    </button>
+
+    <input
+        type="file"
+        id="photoInput"
+        accept="image/*"
+        hidden>
+
+    <input
+        type="text"
+        id="chatInput"
+        placeholder="Type your message..."
+        autocomplete="off">
+
+    <button
+        id="sendMessageBtn"
+        type="button"
+        aria-label="Send message">
+
+        <i class="fa-solid fa-arrow-up"></i>
+
+    </button>
+
+</div>
 
 <div class="chat-input-area">
 
@@ -87,7 +145,6 @@
         type="file"
         id="photoInput"
         accept="image/*"
-        capture="environment"
         hidden>
 
     <input
