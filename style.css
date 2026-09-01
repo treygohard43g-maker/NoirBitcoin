@@ -17230,33 +17230,36 @@ body {
 ========================================================= */
 
 .support-chat {
-
-    height:
-        calc(100vh - 72px);
+    height: calc(100vh - 72px);
+    min-height: 0;
 
     display: flex;
-
     flex-direction: column;
 
     max-width: 760px;
+    width: 100%;
 
     margin: 0 auto;
 
     padding: 18px;
+
+    box-sizing: border-box;
 }
 
 
 /* MESSAGES */
 
 .chat-messages {
+    flex: 1 1 auto;
 
-    flex: 1;
+    min-height: 0;
 
     overflow-y: auto;
 
     padding: 10px 2px 20px;
-}
 
+    box-sizing: border-box;
+}
 
 /* MESSAGE ROW */
 
@@ -17382,7 +17385,8 @@ body {
 ========================================================= */
 
 .chat-input-area {
-
+    flex: 0 0 auto;
+    
     display: flex;
 
     align-items: center;
@@ -17490,8 +17494,10 @@ body {
     }
 
     .support-chat {
-        padding: 12px;
-    }
+    height: calc(100dvh - 72px);
+    min-height: 0;
+    padding: 12px;
+   }
 
     .message-content {
         max-width: 84%;
