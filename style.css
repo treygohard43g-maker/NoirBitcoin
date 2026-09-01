@@ -18337,3 +18337,26 @@ body {
     position: relative;
     z-index: 2;
 }
+
+/* ========================================
+   ADMIN SUPPORT — PHOTO DISPLAY
+   ======================================== */
+
+.admin-chat-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: min(75vw, 420px);
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 14px;
+    cursor: pointer;
+    margin: 6px 0;
+}
+
+@media (max-width: 600px) {
+    .admin-chat-image {
+        max-width: 78vw;
+        max-height: 420px;
+    }
+}
