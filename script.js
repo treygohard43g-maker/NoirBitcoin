@@ -2931,6 +2931,8 @@ if (numericAmount > balance) {
     document.getElementById("withdrawModal").style.display = "none";
 
     document.getElementById("pendingModal").style.display = "flex";
+
+    playWithdrawalPendingAlert();
 }
 
 function closeWithdrawModal() {
