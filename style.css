@@ -18372,25 +18372,24 @@ body {
 }
 
 /* ========================================
-   NOIRBITCOIN — MODERN SUPPORT CAMERA
+   NOIRBITCOIN — SUPPORT CAMERA BUTTON
 ======================================== */
 
 .chat-photo-btn {
     width: 40px;
     height: 40px;
-
     flex: 0 0 40px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, 0.055);
+    background: rgba(255, 255, 255, 0.055) !important;
 
-    color: rgba(255, 255, 255, 0.72);
+    color: #f59e0b !important;
 
     cursor: pointer;
 
@@ -18402,14 +18401,18 @@ body {
 }
 
 .chat-photo-btn i {
+    color: #f59e0b !important;
     font-size: 16px;
 }
 
 .chat-photo-btn:hover {
-    background: rgba(245, 158, 11, 0.12);
-    border-color: rgba(245, 158, 11, 0.28);
-    color: #f59e0b;
-    transform: translateY(-1px);
+    background: rgba(245, 158, 11, 0.12) !important;
+    border-color: rgba(245, 158, 11, 0.30) !important;
+    color: #f59e0b !important;
+}
+
+.chat-photo-btn:hover i {
+    color: #f59e0b !important;
 }
 
 .chat-photo-btn:active {
