@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>NoirBitcoin Support Admin</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body class="support-admin-page">
+
+    <header class="support-admin-header">
+
+        <div class="support-admin-brand">
+
+            <div class="support-admin-icon">
+                <i class="fa-solid fa-headset"></i>
+            </div>
+
+            <div>
+                <h1>NoirBitcoin Support</h1>
+                <span>Admin Console</span>
+            </div>
+
+        </div>
+
+        <button
+            id="adminLogoutBtn"
+            class="admin-logout-btn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+
+        </button>
+
+    </header>
+
+
+    <main class="support-admin-container">
+
+        <!-- CUSTOMER LIST -->
+
+        <aside class="support-customers">
+
+            <div class="customers-header">
+
+                <h2>Customers</h2>
+
+                <span id="customerCount">
+                    0
+                </span>
+
+            </div>
+
+            <div
+                id="customerList"
+                class="customer-list">
+
+                <div class="empty-customers">
+
+                    <i class="fa-regular fa-comments"></i>
+
+                    <p>
+                        No support conversations yet.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONVERSATION -->
+
+        <section class="support-conversation">
+
+            <div
+                id="conversationHeader"
+                class="conversation-header">
+
+                <div>
+
+                    <h2>
+                        Select a customer
+                    </h2>
+
+                    <span>
+                        Choose a conversation from the list.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="adminMessages"
+                class="admin-messages">
+
+                <div class="admin-empty-state">
+
+                    <i class="fa-solid fa-message"></i>
+
+                    <h3>
+                        Support Inbox
+                    </h3>
+
+                    <p>
+                        Customer conversations will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- REPLY AREA -->
+
+            <div class="admin-reply-area">
+
+                <input
+                    type="text"
+                    id="adminReplyInput"
+                    placeholder="Reply to customer..."
+                    autocomplete="off"
+                    disabled>
+
+                <button
+                    id="adminSendBtn"
+                    type="button"
+                    disabled>
+
+                    <i class="fa-solid fa-arrow-up"></i>
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script type="module" src="support-admin.js"></script>
+
+</body>
+
+</html>
