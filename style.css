@@ -18176,3 +18176,83 @@ body {
     opacity: 0.94;
     transform: scale(1.01);
 }
+
+/* ========================================
+   SUPPORT FULL IMAGE VIEWER
+======================================== */
+
+.support-image-viewer {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0, 0, 0, 0.92);
+
+    backdrop-filter:
+        blur(12px);
+}
+
+.support-image-viewer.active {
+    display: flex;
+}
+
+.support-image-viewer img {
+    display: block;
+
+    max-width: 96vw;
+    max-height: 90vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.55);
+}
+
+.close-support-image {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    width: 44px;
+    height: 44px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    color: white;
+
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 2;
+}
+
+.close-support-image:hover {
+    background:
+        rgba(255, 255, 255, 0.20);
+}
