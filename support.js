@@ -186,28 +186,34 @@ async function sendMessage() {
 
         await addDoc(
 
-            collection(
-                db,
-                "supportMessages"
-            ),
+    collection(
+        db,
+        "supportMessages"
+    ),
 
-            {
+    {
 
-                userId:
-                    currentUser.uid,
+        userId:
+            currentUser.uid,
 
-                sender:
-                    "user",
+        userName:
+            currentUser.displayName || "Customer",
 
-                message:
-                    text,
+        userEmail:
+            currentUser.email || "",
 
-                timestamp:
-                    serverTimestamp()
+        sender:
+            "user",
 
-            }
+        message:
+            text,
 
-        );
+        timestamp:
+            serverTimestamp()
+
+    }
+
+);
 
 
         chatInput.value = "";
