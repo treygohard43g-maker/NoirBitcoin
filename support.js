@@ -11,19 +11,21 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import {
-    getStorage,
-    ref,
-    uploadBytes,
-    getDownloadURL
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-
-import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 const db = getFirestore(auth.app);
-const storage = getStorage(auth.app);
+
+
+// ========================================
+// CLOUDINARY
+// ========================================
+
+const CLOUDINARY_CLOUD_NAME = "ca44wizk";
+
+const CLOUDINARY_UPLOAD_PRESET =
+    "noirbitcoin_support";
 
 
 // ========================================
@@ -64,20 +66,23 @@ const closeSupportImage =
     document.getElementById("closeSupportImage");
 
 
-let currentUser = null;
 let selectedPhoto = null;
+
+let currentUser = null;
+
 let unsubscribeMessages = null;
 
 
 // ========================================
-// AUTHENTICATION
+// AUTH
 // ========================================
 
 onAuthStateChanged(auth, (user) => {
 
     if (!user) {
 
-        window.location.href = "login.html";
+        window.location.href =
+            "login.html";
 
         return;
     }
@@ -97,125 +102,153 @@ function loadMessages() {
 
     if (!currentUser) return;
 
+
     if (unsubscribeMessages) {
+
         unsubscribeMessages();
+
     }
 
 
-    const messagesQuery = query(
-        collection(db, "supportMessages"),
-        where(
-            "userId",
-            "==",
-            currentUser.uid
-        )
-    );
+    const messagesQuery =
+        query(
+            collection(
+                db,
+                "supportMessages"
+            ),
+            where(
+                "userId",
+                "==",
+                currentUser.uid
+            )
+        );
 
 
-    unsubscribeMessages = onSnapshot(
-        messagesQuery,
+    unsubscribeMessages =
+        onSnapshot(
 
-        (snapshot) => {
+            messagesQuery,
 
-            chatMessages.innerHTML = "";
+            (snapshot) => {
 
-            const messages = [];
+                chatMessages.innerHTML = "";
 
-
-            snapshot.forEach((doc) => {
-
-                messages.push(doc.data());
-
-            });
+                const messages = [];
 
 
-            // Sort locally by timestamp
+                snapshot.forEach(
+                    (messageDoc) => {
 
-            messages.sort((a, b) => {
-
-                const timeA =
-                    a.timestamp?.toMillis?.() || 0;
-
-                const timeB =
-                    b.timestamp?.toMillis?.() || 0;
-
-                return timeA - timeB;
-
-            });
-
-
-            if (messages.length === 0) {
-
-                addSupportMessage(
-                    "Hello! How can we help you today?"
-                );
-
-            } else {
-
-                messages.forEach((message) => {
-
-                    if (
-                        message.sender === "support"
-                    ) {
-
-                        if (message.imageUrl) {
-
-                            addSupportPhoto(
-                                message.imageUrl
-                            );
-
-                        } else {
-
-                            addSupportMessage(
-                                message.message || ""
-                            );
-
-                        }
-
-                    } else {
-
-                        if (message.imageUrl) {
-
-                            addUserPhoto(
-                                message.imageUrl
-                            );
-
-                        } else {
-
-                            addUserMessage(
-                                message.message || ""
-                            );
-
-                        }
+                        messages.push(
+                            messageDoc.data()
+                        );
 
                     }
+                );
 
-                });
+
+                // Sort oldest → newest
+
+                messages.sort(
+                    (a, b) => {
+
+                        const timeA =
+                            a.timestamp
+                                ?.toMillis?.() || 0;
+
+                        const timeB =
+                            b.timestamp
+                                ?.toMillis?.() || 0;
+
+                        return timeA - timeB;
+
+                    }
+                );
+
+
+                if (
+                    messages.length === 0
+                ) {
+
+                    addSupportMessage(
+                        "Hello! How can we help you today?"
+                    );
+
+                } else {
+
+                    messages.forEach(
+                        (message) => {
+
+                            if (
+                                message.sender ===
+                                "support"
+                            ) {
+
+                                if (
+                                    message.imageUrl
+                                ) {
+
+                                    addSupportPhoto(
+                                        message.imageUrl
+                                    );
+
+                                } else {
+
+                                    addSupportMessage(
+                                        message.message ||
+                                        ""
+                                    );
+
+                                }
+
+                            } else {
+
+                                if (
+                                    message.imageUrl
+                                ) {
+
+                                    addUserPhoto(
+                                        message.imageUrl
+                                    );
+
+                                } else {
+
+                                    addUserMessage(
+                                        message.message ||
+                                        ""
+                                    );
+
+                                }
+
+                            }
+
+                        }
+                    );
+
+                }
+
+
+                chatMessages.scrollTop =
+                    chatMessages.scrollHeight;
+
+            },
+
+            (error) => {
+
+                console.error(
+                    "Support chat error:",
+                    error
+                );
 
             }
 
-
-            chatMessages.scrollTop =
-                chatMessages.scrollHeight;
-
-        },
-
-        (error) => {
-
-            console.error(
-                "Support chat error:",
-                error
-            );
-
-        }
-
-    );
+        );
 
 }
 
 
 // ========================================
-// SEND MESSAGE / PHOTO
+// SEND MESSAGE
 // ========================================
 
 async function sendMessage() {
@@ -224,8 +257,13 @@ async function sendMessage() {
         chatInput.value.trim();
 
 
-    if (!text && !selectedPhoto) {
+    if (
+        !text &&
+        !selectedPhoto
+    ) {
+
         return;
+
     }
 
 
@@ -236,6 +274,7 @@ async function sendMessage() {
         );
 
         return;
+
     }
 
 
@@ -245,60 +284,109 @@ async function sendMessage() {
     try {
 
         // ==================================
-        // PHOTO MESSAGE
+        // PHOTO
         // ==================================
 
         if (selectedPhoto) {
 
-            const file =
-                selectedPhoto;
-
-
-            const safeFileName =
-                file.name.replace(
-                    /[^a-zA-Z0-9._-]/g,
-                    "_"
-                );
-
-
-            const fileName =
-                `${Date.now()}_${safeFileName}`;
-
-
-            const storageRef =
-                ref(
-                    storage,
-                    `supportPhotos/${currentUser.uid}/${fileName}`
-                );
-
-
-            // Upload the selected photo once
-
-            await uploadBytes(
-                storageRef,
-                file,
-                {
-                    contentType:
-                        file.type
-                }
+            console.log(
+                "Starting Cloudinary upload..."
             );
 
 
-            // Get the uploaded photo URL
+            // Safety limit matching
+            // your current Cloudinary plan
 
-            const photoURL =
-                await getDownloadURL(
-                    storageRef
+            if (
+                selectedPhoto.size >
+                10 * 1024 * 1024
+            ) {
+
+                alert(
+                    "This photo is larger than 10 MB. Please choose a smaller photo."
+                );
+
+                return;
+
+            }
+
+
+            const formData =
+                new FormData();
+
+
+            formData.append(
+                "file",
+                selectedPhoto
+            );
+
+
+            formData.append(
+                "upload_preset",
+                CLOUDINARY_UPLOAD_PRESET
+            );
+
+
+            console.log(
+                "Uploading photo to Cloudinary..."
+            );
+
+
+            const response =
+                await fetch(
+
+                    `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+
+                    {
+                        method: "POST",
+
+                        body: formData
+
+                    }
+
                 );
 
 
-            // Save message in Firestore
+            const result =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                console.error(
+                    "Cloudinary error:",
+                    result
+                );
+
+                throw new Error(
+                    result.error?.message ||
+                    "Cloudinary upload failed."
+                );
+
+            }
+
+
+            const photoURL =
+                result.secure_url;
+
+
+            console.log(
+                "Cloudinary upload successful:",
+                photoURL
+            );
+
+
+            // ==================================
+            // SAVE MESSAGE TO FIRESTORE
+            // ==================================
 
             await addDoc(
+
                 collection(
                     db,
                     "supportMessages"
                 ),
+
                 {
 
                     userId:
@@ -325,11 +413,14 @@ async function sendMessage() {
                         serverTimestamp()
 
                 }
+
             );
 
 
-            // Clear everything only
-            // after successful Firestore save
+            console.log(
+                "Photo message saved to Firestore."
+            );
+
 
             clearPhotoPreview();
 
@@ -345,10 +436,12 @@ async function sendMessage() {
         else {
 
             await addDoc(
+
                 collection(
                     db,
                     "supportMessages"
                 ),
+
                 {
 
                     userId:
@@ -372,6 +465,7 @@ async function sendMessage() {
                         serverTimestamp()
 
                 }
+
             );
 
 
@@ -388,18 +482,6 @@ async function sendMessage() {
         );
 
 
-        console.error(
-            "Firebase error code:",
-            error.code
-        );
-
-
-        console.error(
-            "Firebase error message:",
-            error.message
-        );
-
-
         alert(
             "Unable to send. Please try again."
         );
@@ -407,7 +489,8 @@ async function sendMessage() {
 
     } finally {
 
-        sendMessageBtn.disabled = false;
+        sendMessageBtn.disabled =
+            false;
 
     }
 
@@ -415,15 +498,15 @@ async function sendMessage() {
 
 
 // ========================================
-// SUPPORT TEXT MESSAGE
+// SUPPORT MESSAGE
 // ========================================
 
 function addSupportMessage(text) {
 
-    const row =
+    const messageRow =
         document.createElement("div");
 
-    row.className =
+    messageRow.className =
         "message-row support-message";
 
 
@@ -465,26 +548,28 @@ function addSupportMessage(text) {
 
 
     content.appendChild(name);
+
     content.appendChild(bubble);
 
-    row.appendChild(avatar);
-    row.appendChild(content);
+    messageRow.appendChild(avatar);
 
-    chatMessages.appendChild(row);
+    messageRow.appendChild(content);
+
+    chatMessages.appendChild(messageRow);
 
 }
 
 
 // ========================================
-// USER TEXT MESSAGE
+// USER MESSAGE
 // ========================================
 
 function addUserMessage(text) {
 
-    const row =
+    const messageRow =
         document.createElement("div");
 
-    row.className =
+    messageRow.className =
         "message-row user-message";
 
 
@@ -507,9 +592,11 @@ function addUserMessage(text) {
 
     content.appendChild(bubble);
 
-    row.appendChild(content);
+    messageRow.appendChild(content);
 
-    chatMessages.appendChild(row);
+    messageRow.appendChild(content);
+
+    chatMessages.appendChild(messageRow);
 
 }
 
@@ -520,10 +607,10 @@ function addUserMessage(text) {
 
 function addSupportPhoto(imageUrl) {
 
-    const row =
+    const messageRow =
         document.createElement("div");
 
-    row.className =
+    messageRow.className =
         "message-row support-message";
 
 
@@ -562,12 +649,14 @@ function addSupportPhoto(imageUrl) {
 
 
     content.appendChild(name);
+
     content.appendChild(image);
 
-    row.appendChild(avatar);
-    row.appendChild(content);
+    messageRow.appendChild(avatar);
 
-    chatMessages.appendChild(row);
+    messageRow.appendChild(content);
+
+    chatMessages.appendChild(messageRow);
 
 }
 
@@ -578,10 +667,10 @@ function addSupportPhoto(imageUrl) {
 
 function addUserPhoto(imageUrl) {
 
-    const row =
+    const messageRow =
         document.createElement("div");
 
-    row.className =
+    messageRow.className =
         "message-row user-message";
 
 
@@ -601,15 +690,15 @@ function addUserPhoto(imageUrl) {
 
     content.appendChild(image);
 
-    row.appendChild(content);
+    messageRow.appendChild(content);
 
-    chatMessages.appendChild(row);
+    chatMessages.appendChild(messageRow);
 
 }
 
 
 // ========================================
-// CREATE CHAT IMAGE
+// CHAT IMAGE
 // ========================================
 
 function createChatImage(
@@ -658,7 +747,10 @@ function createChatImage(
 // PHOTO BUTTON
 // ========================================
 
-if (photoBtn && photoInput) {
+if (
+    photoBtn &&
+    photoInput
+) {
 
     photoBtn.addEventListener(
         "click",
@@ -675,12 +767,10 @@ if (photoBtn && photoInput) {
         () => {
 
             const file =
-                photoInput.files?.[0];
+                photoInput.files[0];
 
 
-            if (!file) {
-                return;
-            }
+            if (!file) return;
 
 
             if (
@@ -700,12 +790,29 @@ if (photoBtn && photoInput) {
             }
 
 
-            selectedPhoto =
-                file;
+            if (
+                file.size >
+                10 * 1024 * 1024
+            ) {
+
+                alert(
+                    "This photo is larger than 10 MB."
+                );
+
+                photoInput.value = "";
+
+                return;
+
+            }
+
+
+            selectedPhoto = file;
 
 
             const imageURL =
-                URL.createObjectURL(file);
+                URL.createObjectURL(
+                    file
+                );
 
 
             photoPreviewImage.src =
@@ -741,92 +848,64 @@ if (removePhotoBtn) {
 
 function clearPhotoPreview() {
 
-    if (
-        photoPreviewImage &&
-        photoPreviewImage.src
-    ) {
-
-        URL.revokeObjectURL(
-            photoPreviewImage.src
-        );
-
-    }
-
-
     selectedPhoto = null;
 
 
-    if (photoInput) {
-        photoInput.value = "";
-    }
+    photoInput.value = "";
 
 
-    if (photoPreviewImage) {
-        photoPreviewImage.src = "";
-    }
+    photoPreviewImage.src = "";
 
 
-    if (photoPreview) {
-
-        photoPreview.style.display =
-            "none";
-
-    }
+    photoPreview.style.display =
+        "none";
 
 }
 
 
 // ========================================
-// SEND BUTTON
+// TEXT SEND EVENTS
 // ========================================
 
-if (sendMessageBtn) {
-
-    sendMessageBtn.addEventListener(
-        "click",
-        sendMessage
-    );
-
-}
+sendMessageBtn.addEventListener(
+    "click",
+    sendMessage
+);
 
 
-// ========================================
-// ENTER TO SEND
-// ========================================
+chatInput.addEventListener(
+    "keydown",
+    (event) => {
 
-if (chatInput) {
+        if (
+            event.key === "Enter"
+        ) {
 
-    chatInput.addEventListener(
-        "keydown",
-        (event) => {
+            event.preventDefault();
 
-            if (
-                event.key === "Enter"
-            ) {
-
-                event.preventDefault();
-
-                sendMessage();
-
-            }
+            sendMessage();
 
         }
-    );
 
-}
+    }
+);
 
 
 // ========================================
 // FULL IMAGE VIEWER
 // ========================================
 
-function openSupportImage(imageUrl) {
+function openSupportImage(
+    imageUrl
+) {
 
     if (
         !supportImageViewer ||
         !supportFullImage
     ) {
+
         return;
+
     }
 
 
@@ -847,7 +926,9 @@ function closeSupportImageViewer() {
         !supportImageViewer ||
         !supportFullImage
     ) {
+
         return;
+
     }
 
 
