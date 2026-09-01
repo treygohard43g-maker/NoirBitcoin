@@ -594,8 +594,6 @@ function addUserMessage(text) {
 
     messageRow.appendChild(content);
 
-    messageRow.appendChild(content);
-
     chatMessages.appendChild(messageRow);
 
 }
