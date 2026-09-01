@@ -253,12 +253,11 @@ async function sendMessage() {
 
         if (selectedPhoto) {
 
-    alert("Photo send started");
+            console.log(
+                "PHOTO SEND STARTED",
+                selectedPhoto
+            );
 
-    console.log(
-        "PHOTO SEND STARTED",
-        selectedPhoto
-    );
             const fileName =
                 `${Date.now()}_${selectedPhoto.name}`;
 
@@ -272,22 +271,17 @@ async function sendMessage() {
                 "Uploading photo..."
             );
 
+            // Upload ONCE
             await uploadBytes(
                 storageRef,
                 selectedPhoto
             );
 
-            await uploadBytes(
-    storageRef,
-    selectedPhoto
-);
+            console.log(
+                "Photo uploaded successfully."
+            );
 
-alert("Photo uploaded successfully.");
-
-console.log(
-    "Photo uploaded successfully."
-);
-
+            // Get uploaded image URL
             const photoURL =
                 await getDownloadURL(storageRef);
 
@@ -296,6 +290,7 @@ console.log(
                 photoURL
             );
 
+            // Save message in Firestore
             await addDoc(
                 collection(
                     db,
@@ -333,8 +328,10 @@ console.log(
                 "Photo message saved successfully."
             );
 
+            // Clear preview after successful send
             clearPhotoPreview();
 
+            // Clear optional text
             chatInput.value = "";
 
         }
@@ -397,7 +394,7 @@ console.log(
         );
 
         alert(
-            "Unable to send. Check the browser console for the exact error."
+            "Unable to send. Please try again."
         );
 
     } finally {
@@ -407,7 +404,6 @@ console.log(
     }
 
 }
-
 // ========================================
 // DISPLAY SUPPORT MESSAGE
 // ========================================
