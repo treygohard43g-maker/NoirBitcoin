@@ -253,11 +253,12 @@ async function sendMessage() {
 
         if (selectedPhoto) {
 
-            console.log(
-                "PHOTO SEND STARTED",
-                selectedPhoto
-            );
+    alert("Photo send started");
 
+    console.log(
+        "PHOTO SEND STARTED",
+        selectedPhoto
+    );
             const fileName =
                 `${Date.now()}_${selectedPhoto.name}`;
 
