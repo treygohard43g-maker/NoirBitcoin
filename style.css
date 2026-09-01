@@ -18370,3 +18370,48 @@ body {
         max-height: 420px;
     }
 }
+
+/* ========================================
+   NOIRBITCOIN — MODERN SUPPORT CAMERA
+======================================== */
+
+.chat-photo-btn {
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.055);
+
+    color: rgba(255, 255, 255, 0.72);
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.chat-photo-btn i {
+    font-size: 16px;
+}
+
+.chat-photo-btn:hover {
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.28);
+    color: #f59e0b;
+    transform: translateY(-1px);
+}
+
+.chat-photo-btn:active {
+    transform: scale(0.94);
+}
