@@ -17080,11 +17080,13 @@ body {
 ========================================================= */
 
 .support-page {
-    min-height: 100vh;
+    height: 100dvh;
+    min-height: 100dvh;
     margin: 0;
     background: #0d1117;
     color: white;
     font-family: Inter, sans-serif;
+    overflow: hidden;
 }
 
 
@@ -17230,7 +17232,7 @@ body {
 ========================================================= */
 
 .support-chat {
-    height: calc(100vh - 72px);
+    height: calc(100dvh - 72px);
     min-height: 0;
 
     display: flex;
@@ -17244,6 +17246,8 @@ body {
     padding: 18px;
 
     box-sizing: border-box;
+
+    overflow: hidden;
 }
 
 
@@ -17497,6 +17501,7 @@ body {
     height: calc(100dvh - 72px);
     min-height: 0;
     padding: 12px;
+    overflow: hidden;
    }
 
     .message-content {
