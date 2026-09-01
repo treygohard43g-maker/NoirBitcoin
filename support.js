@@ -23,6 +23,12 @@ import {
 
 
 const db = getFirestore(auth.app);
+const storage = getStorage(auth.app);
+
+
+// ========================================
+// ELEMENTS
+// ========================================
 
 const chatInput =
     document.getElementById("chatInput");
@@ -33,6 +39,12 @@ const sendMessageBtn =
 const chatMessages =
     document.getElementById("chatMessages");
 
+const photoBtn =
+    document.getElementById("photoBtn");
+
+const photoInput =
+    document.getElementById("photoInput");
+
 const supportImageViewer =
     document.getElementById("supportImageViewer");
 
@@ -42,22 +54,13 @@ const supportFullImage =
 const closeSupportImage =
     document.getElementById("closeSupportImage");
 
-const photoBtn =
-    document.getElementById("photoBtn");
-
-const photoInput =
-    document.getElementById("photoInput");
-
-const storage =
-    getStorage(auth.app);
 
 let currentUser = null;
-
 let unsubscribeMessages = null;
 
 
 // ========================================
-// WAIT FOR FIREBASE AUTH
+// AUTH
 // ========================================
 
 onAuthStateChanged(auth, (user) => {
@@ -77,8 +80,9 @@ onAuthStateChanged(auth, (user) => {
 
 
 // ========================================
-// LOAD USER'S MESSAGES
+// LOAD MESSAGES
 // ========================================
+
 function loadMessages() {
 
     if (!currentUser) return;
@@ -86,6 +90,7 @@ function loadMessages() {
     if (unsubscribeMessages) {
         unsubscribeMessages();
     }
+
 
     const messagesQuery = query(
         collection(db, "supportMessages"),
@@ -96,8 +101,8 @@ function loadMessages() {
         )
     );
 
-    unsubscribeMessages = onSnapshot(
 
+    unsubscribeMessages = onSnapshot(
         messagesQuery,
 
         (snapshot) => {
@@ -106,17 +111,18 @@ function loadMessages() {
 
             const messages = [];
 
+
             snapshot.forEach((messageDoc) => {
 
-                const message = messageDoc.data();
+                const message =
+                    messageDoc.data();
 
                 messages.push(message);
 
             });
 
 
-            // Sort messages by timestamp
-            // without requiring a Firestore index.
+            // Sort locally so no Firestore index is required
 
             messages.sort((a, b) => {
 
@@ -141,41 +147,49 @@ function loadMessages() {
 
                 messages.forEach((message) => {
 
-    if (message.sender === "support") {
+                    // SUPPORT MESSAGE
 
-        if (message.imageUrl) {
+                    if (message.sender === "support") {
 
-            addSupportPhoto(
-                message.imageUrl
-            );
+                        if (message.imageUrl) {
 
-        } else {
+                            addSupportPhoto(
+                                message.imageUrl
+                            );
 
-            addSupportMessage(
-                message.message
-            );
+                        } else {
 
-        }
+                            addSupportMessage(
+                                message.message || ""
+                            );
 
-    } else {
+                        }
 
-        if (message.imageUrl) {
+                    }
 
-            addUserPhoto(
-                message.imageUrl
-            );
+                    // USER MESSAGE
 
-        } else {
+                    else {
 
-            addUserMessage(
-                message.message
-            );
+                        if (message.imageUrl) {
 
-        }
+                            addUserPhoto(
+                                message.imageUrl
+                            );
 
-    }
+                        } else {
 
-});
+                            addUserMessage(
+                                message.message || ""
+                            );
+
+                        }
+
+                    }
+
+                });
+
+            }
 
 
             chatMessages.scrollTop =
@@ -191,13 +205,13 @@ function loadMessages() {
             );
 
         }
-
     );
 
 }
 
+
 // ========================================
-// SEND MESSAGE
+// SEND TEXT MESSAGE
 // ========================================
 
 async function sendMessage() {
@@ -225,35 +239,34 @@ async function sendMessage() {
     try {
 
         await addDoc(
+            collection(
+                db,
+                "supportMessages"
+            ),
+            {
 
-    collection(
-        db,
-        "supportMessages"
-    ),
+                userId:
+                    currentUser.uid,
 
-    {
+                userName:
+                    currentUser.displayName ||
+                    "Customer",
 
-        userId:
-            currentUser.uid,
+                userEmail:
+                    currentUser.email ||
+                    "",
 
-        userName:
-            currentUser.displayName || "Customer",
+                sender:
+                    "user",
 
-        userEmail:
-            currentUser.email || "",
+                message:
+                    text,
 
-        sender:
-            "user",
+                timestamp:
+                    serverTimestamp()
 
-        message:
-            text,
-
-        timestamp:
-            serverTimestamp()
-
-    }
-
-);
+            }
+        );
 
 
         chatInput.value = "";
@@ -279,6 +292,7 @@ async function sendMessage() {
 
 }
 
+
 // ========================================
 // SEND PHOTO
 // ========================================
@@ -286,6 +300,7 @@ async function sendMessage() {
 async function sendPhoto(file) {
 
     if (!file) return;
+
 
     if (!currentUser) {
 
@@ -296,19 +311,25 @@ async function sendPhoto(file) {
         return;
     }
 
+
     if (!file.type.startsWith("image/")) {
 
-        alert("Please select an image.");
+        alert(
+            "Please select an image."
+        );
 
         return;
     }
 
+
     photoBtn.disabled = true;
+
 
     try {
 
         const fileName =
             `${Date.now()}_${file.name}`;
+
 
         const storageRef =
             ref(
@@ -316,13 +337,18 @@ async function sendPhoto(file) {
                 `supportPhotos/${currentUser.uid}/${fileName}`
             );
 
+
         await uploadBytes(
             storageRef,
             file
         );
 
+
         const photoURL =
-            await getDownloadURL(storageRef);
+            await getDownloadURL(
+                storageRef
+            );
+
 
         await addDoc(
             collection(
@@ -335,10 +361,12 @@ async function sendPhoto(file) {
                     currentUser.uid,
 
                 userName:
-                    currentUser.displayName || "Customer",
+                    currentUser.displayName ||
+                    "Customer",
 
                 userEmail:
-                    currentUser.email || "",
+                    currentUser.email ||
+                    "",
 
                 sender:
                     "user",
@@ -355,7 +383,9 @@ async function sendPhoto(file) {
             }
         );
 
+
         photoInput.value = "";
+
 
     } catch (error) {
 
@@ -363,6 +393,7 @@ async function sendPhoto(file) {
             "Photo upload error:",
             error
         );
+
 
         alert(
             "Unable to send photo. Please try again."
@@ -376,15 +407,15 @@ async function sendPhoto(file) {
 
 }
 
+
 // ========================================
-// SUPPORT MESSAGE
+// DISPLAY SUPPORT MESSAGE
 // ========================================
 
 function addSupportMessage(text) {
 
     const messageRow =
         document.createElement("div");
-
 
     messageRow.className =
         "message-row support-message";
@@ -393,10 +424,8 @@ function addSupportMessage(text) {
     const avatar =
         document.createElement("div");
 
-
     avatar.className =
         "message-avatar";
-
 
     avatar.innerHTML =
         '<i class="fa-solid fa-headset"></i>';
@@ -405,7 +434,6 @@ function addSupportMessage(text) {
     const content =
         document.createElement("div");
 
-
     content.className =
         "message-content";
 
@@ -413,10 +441,8 @@ function addSupportMessage(text) {
     const name =
         document.createElement("span");
 
-
     name.className =
         "message-name";
-
 
     name.textContent =
         "NoirBitcoin Support";
@@ -425,10 +451,8 @@ function addSupportMessage(text) {
     const bubble =
         document.createElement("div");
 
-
     bubble.className =
         "message-bubble";
-
 
     bubble.textContent =
         text;
@@ -438,11 +462,9 @@ function addSupportMessage(text) {
 
     content.appendChild(bubble);
 
-
     messageRow.appendChild(avatar);
 
     messageRow.appendChild(content);
-
 
     chatMessages.appendChild(messageRow);
 
@@ -450,14 +472,13 @@ function addSupportMessage(text) {
 
 
 // ========================================
-// USER MESSAGE
+// DISPLAY USER MESSAGE
 // ========================================
 
 function addUserMessage(text) {
 
     const messageRow =
         document.createElement("div");
-
 
     messageRow.className =
         "message-row user-message";
@@ -466,7 +487,6 @@ function addUserMessage(text) {
     const content =
         document.createElement("div");
 
-
     content.className =
         "message-content";
 
@@ -474,10 +494,8 @@ function addUserMessage(text) {
     const bubble =
         document.createElement("div");
 
-
     bubble.className =
         "message-bubble";
-
 
     bubble.textContent =
         text;
@@ -485,9 +503,7 @@ function addUserMessage(text) {
 
     content.appendChild(bubble);
 
-
     messageRow.appendChild(content);
-
 
     chatMessages.appendChild(messageRow);
 
@@ -495,7 +511,7 @@ function addUserMessage(text) {
 
 
 // ========================================
-// SUPPORT PHOTO
+// DISPLAY SUPPORT PHOTO
 // ========================================
 
 function addSupportPhoto(imageUrl) {
@@ -506,6 +522,7 @@ function addSupportPhoto(imageUrl) {
     messageRow.className =
         "message-row support-message";
 
+
     const avatar =
         document.createElement("div");
 
@@ -515,11 +532,13 @@ function addSupportPhoto(imageUrl) {
     avatar.innerHTML =
         '<i class="fa-solid fa-headset"></i>';
 
+
     const content =
         document.createElement("div");
 
     content.className =
         "message-content";
+
 
     const name =
         document.createElement("span");
@@ -530,42 +549,13 @@ function addSupportPhoto(imageUrl) {
     name.textContent =
         "NoirBitcoin Support";
 
+
     const image =
-        document.createElement("img");
-
-    image.className =
-        "support-chat-image";
-
-    image.src =
-        imageUrl;
-
-    image.alt =
-        "Support photo";
-
-    image.loading =
-        "lazy";
-
-image.addEventListener(
-    "click",
-    () => {
-
-        openSupportImage(
-            imageUrl
+        createChatImage(
+            imageUrl,
+            "Support photo"
         );
 
-    }
-);
-
-image.addEventListener(
-    "click",
-    () => {
-
-        openSupportImage(
-            imageUrl
-        );
-
-    }
-);
 
     content.appendChild(name);
 
@@ -576,11 +566,12 @@ image.addEventListener(
     messageRow.appendChild(content);
 
     chatMessages.appendChild(messageRow);
+
 }
 
 
 // ========================================
-// USER PHOTO
+// DISPLAY USER PHOTO
 // ========================================
 
 function addUserPhoto(imageUrl) {
@@ -591,11 +582,38 @@ function addUserPhoto(imageUrl) {
     messageRow.className =
         "message-row user-message";
 
+
     const content =
         document.createElement("div");
 
     content.className =
         "message-content";
+
+
+    const image =
+        createChatImage(
+            imageUrl,
+            "Photo"
+        );
+
+
+    content.appendChild(image);
+
+    messageRow.appendChild(content);
+
+    chatMessages.appendChild(messageRow);
+
+}
+
+
+// ========================================
+// CREATE CHAT IMAGE
+// ========================================
+
+function createChatImage(
+    imageUrl,
+    altText
+) {
 
     const image =
         document.createElement("img");
@@ -607,35 +625,40 @@ function addUserPhoto(imageUrl) {
         imageUrl;
 
     image.alt =
-        "Photo";
+        altText;
 
     image.loading =
         "lazy";
 
-    content.appendChild(image);
+    image.addEventListener(
+        "click",
+        () => {
 
-    messageRow.appendChild(content);
+            openSupportImage(
+                imageUrl
+            );
 
-    chatMessages.appendChild(messageRow);
+        }
+    );
+
+
+    return image;
+
 }
+
 
 // ========================================
 // EVENTS
 // ========================================
 
 sendMessageBtn.addEventListener(
-
     "click",
-
     sendMessage
-
 );
 
 
 chatInput.addEventListener(
-
     "keydown",
-
     (event) => {
 
         if (event.key === "Enter") {
@@ -647,43 +670,59 @@ chatInput.addEventListener(
         }
 
     }
-
-);
-
-photoBtn.addEventListener(
-    "click",
-    () => {
-
-        photoInput.click();
-
-    }
 );
 
 
-photoInput.addEventListener(
-    "change",
-    () => {
+// PHOTO BUTTON
 
-        const file =
-            photoInput.files[0];
+if (photoBtn && photoInput) {
 
-        if (file) {
+    photoBtn.addEventListener(
+        "click",
+        () => {
 
-            sendPhoto(file);
+            photoInput.click();
 
         }
+    );
 
-    }
-);
+
+    photoInput.addEventListener(
+        "change",
+        () => {
+
+            const file =
+                photoInput.files[0];
+
+            if (file) {
+
+                sendPhoto(file);
+
+            }
+
+        }
+    );
+
+}
+
 
 // ========================================
-// SUPPORT IMAGE VIEWER
+// IMAGE VIEWER
 // ========================================
 
 function openSupportImage(imageUrl) {
 
+    if (
+        !supportImageViewer ||
+        !supportFullImage
+    ) {
+        return;
+    }
+
+
     supportFullImage.src =
         imageUrl;
+
 
     supportImageViewer.classList.add(
         "active"
@@ -694,33 +733,50 @@ function openSupportImage(imageUrl) {
 
 function closeSupportImageViewer() {
 
+    if (
+        !supportImageViewer ||
+        !supportFullImage
+    ) {
+        return;
+    }
+
+
     supportImageViewer.classList.remove(
         "active"
     );
+
 
     supportFullImage.src = "";
 
 }
 
 
-closeSupportImage.addEventListener(
-    "click",
-    closeSupportImageViewer
-);
+if (closeSupportImage) {
+
+    closeSupportImage.addEventListener(
+        "click",
+        closeSupportImageViewer
+    );
+
+}
 
 
-supportImageViewer.addEventListener(
-    "click",
-    (event) => {
+if (supportImageViewer) {
 
-        if (
-            event.target ===
-            supportImageViewer
-        ) {
+    supportImageViewer.addEventListener(
+        "click",
+        (event) => {
 
-            closeSupportImageViewer();
+            if (
+                event.target ===
+                supportImageViewer
+            ) {
+
+                closeSupportImageViewer();
+
+            }
 
         }
+    );
 
-    }
-);
+}
