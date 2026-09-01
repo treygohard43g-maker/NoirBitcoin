@@ -231,25 +231,30 @@ function renderCustomers(customers) {
 // SELECT CUSTOMER
 // ========================================
 
-function selectCustomer(userId, customerName) {
+function selectCustomer(
+    userId,
+    customerName,
+    customerEmail
+) {
 
     selectedUserId = userId;
 
     conversationHeader.innerHTML = `
 
-        <div>
+    <div>
 
-            <h2>
-                ${customerName}
-            </h2>
+        <h2>
+            ${escapeHTML(customerName)}
+        </h2>
 
-            <span>
-                Live support conversation
-            </span>
+        <span>
+            ${escapeHTML(customerEmail || "No email available")}
+            · Live support conversation
+        </span>
 
-        </div>
+    </div>
 
-    `;
+`;
 
     adminReplyInput.disabled = false;
     adminSendBtn.disabled = false;
