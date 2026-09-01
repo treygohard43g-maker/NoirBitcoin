@@ -17074,3 +17074,431 @@ body {
         inset 0 1px 0 rgba(255, 255, 255, 0.12),
         0 4px 12px rgba(0, 0, 0, 0.20);
 }
+
+/* =========================================================
+   NOIRBITCOIN — PREMIUM SUPPORT CHAT
+========================================================= */
+
+.support-page {
+    min-height: 100vh;
+    margin: 0;
+    background: #0d1117;
+    color: white;
+    font-family: Inter, sans-serif;
+}
+
+
+/* =========================================================
+   SUPPORT HEADER
+========================================================= */
+
+.support-header {
+
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 0 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245, 158, 11, 0.18),
+            rgba(13, 17, 23, 0.92)
+        );
+
+    border-bottom:
+        1px solid rgba(245, 158, 11, 0.18);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* BACK BUTTON */
+
+.support-back {
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(245, 158, 11, 0.22);
+
+    border-radius: 11px;
+
+    background:
+        rgba(245, 158, 11, 0.08);
+
+    color: #f59e0b;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.support-back:hover {
+
+    background:
+        rgba(245, 158, 11, 0.18);
+
+    transform: translateX(-2px);
+}
+
+
+/* TITLE */
+
+.support-title {
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+}
+
+.support-title h1 {
+
+    margin: 0;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.support-title span {
+
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 3px;
+
+    font-size: 11px;
+
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.support-title span i {
+
+    font-size: 6px;
+
+    color: #f59e0b;
+}
+
+
+/* SUPPORT ICON */
+
+.support-icon {
+
+    width: 39px;
+    height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    color: #f59e0b;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245, 158, 11, 0.95),
+            rgba(13, 17, 23, 0.95)
+        );
+
+    border:
+        1px solid rgba(245, 158, 11, 0.35);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================================================
+   CHAT AREA
+========================================================= */
+
+.support-chat {
+
+    height:
+        calc(100vh - 72px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    padding: 18px;
+}
+
+
+/* MESSAGES */
+
+.chat-messages {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 10px 2px 20px;
+}
+
+
+/* MESSAGE ROW */
+
+.message-row {
+
+    display: flex;
+
+    margin-bottom: 18px;
+}
+
+
+/* SUPPORT MESSAGE */
+
+.support-message {
+
+    justify-content: flex-start;
+
+    gap: 9px;
+}
+
+
+/* AVATAR */
+
+.message-avatar {
+
+    width: 32px;
+    height: 32px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245, 158, 11, 0.9),
+            rgba(13, 17, 23, 0.95)
+        );
+
+    color: #f59e0b;
+
+    font-size: 13px;
+}
+
+
+/* MESSAGE CONTENT */
+
+.message-content {
+
+    max-width: 78%;
+}
+
+
+/* NAME */
+
+.message-name {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 11px;
+
+    color: rgba(255, 255, 255, 0.45);
+}
+
+
+/* BUBBLE */
+
+.message-bubble {
+
+    padding: 11px 14px;
+
+    border-radius: 14px;
+
+    font-size: 14px;
+
+    line-height: 1.45;
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+
+/* USER MESSAGE */
+
+.user-message {
+
+    justify-content: flex-end;
+}
+
+.user-message .message-bubble {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245, 158, 11, 0.95),
+            rgba(217, 119, 6, 0.92)
+        );
+
+    color: #111827;
+
+    border:
+        none;
+
+    border-radius:
+        14px 14px 4px 14px;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.chat-input-area {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 8px;
+
+    border:
+        1px solid rgba(245, 158, 11, 0.22);
+
+    border-radius: 15px;
+
+    background:
+        rgba(17, 24, 39, 0.78);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.28);
+}
+
+
+/* INPUT */
+
+#chatInput {
+
+    flex: 1;
+
+    min-width: 0;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    padding: 9px 8px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+}
+
+#chatInput::placeholder {
+
+    color:
+        rgba(255, 255, 255, 0.38);
+}
+
+
+/* SEND BUTTON */
+
+#sendMessageBtn {
+
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #d97706
+        );
+
+    color: #111827;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#sendMessageBtn:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 18px rgba(245, 158, 11, 0.25);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .support-header {
+        padding: 0 13px;
+    }
+
+    .support-chat {
+        padding: 12px;
+    }
+
+    .message-content {
+        max-width: 84%;
+    }
+
+    .support-title h1 {
+        font-size: 15px;
+    }
+
+}
