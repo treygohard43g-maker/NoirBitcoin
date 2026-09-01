@@ -545,6 +545,28 @@ function addSupportPhoto(imageUrl) {
     image.loading =
         "lazy";
 
+image.addEventListener(
+    "click",
+    () => {
+
+        openSupportImage(
+            imageUrl
+        );
+
+    }
+);
+
+image.addEventListener(
+    "click",
+    () => {
+
+        openSupportImage(
+            imageUrl
+        );
+
+    }
+);
+
     content.appendChild(name);
 
     content.appendChild(image);
