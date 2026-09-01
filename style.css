@@ -14454,11 +14454,6 @@ html body main#mainSite.main-site section.new-hero
         box-shadow 0.25s ease;
 }
 
-
-/* =========================================================
-   GLOWING ORANGE OUTER CONTAINER
-========================================================= */
-
 /* =========================================================
    VISIBLE ORANGE BUTTON CONTAINER
 ========================================================= */
@@ -14468,26 +14463,25 @@ html body main#mainSite.main-site section.new-hero
 
     position: absolute;
 
-    top: -7px;
-    right: -7px;
-    bottom: -7px;
-    left: -7px;
+    top: -9px;
+    right: -9px;
+    bottom: -9px;
+    left: -9px;
 
-    border-radius: 21px;
+    border: 3px solid #d96b13;
 
-    border: 2px solid #d96b13;
+    border-radius: 23px;
 
     background: transparent;
 
     box-shadow:
-        0 0 8px rgba(217, 107, 19, 0.45),
-        0 0 18px rgba(217, 107, 19, 0.22);
+        0 0 6px #d96b13,
+        0 0 16px rgba(217, 107, 19, 0.65);
 
     pointer-events: none;
 
-    z-index: 0;
+    z-index: 10;
 }
-
 
 /* =========================================================
    GLOSSY LIGHT SWEEP
