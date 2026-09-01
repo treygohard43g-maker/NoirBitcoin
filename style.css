@@ -18256,3 +18256,84 @@ body {
     background:
         rgba(255, 255, 255, 0.20);
 }
+
+/* ========================================
+   NOIRBITCOIN — SUPPORT PHOTO PREVIEW
+======================================== */
+
+.photo-preview {
+    display: none;
+    width: 100%;
+    padding: 8px 14px 6px;
+    box-sizing: border-box;
+    background: transparent;
+}
+
+
+/* Preview card */
+
+.photo-preview {
+    position: relative;
+}
+
+
+.photo-preview img {
+    width: 76px;
+    height: 76px;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.25);
+
+}
+
+
+/* Remove button */
+
+#removePhotoBtn {
+    position: absolute;
+
+    left: 72px;
+    top: 2px;
+
+    width: 24px;
+    height: 24px;
+
+    padding: 0;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 50%;
+
+    background: rgba(15, 18, 23, 0.92);
+
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 5;
+}
+
+
+#removePhotoBtn i {
+    font-size: 11px;
+}
+
+
+/* Keep the message bar underneath */
+
+.chat-input-area {
+    position: relative;
+    z-index: 2;
+}
