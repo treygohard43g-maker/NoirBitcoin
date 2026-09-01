@@ -12847,14 +12847,14 @@ body {
     border-radius: 16px;
 
     background:
-        linear-gradient(
-            145deg,
-            #211810 0%,
-            #120c08 48%,
-            #090706 100%
-        );
+    linear-gradient(
+        145deg,
+        #ff9a3c 0%,
+        #f7931a 48%,
+        #d96b13 100%
+    );
 
-    border: 1px solid rgba(247, 147, 26, 0.28);
+    border: 1px solid rgba(255, 180, 90, 0.85);
 
     color: #ffffff;
 
@@ -14418,12 +14418,12 @@ html body main#mainSite.main-site section.new-hero
     border-radius: 16px;
 
     background:
-        linear-gradient(
-            145deg,
-            #211810 0%,
-            #120c08 50%,
-            #080605 100%
-        );
+    linear-gradient(
+        145deg,
+        #ff9a3c 0%,
+        #f7931a 50%,
+        #d96b13 100%
+    );
 
     color: #fff8ef !important;
 
