@@ -132,25 +132,41 @@ function loadMessages() {
 
                 messages.forEach((message) => {
 
-                    if (
-                        message.sender === "support"
-                    ) {
+    if (message.sender === "support") {
 
-                        addSupportMessage(
-                            message.message
-                        );
+        if (message.imageUrl) {
 
-                    } else {
+            addSupportPhoto(
+                message.imageUrl
+            );
 
-                        addUserMessage(
-                            message.message
-                        );
+        } else {
 
-                    }
+            addSupportMessage(
+                message.message
+            );
 
-                });
+        }
 
-            }
+    } else {
+
+        if (message.imageUrl) {
+
+            addUserPhoto(
+                message.imageUrl
+            );
+
+        } else {
+
+            addUserMessage(
+                message.message
+            );
+
+        }
+
+    }
+
+});
 
 
             chatMessages.scrollTop =
@@ -468,6 +484,109 @@ function addUserMessage(text) {
 
 }
 
+
+// ========================================
+// SUPPORT PHOTO
+// ========================================
+
+function addSupportPhoto(imageUrl) {
+
+    const messageRow =
+        document.createElement("div");
+
+    messageRow.className =
+        "message-row support-message";
+
+    const avatar =
+        document.createElement("div");
+
+    avatar.className =
+        "message-avatar";
+
+    avatar.innerHTML =
+        '<i class="fa-solid fa-headset"></i>';
+
+    const content =
+        document.createElement("div");
+
+    content.className =
+        "message-content";
+
+    const name =
+        document.createElement("span");
+
+    name.className =
+        "message-name";
+
+    name.textContent =
+        "NoirBitcoin Support";
+
+    const image =
+        document.createElement("img");
+
+    image.className =
+        "support-chat-image";
+
+    image.src =
+        imageUrl;
+
+    image.alt =
+        "Support photo";
+
+    image.loading =
+        "lazy";
+
+    content.appendChild(name);
+
+    content.appendChild(image);
+
+    messageRow.appendChild(avatar);
+
+    messageRow.appendChild(content);
+
+    chatMessages.appendChild(messageRow);
+}
+
+
+// ========================================
+// USER PHOTO
+// ========================================
+
+function addUserPhoto(imageUrl) {
+
+    const messageRow =
+        document.createElement("div");
+
+    messageRow.className =
+        "message-row user-message";
+
+    const content =
+        document.createElement("div");
+
+    content.className =
+        "message-content";
+
+    const image =
+        document.createElement("img");
+
+    image.className =
+        "support-chat-image";
+
+    image.src =
+        imageUrl;
+
+    image.alt =
+        "Photo";
+
+    image.loading =
+        "lazy";
+
+    content.appendChild(image);
+
+    messageRow.appendChild(content);
+
+    chatMessages.appendChild(messageRow);
+}
 
 // ========================================
 // EVENTS
