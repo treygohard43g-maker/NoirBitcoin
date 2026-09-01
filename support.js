@@ -44,6 +44,17 @@ const photoBtn =
 
 const photoInput =
     document.getElementById("photoInput");
+    
+    const photoPreview =
+    document.getElementById("photoPreview");
+
+const photoPreviewImage =
+    document.getElementById("photoPreviewImage");
+
+const removePhotoBtn =
+    document.getElementById("removePhotoBtn");
+
+let selectedPhoto = null;
 
 const supportImageViewer =
     document.getElementById("supportImageViewer");
@@ -219,9 +230,10 @@ async function sendMessage() {
     const text =
         chatInput.value.trim();
 
-
-    if (!text) return;
-
+    // Nothing selected
+    if (!text && !selectedPhoto) {
+        return;
+    }
 
     if (!currentUser) {
 
@@ -232,53 +244,112 @@ async function sendMessage() {
         return;
     }
 
-
     sendMessageBtn.disabled = true;
-
 
     try {
 
-        await addDoc(
-            collection(
-                db,
-                "supportMessages"
-            ),
-            {
+        // ==============================
+        // SEND PHOTO
+        // ==============================
 
-                userId:
-                    currentUser.uid,
+        if (selectedPhoto) {
 
-                userName:
-                    currentUser.displayName ||
-                    "Customer",
+            const fileName =
+                `${Date.now()}_${selectedPhoto.name}`;
 
-                userEmail:
-                    currentUser.email ||
-                    "",
+            const storageRef =
+                ref(
+                    storage,
+                    `supportPhotos/${currentUser.uid}/${fileName}`
+                );
 
-                sender:
-                    "user",
+            await uploadBytes(
+                storageRef,
+                selectedPhoto
+            );
 
-                message:
-                    text,
+            const photoURL =
+                await getDownloadURL(storageRef);
 
-                timestamp:
-                    serverTimestamp()
+            await addDoc(
+                collection(
+                    db,
+                    "supportMessages"
+                ),
+                {
+                    userId:
+                        currentUser.uid,
 
-            }
-        );
+                    userName:
+                        currentUser.displayName ||
+                        "Customer",
 
+                    userEmail:
+                        currentUser.email ||
+                        "",
+
+                    sender:
+                        "user",
+
+                    message:
+                        text,
+
+                    imageUrl:
+                        photoURL,
+
+                    timestamp:
+                        serverTimestamp()
+                }
+            );
+
+            clearPhotoPreview();
+        }
+
+
+        // ==============================
+        // SEND TEXT
+        // ==============================
+
+        else {
+
+            await addDoc(
+                collection(
+                    db,
+                    "supportMessages"
+                ),
+                {
+                    userId:
+                        currentUser.uid,
+
+                    userName:
+                        currentUser.displayName ||
+                        "Customer",
+
+                    userEmail:
+                        currentUser.email ||
+                        "",
+
+                    sender:
+                        "user",
+
+                    message:
+                        text,
+
+                    timestamp:
+                        serverTimestamp()
+                }
+            );
+
+        }
 
         chatInput.value = "";
-
 
     } catch (error) {
 
         console.error(
-            "Unable to send support message:",
+            "Unable to send message:",
             error
         );
-
 
         alert(
             "Unable to send your message. Please try again."
@@ -291,122 +362,6 @@ async function sendMessage() {
     }
 
 }
-
-
-// ========================================
-// SEND PHOTO
-// ========================================
-
-async function sendPhoto(file) {
-
-    if (!file) return;
-
-
-    if (!currentUser) {
-
-        alert(
-            "Please wait for your account to load."
-        );
-
-        return;
-    }
-
-
-    if (!file.type.startsWith("image/")) {
-
-        alert(
-            "Please select an image."
-        );
-
-        return;
-    }
-
-
-    photoBtn.disabled = true;
-
-
-    try {
-
-        const fileName =
-            `${Date.now()}_${file.name}`;
-
-
-        const storageRef =
-            ref(
-                storage,
-                `supportPhotos/${currentUser.uid}/${fileName}`
-            );
-
-
-        await uploadBytes(
-            storageRef,
-            file
-        );
-
-
-        const photoURL =
-            await getDownloadURL(
-                storageRef
-            );
-
-
-        await addDoc(
-            collection(
-                db,
-                "supportMessages"
-            ),
-            {
-
-                userId:
-                    currentUser.uid,
-
-                userName:
-                    currentUser.displayName ||
-                    "Customer",
-
-                userEmail:
-                    currentUser.email ||
-                    "",
-
-                sender:
-                    "user",
-
-                message:
-                    "",
-
-                imageUrl:
-                    photoURL,
-
-                timestamp:
-                    serverTimestamp()
-
-            }
-        );
-
-
-        photoInput.value = "";
-
-
-    } catch (error) {
-
-        console.error(
-            "Photo upload error:",
-            error
-        );
-
-
-        alert(
-            "Unable to send photo. Please try again."
-        );
-
-    } finally {
-
-        photoBtn.disabled = false;
-
-    }
-
-}
-
 
 // ========================================
 // DISPLAY SUPPORT MESSAGE
@@ -673,7 +628,9 @@ chatInput.addEventListener(
 );
 
 
+// ========================================
 // PHOTO BUTTON
+// ========================================
 
 if (photoBtn && photoInput) {
 
@@ -694,17 +651,66 @@ if (photoBtn && photoInput) {
             const file =
                 photoInput.files[0];
 
-            if (file) {
+            if (!file) return;
 
-                sendPhoto(file);
+            if (!file.type.startsWith("image/")) {
 
+                alert(
+                    "Please select an image."
+                );
+
+                photoInput.value = "";
+
+                return;
             }
+
+            selectedPhoto = file;
+
+            const imageURL =
+                URL.createObjectURL(file);
+
+            photoPreviewImage.src =
+                imageURL;
+
+            photoPreview.style.display =
+                "flex";
 
         }
     );
 
 }
 
+
+// ========================================
+// REMOVE SELECTED PHOTO
+// ========================================
+
+if (removePhotoBtn) {
+
+    removePhotoBtn.addEventListener(
+        "click",
+        clearPhotoPreview
+    );
+
+}
+
+
+// ========================================
+// CLEAR PHOTO PREVIEW
+// ========================================
+
+function clearPhotoPreview() {
+
+    selectedPhoto = null;
+
+    photoInput.value = "";
+
+    photoPreviewImage.src = "";
+
+    photoPreview.style.display =
+        "none";
+
+}
 
 // ========================================
 // IMAGE VIEWER
