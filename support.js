@@ -11,13 +11,25 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
 const db = getFirestore(auth.app);
 
-const chatInput = document.getElementById("chatInput");
-const sendMessageBtn = document.getElementById("sendMessageBtn");
-const chatMessages = document.getElementById("chatMessages");
+const chatInput =
+    document.getElementById("chatInput");
+
+const sendMessageBtn =
+    document.getElementById("sendMessageBtn");
+
+const chatMessages =
+    document.getElementById("chatMessages");
+
 
 let currentUser = null;
+
 let unsubscribeMessages = null;
 
 
@@ -25,16 +37,19 @@ let unsubscribeMessages = null;
 // WAIT FOR FIREBASE AUTH
 // ========================================
 
-auth.onAuthStateChanged(async (user) => {
+onAuthStateChanged(auth, (user) => {
 
     if (!user) {
+
         window.location.href = "login.html";
+
         return;
     }
 
     currentUser = user;
 
     loadMessages();
+
 });
 
 
@@ -46,21 +61,40 @@ function loadMessages() {
 
     if (!currentUser) return;
 
+
     if (unsubscribeMessages) {
+
         unsubscribeMessages();
+
     }
 
+
     const messagesQuery = query(
+
         collection(db, "supportMessages"),
-        where("userId", "==", currentUser.uid),
-        orderBy("timestamp", "asc")
+
+        where(
+            "userId",
+            "==",
+            currentUser.uid
+        ),
+
+        orderBy(
+            "timestamp",
+            "asc"
+        )
+
     );
 
+
     unsubscribeMessages = onSnapshot(
+
         messagesQuery,
+
         (snapshot) => {
 
             chatMessages.innerHTML = "";
+
 
             if (snapshot.empty) {
 
@@ -71,29 +105,39 @@ function loadMessages() {
                 return;
             }
 
-            snapshot.forEach((messageDoc) => {
 
-                const message = messageDoc.data();
+            snapshot.forEach(
+                (messageDoc) => {
 
-                if (message.sender === "support") {
+                    const message =
+                        messageDoc.data();
 
-                    addSupportMessage(
-                        message.message
-                    );
 
-                } else {
+                    if (
+                        message.sender === "support"
+                    ) {
 
-                    addUserMessage(
-                        message.message
-                    );
+                        addSupportMessage(
+                            message.message
+                        );
+
+                    } else {
+
+                        addUserMessage(
+                            message.message
+                        );
+
+                    }
 
                 }
+            );
 
-            });
 
             chatMessages.scrollTop =
                 chatMessages.scrollHeight;
+
         },
+
         (error) => {
 
             console.error(
@@ -102,7 +146,9 @@ function loadMessages() {
             );
 
         }
+
     );
+
 }
 
 
@@ -112,25 +158,56 @@ function loadMessages() {
 
 async function sendMessage() {
 
-    const text = chatInput.value.trim();
+    const text =
+        chatInput.value.trim();
 
-    if (!text || !currentUser) return;
+
+    if (!text) return;
+
+
+    if (!currentUser) {
+
+        alert(
+            "Please wait for your account to load."
+        );
+
+        return;
+    }
+
 
     sendMessageBtn.disabled = true;
+
 
     try {
 
         await addDoc(
-            collection(db, "supportMessages"),
+
+            collection(
+                db,
+                "supportMessages"
+            ),
+
             {
-                userId: currentUser.uid,
-                sender: "user",
-                message: text,
-                timestamp: serverTimestamp()
+
+                userId:
+                    currentUser.uid,
+
+                sender:
+                    "user",
+
+                message:
+                    text,
+
+                timestamp:
+                    serverTimestamp()
+
             }
+
         );
 
+
         chatInput.value = "";
+
 
     } catch (error) {
 
@@ -139,6 +216,7 @@ async function sendMessage() {
             error
         );
 
+
         alert(
             "Unable to send your message. Please try again."
         );
@@ -146,7 +224,9 @@ async function sendMessage() {
     } finally {
 
         sendMessageBtn.disabled = false;
+
     }
+
 }
 
 
@@ -159,49 +239,67 @@ function addSupportMessage(text) {
     const messageRow =
         document.createElement("div");
 
+
     messageRow.className =
         "message-row support-message";
+
 
     const avatar =
         document.createElement("div");
 
+
     avatar.className =
         "message-avatar";
+
 
     avatar.innerHTML =
         '<i class="fa-solid fa-headset"></i>';
 
+
     const content =
         document.createElement("div");
+
 
     content.className =
         "message-content";
 
+
     const name =
         document.createElement("span");
+
 
     name.className =
         "message-name";
 
+
     name.textContent =
         "NoirBitcoin Support";
+
 
     const bubble =
         document.createElement("div");
 
+
     bubble.className =
         "message-bubble";
+
 
     bubble.textContent =
         text;
 
+
     content.appendChild(name);
+
     content.appendChild(bubble);
 
+
     messageRow.appendChild(avatar);
+
     messageRow.appendChild(content);
 
+
     chatMessages.appendChild(messageRow);
+
 }
 
 
@@ -214,29 +312,39 @@ function addUserMessage(text) {
     const messageRow =
         document.createElement("div");
 
+
     messageRow.className =
         "message-row user-message";
+
 
     const content =
         document.createElement("div");
 
+
     content.className =
         "message-content";
+
 
     const bubble =
         document.createElement("div");
 
+
     bubble.className =
         "message-bubble";
+
 
     bubble.textContent =
         text;
 
+
     content.appendChild(bubble);
+
 
     messageRow.appendChild(content);
 
+
     chatMessages.appendChild(messageRow);
+
 }
 
 
@@ -245,12 +353,18 @@ function addUserMessage(text) {
 // ========================================
 
 sendMessageBtn.addEventListener(
+
     "click",
+
     sendMessage
+
 );
 
+
 chatInput.addEventListener(
+
     "keydown",
+
     (event) => {
 
         if (event.key === "Enter") {
@@ -258,7 +372,9 @@ chatInput.addEventListener(
             event.preventDefault();
 
             sendMessage();
+
         }
 
     }
+
 );
