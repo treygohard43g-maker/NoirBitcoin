@@ -113,76 +113,7 @@
 
     </main>
 
-
-    <script>
-
-        const chatInput =
-            document.getElementById("chatInput");
-
-        const sendMessageBtn =
-            document.getElementById("sendMessageBtn");
-
-        const chatMessages =
-            document.getElementById("chatMessages");
-
-
-        function sendMessage() {
-
-            const text =
-                chatInput.value.trim();
-
-            if (!text) return;
-
-
-            const messageRow =
-                document.createElement("div");
-
-            messageRow.className =
-                "message-row user-message";
-
-
-            messageRow.innerHTML = `
-
-                <div class="message-content">
-
-                    <div class="message-bubble">
-                        ${text}
-                    </div>
-
-                </div>
-
-            `;
-
-
-            chatMessages.appendChild(messageRow);
-
-            chatInput.value = "";
-
-            chatMessages.scrollTop =
-                chatMessages.scrollHeight;
-        }
-
-
-        sendMessageBtn.addEventListener(
-            "click",
-            sendMessage
-        );
-
-
-        chatInput.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (event.key === "Enter") {
-
-                    sendMessage();
-
-                }
-
-            }
-        );
-
-    </script>
+ <script type="module" src="support.js"></script>
 
 </body>
 
