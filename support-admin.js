@@ -89,7 +89,8 @@ function loadCustomers() {
                     customers.set(
     message.userId,
     {
-        userId: message.userId,
+        userId:
+            message.userId,
 
         userName:
             message.userName || "",
@@ -100,13 +101,16 @@ function loadCustomers() {
         lastMessage:
             message.message || "",
 
+        imageUrl:
+            message.imageUrl || "",
+
         sender:
             message.sender || "user",
 
         timestamp:
             message.timestamp
     }
- );
+);
 
  }
 
@@ -172,6 +176,20 @@ function renderCustomers(customers) {
         item.type = "button";
 
 
+        // Highlight currently selected customer
+
+        if (
+            selectedUserId ===
+            customer.userId
+        ) {
+
+            item.classList.add(
+                "active"
+            );
+
+        }
+
+
         const customerName =
             customer.userName ||
             "Customer";
@@ -179,6 +197,42 @@ function renderCustomers(customers) {
         const customerEmail =
             customer.userEmail ||
             "No email available";
+
+
+        // Show "Photo" instead of an empty
+        // preview when the latest message
+        // contains an image.
+
+        const preview =
+            customer.imageUrl
+                ? "📷 Photo"
+                : (
+                    customer.lastMessage ||
+                    "No message"
+                );
+
+
+        const messageTime =
+            formatMessageTime(
+                customer.timestamp
+            );
+
+
+        // Customer's latest message is
+        // considered unread when it was
+        // sent by the customer.
+
+        const isUnread =
+            customer.sender === "user";
+
+
+        if (isUnread) {
+
+            item.classList.add(
+                "unread"
+            );
+
+        }
 
 
         item.innerHTML = `
@@ -189,22 +243,61 @@ function renderCustomers(customers) {
 
             <div class="customer-info">
 
-                <strong>
-                    ${escapeHTML(customerName)}
-                </strong>
+                <div class="customer-top-row">
 
-                <small>
+                    <strong>
+                        ${escapeHTML(customerName)}
+                    </strong>
+
+                    <small class="customer-time">
+                        ${messageTime}
+                    </small>
+
+                </div>
+
+                <small class="customer-email">
                     ${escapeHTML(customerEmail)}
                 </small>
 
-                <span>
-                    ${escapeHTML(customer.lastMessage)}
+                <span class="customer-preview">
+                    ${escapeHTML(preview)}
                 </span>
 
             </div>
 
+            ${
+                isUnread
+                    ? `
+                        <span
+                            class="unread-dot"
+                            aria-label="Unread message">
+                        </span>
+                      `
+                    : ""
+            }
+
         `;
 
+
+        item.addEventListener(
+            "click",
+            () => {
+
+                selectCustomer(
+                    customer.userId,
+                    customerName,
+                    customerEmail
+                );
+
+            }
+        );
+
+
+        customerList.appendChild(item);
+
+    });
+
+}
 
         item.addEventListener(
             "click",
