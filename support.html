@@ -69,26 +69,44 @@
 
         <!-- MESSAGE INPUT -->
 
-        <div class="chat-input-area">
+<div class="chat-input-area">
 
-            <input
-                type="text"
-                id="chatInput"
-                placeholder="Type your message..."
-                autocomplete="off">
+    <!-- PHOTO / CAMERA BUTTON -->
 
-            <button
-                id="sendMessageBtn"
-                type="button"
-                aria-label="Send message">
+    <button
+        id="photoBtn"
+        class="chat-photo-btn"
+        type="button"
+        aria-label="Send photo">
 
-                <i class="fa-solid fa-arrow-up"></i>
+        <i class="fa-solid fa-camera"></i>
 
-            </button>
+    </button>
 
-        </div>
+    <input
+        type="file"
+        id="photoInput"
+        accept="image/*"
+        capture="environment"
+        hidden>
 
-    </main>
+    <input
+        type="text"
+        id="chatInput"
+        placeholder="Type your message..."
+        autocomplete="off">
+
+    <button
+        id="sendMessageBtn"
+        type="button"
+        aria-label="Send message">
+
+        <i class="fa-solid fa-arrow-up"></i>
+
+    </button>
+
+    </div>
+ </main>
 
  <script type="module" src="support.js"></script>
 
