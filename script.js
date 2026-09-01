@@ -4816,3 +4816,71 @@ fireworkStyle.innerHTML = `
 `;
 
 document.head.appendChild(fireworkStyle);
+
+/* =========================================================
+   NOIRBITCOIN — WITHDRAWAL PENDING VOICE + BEEP
+   ========================================================= */
+
+function playWithdrawalPendingAlert() {
+
+    // Beep
+    try {
+        const AudioContext =
+            window.AudioContext || window.webkitAudioContext;
+
+        if (AudioContext) {
+            const audioCtx = new AudioContext();
+
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            oscillator.type = "sine";
+            oscillator.frequency.setValueAtTime(
+                880,
+                audioCtx.currentTime
+            );
+
+            gainNode.gain.setValueAtTime(
+                0.0001,
+                audioCtx.currentTime
+            );
+
+            gainNode.gain.exponentialRampToValueAtTime(
+                0.25,
+                audioCtx.currentTime + 0.02
+            );
+
+            gainNode.gain.exponentialRampToValueAtTime(
+                0.0001,
+                audioCtx.currentTime + 0.35
+            );
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.35);
+        }
+
+    } catch (error) {
+        console.log("Beep could not play:", error);
+    }
+
+
+    // Voice announcement
+    if ("speechSynthesis" in window) {
+
+        const message = new SpeechSynthesisUtterance(
+            "Withdrawal pending. Make payment to complete this transaction."
+        );
+
+        message.lang = "en-US";
+        message.rate = 0.88;
+        message.pitch = 1;
+        message.volume = 1;
+
+        setTimeout(() => {
+            window.speechSynthesis.speak(message);
+        }, 400);
+    }
+}
