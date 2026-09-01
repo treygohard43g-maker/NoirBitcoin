@@ -16880,3 +16880,55 @@ html body .premium-nav::before {
         #d96b13 100%
     ) !important;
 }
+
+/* =========================================================
+   NOIRBITCOIN — PREMIUM GET STARTED CARD
+========================================================= */
+
+#noirIntro .intro-button {
+    background:
+        linear-gradient(
+            145deg,
+            #ffb15a 0%,
+            #f7931a 42%,
+            #e07816 72%,
+            #c95f0d 100%
+        ) !important;
+
+    border: 1px solid rgba(255, 194, 115, 0.75);
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        inset 0 -2px 0 rgba(112, 45, 0, 0.28),
+        inset 0 0 18px rgba(255, 180, 80, 0.08);
+
+    color: #ffffff !important;
+}
+
+/* Premium glass highlight */
+
+#noirIntro .intro-button::before {
+    background:
+        linear-gradient(
+            110deg,
+            transparent 15%,
+            rgba(255, 255, 255, 0.18) 48%,
+            transparent 78%
+        );
+}
+
+/* Premium arrow */
+
+#noirIntro .intro-button i {
+    background: rgba(255, 255, 255, 0.14);
+
+    color: #ffffff !important;
+
+    -webkit-text-fill-color: #ffffff !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
