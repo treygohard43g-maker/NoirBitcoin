@@ -226,46 +226,92 @@ function selectCustomer(userId, customerName) {
     adminReplyInput.disabled = false;
     adminSendBtn.disabled = false;
 
+
     if (unsubscribeConversation) {
 
         unsubscribeConversation();
+
     }
 
+
     const conversationQuery = query(
+
         collection(db, "supportMessages"),
-        where("userId", "==", userId),
-        orderBy("timestamp", "asc")
+
+        where(
+            "userId",
+            "==",
+            userId
+        )
+
     );
 
+
     unsubscribeConversation = onSnapshot(
+
         conversationQuery,
+
         (snapshot) => {
 
             adminMessages.innerHTML = "";
+
+            const messages = [];
+
 
             snapshot.forEach((messageDoc) => {
 
                 const message =
                     messageDoc.data();
 
+                messages.push(message);
+
+            });
+
+
+            // Sort messages locally by timestamp
+
+            messages.sort((a, b) => {
+
+                const timeA =
+                    a.timestamp?.toMillis?.() || 0;
+
+                const timeB =
+                    b.timestamp?.toMillis?.() || 0;
+
+                return timeA - timeB;
+
+            });
+
+
+            messages.forEach((message) => {
+
                 addAdminMessage(
+
                     message.message || "",
+
                     message.sender === "support"
+
                 );
 
             });
 
+
             adminMessages.scrollTop =
                 adminMessages.scrollHeight;
+
         },
+
         (error) => {
 
             console.error(
                 "Conversation error:",
                 error
             );
+
         }
+
     );
+
 }
 
 
