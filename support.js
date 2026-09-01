@@ -56,36 +56,22 @@ onAuthStateChanged(auth, (user) => {
 // ========================================
 // LOAD USER'S MESSAGES
 // ========================================
-
 function loadMessages() {
 
     if (!currentUser) return;
 
-
     if (unsubscribeMessages) {
-
         unsubscribeMessages();
-
     }
 
-
     const messagesQuery = query(
-
         collection(db, "supportMessages"),
-
         where(
             "userId",
             "==",
             currentUser.uid
-        ),
-
-        orderBy(
-            "timestamp",
-            "asc"
         )
-
     );
-
 
     unsubscribeMessages = onSnapshot(
 
@@ -95,23 +81,42 @@ function loadMessages() {
 
             chatMessages.innerHTML = "";
 
+            const messages = [];
 
-            if (snapshot.empty) {
+            snapshot.forEach((messageDoc) => {
+
+                const message = messageDoc.data();
+
+                messages.push(message);
+
+            });
+
+
+            // Sort messages by timestamp
+            // without requiring a Firestore index.
+
+            messages.sort((a, b) => {
+
+                const timeA =
+                    a.timestamp?.toMillis?.() || 0;
+
+                const timeB =
+                    b.timestamp?.toMillis?.() || 0;
+
+                return timeA - timeB;
+
+            });
+
+
+            if (messages.length === 0) {
 
                 addSupportMessage(
                     "Hello! How can we help you today?"
                 );
 
-                return;
-            }
+            } else {
 
-
-            snapshot.forEach(
-                (messageDoc) => {
-
-                    const message =
-                        messageDoc.data();
-
+                messages.forEach((message) => {
 
                     if (
                         message.sender === "support"
@@ -129,8 +134,9 @@ function loadMessages() {
 
                     }
 
-                }
-            );
+                });
+
+            }
 
 
             chatMessages.scrollTop =
@@ -150,7 +156,6 @@ function loadMessages() {
     );
 
 }
-
 
 // ========================================
 // SEND MESSAGE
