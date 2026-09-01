@@ -220,9 +220,8 @@ function loadMessages() {
 
 }
 
-
 // ========================================
-// SEND TEXT MESSAGE
+// SEND MESSAGE
 // ========================================
 
 async function sendMessage() {
@@ -230,7 +229,7 @@ async function sendMessage() {
     const text =
         chatInput.value.trim();
 
-    // Nothing selected
+    // Nothing to send
     if (!text && !selectedPhoto) {
         return;
     }
@@ -248,11 +247,16 @@ async function sendMessage() {
 
     try {
 
-        // ==============================
+        // ==================================
         // SEND PHOTO
-        // ==============================
+        // ==================================
 
         if (selectedPhoto) {
+
+            console.log(
+                "PHOTO SEND STARTED",
+                selectedPhoto
+            );
 
             const fileName =
                 `${Date.now()}_${selectedPhoto.name}`;
@@ -263,13 +267,26 @@ async function sendMessage() {
                     `supportPhotos/${currentUser.uid}/${fileName}`
                 );
 
+            console.log(
+                "Uploading photo..."
+            );
+
             await uploadBytes(
                 storageRef,
                 selectedPhoto
             );
 
+            console.log(
+                "Photo uploaded successfully."
+            );
+
             const photoURL =
                 await getDownloadURL(storageRef);
+
+            console.log(
+                "Photo URL:",
+                photoURL
+            );
 
             await addDoc(
                 collection(
@@ -277,6 +294,7 @@ async function sendMessage() {
                     "supportMessages"
                 ),
                 {
+
                     userId:
                         currentUser.uid,
 
@@ -299,16 +317,23 @@ async function sendMessage() {
 
                     timestamp:
                         serverTimestamp()
+
                 }
             );
 
+            console.log(
+                "Photo message saved successfully."
+            );
+
             clearPhotoPreview();
+
+            chatInput.value = "";
+
         }
 
-
-        // ==============================
+        // ==================================
         // SEND TEXT
-        // ==============================
+        // ==================================
 
         else {
 
@@ -318,6 +343,7 @@ async function sendMessage() {
                     "supportMessages"
                 ),
                 {
+
                     userId:
                         currentUser.uid,
 
@@ -337,22 +363,33 @@ async function sendMessage() {
 
                     timestamp:
                         serverTimestamp()
+
                 }
             );
 
-        }
+            chatInput.value = "";
 
-        chatInput.value = "";
+        }
 
     } catch (error) {
 
         console.error(
-            "Unable to send message:",
+            "SEND MESSAGE ERROR:",
             error
         );
 
+        console.error(
+            "ERROR CODE:",
+            error.code
+        );
+
+        console.error(
+            "ERROR MESSAGE:",
+            error.message
+        );
+
         alert(
-            "Unable to send your message. Please try again."
+            "Unable to send. Check the browser console for the exact error."
         );
 
     } finally {
