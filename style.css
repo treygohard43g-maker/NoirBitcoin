@@ -14455,7 +14455,7 @@ html body main#mainSite.main-site section.new-hero
 }
 
 /* =========================================================
-   VISIBLE ORANGE BUTTON CONTAINER
+   PREMIUM OUTER BUTTON FRAME
 ========================================================= */
 
 #noirIntro .intro-button::after {
@@ -14463,24 +14463,24 @@ html body main#mainSite.main-site section.new-hero
 
     position: absolute;
 
-    top: -9px;
-    right: -9px;
-    bottom: -9px;
-    left: -9px;
+    top: -7px;
+    right: -7px;
+    bottom: -7px;
+    left: -7px;
 
-    border: 3px solid #d96b13;
+    border: 1px solid rgba(217, 107, 19, 0.55);
 
-    border-radius: 23px;
+    border-radius: 21px;
 
     background: transparent;
 
     box-shadow:
-        0 0 6px #d96b13,
-        0 0 16px rgba(217, 107, 19, 0.65);
+        0 0 5px rgba(217, 107, 19, 0.25),
+        0 0 12px rgba(217, 107, 19, 0.18);
 
     pointer-events: none;
 
-    z-index: 10;
+    z-index: 0;
 }
 
 /* =========================================================
