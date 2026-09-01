@@ -11,6 +11,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import {
+    getStorage,
+    ref,
+    uploadBytes,
+    getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -26,6 +33,14 @@ const sendMessageBtn =
 const chatMessages =
     document.getElementById("chatMessages");
 
+const photoBtn =
+    document.getElementById("photoBtn");
+
+const photoInput =
+    document.getElementById("photoInput");
+
+const storage =
+    getStorage(auth.app);
 
 let currentUser = null;
 
@@ -239,6 +254,102 @@ async function sendMessage() {
 
 }
 
+// ========================================
+// SEND PHOTO
+// ========================================
+
+async function sendPhoto(file) {
+
+    if (!file) return;
+
+    if (!currentUser) {
+
+        alert(
+            "Please wait for your account to load."
+        );
+
+        return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+
+        alert("Please select an image.");
+
+        return;
+    }
+
+    photoBtn.disabled = true;
+
+    try {
+
+        const fileName =
+            `${Date.now()}_${file.name}`;
+
+        const storageRef =
+            ref(
+                storage,
+                `supportPhotos/${currentUser.uid}/${fileName}`
+            );
+
+        await uploadBytes(
+            storageRef,
+            file
+        );
+
+        const photoURL =
+            await getDownloadURL(storageRef);
+
+        await addDoc(
+            collection(
+                db,
+                "supportMessages"
+            ),
+            {
+
+                userId:
+                    currentUser.uid,
+
+                userName:
+                    currentUser.displayName || "Customer",
+
+                userEmail:
+                    currentUser.email || "",
+
+                sender:
+                    "user",
+
+                message:
+                    "",
+
+                imageUrl:
+                    photoURL,
+
+                timestamp:
+                    serverTimestamp()
+
+            }
+        );
+
+        photoInput.value = "";
+
+    } catch (error) {
+
+        console.error(
+            "Photo upload error:",
+            error
+        );
+
+        alert(
+            "Unable to send photo. Please try again."
+        );
+
+    } finally {
+
+        photoBtn.disabled = false;
+
+    }
+
+}
 
 // ========================================
 // SUPPORT MESSAGE
@@ -387,4 +498,30 @@ chatInput.addEventListener(
 
     }
 
+);
+
+photoBtn.addEventListener(
+    "click",
+    () => {
+
+        photoInput.click();
+
+    }
+);
+
+
+photoInput.addEventListener(
+    "change",
+    () => {
+
+        const file =
+            photoInput.files[0];
+
+        if (file) {
+
+            sendPhoto(file);
+
+        }
+
+    }
 );
