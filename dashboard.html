@@ -1014,6 +1014,37 @@ window.addEventListener("load", () => {
 <script type="module" src="script.js"></script>
 <script src="search.js"></script>
 
+<script type="module">
+
+import { auth } from "./firebase.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const ADMIN_UID = "5jLniALGV6NvdsLSK43wON8upVj1";
+
+const adminSupportLink =
+    document.getElementById("adminSupportLink");
+
+onAuthStateChanged(auth, (user) => {
+
+    if (!adminSupportLink) return;
+
+    if (user && user.uid === ADMIN_UID) {
+
+        adminSupportLink.style.display = "flex";
+
+    } else {
+
+        adminSupportLink.style.display = "none";
+
+    }
+
+});
+
+</script>
+
 <!-- PROFILE PHOTO VIEWER -->
 
 <div id="profilePhotoViewer" class="profile-photo-viewer">
