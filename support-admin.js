@@ -411,16 +411,26 @@ function selectCustomer(
 
             messages.forEach((message) => {
 
-                addAdminMessage(
+    if (message.imageUrl) {
 
-                    message.message || "",
+        addAdminPhoto(
+            message.imageUrl,
+            message.sender === "support"
+        );
 
-                    message.sender === "support"
+    } else {
 
-                );
+        addAdminMessage(
 
-            });
+            message.message || "",
 
+            message.sender === "support"
+
+        );
+
+    }
+
+});
 
             adminMessages.scrollTop =
                 adminMessages.scrollHeight;
@@ -445,7 +455,14 @@ function selectCustomer(
 // DISPLAY MESSAGE
 // ========================================
 
-function addAdminMessage(text, isSupport) {
+// ========================================
+// DISPLAY ADMIN PHOTO
+// ========================================
+
+function addAdminPhoto(
+    imageUrl,
+    isSupport
+) {
 
     const row =
         document.createElement("div");
@@ -455,19 +472,40 @@ function addAdminMessage(text, isSupport) {
             ? "admin-message-row support"
             : "admin-message-row customer";
 
-    const bubble =
-        document.createElement("div");
 
-    bubble.className =
-        "admin-message-bubble";
+    const image =
+        document.createElement("img");
 
-    bubble.textContent = text;
+    image.className =
+        "admin-chat-image";
 
-    row.appendChild(bubble);
+    image.src =
+        imageUrl;
+
+    image.alt =
+        "Support photo";
+
+    image.loading =
+        "lazy";
+
+
+    image.addEventListener(
+        "click",
+        () => {
+
+            openAdminImage(
+                imageUrl
+            );
+
+        }
+    );
+
+
+    row.appendChild(image);
 
     adminMessages.appendChild(row);
-}
 
+}
 
 // ========================================
 // SEND ADMIN REPLY
