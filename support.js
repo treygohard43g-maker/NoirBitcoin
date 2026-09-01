@@ -33,6 +33,15 @@ const sendMessageBtn =
 const chatMessages =
     document.getElementById("chatMessages");
 
+const supportImageViewer =
+    document.getElementById("supportImageViewer");
+
+const supportFullImage =
+    document.getElementById("supportFullImage");
+
+const closeSupportImage =
+    document.getElementById("closeSupportImage");
+
 const photoBtn =
     document.getElementById("photoBtn");
 
@@ -639,6 +648,55 @@ photoInput.addEventListener(
         if (file) {
 
             sendPhoto(file);
+
+        }
+
+    }
+);
+
+// ========================================
+// SUPPORT IMAGE VIEWER
+// ========================================
+
+function openSupportImage(imageUrl) {
+
+    supportFullImage.src =
+        imageUrl;
+
+    supportImageViewer.classList.add(
+        "active"
+    );
+
+}
+
+
+function closeSupportImageViewer() {
+
+    supportImageViewer.classList.remove(
+        "active"
+    );
+
+    supportFullImage.src = "";
+
+}
+
+
+closeSupportImage.addEventListener(
+    "click",
+    closeSupportImageViewer
+);
+
+
+supportImageViewer.addEventListener(
+    "click",
+    (event) => {
+
+        if (
+            event.target ===
+            supportImageViewer
+        ) {
+
+            closeSupportImageViewer();
 
         }
 
