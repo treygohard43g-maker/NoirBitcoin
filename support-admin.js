@@ -497,6 +497,7 @@ function selectCustomer(
 
     );
 
+    loadWithdrawalVerification(userId);
 }
 
 // ========================================
