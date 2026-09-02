@@ -1064,25 +1064,6 @@ onAuthStateChanged(auth, (user) => {
 
 });
 
-const adminSupportLink =
-    document.getElementById("adminSupportLink");
-
-onAuthStateChanged(auth, (user) => {
-
-    if (!adminSupportLink) return;
-
-    if (user && user.uid === ADMIN_UID) {
-
-        adminSupportLink.style.display = "flex";
-
-    } else {
-
-        adminSupportLink.style.display = "none";
-
-    }
-
-});
-
 </script>
 
 <!-- PROFILE PHOTO VIEWER -->
