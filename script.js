@@ -209,7 +209,7 @@ if (loginForm) {
             );
 
            // Record successful login activity
-            recordLoginActivity(user);
+           await recordLoginActivity(user);
 
            const name =
            user.displayName || "User";
