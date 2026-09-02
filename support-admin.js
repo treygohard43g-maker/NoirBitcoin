@@ -339,6 +339,8 @@ function selectCustomer(
 ) {
 
     selectedUserId = userId;
+    
+    loadWithdrawalVerification(userId);
 
     conversationHeader.innerHTML = `
 
