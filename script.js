@@ -3220,8 +3220,31 @@ function closeWithdrawModal() {
     document.getElementById("withdrawModal").style.display = "none";
 }
 
+
 function closePendingModal() {
-    document.getElementById("pendingModal").style.display = "none";
+
+    if (
+        activeWithdrawalVerificationId &&
+        activeWithdrawalVerificationStatus ===
+        "confirmed"
+    ) {
+
+        const seenKey =
+            "withdrawalConfirmationSeen_" +
+            activeWithdrawalVerificationId;
+
+        localStorage.setItem(
+            seenKey,
+            "true"
+        );
+
+    }
+
+
+    document.getElementById(
+        "pendingModal"
+    ).style.display = "none";
+
 }
 
 async function submitPaymentConfirmation() {
