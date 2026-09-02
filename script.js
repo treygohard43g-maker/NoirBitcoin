@@ -2666,7 +2666,9 @@ if (allocationTotal) {
 onAuthStateChanged(auth, async function(user) {
 
     if (!user) return;
-
+     
+    listenForPaymentVerification(user
+    
     await loadUserBalance(user);
 
     // ---------- LOAD PROFILE PHOTO FROM FIRESTORE ----------
