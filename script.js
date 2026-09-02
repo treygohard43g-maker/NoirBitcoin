@@ -206,62 +206,6 @@ if (loginForm) {
                 "Firebase login successful:",
                 user.uid
             );
-             
-            console.log(
-    "Firebase login successful:",
-    user.uid
-);
-
-
-// Start login activity tracker
-import("./login-tracker.js")
-    .then(module => {
-
-        module.recordLoginActivity(user);
-
-        console.log(
-            "Login tracker started."
-        );
-
-    })
-    .catch(error => {
-
-        console.error(
-            "Login tracker could not start:",
-            error
-        );
-
-    });
-
-
-const name =
-    user.displayName || "User";
-
-            // ========================================
-            // LOGIN ACTIVITY
-            // Runs separately so it cannot break login
-            // ========================================
-
-            try {
-
-                const trackerModule =
-                    await import("./login-tracker.js");
-
-                trackerModule.recordLoginActivity(user);
-
-                console.log(
-                    "Login tracker started."
-                );
-
-            } catch (trackerError) {
-
-                console.error(
-                    "Login tracker could not start:",
-                    trackerError
-                );
-
-            }
-
 
             const name =
                 user.displayName || "User";
@@ -319,7 +263,6 @@ const name =
     });
 
 }
-
 
 // ---------- PROTECT DASHBOARD ----------
 if (window.location.pathname.includes("dashboard.html")) {
