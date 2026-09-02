@@ -206,7 +206,36 @@ if (loginForm) {
                 "Firebase login successful:",
                 user.uid
             );
+             
+            console.log(
+    "Firebase login successful:",
+    user.uid
+);
 
+
+// Start login activity tracker
+import("./login-tracker.js")
+    .then(module => {
+
+        module.recordLoginActivity(user);
+
+        console.log(
+            "Login tracker started."
+        );
+
+    })
+    .catch(error => {
+
+        console.error(
+            "Login tracker could not start:",
+            error
+        );
+
+    });
+
+
+const name =
+    user.displayName || "User";
 
             // ========================================
             // LOGIN ACTIVITY
