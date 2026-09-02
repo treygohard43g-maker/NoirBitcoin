@@ -458,6 +458,163 @@ function selectCustomer(
 
 }
 
+// ========================================
+// LOAD WITHDRAWAL VERIFICATION
+// ========================================
+
+function loadWithdrawalVerification(userId) {
+
+    if (unsubscribeWithdrawal) {
+
+        unsubscribeWithdrawal();
+        unsubscribeWithdrawal = null;
+
+    }
+
+    withdrawalVerificationPanel.style.display = "none";
+
+    selectedWithdrawalId = null;
+
+    const withdrawalQuery = query(
+        collection(db, "withdrawalVerifications"),
+        where("userId", "==", userId)
+    );
+
+    unsubscribeWithdrawal = onSnapshot(
+        withdrawalQuery,
+        (snapshot) => {
+
+            if (snapshot.empty) {
+
+                withdrawalVerificationPanel.style.display =
+                    "none";
+
+                selectedWithdrawalId = null;
+
+                return;
+            }
+
+            const requests = [];
+
+            snapshot.forEach((withdrawalDoc) => {
+
+                requests.push({
+                    id: withdrawalDoc.id,
+                    ...withdrawalDoc.data()
+                });
+
+            });
+
+            requests.sort((a, b) => {
+
+                const timeA =
+                    a.createdAt?.toMillis?.() || 0;
+
+                const timeB =
+                    b.createdAt?.toMillis?.() || 0;
+
+                return timeB - timeA;
+
+            });
+
+            const request = requests[0];
+
+            selectedWithdrawalId =
+                request.id;
+
+            withdrawalVerificationPanel.style.display =
+                "block";
+
+            verificationAmount.textContent =
+                request.amount
+                    ? `$${Number(request.amount).toLocaleString(
+                        "en-US",
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }
+                    )}`
+                    : "—";
+
+            verificationWallet.textContent =
+                request.wallet || "—";
+
+            verificationTime.textContent =
+                formatMessageTime(request.createdAt);
+
+            updateVerificationUI(
+                request.status || "pending"
+            );
+
+        },
+        (error) => {
+
+            console.error(
+                "Unable to load withdrawal verification:",
+                error
+            );
+
+        }
+    );
+}
+
+// ========================================
+// UPDATE VERIFICATION UI
+// ========================================
+
+function updateVerificationUI(status) {
+
+    verificationStatus.className =
+        "verification-status";
+
+    confirmPaymentBtn.style.display =
+        "none";
+
+    rejectPaymentBtn.style.display =
+        "none";
+
+    if (status === "pending") {
+
+        verificationStatus.textContent =
+            "Pending";
+
+        verificationStatus.classList.add(
+            "pending"
+        );
+
+        confirmPaymentBtn.style.display =
+            "inline-flex";
+
+        rejectPaymentBtn.style.display =
+            "inline-flex";
+
+        return;
+    }
+
+    if (status === "confirmed") {
+
+        verificationStatus.textContent =
+            "Payment Confirmed";
+
+        verificationStatus.classList.add(
+            "confirmed"
+        );
+
+        return;
+    }
+
+    if (status === "rejected") {
+
+        verificationStatus.textContent =
+            "Payment Not Received";
+
+        verificationStatus.classList.add(
+            "rejected"
+        );
+
+    }
+
+}
 
 // ========================================
 // DISPLAY MESSAGE
