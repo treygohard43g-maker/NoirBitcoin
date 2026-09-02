@@ -2968,6 +2968,11 @@ function listenForPaymentVerification(user) {
             const latestRequest =
                 requests[0];
 
+            activeWithdrawalVerificationId =
+            latestRequest.id;
+
+            activeWithdrawalVerificationStatus =
+            latestRequest.status || "pending";
 
             if (!latestRequest) {
                 return;
