@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>NoirBitcoin - Login Activity</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com">
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body class="login-activity-page">
+
+<header class="dashboard-header">
+
+    <div class="logo">
+
+        <h1>
+            <i class="fa-brands fa-bitcoin"></i>
+            NOIRBITCOIN
+        </h1>
+
+    </div>
+
+    <div class="header-icons">
+
+        <button
+            class="icon-btn"
+            id="profileBtn"
+            type="button">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+        <div
+            id="profileMenu"
+            class="profile-menu">
+
+            <a href="dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a href="trade.html">
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                Trade
+            </a>
+
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                Profile
+            </a>
+
+            <a href="about.html">
+                <i class="fa-solid fa-circle-info"></i>
+                About
+            </a>
+
+            <a href="support.html">
+                <i class="fa-regular fa-comments"></i>
+                Support
+            </a>
+
+            <a href="support-admin.html">
+                <i class="fa-solid fa-headset"></i>
+                Admin Support
+            </a>
+
+            <a href="login-activity.html"
+               class="active">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Login Activity
+
+            </a>
+
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </a>
+
+            <button
+                id="logoutBtn"
+                type="button">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="login-activity-container">
+
+    <div class="login-activity-header">
+
+        <div>
+
+            <span class="login-activity-label">
+                ADMIN
+            </span>
+
+            <h2>
+                Login Activity
+            </h2>
+
+            <p>
+                Monitor recent customer login activity.
+            </p>
+
+        </div>
+
+        <div class="login-activity-icon">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+        </div>
+
+    </div>
+
+
+    <div class="login-stat-grid">
+
+        <div class="login-stat-card">
+
+            <span>
+                Total Logins
+            </span>
+
+            <strong id="totalLogins">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="login-stat-card">
+
+            <span>
+                Today's Logins
+            </span>
+
+            <strong id="todayLogins">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="login-stat-card">
+
+            <span>
+                Countries
+            </span>
+
+            <strong id="countryCount">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="login-table-card">
+
+        <div class="login-table-header">
+
+            <div>
+
+                <h3>
+                    Recent Logins
+                </h3>
+
+                <p>
+                    Latest successful account logins
+                </p>
+
+            </div>
+
+            <button
+                id="refreshLoginActivity"
+                type="button">
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Refresh
+
+            </button>
+
+        </div>
+
+
+        <div class="login-table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            User
+                        </th>
+
+                        <th>
+                            Login Time
+                        </th>
+
+                        <th>
+                            IP Address
+                        </th>
+
+                        <th>
+                            Location
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="loginActivityBody">
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            class="login-loading">
+
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+
+                            Loading login activity...
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script type="module" src="login-activity.js"></script>
+
+</body>
+
+</html>
