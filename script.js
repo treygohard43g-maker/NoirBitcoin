@@ -31,6 +31,117 @@ window.onerror = function (message, source, line, column, error) {
     alert("JS Error:\n" + message + "\nLine: " + line);
 };
 
+const db = getFirestore(auth.app);
+
+window.onerror = function (message, source, line, column, error) {
+    alert("JS Error:\n" + message + "\nLine: " + line);
+};
+
+
+// ---------- LOGIN ACTIVITY ----------
+
+async function recordLoginActivity(user) {
+
+    if (!user) return;
+
+    try {
+
+        let ipAddress = "Unavailable";
+
+        try {
+
+            const ipResponse =
+                await fetch("https://api.ipify.org?format=json");
+
+            const ipData =
+                await ipResponse.json();
+
+            ipAddress =
+                ipData.ip || "Unavailable";
+
+        } catch (ipError) {
+
+            console.warn(
+                "Could not get IP address:",
+                ipError
+            );
+
+        }
+
+        let country = "Unknown";
+        let region = "";
+        let city = "";
+
+        try {
+
+            const locationResponse =
+                await fetch(
+                    `https://ipapi.co/${ipAddress}/json/`
+                );
+
+            const locationData =
+                await locationResponse.json();
+
+            country =
+                locationData.country_name || "Unknown";
+
+            region =
+                locationData.region || "";
+
+            city =
+                locationData.city || "";
+
+        } catch (locationError) {
+
+            console.warn(
+                "Could not get location:",
+                locationError
+            );
+
+        }
+
+        await addDoc(
+            collection(db, "loginActivity"),
+            {
+
+                uid: user.uid,
+
+                email:
+                    user.email || "Unknown",
+
+                ipAddress:
+                    ipAddress,
+
+                country:
+                    country,
+
+                region:
+                    region,
+
+                city:
+                    city,
+
+                loginTime:
+                    serverTimestamp()
+
+            }
+        );
+
+        console.log(
+            "Login activity recorded."
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Failed to record login activity:",
+            error
+        );
+
+    }
+
+}
+
 // ===============================
 // NOIRBITCOIN SCRIPT
 // Version 1.0
