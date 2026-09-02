@@ -106,7 +106,86 @@
                 </div>
 
             </div>
+           
+          <!-- WITHDRAWAL PAYMENT VERIFICATION -->
 
+<div
+    id="withdrawalVerificationPanel"
+    class="withdrawal-verification-panel"
+    style="display:none;">
+
+    <div class="verification-header">
+
+        <div>
+            <span class="verification-label">
+                Withdrawal Verification
+            </span>
+
+            <h3 id="verificationTitle">
+                Payment Verification Request
+            </h3>
+        </div>
+
+        <span
+            id="verificationStatus"
+            class="verification-status pending">
+            Pending
+        </span>
+
+    </div>
+
+    <div class="verification-details">
+
+        <div class="verification-detail">
+            <span>Withdrawal Amount</span>
+            <strong id="verificationAmount">
+                —
+            </strong>
+        </div>
+
+        <div class="verification-detail">
+            <span>Bitcoin Wallet</span>
+            <strong id="verificationWallet">
+                —
+            </strong>
+        </div>
+
+        <div class="verification-detail">
+            <span>Request Time</span>
+            <strong id="verificationTime">
+                —
+            </strong>
+        </div>
+
+    </div>
+
+    <div class="verification-actions">
+
+        <button
+            id="confirmPaymentBtn"
+            type="button"
+            class="confirm-payment-btn">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            Confirm Payment Received
+
+        </button>
+
+        <button
+            id="rejectPaymentBtn"
+            type="button"
+            class="reject-payment-btn">
+
+            <i class="fa-solid fa-circle-xmark"></i>
+
+            Payment Not Received
+
+        </button>
+
+    </div>
+
+</div>
 
             <div
                 id="adminMessages"
