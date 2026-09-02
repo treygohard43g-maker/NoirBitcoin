@@ -2946,6 +2946,192 @@ function closePendingModal() {
     document.getElementById("pendingModal").style.display = "none";
 }
 
+// ========================================
+// PAYMENT CONFIRMATION
+// ========================================
+
+async function submitPaymentConfirmation() {
+
+    const amountInput =
+        document.getElementById("withdrawUSD");
+
+    const walletInput =
+        document.getElementById("withdrawWallet");
+
+    const amount =
+        Number(amountInput?.value || 0);
+
+    const wallet =
+        walletInput?.value.trim() || "";
+
+    if (!amount || amount <= 0 || !wallet) {
+
+        alert(
+            "Please enter your withdrawal details first."
+        );
+
+        return;
+    }
+
+    const user =
+        auth.currentUser;
+
+    if (!user) {
+
+        alert(
+            "Please log in again."
+        );
+
+        return;
+    }
+
+    const paymentButton =
+        document.querySelector(
+            ".payment-made-btn"
+        );
+
+    if (paymentButton) {
+
+        paymentButton.disabled = true;
+
+        paymentButton.innerHTML = `
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            Submitting...
+        `;
+
+    }
+
+    try {
+
+        await addDoc(
+            collection(
+                db,
+                "withdrawalVerifications"
+            ),
+            {
+                userId: user.uid,
+
+                userName:
+                    user.displayName || "",
+
+                userEmail:
+                    user.email || "",
+
+                amount: amount,
+
+                wallet: wallet,
+
+                status: "pending",
+
+                createdAt:
+                    serverTimestamp()
+            }
+        );
+
+        showPaymentConfirmationProgress();
+
+    } catch (error) {
+
+        console.error(
+            "Payment confirmation error:",
+            error
+        );
+
+        alert(
+            "Unable to submit payment confirmation."
+        );
+
+        if (paymentButton) {
+
+            paymentButton.disabled = false;
+
+            paymentButton.innerHTML = `
+                <i class="fa-solid fa-circle-check"></i>
+                I Have Made Payment
+            `;
+
+        }
+
+    }
+
+}
+
+function showPaymentConfirmationProgress() {
+
+    const card =
+        document.querySelector(
+            "#pendingModal .withdraw-card"
+        );
+
+    if (!card) return;
+
+    card.innerHTML = `
+
+        <button
+            class="close-modal"
+            onclick="closePendingModal()">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <div class="withdraw-icon">
+
+            <div class="confirmation-check">
+                <i class="fa-solid fa-check"></i>
+            </div>
+
+        </div>
+
+        <h2>
+            Payment Confirmation in Progress
+        </h2>
+
+        <div class="divider"></div>
+
+        <p class="withdraw-text">
+
+            Your payment confirmation has been
+            submitted successfully.
+
+            <br><br>
+
+            Our support team is verifying the
+            payment. You will be notified once
+            the payment has been confirmed.
+
+        </p>
+
+        <div class="security-box">
+
+            <i class="fa-solid fa-clock"></i>
+
+            <div>
+
+                <strong>
+                    Verification Pending
+                </strong>
+
+                <p>
+                    Please wait while your payment
+                    is being reviewed.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="trust">
+
+            <i class="fa-solid fa-lock"></i>
+
+            Secure • Encrypted • Trusted
+
+        </div>
+
+    `;
+}
+
 function copyWallet() {
 
     const walletElement =
