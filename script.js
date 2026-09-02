@@ -163,7 +163,7 @@ if (registerForm) {
 
 }
 
-    // ---------- LOGIN ----------
+// ---------- LOGIN ----------
 
 const loginForm = document.getElementById("loginForm");
 
@@ -206,8 +206,34 @@ if (loginForm) {
                 "Firebase login successful:",
                 user.uid
             );
-            
-            
+
+
+            // ========================================
+            // LOGIN ACTIVITY
+            // Runs separately so it cannot break login
+            // ========================================
+
+            try {
+
+                const trackerModule =
+                    await import("./login-tracker.js");
+
+                trackerModule.recordLoginActivity(user);
+
+                console.log(
+                    "Login tracker started."
+                );
+
+            } catch (trackerError) {
+
+                console.error(
+                    "Login tracker could not start:",
+                    trackerError
+                );
+
+            }
+
+
             const name =
                 user.displayName || "User";
 
