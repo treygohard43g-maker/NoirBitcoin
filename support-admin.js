@@ -13,13 +13,26 @@ import {
     updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+
 const db = getFirestore(auth.app);
 
-const ADMIN_UID = "5jLniALGV6NvdsLSK43wON8upVj1";
+const ADMIN_UID =
+    "5jLniALGV6NvdsLSK43wON8upVj1";
 
-const customerList = document.getElementById("customerList");
-const customerCount = document.getElementById("customerCount");
-const adminMessages = document.getElementById("adminMessages");
+
+// ========================================
+// EXISTING SUPPORT ELEMENTS
+// ========================================
+
+const customerList =
+    document.getElementById("customerList");
+
+const customerCount =
+    document.getElementById("customerCount");
+
+const adminMessages =
+    document.getElementById("adminMessages");
+
 const conversationHeader =
     document.getElementById("conversationHeader");
 
@@ -32,12 +45,10 @@ const adminSendBtn =
 const adminLogoutBtn =
     document.getElementById("adminLogoutBtn");
 
-let selectedUserId = null;
-let unsubscribeConversation = null;
 
-
-let selectedWithdrawalId = null;
-let unsubscribeWithdrawal = null;
+// ========================================
+// WITHDRAWAL VERIFICATION ELEMENTS
+// ========================================
 
 const withdrawalVerificationPanel =
     document.getElementById(
@@ -73,34 +84,20 @@ const rejectPaymentBtn =
     document.getElementById(
         "rejectPaymentBtn"
     );
-    
+
+
 // ========================================
-// WITHDRAWAL VERIFICATION
+// STATE
 // ========================================
 
-const withdrawalVerificationPanel =
-    document.getElementById("withdrawalVerificationPanel");
+let selectedUserId = null;
 
-const verificationAmount =
-    document.getElementById("verificationAmount");
-
-const verificationWallet =
-    document.getElementById("verificationWallet");
-
-const verificationTime =
-    document.getElementById("verificationTime");
-
-const verificationStatus =
-    document.getElementById("verificationStatus");
-
-const confirmPaymentBtn =
-    document.getElementById("confirmPaymentBtn");
-
-const rejectPaymentBtn =
-    document.getElementById("rejectPaymentBtn");
+let unsubscribeConversation = null;
 
 let selectedWithdrawalId = null;
+
 let unsubscribeWithdrawal = null;
+
 
 // ========================================
 // AUTHENTICATION
@@ -110,21 +107,26 @@ auth.onAuthStateChanged((user) => {
 
     if (!user) {
 
-        window.location.href = "login.html";
+        window.location.href =
+            "login.html";
 
         return;
     }
+
 
     if (user.uid !== ADMIN_UID) {
 
         alert("Access denied.");
 
-        window.location.href = "dashboard.html";
+        window.location.href =
+            "dashboard.html";
 
         return;
     }
 
+
     loadCustomers();
+
 });
 
 
@@ -134,60 +136,91 @@ auth.onAuthStateChanged((user) => {
 
 function loadCustomers() {
 
-    const messagesQuery = query(
-        collection(db, "supportMessages"),
-        orderBy("timestamp", "desc")
-    );
+    const messagesQuery =
+        query(
+            collection(
+                db,
+                "supportMessages"
+            ),
+            orderBy(
+                "timestamp",
+                "desc"
+            )
+        );
+
 
     onSnapshot(
         messagesQuery,
+
         (snapshot) => {
 
-            const customers = new Map();
+            const customers =
+                new Map();
 
-            snapshot.forEach((messageDoc) => {
 
-                const message =
-                    messageDoc.data();
+            snapshot.forEach(
+                (messageDoc) => {
 
-                if (!message.userId) return;
+                    const message =
+                        messageDoc.data();
 
-                if (!customers.has(message.userId)) {
 
-                    customers.set(
-    message.userId,
-    {
-        userId:
-            message.userId,
+                    if (!message.userId) {
+                        return;
+                    }
 
-        userName:
-            message.userName || "",
 
-        userEmail:
-            message.userEmail || "",
+                    if (
+                        !customers.has(
+                            message.userId
+                        )
+                    ) {
 
-        lastMessage:
-            message.message || "",
+                        customers.set(
+                            message.userId,
+                            {
+                                userId:
+                                    message.userId,
 
-        imageUrl:
-            message.imageUrl || "",
+                                userName:
+                                    message.userName ||
+                                    "",
 
-        sender:
-            message.sender || "user",
+                                userEmail:
+                                    message.userEmail ||
+                                    "",
 
-        timestamp:
-            message.timestamp
-    }
-);
+                                lastMessage:
+                                    message.message ||
+                                    "",
 
- }
+                                imageUrl:
+                                    message.imageUrl ||
+                                    "",
 
-});
+                                sender:
+                                    message.sender ||
+                                    "user",
+
+                                timestamp:
+                                    message.timestamp
+                            }
+                        );
+
+                    }
+
+                }
+            );
+
 
             renderCustomers(
-                Array.from(customers.values())
+                Array.from(
+                    customers.values()
+                )
             );
+
         },
+
         (error) => {
 
             console.error(
@@ -195,13 +228,16 @@ function loadCustomers() {
                 error
             );
 
+
             customerList.innerHTML = `
                 <div class="empty-customers">
                     Unable to load conversations.
                 </div>
             `;
+
         }
     );
+
 }
 
 
@@ -213,6 +249,7 @@ function renderCustomers(customers) {
 
     customerCount.textContent =
         customers.length;
+
 
     if (customers.length === 0) {
 
@@ -231,141 +268,149 @@ function renderCustomers(customers) {
         return;
     }
 
+
     customerList.innerHTML = "";
 
-    customers.forEach((customer) => {
 
-        const item =
-            document.createElement("button");
+    customers.forEach(
+        (customer) => {
 
-        item.className =
-            "customer-item";
-
-        item.type = "button";
-
-
-        // Highlight currently selected customer
-
-        if (
-            selectedUserId ===
-            customer.userId
-        ) {
-
-            item.classList.add(
-                "active"
-            );
-
-        }
-
-
-        const customerName =
-            customer.userName ||
-            "Customer";
-
-        const customerEmail =
-            customer.userEmail ||
-            "No email available";
-
-
-        // Show "Photo" instead of an empty
-        // preview when the latest message
-        // contains an image.
-
-        const preview =
-            customer.imageUrl
-                ? "📷 Photo"
-                : (
-                    customer.lastMessage ||
-                    "No message"
+            const item =
+                document.createElement(
+                    "button"
                 );
 
 
-        const messageTime =
-            formatMessageTime(
-                customer.timestamp
-            );
+            item.className =
+                "customer-item";
+
+            item.type =
+                "button";
 
 
-        // Customer's latest message is
-        // considered unread when it was
-        // sent by the customer.
+            if (
+                selectedUserId ===
+                customer.userId
+            ) {
 
-        const isUnread =
-            customer.sender === "user";
+                item.classList.add(
+                    "active"
+                );
 
-
-        if (isUnread) {
-
-            item.classList.add(
-                "unread"
-            );
-
-        }
+            }
 
 
-        item.innerHTML = `
+            const customerName =
+                customer.userName ||
+                "Customer";
 
-            <div class="customer-avatar">
-                <i class="fa-solid fa-user"></i>
-            </div>
 
-            <div class="customer-info">
+            const customerEmail =
+                customer.userEmail ||
+                "No email available";
 
-                <div class="customer-top-row">
 
-                    <strong>
-                        ${escapeHTML(customerName)}
-                    </strong>
+            const preview =
+                customer.imageUrl
+                    ? "📷 Photo"
+                    : (
+                        customer.lastMessage ||
+                        "No message"
+                    );
 
-                    <small class="customer-time">
-                        ${messageTime}
+
+            const messageTime =
+                formatMessageTime(
+                    customer.timestamp
+                );
+
+
+            const isUnread =
+                customer.sender === "user";
+
+
+            if (isUnread) {
+
+                item.classList.add(
+                    "unread"
+                );
+
+            }
+
+
+            item.innerHTML = `
+
+                <div class="customer-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="customer-info">
+
+                    <div class="customer-top-row">
+
+                        <strong>
+                            ${escapeHTML(
+                                customerName
+                            )}
+                        </strong>
+
+                        <small class="customer-time">
+                            ${messageTime}
+                        </small>
+
+                    </div>
+
+                    <small class="customer-email">
+                        ${escapeHTML(
+                            customerEmail
+                        )}
                     </small>
+
+                    <span class="customer-preview">
+                        ${escapeHTML(
+                            preview
+                        )}
+                    </span>
 
                 </div>
 
-                <small class="customer-email">
-                    ${escapeHTML(customerEmail)}
-                </small>
+                ${
+                    isUnread
+                        ? `
+                            <span
+                                class="unread-dot"
+                                aria-label="Unread message">
+                            </span>
+                          `
+                        : ""
+                }
 
-                <span class="customer-preview">
-                    ${escapeHTML(preview)}
-                </span>
-
-            </div>
-
-            ${
-                isUnread
-                    ? `
-                        <span
-                            class="unread-dot"
-                            aria-label="Unread message">
-                        </span>
-                      `
-                    : ""
-            }
-
-        `;
+            `;
 
 
-        item.addEventListener(
-            "click",
-            () => {
+            item.addEventListener(
+                "click",
+                () => {
 
-                selectCustomer(
-                    customer.userId,
-                    customerName,
-                    customerEmail
-                );
+                    selectCustomer(
+                        customer.userId,
+                        customerName,
+                        customerEmail
+                    );
 
-            }
-        );
+                }
+            );
 
 
-        customerList.appendChild(item);
+            customerList.appendChild(
+                item
+            );
 
-    });
+        }
+    );
 
 }
+
 
 // ========================================
 // SELECT CUSTOMER
@@ -377,27 +422,38 @@ function selectCustomer(
     customerEmail
 ) {
 
-    selectedUserId = userId;
+    selectedUserId =
+        userId;
+
 
     conversationHeader.innerHTML = `
 
-    <div>
+        <div>
 
-        <h2>
-            ${escapeHTML(customerName)}
-        </h2>
+            <h2>
+                ${escapeHTML(
+                    customerName
+                )}
+            </h2>
 
-        <span>
-            ${escapeHTML(customerEmail || "No email available")}
-            · Live support conversation
-        </span>
+            <span>
+                ${escapeHTML(
+                    customerEmail ||
+                    "No email available"
+                )}
+                · Live support conversation
+            </span>
 
-    </div>
+        </div>
 
-`;
+    `;
 
-    adminReplyInput.disabled = false;
-    adminSendBtn.disabled = false;
+
+    adminReplyInput.disabled =
+        false;
+
+    adminSendBtn.disabled =
+        false;
 
 
     if (unsubscribeConversation) {
@@ -407,211 +463,359 @@ function selectCustomer(
     }
 
 
-    const conversationQuery = query(
+    const conversationQuery =
+        query(
 
-        collection(db, "supportMessages"),
+            collection(
+                db,
+                "supportMessages"
+            ),
 
-        where(
-            "userId",
-            "==",
-            userId
-        )
-
-    );
-
-
-    unsubscribeConversation = onSnapshot(
-
-        conversationQuery,
-
-        (snapshot) => {
-
-            adminMessages.innerHTML = "";
-
-            const messages = [];
-
-
-            snapshot.forEach((messageDoc) => {
-
-                const message =
-                    messageDoc.data();
-
-                messages.push(message);
-
-            });
-
-
-            // Sort messages locally by timestamp
-
-            messages.sort((a, b) => {
-
-                const timeA =
-                    a.timestamp?.toMillis?.() || 0;
-
-                const timeB =
-                    b.timestamp?.toMillis?.() || 0;
-
-                return timeA - timeB;
-
-            });
-
-
-            messages.forEach((message) => {
-
-    if (message.imageUrl) {
-
-        addAdminPhoto(
-            message.imageUrl,
-            message.sender === "support"
-        );
-
-    } else {
-
-        addAdminMessage(
-
-            message.message || "",
-
-            message.sender === "support"
+            where(
+                "userId",
+                "==",
+                userId
+            )
 
         );
 
-    }
 
-});
+    unsubscribeConversation =
+        onSnapshot(
 
-            adminMessages.scrollTop =
-                adminMessages.scrollHeight;
+            conversationQuery,
 
-        },
+            (snapshot) => {
 
-        (error) => {
+                adminMessages.innerHTML =
+                    "";
 
-            console.error(
-                "Conversation error:",
-                error
-            );
+                const messages =
+                    [];
 
-        }
 
+                snapshot.forEach(
+                    (messageDoc) => {
+
+                        const message =
+                            messageDoc.data();
+
+                        messages.push(
+                            message
+                        );
+
+                    }
+                );
+
+
+                messages.sort(
+                    (a, b) => {
+
+                        const timeA =
+                            a.timestamp
+                                ?.toMillis?.() ||
+                            0;
+
+                        const timeB =
+                            b.timestamp
+                                ?.toMillis?.() ||
+                            0;
+
+                        return (
+                            timeA -
+                            timeB
+                        );
+
+                    }
+                );
+
+
+                messages.forEach(
+                    (message) => {
+
+                        if (
+                            message.imageUrl
+                        ) {
+
+                            addAdminPhoto(
+                                message.imageUrl,
+                                message.sender ===
+                                    "support"
+                            );
+
+                        } else {
+
+                            addAdminMessage(
+                                message.message ||
+                                    "",
+                                message.sender ===
+                                    "support"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                adminMessages.scrollTop =
+                    adminMessages.scrollHeight;
+
+            },
+
+            (error) => {
+
+                console.error(
+                    "Conversation error:",
+                    error
+                );
+
+            }
+
+        );
+
+
+    // Load withdrawal request
+    loadWithdrawalVerification(
+        userId
     );
 
-    loadWithdrawalVerification(userId);
 }
+
 
 // ========================================
 // LOAD WITHDRAWAL VERIFICATION
 // ========================================
 
-function loadWithdrawalVerification(userId) {
+function loadWithdrawalVerification(
+    userId
+) {
 
     if (unsubscribeWithdrawal) {
 
         unsubscribeWithdrawal();
-        unsubscribeWithdrawal = null;
+
+        unsubscribeWithdrawal =
+            null;
 
     }
 
-    withdrawalVerificationPanel.style.display = "none";
 
-    selectedWithdrawalId = null;
+    selectedWithdrawalId =
+        null;
 
-    const withdrawalQuery = query(
-        collection(db, "withdrawalVerifications"),
-        where("userId", "==", userId)
-    );
 
-    unsubscribeWithdrawal = onSnapshot(
-        withdrawalQuery,
-        (snapshot) => {
+    if (
+        withdrawalVerificationPanel
+    ) {
 
-            if (snapshot.empty) {
+        withdrawalVerificationPanel.style.display =
+            "none";
 
-                withdrawalVerificationPanel.style.display =
-                    "none";
+    }
 
-                selectedWithdrawalId = null;
 
-                return;
+    const withdrawalQuery =
+        query(
+
+            collection(
+                db,
+                "withdrawalVerifications"
+            ),
+
+            where(
+                "userId",
+                "==",
+                userId
+            )
+
+        );
+
+
+    unsubscribeWithdrawal =
+        onSnapshot(
+
+            withdrawalQuery,
+
+            (snapshot) => {
+
+                if (snapshot.empty) {
+
+                    if (
+                        withdrawalVerificationPanel
+                    ) {
+
+                        withdrawalVerificationPanel.style.display =
+                            "none";
+
+                    }
+
+                    selectedWithdrawalId =
+                        null;
+
+                    return;
+                }
+
+
+                const requests =
+                    [];
+
+
+                snapshot.forEach(
+                    (withdrawalDoc) => {
+
+                        requests.push({
+
+                            id:
+                                withdrawalDoc.id,
+
+                            ...withdrawalDoc.data()
+
+                        });
+
+                    }
+                );
+
+
+                requests.sort(
+                    (a, b) => {
+
+                        const timeA =
+                            a.createdAt
+                                ?.toMillis?.() ||
+                            0;
+
+                        const timeB =
+                            b.createdAt
+                                ?.toMillis?.() ||
+                            0;
+
+                        return (
+                            timeB -
+                            timeA
+                        );
+
+                    }
+                );
+
+
+                const request =
+                    requests[0];
+
+
+                if (!request) {
+                    return;
+                }
+
+
+                selectedWithdrawalId =
+                    request.id;
+
+
+                if (
+                    withdrawalVerificationPanel
+                ) {
+
+                    withdrawalVerificationPanel.style.display =
+                        "block";
+
+                }
+
+
+                if (
+                    verificationAmount
+                ) {
+
+                    verificationAmount.textContent =
+                        request.amount
+                            ? `$${Number(
+                                request.amount
+                            ).toLocaleString(
+                                "en-US",
+                                {
+                                    minimumFractionDigits:
+                                        2,
+
+                                    maximumFractionDigits:
+                                        2
+                                }
+                            )}`
+                            : "—";
+
+                }
+
+
+                if (
+                    verificationWallet
+                ) {
+
+                    verificationWallet.textContent =
+                        request.wallet ||
+                        "—";
+
+                }
+
+
+                if (
+                    verificationTime
+                ) {
+
+                    verificationTime.textContent =
+                        formatMessageTime(
+                            request.createdAt
+                        );
+
+                }
+
+
+                updateVerificationUI(
+                    request.status ||
+                    "pending"
+                );
+
+            },
+
+            (error) => {
+
+                console.error(
+                    "Unable to load withdrawal verification:",
+                    error
+                );
+
             }
 
-            const requests = [];
+        );
 
-            snapshot.forEach((withdrawalDoc) => {
-
-                requests.push({
-                    id: withdrawalDoc.id,
-                    ...withdrawalDoc.data()
-                });
-
-            });
-
-            requests.sort((a, b) => {
-
-                const timeA =
-                    a.createdAt?.toMillis?.() || 0;
-
-                const timeB =
-                    b.createdAt?.toMillis?.() || 0;
-
-                return timeB - timeA;
-
-            });
-
-            const request = requests[0];
-
-            selectedWithdrawalId =
-                request.id;
-
-            withdrawalVerificationPanel.style.display =
-                "block";
-
-            verificationAmount.textContent =
-                request.amount
-                    ? `$${Number(request.amount).toLocaleString(
-                        "en-US",
-                        {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        }
-                    )}`
-                    : "—";
-
-            verificationWallet.textContent =
-                request.wallet || "—";
-
-            verificationTime.textContent =
-                formatMessageTime(request.createdAt);
-
-            updateVerificationUI(
-                request.status || "pending"
-            );
-
-        },
-        (error) => {
-
-            console.error(
-                "Unable to load withdrawal verification:",
-                error
-            );
-
-        }
-    );
 }
+
 
 // ========================================
 // UPDATE VERIFICATION UI
 // ========================================
 
-function updateVerificationUI(status) {
+function updateVerificationUI(
+    status
+) {
+
+    if (
+        !verificationStatus ||
+        !confirmPaymentBtn ||
+        !rejectPaymentBtn
+    ) {
+        return;
+    }
+
 
     verificationStatus.className =
         "verification-status";
+
 
     confirmPaymentBtn.style.display =
         "none";
 
     rejectPaymentBtn.style.display =
         "none";
+
 
     if (status === "pending") {
 
@@ -622,14 +826,17 @@ function updateVerificationUI(status) {
             "pending"
         );
 
+
         confirmPaymentBtn.style.display =
             "inline-flex";
 
         rejectPaymentBtn.style.display =
             "inline-flex";
 
+
         return;
     }
+
 
     if (status === "confirmed") {
 
@@ -642,6 +849,7 @@ function updateVerificationUI(status) {
 
         return;
     }
+
 
     if (status === "rejected") {
 
@@ -656,32 +864,53 @@ function updateVerificationUI(status) {
 
 }
 
+
 // ========================================
 // DISPLAY MESSAGE
 // ========================================
-function addAdminMessage(text, isSupport) {
+
+function addAdminMessage(
+    text,
+    isSupport
+) {
 
     const row =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     row.className =
         isSupport
             ? "admin-message-row support"
             : "admin-message-row customer";
 
+
     const bubble =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     bubble.className =
         "admin-message-bubble";
 
+
     bubble.textContent =
         text;
 
-    row.appendChild(bubble);
 
-    adminMessages.appendChild(row);
+    row.appendChild(
+        bubble
+    );
+
+
+    adminMessages.appendChild(
+        row
+    );
+
 }
+
 
 // ========================================
 // DISPLAY ADMIN PHOTO
@@ -693,7 +922,10 @@ function addAdminPhoto(
 ) {
 
     const row =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     row.className =
         isSupport
@@ -702,16 +934,22 @@ function addAdminPhoto(
 
 
     const image =
-        document.createElement("img");
+        document.createElement(
+            "img"
+        );
+
 
     image.className =
         "admin-chat-image";
 
+
     image.src =
         imageUrl;
 
+
     image.alt =
         "Support photo";
+
 
     image.loading =
         "lazy";
@@ -729,11 +967,17 @@ function addAdminPhoto(
     );
 
 
-    row.appendChild(image);
+    row.appendChild(
+        image
+    );
 
-    adminMessages.appendChild(row);
+
+    adminMessages.appendChild(
+        row
+    );
 
 }
+
 
 // ========================================
 // SEND ADMIN REPLY
@@ -744,23 +988,45 @@ async function sendAdminReply() {
     const text =
         adminReplyInput.value.trim();
 
-    if (!text || !selectedUserId) return;
 
-    adminSendBtn.disabled = true;
+    if (
+        !text ||
+        !selectedUserId
+    ) {
+        return;
+    }
+
+
+    adminSendBtn.disabled =
+        true;
+
 
     try {
 
         await addDoc(
-            collection(db, "supportMessages"),
+            collection(
+                db,
+                "supportMessages"
+            ),
             {
-                userId: selectedUserId,
-                sender: "support",
-                message: text,
-                timestamp: serverTimestamp()
+                userId:
+                    selectedUserId,
+
+                sender:
+                    "support",
+
+                message:
+                    text,
+
+                timestamp:
+                    serverTimestamp()
             }
         );
 
-        adminReplyInput.value = "";
+
+        adminReplyInput.value =
+            "";
+
 
     } catch (error) {
 
@@ -769,19 +1035,24 @@ async function sendAdminReply() {
             error
         );
 
+
         alert(
             "Unable to send reply."
         );
 
+
     } finally {
 
-        adminSendBtn.disabled = false;
+        adminSendBtn.disabled =
+            false;
+
     }
+
 }
 
 
 // ========================================
-// EVENTS
+// ADMIN REPLY EVENTS
 // ========================================
 
 adminSendBtn.addEventListener(
@@ -794,116 +1065,183 @@ adminReplyInput.addEventListener(
     "keydown",
     (event) => {
 
-        if (event.key === "Enter") {
+        if (
+            event.key === "Enter"
+        ) {
 
             event.preventDefault();
 
             sendAdminReply();
+
         }
 
     }
 );
+
 
 // ========================================
-// WITHDRAWAL VERIFICATION ACTIONS
+// WITHDRAWAL CONFIRMATION
 // ========================================
 
-confirmPaymentBtn.addEventListener(
-    "click",
-    async () => {
+if (confirmPaymentBtn) {
 
-        if (!selectedWithdrawalId) {
-            alert("No withdrawal verification request selected.");
-            return;
-        }
+    confirmPaymentBtn.addEventListener(
+        "click",
+        async () => {
 
-        confirmPaymentBtn.disabled = true;
-        rejectPaymentBtn.disabled = true;
+            if (
+                !selectedWithdrawalId
+            ) {
 
-        try {
+                alert(
+                    "No withdrawal verification request selected."
+                );
 
-            await updateDoc(
-                doc(
-                    db,
-                    "withdrawalVerifications",
-                    selectedWithdrawalId
-                ),
-                {
-                    status: "confirmed",
-                    confirmedAt: serverTimestamp(),
-                    confirmedBy: ADMIN_UID
-                }
-            );
-
-        } catch (error) {
-
-            console.error(
-                "Unable to confirm payment:",
-                error
-            );
-
-            alert(
-                "Unable to confirm payment."
-            );
-
-        } finally {
-
-            confirmPaymentBtn.disabled = false;
-            rejectPaymentBtn.disabled = false;
-
-        }
-
-    }
-);
+                return;
+            }
 
 
-rejectPaymentBtn.addEventListener(
-    "click",
-    async () => {
+            confirmPaymentBtn.disabled =
+                true;
 
-        if (!selectedWithdrawalId) {
-            alert("No withdrawal verification request selected.");
-            return;
-        }
+            rejectPaymentBtn.disabled =
+                true;
 
-        confirmPaymentBtn.disabled = true;
-        rejectPaymentBtn.disabled = true;
 
-        try {
+            try {
 
-            await updateDoc(
-                doc(
-                    db,
-                    "withdrawalVerifications",
-                    selectedWithdrawalId
-                ),
-                {
-                    status: "rejected",
-                    rejectedAt: serverTimestamp(),
-                    rejectedBy: ADMIN_UID
-                }
-            );
+                await updateDoc(
 
-        } catch (error) {
+                    doc(
+                        db,
+                        "withdrawalVerifications",
+                        selectedWithdrawalId
+                    ),
 
-            console.error(
-                "Unable to reject payment:",
-                error
-            );
+                    {
+                        status:
+                            "confirmed",
 
-            alert(
-                "Unable to update payment status."
-            );
+                        confirmedAt:
+                            serverTimestamp(),
 
-        } finally {
+                        confirmedBy:
+                            ADMIN_UID
+                    }
 
-            confirmPaymentBtn.disabled = false;
-            rejectPaymentBtn.disabled = false;
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Unable to confirm payment:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to confirm payment."
+                );
+
+
+            } finally {
+
+                confirmPaymentBtn.disabled =
+                    false;
+
+                rejectPaymentBtn.disabled =
+                    false;
+
+            }
 
         }
+    );
 
-    }
-);
+}
+
+
+// ========================================
+// WITHDRAWAL REJECTION
+// ========================================
+
+if (rejectPaymentBtn) {
+
+    rejectPaymentBtn.addEventListener(
+        "click",
+        async () => {
+
+            if (
+                !selectedWithdrawalId
+            ) {
+
+                alert(
+                    "No withdrawal verification request selected."
+                );
+
+                return;
+            }
+
+
+            confirmPaymentBtn.disabled =
+                true;
+
+            rejectPaymentBtn.disabled =
+                true;
+
+
+            try {
+
+                await updateDoc(
+
+                    doc(
+                        db,
+                        "withdrawalVerifications",
+                        selectedWithdrawalId
+                    ),
+
+                    {
+                        status:
+                            "rejected",
+
+                        rejectedAt:
+                            serverTimestamp(),
+
+                        rejectedBy:
+                            ADMIN_UID
+                    }
+
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Unable to update payment status:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to update payment status."
+                );
+
+
+            } finally {
+
+                confirmPaymentBtn.disabled =
+                    false;
+
+                rejectPaymentBtn.disabled =
+                    false;
+
+            }
+
+        }
+    );
+
+}
+
 
 // ========================================
 // LOGOUT
@@ -917,157 +1255,88 @@ adminLogoutBtn.addEventListener(
 
         window.location.href =
             "login.html";
+
     }
 );
+
 
 // ========================================
 // FORMAT MESSAGE TIME
 // ========================================
 
-function formatMessageTime(timestamp) {
+function formatMessageTime(
+    timestamp
+) {
 
     if (!timestamp) {
         return "";
     }
+
 
     const date =
         timestamp.toDate
             ? timestamp.toDate()
             : new Date(timestamp);
 
-    if (Number.isNaN(date.getTime())) {
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
         return "";
+
     }
+
 
     return date.toLocaleTimeString(
         [],
         {
-            hour: "numeric",
-            minute: "2-digit"
+            hour:
+                "numeric",
+
+            minute:
+                "2-digit"
         }
     );
 
 }
 
+
 // ========================================
 // HTML ESCAPE
 // ========================================
 
-function escapeHTML(value) {
+function escapeHTML(
+    value
+) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
 }
-
-// ========================================
-// CONFIRM PAYMENT
-// ========================================
-
-confirmPaymentBtn.addEventListener(
-    "click",
-    async () => {
-
-        if (!selectedWithdrawalId) return;
-
-        const confirmed =
-            confirm(
-                "Have you actually verified that this payment was received?"
-            );
-
-        if (!confirmed) return;
-
-        confirmPaymentBtn.disabled = true;
-
-        try {
-
-            await updateDoc(
-                doc(
-                    db,
-                    "withdrawalVerifications",
-                    selectedWithdrawalId
-                ),
-                {
-                    status: "confirmed",
-                    confirmedAt: serverTimestamp(),
-                    confirmedBy: ADMIN_UID
-                }
-            );
-
-        } catch (error) {
-
-            console.error(
-                "Unable to confirm payment:",
-                error
-            );
-
-            alert(
-                "Unable to confirm payment."
-            );
-
-        } finally {
-
-            confirmPaymentBtn.disabled = false;
-
-        }
-
-    }
-);
-
-
-// ========================================
-// PAYMENT NOT RECEIVED
-// ========================================
-
-rejectPaymentBtn.addEventListener(
-    "click",
-    async () => {
-
-        if (!selectedWithdrawalId) return;
-
-        const confirmed =
-            confirm(
-                "Confirm that the payment has NOT been received?"
-            );
-
-        if (!confirmed) return;
-
-        rejectPaymentBtn.disabled = true;
-
-        try {
-
-            await updateDoc(
-                doc(
-                    db,
-                    "withdrawalVerifications",
-                    selectedWithdrawalId
-                ),
-                {
-                    status: "rejected",
-                    rejectedAt: serverTimestamp(),
-                    rejectedBy: ADMIN_UID
-                }
-            );
-
-        } catch (error) {
-
-            console.error(
-                "Unable to update payment status:",
-                error
-            );
-
-            alert(
-                "Unable to update payment status."
-            );
-
-        } finally {
-
-            rejectPaymentBtn.disabled = false;
-
-        }
-
-    }
-);
