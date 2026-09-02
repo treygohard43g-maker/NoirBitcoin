@@ -3305,6 +3305,9 @@ async function submitPaymentConfirmation() {
     }
 }
 
+window.submitPaymentConfirmation =
+    submitPaymentConfirmation;
+    
 function showPaymentConfirmationProgress() {
 
     const card =
