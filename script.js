@@ -21,15 +21,9 @@ import {
     doc,
     getDoc,
     setDoc,
-    runTransaction
+    runTransaction,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const db = getFirestore(auth.app);
-
-window.onerror = function (message, source, line, column, error) {
-    alert("JS Error:\n" + message + "\nLine: " + line);
-};
 
 const db = getFirestore(auth.app);
 
