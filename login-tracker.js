@@ -16,7 +16,14 @@ const db = getFirestore(auth.app);
 
 export async function recordLoginActivity(user) {
 
-    if (!user) return;
+    console.log("LOGIN TRACKER STARTED");
+
+    if (!user) {
+        console.error("LOGIN TRACKER: No user provided");
+        return;
+    }
+
+    console.log("LOGIN TRACKER USER:", user.uid);
 
     try {
 
