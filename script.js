@@ -2907,6 +2907,8 @@ function closeWithdrawFeeModal() {
 }
 
 console.log(JSON.parse(localStorage.getItem("investments")));
+let activeWithdrawalVerificationId = null;
+let activeWithdrawalVerificationStatus = null;
 
 function listenForPaymentVerification(user) {
 
