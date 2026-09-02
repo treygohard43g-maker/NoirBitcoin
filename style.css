@@ -18418,3 +18418,1133 @@ body {
 .chat-photo-btn:active {
     transform: scale(0.94);
 }
+
+/* =========================================================
+   NOIRBITCOIN — LOGIN ACTIVITY ADMIN PAGE
+   Premium Responsive Admin Design
+========================================================= */
+
+.login-activity-page {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at 85% 5%,
+            rgba(245, 158, 11, 0.10),
+            transparent 30%
+        ),
+        #0d1117;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.login-activity-page .dashboard-header {
+    width: 100%;
+    min-height: 74px;
+    padding: 0 24px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(27, 30, 36, 0.98),
+            rgba(13, 17, 23, 0.98)
+        );
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.28);
+
+    position: relative;
+    z-index: 1000;
+}
+
+
+.login-activity-page .logo h1 {
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+
+    color: #ffffff;
+}
+
+
+.login-activity-page .logo h1 i {
+    color: #f7931a;
+    font-size: 23px;
+}
+
+
+.login-activity-page .header-icons {
+    position: relative;
+}
+
+
+.login-activity-page .icon-btn {
+    width: 44px;
+    height: 44px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.login-activity-page .icon-btn:hover {
+    transform: translateY(-1px);
+    border-color: rgba(247, 147, 26, 0.55);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(247, 147, 26, 0.16),
+            rgba(255, 255, 255, 0.04)
+        );
+}
+
+
+/* =========================================================
+   PROFILE / HAMBURGER MENU
+========================================================= */
+
+.login-activity-page .profile-menu {
+    position: absolute;
+    top: 54px;
+    right: 0;
+
+    width: 230px;
+
+    padding: 8px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b1e24,
+            #11151b
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 22px 50px rgba(0, 0, 0, 0.55);
+
+    backdrop-filter: blur(18px);
+
+    display: none;
+}
+
+
+.login-activity-page .profile-menu a,
+.login-activity-page .profile-menu button {
+    width: 100%;
+    min-height: 44px;
+
+    padding: 0 13px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: #d7dbe0;
+
+    text-decoration: none;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.login-activity-page .profile-menu a:hover,
+.login-activity-page .profile-menu button:hover {
+    background: rgba(247, 147, 26, 0.10);
+    color: #ffffff;
+}
+
+
+.login-activity-page .profile-menu a.active {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(247, 147, 26, 0.18),
+            rgba(247, 147, 26, 0.06)
+        );
+
+    color: #f7931a;
+
+    border: 1px solid rgba(247, 147, 26, 0.16);
+}
+
+
+.login-activity-page .profile-menu i {
+    width: 18px;
+    text-align: center;
+}
+
+
+.login-activity-page .profile-menu button {
+    margin-top: 5px;
+    color: #ff7777;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.login-activity-container {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+
+    padding: 42px 0 60px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE INTRO
+========================================================= */
+
+.login-activity-header {
+    width: 100%;
+
+    padding: 28px 30px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30, 34, 41, 0.98),
+            rgba(19, 23, 29, 0.96)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.045),
+        0 18px 45px rgba(0, 0, 0, 0.22);
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+.login-activity-header::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -100px;
+    top: -120px;
+
+    border-radius: 50%;
+
+    background: rgba(247, 147, 26, 0.08);
+
+    filter: blur(25px);
+
+    pointer-events: none;
+}
+
+
+.login-activity-label {
+    display: inline-block;
+
+    margin-bottom: 7px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+
+    color: #f7931a;
+}
+
+
+.login-activity-header h2 {
+    margin: 0;
+
+    font-size: 30px;
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+
+.login-activity-header p {
+    margin: 8px 0 0;
+
+    color: #8e969f;
+
+    font-size: 14px;
+}
+
+
+.login-activity-icon {
+    width: 58px;
+    height: 58px;
+
+    flex: 0 0 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    color: #f7931a;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(247, 147, 26, 0.18),
+            rgba(247, 147, 26, 0.045)
+        );
+
+    border: 1px solid rgba(247, 147, 26, 0.20);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+
+.login-activity-icon i {
+    font-size: 22px;
+}
+
+
+/* =========================================================
+   STAT CARDS
+========================================================= */
+
+.login-stat-grid {
+    width: 100%;
+
+    margin-top: 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+.login-stat-card {
+    min-width: 0;
+
+    padding: 23px 24px;
+
+    box-sizing: border-box;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(29, 33, 40, 0.98),
+            rgba(18, 22, 28, 0.98)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.075);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.035),
+        0 12px 30px rgba(0, 0, 0, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.login-stat-card:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(247, 147, 26, 0.25);
+}
+
+
+.login-stat-card span {
+    display: block;
+
+    color: #8e969f;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+.login-stat-card strong {
+    display: block;
+
+    margin-top: 9px;
+
+    color: #ffffff;
+
+    font-size: 29px;
+    line-height: 1;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TABLE CARD
+========================================================= */
+
+.login-table-card {
+    width: 100%;
+
+    margin-top: 20px;
+
+    box-sizing: border-box;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28, 32, 39, 0.98),
+            rgba(17, 21, 27, 0.98)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 18px 45px rgba(0, 0, 0, 0.24);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.login-table-header {
+    min-height: 82px;
+
+    padding: 20px 24px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+.login-table-header h3 {
+    margin: 0;
+
+    font-size: 17px;
+    font-weight: 650;
+
+    color: #ffffff;
+}
+
+
+.login-table-header p {
+    margin: 5px 0 0;
+
+    color: #7f8790;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   REFRESH BUTTON
+========================================================= */
+
+#refreshLoginActivity {
+    min-height: 42px;
+
+    padding: 0 15px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: 1px solid rgba(247, 147, 26, 0.28);
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(247, 147, 26, 0.18),
+            rgba(247, 147, 26, 0.07)
+        );
+
+    color: #f7931a;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+#refreshLoginActivity:hover {
+    transform: translateY(-1px);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(247, 147, 26, 0.28),
+            rgba(247, 147, 26, 0.10)
+        );
+
+    border-color:
+        rgba(247, 147, 26, 0.50);
+}
+
+
+#refreshLoginActivity:active {
+    transform: translateY(0);
+}
+
+
+#refreshLoginActivity i {
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.login-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+
+.login-table-wrapper table {
+    width: 100%;
+
+    min-width: 760px;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+}
+
+
+.login-table-wrapper th {
+    padding: 15px 20px;
+
+    text-align: left;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    color: #777f88;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.06);
+}
+
+
+.login-table-wrapper th:nth-child(1) {
+    width: 30%;
+}
+
+
+.login-table-wrapper th:nth-child(2) {
+    width: 24%;
+}
+
+
+.login-table-wrapper th:nth-child(3) {
+    width: 20%;
+}
+
+
+.login-table-wrapper th:nth-child(4) {
+    width: 26%;
+}
+
+
+.login-table-wrapper td {
+    padding: 17px 20px;
+
+    color: #c9ced4;
+
+    font-size: 13px;
+
+    vertical-align: middle;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.055);
+}
+
+
+.login-table-wrapper tbody tr {
+    transition:
+        background 0.2s ease;
+}
+
+
+.login-table-wrapper tbody tr:hover {
+    background:
+        rgba(247, 147, 26, 0.035);
+}
+
+
+.login-table-wrapper tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/* =========================================================
+   USER
+========================================================= */
+
+.login-user {
+    min-width: 0;
+}
+
+
+.login-user strong {
+    display: block;
+
+    max-width: 100%;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   IP ADDRESS
+========================================================= */
+
+.ip-address {
+    display: inline-block;
+
+    max-width: 100%;
+
+    padding: 6px 8px;
+
+    box-sizing: border-box;
+
+    border-radius: 7px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border: 1px solid rgba(255, 255, 255, 0.055);
+
+    color: #b9c0c7;
+
+    font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        monospace;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+.login-location {
+    min-width: 0;
+}
+
+
+.login-location strong {
+    display: block;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: #e9ecef;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.login-location small {
+    display: block;
+
+    margin-top: 4px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: #737c86;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   LOADING / EMPTY / ERROR
+========================================================= */
+
+.login-loading,
+.login-empty,
+.login-error {
+    padding: 55px 20px !important;
+
+    text-align: center !important;
+
+    color: #747d87 !important;
+
+    font-size: 13px !important;
+}
+
+
+.login-loading i {
+    margin-right: 8px;
+
+    color: #f7931a;
+}
+
+
+.login-error {
+    color: #ff7777 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .login-activity-page .dashboard-header {
+        min-height: 66px;
+        padding: 0 15px;
+    }
+
+
+    .login-activity-page .logo h1 {
+        font-size: 16px;
+        letter-spacing: 0.5px;
+    }
+
+
+    .login-activity-page .logo h1 i {
+        font-size: 19px;
+    }
+
+
+    .login-activity-page .icon-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+    }
+
+
+    .login-activity-page .profile-menu {
+        top: 49px;
+        right: -2px;
+        width: min(235px, calc(100vw - 30px));
+    }
+
+
+    .login-activity-container {
+        width: calc(100% - 24px);
+        padding: 22px 0 40px;
+    }
+
+
+    .login-activity-header {
+        padding: 22px 20px;
+
+        border-radius: 18px;
+
+        align-items: flex-start;
+    }
+
+
+    .login-activity-header h2 {
+        font-size: 24px;
+    }
+
+
+    .login-activity-header p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+
+    .login-activity-icon {
+        width: 48px;
+        height: 48px;
+        flex-basis: 48px;
+        border-radius: 14px;
+    }
+
+
+    .login-activity-icon i {
+        font-size: 18px;
+    }
+
+
+    .login-stat-grid {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+
+    .login-stat-card {
+        padding: 19px 20px;
+
+        border-radius: 16px;
+    }
+
+
+    .login-stat-card strong {
+        font-size: 25px;
+    }
+
+
+    .login-table-card {
+        border-radius: 18px;
+    }
+
+
+    .login-table-header {
+        padding: 17px 18px;
+
+        align-items: flex-start;
+    }
+
+
+    .login-table-header h3 {
+        font-size: 16px;
+    }
+
+
+    .login-table-header p {
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+
+    #refreshLoginActivity {
+        min-height: 39px;
+
+        padding: 0 11px;
+
+        flex-shrink: 0;
+
+        font-size: 12px;
+    }
+
+
+    .login-table-wrapper {
+        overflow-x: hidden;
+    }
+
+
+    .login-table-wrapper table {
+        min-width: 0;
+        width: 100%;
+        table-layout: auto;
+    }
+
+
+    .login-table-wrapper thead {
+        display: none;
+    }
+
+
+    .login-table-wrapper tbody {
+        display: block;
+        width: 100%;
+    }
+
+
+    .login-table-wrapper tr {
+        display: block;
+
+        width: 100%;
+
+        padding: 17px 18px;
+
+        box-sizing: border-box;
+
+        border-bottom:
+            1px solid rgba(255, 255, 255, 0.07);
+    }
+
+
+    .login-table-wrapper td {
+        display: block;
+
+        width: 100%;
+
+        padding: 3px 0;
+
+        border: 0;
+
+        box-sizing: border-box;
+
+        overflow: hidden;
+    }
+
+
+    .login-table-wrapper td:nth-child(1)::before {
+        content: "USER";
+
+        display: block;
+
+        margin-bottom: 4px;
+
+        color: #68717b;
+
+        font-size: 9px;
+        font-weight: 700;
+
+        letter-spacing: 1px;
+    }
+
+
+    .login-table-wrapper td:nth-child(2)::before {
+        content: "LOGIN TIME";
+
+        display: block;
+
+        margin-bottom: 4px;
+
+        color: #68717b;
+
+        font-size: 9px;
+        font-weight: 700;
+
+        letter-spacing: 1px;
+    }
+
+
+    .login-table-wrapper td:nth-child(3)::before {
+        content: "IP ADDRESS";
+
+        display: block;
+
+        margin-bottom: 4px;
+
+        color: #68717b;
+
+        font-size: 9px;
+        font-weight: 700;
+
+        letter-spacing: 1px;
+    }
+
+
+    .login-table-wrapper td:nth-child(4)::before {
+        content: "LOCATION";
+
+        display: block;
+
+        margin-bottom: 4px;
+
+        color: #68717b;
+
+        font-size: 9px;
+        font-weight: 700;
+
+        letter-spacing: 1px;
+    }
+
+
+    .login-user strong {
+        white-space: normal;
+
+        overflow-wrap: anywhere;
+
+        font-size: 13px;
+    }
+
+
+    .ip-address {
+        max-width: 100%;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+        white-space: nowrap;
+    }
+
+
+    .login-location strong,
+    .login-location small {
+        white-space: normal;
+
+        overflow-wrap: anywhere;
+    }
+
+
+    .login-table-wrapper tbody tr:hover {
+        background: transparent;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .login-activity-page .logo h1 {
+        font-size: 14px;
+    }
+
+
+    .login-activity-container {
+        width: calc(100% - 18px);
+    }
+
+
+    .login-activity-header {
+        padding: 19px 16px;
+    }
+
+
+    .login-activity-header h2 {
+        font-size: 21px;
+    }
+
+
+    .login-activity-header p {
+        max-width: 190px;
+    }
+
+
+    .login-activity-icon {
+        width: 43px;
+        height: 43px;
+        flex-basis: 43px;
+    }
+
+
+    .login-table-header {
+        padding: 15px;
+    }
+
+
+    .login-table-wrapper tr {
+        padding: 16px 15px;
+    }
+
+}
