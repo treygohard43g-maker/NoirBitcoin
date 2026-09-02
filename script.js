@@ -1,5 +1,6 @@
 import { auth } from "./firebase.js";
 
+import { recordLoginActivity } from "./login-tracker.js";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -312,6 +313,8 @@ if (loginForm) {
                 "Firebase login successful:",
                 user.uid
             );
+            
+            recordLoginActivity(user);
             
             const name =
                 user.displayName || "User";
