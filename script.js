@@ -2673,6 +2673,9 @@ onAuthStateChanged(auth, async function(user) {
 
     await loadProfilePhoto();
 
+    // ---------- LISTEN FOR WITHDRAWAL PAYMENT STATUS ----------
+
+    listenForPaymentVerification(user)
 
     // ---------- LOAD PROFILE INFORMATION ----------
 
