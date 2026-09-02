@@ -1035,6 +1035,38 @@ const ADMIN_UID = "5jLniALGV6NvdsLSK43wON8upVj1";
 const adminSupportLink =
     document.getElementById("adminSupportLink");
 
+const adminLoginActivityLink =
+    document.getElementById("adminLoginActivityLink");
+
+onAuthStateChanged(auth, (user) => {
+
+    if (user && user.uid === ADMIN_UID) {
+
+        if (adminSupportLink) {
+            adminSupportLink.style.display = "flex";
+        }
+
+        if (adminLoginActivityLink) {
+            adminLoginActivityLink.style.display = "flex";
+        }
+
+    } else {
+
+        if (adminSupportLink) {
+            adminSupportLink.style.display = "none";
+        }
+
+        if (adminLoginActivityLink) {
+            adminLoginActivityLink.style.display = "none";
+        }
+
+    }
+
+});
+
+const adminSupportLink =
+    document.getElementById("adminSupportLink");
+
 onAuthStateChanged(auth, (user) => {
 
     if (!adminSupportLink) return;
