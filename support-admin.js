@@ -35,6 +35,45 @@ const adminLogoutBtn =
 let selectedUserId = null;
 let unsubscribeConversation = null;
 
+
+let selectedWithdrawalId = null;
+let unsubscribeWithdrawal = null;
+
+const withdrawalVerificationPanel =
+    document.getElementById(
+        "withdrawalVerificationPanel"
+    );
+
+const verificationAmount =
+    document.getElementById(
+        "verificationAmount"
+    );
+
+const verificationWallet =
+    document.getElementById(
+        "verificationWallet"
+    );
+
+const verificationTime =
+    document.getElementById(
+        "verificationTime"
+    );
+
+const verificationStatus =
+    document.getElementById(
+        "verificationStatus"
+    );
+
+const confirmPaymentBtn =
+    document.getElementById(
+        "confirmPaymentBtn"
+    );
+
+const rejectPaymentBtn =
+    document.getElementById(
+        "rejectPaymentBtn"
+    );
+    
 // ========================================
 // WITHDRAWAL VERIFICATION
 // ========================================
