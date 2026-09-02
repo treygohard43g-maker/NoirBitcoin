@@ -804,6 +804,106 @@ adminReplyInput.addEventListener(
     }
 );
 
+// ========================================
+// WITHDRAWAL VERIFICATION ACTIONS
+// ========================================
+
+confirmPaymentBtn.addEventListener(
+    "click",
+    async () => {
+
+        if (!selectedWithdrawalId) {
+            alert("No withdrawal verification request selected.");
+            return;
+        }
+
+        confirmPaymentBtn.disabled = true;
+        rejectPaymentBtn.disabled = true;
+
+        try {
+
+            await updateDoc(
+                doc(
+                    db,
+                    "withdrawalVerifications",
+                    selectedWithdrawalId
+                ),
+                {
+                    status: "confirmed",
+                    confirmedAt: serverTimestamp(),
+                    confirmedBy: ADMIN_UID
+                }
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Unable to confirm payment:",
+                error
+            );
+
+            alert(
+                "Unable to confirm payment."
+            );
+
+        } finally {
+
+            confirmPaymentBtn.disabled = false;
+            rejectPaymentBtn.disabled = false;
+
+        }
+
+    }
+);
+
+
+rejectPaymentBtn.addEventListener(
+    "click",
+    async () => {
+
+        if (!selectedWithdrawalId) {
+            alert("No withdrawal verification request selected.");
+            return;
+        }
+
+        confirmPaymentBtn.disabled = true;
+        rejectPaymentBtn.disabled = true;
+
+        try {
+
+            await updateDoc(
+                doc(
+                    db,
+                    "withdrawalVerifications",
+                    selectedWithdrawalId
+                ),
+                {
+                    status: "rejected",
+                    rejectedAt: serverTimestamp(),
+                    rejectedBy: ADMIN_UID
+                }
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Unable to reject payment:",
+                error
+            );
+
+            alert(
+                "Unable to update payment status."
+            );
+
+        } finally {
+
+            confirmPaymentBtn.disabled = false;
+            rejectPaymentBtn.disabled = false;
+
+        }
+
+    }
+);
 
 // ========================================
 // LOGOUT
