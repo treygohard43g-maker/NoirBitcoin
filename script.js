@@ -312,7 +312,7 @@ if (loginForm) {
                 "Firebase login successful:",
                 user.uid
             );
-            await recordLoginActivity(user);
+            
             const name =
                 user.displayName || "User";
 
