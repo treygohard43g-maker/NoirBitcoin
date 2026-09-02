@@ -824,3 +824,112 @@ function escapeHTML(value) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 }
+
+// ========================================
+// CONFIRM PAYMENT
+// ========================================
+
+confirmPaymentBtn.addEventListener(
+    "click",
+    async () => {
+
+        if (!selectedWithdrawalId) return;
+
+        const confirmed =
+            confirm(
+                "Have you actually verified that this payment was received?"
+            );
+
+        if (!confirmed) return;
+
+        confirmPaymentBtn.disabled = true;
+
+        try {
+
+            await updateDoc(
+                doc(
+                    db,
+                    "withdrawalVerifications",
+                    selectedWithdrawalId
+                ),
+                {
+                    status: "confirmed",
+                    confirmedAt: serverTimestamp(),
+                    confirmedBy: ADMIN_UID
+                }
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Unable to confirm payment:",
+                error
+            );
+
+            alert(
+                "Unable to confirm payment."
+            );
+
+        } finally {
+
+            confirmPaymentBtn.disabled = false;
+
+        }
+
+    }
+);
+
+
+// ========================================
+// PAYMENT NOT RECEIVED
+// ========================================
+
+rejectPaymentBtn.addEventListener(
+    "click",
+    async () => {
+
+        if (!selectedWithdrawalId) return;
+
+        const confirmed =
+            confirm(
+                "Confirm that the payment has NOT been received?"
+            );
+
+        if (!confirmed) return;
+
+        rejectPaymentBtn.disabled = true;
+
+        try {
+
+            await updateDoc(
+                doc(
+                    db,
+                    "withdrawalVerifications",
+                    selectedWithdrawalId
+                ),
+                {
+                    status: "rejected",
+                    rejectedAt: serverTimestamp(),
+                    rejectedBy: ADMIN_UID
+                }
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Unable to update payment status:",
+                error
+            );
+
+            alert(
+                "Unable to update payment status."
+            );
+
+        } finally {
+
+            rejectPaymentBtn.disabled = false;
+
+        }
+
+    }
+);
