@@ -2908,6 +2908,102 @@ function closeWithdrawFeeModal() {
 
 console.log(JSON.parse(localStorage.getItem("investments")));
 
+function listenForPaymentVerification(user) {
+
+    const verificationQuery =
+        query(
+            collection(
+                db,
+                "withdrawalVerifications"
+            ),
+            where(
+                "userId",
+                "==",
+                user.uid
+            )
+        );
+
+
+    onSnapshot(
+        verificationQuery,
+        (snapshot) => {
+
+            if (snapshot.empty) {
+                return;
+            }
+
+
+            const requests = [];
+
+
+            snapshot.forEach(
+                (withdrawalDoc) => {
+
+                    requests.push({
+                        id: withdrawalDoc.id,
+                        ...withdrawalDoc.data()
+                    });
+
+                }
+            );
+
+
+            requests.sort(
+                (a, b) => {
+
+                    const timeA =
+                        a.createdAt?.toMillis?.() || 0;
+
+                    const timeB =
+                        b.createdAt?.toMillis?.() || 0;
+
+                    return timeB - timeA;
+
+                }
+            );
+
+
+            const latestRequest =
+                requests[0];
+
+
+            if (!latestRequest) {
+                return;
+            }
+
+
+            if (
+                latestRequest.status ===
+                "confirmed"
+            ) {
+
+                showPaymentConfirmed();
+
+            }
+
+
+            if (
+                latestRequest.status ===
+                "rejected"
+            ) {
+
+                showPaymentNotReceived();
+
+            }
+
+        },
+        (error) => {
+
+            console.error(
+                "Withdrawal verification listener error:",
+                error
+            );
+
+        }
+    );
+
+}
+
 /* ==========================
    PREMIUM WITHDRAW FLOW
 ========================== */
