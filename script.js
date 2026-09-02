@@ -3004,6 +3004,167 @@ function listenForPaymentVerification(user) {
 
 }
 
+
+function showPaymentConfirmed() {
+
+    const card =
+        document.querySelector(
+            "#pendingModal .withdraw-card"
+        );
+
+    if (!card) return;
+
+    card.innerHTML = `
+
+        <button
+            class="close-modal"
+            onclick="closePendingModal()">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <div class="withdraw-icon">
+
+            <div class="confirmation-check">
+                <i class="fa-solid fa-check"></i>
+            </div>
+
+        </div>
+
+        <h2>
+            Payment Confirmed by Support ✅
+        </h2>
+
+        <div class="divider"></div>
+
+        <p class="withdraw-text">
+
+            Your payment confirmation has been
+            verified by our support team.
+
+            <br><br>
+
+            Your withdrawal is now being processed.
+
+        </p>
+
+        <div class="security-box">
+
+            <i class="fa-solid fa-clock"></i>
+
+            <div>
+
+                <strong>
+                    Withdrawal Processing
+                </strong>
+
+                <p>
+                    Estimated processing time is
+                    1–3 hours, subject to processing.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="trust">
+
+            <i class="fa-solid fa-lock"></i>
+
+            Secure • Encrypted • Trusted
+
+        </div>
+
+    `;
+
+}
+
+
+function showPaymentNotReceived() {
+
+    const card =
+        document.querySelector(
+            "#pendingModal .withdraw-card"
+        );
+
+    if (!card) return;
+
+    card.innerHTML = `
+
+        <button
+            class="close-modal"
+            onclick="closePendingModal()">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <div class="withdraw-icon">
+
+            <div class="confirmation-check rejected">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+
+        </div>
+
+        <h2>
+            Payment Not Confirmed
+        </h2>
+
+        <div class="divider"></div>
+
+        <p class="withdraw-text">
+
+            Our support team could not confirm
+            the payment at this time.
+
+            <br><br>
+
+            Please contact Support if you believe
+            this was marked incorrectly.
+
+        </p>
+
+        <div class="security-box">
+
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            <div>
+
+                <strong>
+                    Verification Required
+                </strong>
+
+                <p>
+                    Contact our support team for
+                    further assistance.
+                </p>
+
+            </div>
+
+        </div>
+
+        <button
+            class="close-btn"
+            onclick="closePendingModal()">
+
+            Close
+
+        </button>
+
+        <div class="trust">
+
+            <i class="fa-solid fa-lock"></i>
+
+            Secure • Encrypted • Trusted
+
+        </div>
+
+    `;
+
+}
+
 /* ==========================
    PREMIUM WITHDRAW FLOW
 ========================== */
