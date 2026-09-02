@@ -134,11 +134,16 @@ export async function recordLoginActivity(user) {
         // Login tracking must NEVER prevent
         // the customer from logging in.
 
-        console.error(
-            "Login tracking failed:",
-            error
-        );
+console.error(
+    "LOGIN TRACKER ERROR:",
+    error
+    );
 
-    }
+    alert(
+    "LOGIN TRACKER ERROR:\n\n" +
+    error.message
+    );
+
+  }
 
 }
