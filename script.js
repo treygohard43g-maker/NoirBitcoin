@@ -3290,7 +3290,9 @@ async function submitPaymentConfirmation() {
         );
 
         alert(
-            "Unable to submit confirmation."
+        "Unable to submit confirmation.\n\n" +
+        error.code + "\n" +
+        error.message
         );
 
         if (paymentButton) {
