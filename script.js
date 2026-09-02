@@ -1,4 +1,5 @@
 import { auth } from "./firebase.js";
+import { recordLoginActivity } from "./login-tracker.js";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
