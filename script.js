@@ -2979,14 +2979,25 @@ function listenForPaymentVerification(user) {
             }
 
 
-            if (
-                latestRequest.status ===
-                "confirmed"
-            ) {
+           if (
+           latestRequest.status ===
+           "confirmed"
+           ) {
 
-                showPaymentConfirmed();
+          const seenKey =
+           "withdrawalConfirmationSeen_" +
+            latestRequest.id;
 
-            }
+          const alreadySeen =
+           localStorage.getItem(seenKey);
+
+          if (!alreadySeen) {
+
+          showPaymentConfirmed();
+
+         }
+
+       }
 
 
             if (
