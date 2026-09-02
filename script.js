@@ -204,13 +204,15 @@ if (loginForm) {
                 userCredential.user;
 
             console.log(
-                "Firebase login successful:",
-                user.uid
+            "Firebase login successful:",
+            user.uid
             );
 
-            const name =
-                user.displayName || "User";
+           // Record successful login activity
+            recordLoginActivity(user);
 
+           const name =
+           user.displayName || "User";
             localStorage.setItem(
                 "loggedIn",
                 "true"
