@@ -2946,6 +2946,105 @@ function closePendingModal() {
     document.getElementById("pendingModal").style.display = "none";
 }
 
+async function submitPaymentConfirmation() {
+
+    const amountInput =
+        document.getElementById("withdrawUSD");
+
+    const walletInput =
+        document.getElementById("withdrawWallet");
+
+    const amount =
+        Number(amountInput?.value || 0);
+
+    const wallet =
+        walletInput?.value.trim() || "";
+
+    if (
+        !amount ||
+        amount <= 0 ||
+        !wallet
+    ) {
+        alert(
+            "Please enter your withdrawal details first."
+        );
+        return;
+    }
+
+    const user = auth.currentUser;
+
+    if (!user) {
+        alert("Please log in again.");
+        return;
+    }
+
+    const paymentButton =
+        document.querySelector(
+            ".payment-made-btn"
+        );
+
+    if (paymentButton) {
+
+        paymentButton.disabled = true;
+
+        paymentButton.innerHTML = `
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            Submitting...
+        `;
+    }
+
+    try {
+
+        await addDoc(
+            collection(
+                db,
+                "withdrawalVerifications"
+            ),
+            {
+                userId: user.uid,
+
+                userName:
+                    user.displayName || "",
+
+                userEmail:
+                    user.email || "",
+
+                amount: amount,
+
+                wallet: wallet,
+
+                status: "pending",
+
+                createdAt:
+                    serverTimestamp()
+            }
+        );
+
+        showPaymentConfirmationProgress();
+
+    } catch (error) {
+
+        console.error(
+            "Payment confirmation error:",
+            error
+        );
+
+        alert(
+            "Unable to submit confirmation."
+        );
+
+        if (paymentButton) {
+
+            paymentButton.disabled = false;
+
+            paymentButton.innerHTML = `
+                <i class="fa-solid fa-circle-check"></i>
+                I Have Made Payment
+            `;
+        }
+    }
+}
+
 function showPaymentConfirmationProgress() {
 
     const card =
