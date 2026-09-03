@@ -19865,6 +19865,20 @@ body {
         border-box;
 }
 
+.customer-list {
+    min-width:
+        0;
+
+    width:
+        100%;
+
+    box-sizing:
+        border-box;
+
+    overflow-x:
+        hidden;
+}
+
     .admin-messages {
         padding:
             12px;
