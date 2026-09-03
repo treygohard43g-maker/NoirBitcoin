@@ -18450,15 +18450,14 @@ body {
         0 7px 24px rgba(0, 0, 0, 0.13);
 }
 
-
 /* CUSTOMER MESSAGE */
 
 .admin-message-row.customer .admin-message-bubble {
     background:
         linear-gradient(
             145deg,
-            rgba(255, 255, 255, 0.058),
-            rgba(255, 255, 255, 0.027)
+            #252a31,
+            #1c2026
         );
 
     border:
@@ -18473,7 +18472,6 @@ body {
 
 
 /* ADMIN MESSAGE */
-
 .admin-message-row.support .admin-message-bubble {
     background:
         linear-gradient(
