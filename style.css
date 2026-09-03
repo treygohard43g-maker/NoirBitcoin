@@ -19906,6 +19906,76 @@ body {
         nowrap;
 }
 
+.conversation-header {
+    min-width:
+        0;
+
+    width:
+        100%;
+
+    box-sizing:
+        border-box;
+
+    padding:
+        0 12px;
+}
+
+.admin-messages {
+    min-width:
+        0;
+
+    width:
+        100%;
+
+    box-sizing:
+        border-box;
+
+    overflow-x:
+        hidden;
+}
+
+.admin-reply-area {
+    min-width:
+        0;
+
+    width:
+        100%;
+
+    box-sizing:
+        border-box;
+
+    padding:
+        10px;
+}
+
+.admin-reply-input {
+    min-width:
+        0;
+
+    width:
+        100%;
+
+    box-sizing:
+        border-box;
+}
+
+.admin-send-btn {
+    flex:
+        0 0 43px;
+
+    width:
+        43px;
+
+    height:
+        43px;
+}
+
+.admin-support-container,
+.support-customers-panel,
+.support-conversation {
+    overflow-x:
+        hidden;
+}
     .admin-messages {
         padding:
             12px;
