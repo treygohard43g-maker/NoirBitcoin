@@ -18400,7 +18400,7 @@ body {
         rgba(245, 158, 11, 0.018),
         transparent 45%
     );
-
+}
 
 /* MESSAGE ROW */
 
@@ -18487,7 +18487,7 @@ body {
         );
 
     border:
-        1px solid rgba(255, 255, 255, 0.075);
+    1px solid rgba(255, 255, 255, 0.09);
 
     color:
         #dce2e8;
@@ -18517,6 +18517,7 @@ body {
 
     box-shadow:
         0 8px 28px rgba(245, 158, 11, 0.055);
+        inset 0 1px 0 rgba(255, 255, 255, 0.055);
 }
 
 
@@ -19708,10 +19709,11 @@ body {
             10px 12px;
 
         font-size:
-            11px;
+            12.5px;
+            
+       line-height: 1.5;
     }
-
-
+    
     /* VERIFICATION */
 
     .withdrawal-verification-panel {
