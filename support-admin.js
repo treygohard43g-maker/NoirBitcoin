@@ -1263,7 +1263,6 @@ function updateVerificationUI(
 
 }
 
-
 // ========================================
 // ADD ADMIN MESSAGE
 // ========================================
@@ -1279,17 +1278,48 @@ function addAdminMessage(
         );
 
 
+    /*
+     * Customer message:
+     * LEFT + DARK
+     *
+     * NoirBitcoin Support:
+     * RIGHT + ORANGE
+     */
+
     row.className =
         isSupport
             ? "admin-message-row support"
             : "admin-message-row customer";
 
 
-    const bubble =
+    const content =
         document.createElement(
             "div"
         );
 
+    content.className =
+        "admin-message-content";
+
+
+    const sender =
+        document.createElement(
+            "div"
+        );
+
+    sender.className =
+        "admin-message-sender";
+
+
+    sender.textContent =
+        isSupport
+            ? "NoirBitcoin Support"
+            : "Customer";
+
+
+    const bubble =
+        document.createElement(
+            "div"
+        );
 
     bubble.className =
         "admin-message-bubble";
@@ -1299,8 +1329,17 @@ function addAdminMessage(
         text;
 
 
-    row.appendChild(
+    content.appendChild(
+        sender
+    );
+
+    content.appendChild(
         bubble
+    );
+
+
+    row.appendChild(
+        content
     );
 
 
@@ -1309,7 +1348,6 @@ function addAdminMessage(
     );
 
 }
-
 
 // ========================================
 // ADD ADMIN PHOTO
@@ -1332,6 +1370,30 @@ function addAdminPhoto(
             : "admin-message-row customer";
 
 
+    const content =
+        document.createElement(
+            "div"
+        );
+
+    content.className =
+        "admin-message-content";
+
+
+    const sender =
+        document.createElement(
+            "div"
+        );
+
+    sender.className =
+        "admin-message-sender";
+
+
+    sender.textContent =
+        isSupport
+            ? "NoirBitcoin Support"
+            : "Customer";
+
+
     const image =
         document.createElement(
             "img"
@@ -1347,7 +1409,9 @@ function addAdminPhoto(
 
 
     image.alt =
-        "Support photo";
+        isSupport
+            ? "Support photo"
+            : "Customer photo";
 
 
     image.loading =
@@ -1366,8 +1430,17 @@ function addAdminPhoto(
     );
 
 
-    row.appendChild(
+    content.appendChild(
+        sender
+    );
+
+    content.appendChild(
         image
+    );
+
+
+    row.appendChild(
+        content
     );
 
 
@@ -1376,7 +1449,6 @@ function addAdminPhoto(
     );
 
 }
-
 
 // ========================================
 // SEND ADMIN REPLY
