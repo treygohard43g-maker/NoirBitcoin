@@ -18326,6 +18326,21 @@ body {
 }
 
 
+/* Dynamic conversation header — live support indicator */
+
+.conversation-header > div > span::before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 9px rgba(34, 197, 94, 0.75);
+    animation: liveSupportPulse 2s infinite;
+    vertical-align: middle;
+}
+
 /* =========================================================
    MESSAGE AREA
    ========================================================= */
@@ -21460,6 +21475,14 @@ body {
         rgba(239, 68, 68, 0.18);
 }
 
+.confirm-payment-btn:disabled,
+.reject-payment-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    pointer-events: none;
+}
 
 .verification-actions button:disabled {
 
