@@ -19890,6 +19890,22 @@ body {
         hidden;
 }
 
+.customer-item strong,
+.customer-item span,
+.customer-item p {
+    max-width:
+        100%;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+}
+
     .admin-messages {
         padding:
             12px;
