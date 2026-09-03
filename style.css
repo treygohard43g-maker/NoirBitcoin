@@ -17258,11 +17258,17 @@ body {
 
     min-height: 0;
 
+    display: flex;
+    flex-direction: column;
+
     overflow-y: auto;
+    overflow-x: hidden;
 
     padding: 10px 2px 20px;
 
     box-sizing: border-box;
+
+    -webkit-overflow-scrolling: touch;
 }
 
 /* MESSAGE ROW */
@@ -17271,9 +17277,12 @@ body {
 
     display: flex;
 
+    flex: 0 0 auto;
+
+    width: 100%;
+
     margin-bottom: 18px;
 }
-
 
 /* SUPPORT MESSAGE */
 
