@@ -3314,24 +3314,19 @@ function showWithdrawalPending() {
     }
 
 
-    // ========================================
-    // PAYMENT STILL PENDING
-    // ========================================
+// ========================================
+// WITHDRAWAL PENDING
+// ========================================
 
-    document.getElementById(
-        "withdrawModal"
-    ).style.display = "none";
+document.getElementById(
+    "withdrawModal"
+).style.display = "none";
 
+document.getElementById(
+    "pendingModal"
+).style.display = "flex";
 
-    document.getElementById(
-        "pendingModal"
-    ).style.display = "flex";
-
-
-    showPaymentConfirmationProgress();
-
-
-    playWithdrawalPendingAlert();
+playWithdrawalPendingAlert();
 
 }
 
