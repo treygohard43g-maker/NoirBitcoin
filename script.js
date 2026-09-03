@@ -3219,31 +3219,114 @@ function showPaymentNotReceived() {
 
 function showWithdrawalPending() {
 
-    const amount = document.getElementById("withdrawUSD").value.trim();
-    const wallet = document.getElementById("withdrawWallet").value.trim();
+    const amount =
+        document.getElementById("withdrawUSD").value.trim();
 
-    const numericAmount = Number(amount);
+    const wallet =
+        document.getElementById("withdrawWallet").value.trim();
+
+    const numericAmount =
+        Number(amount);
+
 
     if (
-    amount === "" ||
-    !Number.isFinite(numericAmount) ||
-    numericAmount <= 0 ||
-    wallet === ""
-) {
-    alert("Please enter a valid withdrawal amount and your Bitcoin wallet address.");
-    return;
-}
+        amount === "" ||
+        !Number.isFinite(numericAmount) ||
+        numericAmount <= 0 ||
+        wallet === ""
+    ) {
 
-if (numericAmount > balance) {
-    alert("Insufficient available balance.");
-    return;
-}
+        alert(
+            "Please enter a valid withdrawal amount and your Bitcoin wallet address."
+        );
 
-    document.getElementById("withdrawModal").style.display = "none";
+        return;
+    }
 
-    document.getElementById("pendingModal").style.display = "flex";
+
+    if (
+        numericAmount > balance
+    ) {
+
+        alert(
+            "Insufficient available balance."
+        );
+
+        return;
+    }
+
+
+    // ========================================
+    // PAYMENT ALREADY CONFIRMED
+    // ========================================
+
+    if (
+        activeWithdrawalVerificationStatus ===
+        "confirmed"
+    ) {
+
+        document.getElementById(
+            "withdrawModal"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "pendingModal"
+        ).style.display = "flex";
+
+
+        showPaymentConfirmed();
+
+
+        return;
+    }
+
+
+    // ========================================
+    // PAYMENT REJECTED
+    // ========================================
+
+    if (
+        activeWithdrawalVerificationStatus ===
+        "rejected"
+    ) {
+
+        document.getElementById(
+            "withdrawModal"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "pendingModal"
+        ).style.display = "flex";
+
+
+        showPaymentNotReceived();
+
+
+        return;
+    }
+
+
+    // ========================================
+    // PAYMENT STILL PENDING
+    // ========================================
+
+    document.getElementById(
+        "withdrawModal"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "pendingModal"
+    ).style.display = "flex";
+
+
+    showPaymentConfirmationProgress();
+
 
     playWithdrawalPendingAlert();
+
 }
 
 function closeWithdrawModal() {
