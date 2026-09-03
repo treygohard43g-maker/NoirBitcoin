@@ -18572,6 +18572,8 @@ body {
 }
 
 
+
+
 /* =========================================================
    WITHDRAWAL PAYMENT VERIFICATION
    ========================================================= */
@@ -18783,7 +18785,7 @@ body {
 
 /* APPROVED / SUCCESS */
 
-.verification-status.approved {
+.verification-status.confirmed {
     background:
         rgba(34, 197, 94, 0.095);
 
@@ -18797,7 +18799,7 @@ body {
         0 0 18px rgba(34, 197, 94, 0.06);
 }
 
-.verification-status.approved::before {
+.verification-status.confirmed::before {
     content:
         "✓";
 
