@@ -2928,9 +2928,17 @@ function listenForPaymentVerification(user) {
 
     onSnapshot(
         verificationQuery,
+
         (snapshot) => {
 
             if (snapshot.empty) {
+
+                activeWithdrawalVerificationId =
+                    null;
+
+                activeWithdrawalVerificationStatus =
+                    null;
+
                 return;
             }
 
@@ -2942,8 +2950,12 @@ function listenForPaymentVerification(user) {
                 (withdrawalDoc) => {
 
                     requests.push({
-                        id: withdrawalDoc.id,
+
+                        id:
+                            withdrawalDoc.id,
+
                         ...withdrawalDoc.data()
+
                     });
 
                 }
@@ -2968,37 +2980,39 @@ function listenForPaymentVerification(user) {
             const latestRequest =
                 requests[0];
 
-            activeWithdrawalVerificationId =
-            latestRequest.id;
-
-            activeWithdrawalVerificationStatus =
-            latestRequest.status || "pending";
 
             if (!latestRequest) {
                 return;
             }
 
 
-           if (
-           latestRequest.status ===
-           "confirmed"
-           ) {
+            activeWithdrawalVerificationId =
+                latestRequest.id;
 
-          const seenKey =
-           "withdrawalConfirmationSeen_" +
-            latestRequest.id;
 
-          const alreadySeen =
-           localStorage.getItem(seenKey);
+            activeWithdrawalVerificationStatus =
+                latestRequest.status ||
+                "pending";
 
-          if (!alreadySeen) {
 
-          showPaymentConfirmed();
+            // ==============================
+            // PAYMENT CONFIRMED
+            // ==============================
 
-         }
+            if (
+                latestRequest.status ===
+                "confirmed"
+            ) {
 
-       }
+                showPaymentConfirmed();
 
+                return;
+            }
+
+
+            // ==============================
+            // PAYMENT REJECTED
+            // ==============================
 
             if (
                 latestRequest.status ===
@@ -3007,9 +3021,26 @@ function listenForPaymentVerification(user) {
 
                 showPaymentNotReceived();
 
+                return;
+            }
+
+
+            // ==============================
+            // PAYMENT PENDING
+            // ==============================
+
+            if (
+                latestRequest.status ===
+                "pending"
+            ) {
+
+                showPaymentConfirmationProgress();
+
+                return;
             }
 
         },
+
         (error) => {
 
             console.error(
@@ -3021,7 +3052,6 @@ function listenForPaymentVerification(user) {
     );
 
 }
-
 
 function showPaymentConfirmed() {
 
