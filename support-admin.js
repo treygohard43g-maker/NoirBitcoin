@@ -600,8 +600,7 @@ function renderCustomers(
 
             `;
 
-
-            item.addEventListener(
+item.addEventListener(
     "click",
     () => {
 
@@ -611,38 +610,15 @@ function renderCustomers(
             customerEmail
         );
 
-
-        if (
-            window.innerWidth <= 480
-        ) {
-
-            const conversation =
-                document.querySelector(
-                    ".support-conversation"
-                );
-
-
-            if (
-                conversation
-            ) {
-
-                conversation.classList.add(
-                    "mobile-open"
-                );
-
-            }
-
-        }
-
     }
 );
-
-            customerList.appendChild(
-                item
-            );
-
-        }
+            
+customerList.appendChild(
+        item
     );
+
+  }
+);
 
 }
 
