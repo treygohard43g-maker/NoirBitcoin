@@ -17962,6 +17962,20 @@ body {
         scale(0.985);
 }
 
+.customer-item.active {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(245, 158, 11, 0.11),
+            rgba(245, 158, 11, 0.035)
+        );
+
+    border-color:
+        rgba(245, 158, 11, 0.20);
+
+    box-shadow:
+        inset 3px 0 0 rgba(245, 158, 11, 0.75);
+}
 
 /* CUSTOMER AVATAR */
 
