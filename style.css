@@ -19789,6 +19789,10 @@ body {
    SMALL PHONES
    ========================================================= */
 
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
 @media (max-width: 480px) {
 
     .admin-support-header {
@@ -19803,6 +19807,26 @@ body {
         height:
             35px;
     }
+
+    .admin-header-title h1 {
+        font-size:
+            14px;
+    }
+
+    .admin-header-title p {
+        font-size:
+            7px;
+    }
+
+    .admin-logout-btn {
+        width:
+            35px;
+
+        height:
+            35px;
+    }
+
+}
 
     .admin-header-title h1 {
         font-size:
