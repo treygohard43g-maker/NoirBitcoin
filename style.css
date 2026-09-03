@@ -19853,7 +19853,17 @@ body {
         border-box;
 }
 
-.support-customers-panel,
+.support-customers-panel {
+    min-width:
+        0;
+
+    width:
+        100%;
+
+    box-sizing:
+        border-box;
+}
+
 .support-conversation {
     min-width:
         0;
@@ -19863,6 +19873,37 @@ body {
 
     box-sizing:
         border-box;
+
+    display:
+        none;
+}
+
+.support-conversation.mobile-open {
+    display:
+        flex;
+
+    animation:
+        supportConversationSlideIn
+        0.28s
+        ease-out;
+}
+
+@keyframes supportConversationSlideIn {
+    from {
+        opacity:
+            0;
+
+        transform:
+            translateX(100%);
+    }
+
+    to {
+        opacity:
+            1;
+
+        transform:
+            translateX(0);
+    }
 }
 
 .customer-list {
