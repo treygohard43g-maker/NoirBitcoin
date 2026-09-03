@@ -18180,12 +18180,14 @@ body {
         center;
 
     border-bottom:
-        1px solid rgba(255, 255, 255, 0.065);
+    1px solid rgba(245, 158, 11, 0.12);
 
-    background:
-        rgba(255, 255, 255, 0.012);
-}
-
+     background:
+    linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.018),
+        rgba(255, 255, 255, 0.006)
+    );
 
 /* USER PLACEHOLDER */
 
@@ -18237,10 +18239,10 @@ body {
 
     color:
         #f59e0b;
-
+    
     box-shadow:
-        0 0 22px rgba(245, 158, 11, 0.055),
-        inset 0 1px 0 rgba(255, 255, 255, 0.045);
+    0 0 16px rgba(245, 158, 11, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
     font-size:
         16px;
