@@ -3040,8 +3040,6 @@ function listenForPaymentVerification(user) {
                 "pending"
             ) {
 
-                showPaymentConfirmationProgress();
-
                 return;
             }
 
