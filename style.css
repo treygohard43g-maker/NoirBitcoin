@@ -17740,10 +17740,12 @@ body {
     gap:
         16px;
 
+    min-width:
+        0;
+
     min-height:
         0;
 }
-
 
 /* =========================================================
    CUSTOMERS PANEL
@@ -17751,7 +17753,9 @@ body {
 
 .support-customers-panel {
     min-height: 0;
-
+    min-width:
+    0;
+    
     display: flex;
     flex-direction: column;
 
@@ -18133,7 +18137,8 @@ body {
 .support-conversation {
     min-height:
         0;
-
+    min-width:
+        0;
     display:
         flex;
 
