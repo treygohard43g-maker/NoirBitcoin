@@ -19273,7 +19273,11 @@ body {
         12px;
 
     background:
-        rgba(245, 158, 11, 0.10);
+    linear-gradient(
+        145deg,
+        rgba(245, 158, 11, 0.16),
+        rgba(245, 158, 11, 0.07)
+    );
 
     border:
         1px solid rgba(245, 158, 11, 0.34);
@@ -19285,8 +19289,8 @@ body {
         pointer;
 
     box-shadow:
-        0 0 18px rgba(245, 158, 11, 0.055),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        0 0 18px rgba(245, 158, 11, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
     transition:
         all 0.22s ease;
