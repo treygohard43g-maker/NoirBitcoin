@@ -605,14 +605,7 @@ function loadWithdrawalVerification(
         null;
 
 
-    if (
-        withdrawalVerificationPanel
-    ) {
-
-        withdrawalVerificationPanel.style.display =
-            "none";
-
-    }
+    hideWithdrawalVerification();
 
 
     const withdrawalQuery =
@@ -639,21 +632,16 @@ function loadWithdrawalVerification(
 
             (snapshot) => {
 
+                // ----------------------------------------
+                // NO REQUESTS
+                // ----------------------------------------
+
                 if (snapshot.empty) {
 
-                    if (
-                        withdrawalVerificationPanel
-                    ) {
-
-                        withdrawalVerificationPanel.style.display =
-                            "none";
-
-                    }
-
-                    selectedWithdrawalId =
-                        null;
+                    hideWithdrawalVerification();
 
                     return;
+
                 }
 
 
@@ -677,7 +665,45 @@ function loadWithdrawalVerification(
                 );
 
 
-                requests.sort(
+                // ----------------------------------------
+                // ONLY SHOW PENDING REQUESTS
+                // ----------------------------------------
+
+                const pendingRequests =
+                    requests.filter(
+                        (request) => {
+
+                            return (
+                                (request.status ||
+                                    "pending") ===
+                                "pending"
+                            );
+
+                        }
+                    );
+
+
+                // ----------------------------------------
+                // NO ACTIVE REQUEST
+                // ----------------------------------------
+
+                if (
+                    pendingRequests.length ===
+                    0
+                ) {
+
+                    hideWithdrawalVerification();
+
+                    return;
+
+                }
+
+
+                // ----------------------------------------
+                // SORT NEWEST REQUEST FIRST
+                // ----------------------------------------
+
+                pendingRequests.sort(
                     (a, b) => {
 
                         const timeA =
@@ -700,17 +726,25 @@ function loadWithdrawalVerification(
 
 
                 const request =
-                    requests[0];
+                    pendingRequests[0];
 
 
                 if (!request) {
+
+                    hideWithdrawalVerification();
+
                     return;
+
                 }
 
 
                 selectedWithdrawalId =
                     request.id;
 
+
+                // ----------------------------------------
+                // SHOW VERIFICATION CARD
+                // ----------------------------------------
 
                 if (
                     withdrawalVerificationPanel
@@ -721,6 +755,10 @@ function loadWithdrawalVerification(
 
                 }
 
+
+                // ----------------------------------------
+                // AMOUNT
+                // ----------------------------------------
 
                 if (
                     verificationAmount
@@ -745,6 +783,10 @@ function loadWithdrawalVerification(
                 }
 
 
+                // ----------------------------------------
+                // WALLET
+                // ----------------------------------------
+
                 if (
                     verificationWallet
                 ) {
@@ -755,6 +797,10 @@ function loadWithdrawalVerification(
 
                 }
 
+
+                // ----------------------------------------
+                // REQUEST TIME
+                // ----------------------------------------
 
                 if (
                     verificationTime
@@ -768,8 +814,11 @@ function loadWithdrawalVerification(
                 }
 
 
+                // ----------------------------------------
+                // UPDATE STATUS
+                // ----------------------------------------
+
                 updateVerificationUI(
-                    request.status ||
                     "pending"
                 );
 
@@ -785,6 +834,28 @@ function loadWithdrawalVerification(
             }
 
         );
+
+}
+
+
+// ========================================
+// HIDE WITHDRAWAL VERIFICATION
+// ========================================
+
+function hideWithdrawalVerification() {
+
+    selectedWithdrawalId =
+        null;
+
+
+    if (
+        withdrawalVerificationPanel
+    ) {
+
+        withdrawalVerificationPanel.style.display =
+            "none";
+
+    }
 
 }
 
