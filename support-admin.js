@@ -481,31 +481,45 @@ function selectCustomer(
 
 
     unsubscribeConversation =
-        onSnapshot(
+    onSnapshot(
 
-            conversationQuery,
+        conversationQuery,
 
-            (snapshot) => {
+        (snapshot) => {
 
-                adminMessages.innerHTML =
-                    "";
+            adminMessages.innerHTML =
+                "";
 
-                const messages =
-                    [];
+            // Put the withdrawal verification
+            // card back inside the chat container
+            if (
+                withdrawalVerificationPanel
+            ) {
 
-
-                snapshot.forEach(
-                    (messageDoc) => {
-
-                        const message =
-                            messageDoc.data();
-
-                        messages.push(
-                            message
-                        );
-
-                    }
+                adminMessages.appendChild(
+                    withdrawalVerificationPanel
                 );
+
+                withdrawalVerificationPanel.style.display =
+                    "none";
+            }
+
+            const messages =
+                [];
+
+
+            snapshot.forEach(
+                (messageDoc) => {
+
+                    const message =
+                        messageDoc.data();
+
+                    messages.push(
+                        message
+                    );
+
+                }
+            );
 
 
                 messages.sort(
