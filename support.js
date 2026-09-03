@@ -146,25 +146,27 @@ function loadMessages() {
                     }
                 );
 
+                 
+// Sort oldest → newest
+// Messages whose serverTimestamp() has not resolved yet
+// are placed at the bottom instead of the top.
 
-                // Sort oldest → newest
+messages.sort(
+    (a, b) => {
 
-                messages.sort(
-                    (a, b) => {
+        const timeA =
+            a.timestamp?.toMillis?.() ??
+            Number.MAX_SAFE_INTEGER;
 
-                        const timeA =
-                            a.timestamp
-                                ?.toMillis?.() || 0;
+        const timeB =
+            b.timestamp?.toMillis?.() ??
+            Number.MAX_SAFE_INTEGER;
 
-                        const timeB =
-                            b.timestamp
-                                ?.toMillis?.() || 0;
+        return timeA - timeB;
 
-                        return timeA - timeB;
-
-                    }
-                );
-
+    }
+);
+                
 
                 if (
                     messages.length === 0
