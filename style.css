@@ -19879,6 +19879,17 @@ body {
         hidden;
 }
 
+.customer-item > div {
+    min-width:
+        0;
+
+    max-width:
+        100%;
+
+    overflow:
+        hidden;
+}
+
     .admin-messages {
         padding:
             12px;
