@@ -602,18 +602,40 @@ function renderCustomers(
 
 
             item.addEventListener(
-                "click",
-                () => {
+    "click",
+    () => {
 
-                    selectCustomer(
-                        customer.userId,
-                        customerName,
-                        customerEmail
-                    );
+        selectCustomer(
+            customer.userId,
+            customerName,
+            customerEmail
+        );
 
-                }
-            );
 
+        if (
+            window.innerWidth <= 480
+        ) {
+
+            const conversation =
+                document.querySelector(
+                    ".support-conversation"
+                );
+
+
+            if (
+                conversation
+            ) {
+
+                conversation.classList.add(
+                    "mobile-open"
+                );
+
+            }
+
+        }
+
+    }
+);
 
             customerList.appendChild(
                 item
