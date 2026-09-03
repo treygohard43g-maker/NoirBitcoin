@@ -16,12 +16,13 @@ import {
 
 const db = getFirestore(auth.app);
 
+
 const ADMIN_UID =
     "5jLniALGV6NvdsLSK43wON8upVj1";
 
 
 // ========================================
-// EXISTING SUPPORT ELEMENTS
+// SUPPORT ELEMENTS
 // ========================================
 
 const customerList =
@@ -90,53 +91,83 @@ const rejectPaymentBtn =
 // STATE
 // ========================================
 
-let selectedUserId = null;
+let selectedUserId =
+    null;
 
-let unsubscribeConversation = null;
+let selectedWithdrawalId =
+    null;
 
-let selectedWithdrawalId = null;
+let unsubscribeConversation =
+    null;
 
-let unsubscribeWithdrawal = null;
+let unsubscribeWithdrawal =
+    null;
 
 
 // ========================================
-// AUTHENTICATION
+// ADMIN AUTH
 // ========================================
 
-auth.onAuthStateChanged((user) => {
+auth.onAuthStateChanged(
+    (user) => {
 
-    if (!user) {
+        if (!user) {
 
-        window.location.href =
-            "login.html";
+            window.location.href =
+                "login.html";
 
-        return;
+            return;
+        }
+
+
+        if (
+            user.uid !==
+            ADMIN_UID
+        ) {
+
+            alert(
+                "Access denied."
+            );
+
+            window.location.href =
+                "dashboard.html";
+
+            return;
+        }
+
+
+        loadCustomers();
+
     }
-
-
-    if (user.uid !== ADMIN_UID) {
-
-        alert("Access denied.");
-
-        window.location.href =
-            "dashboard.html";
-
-        return;
-    }
-
-
-    loadCustomers();
-
-});
+);
 
 
 // ========================================
 // LOAD CUSTOMERS
+//
+// Customers can come from:
+// 1. supportMessages
+// 2. withdrawalVerifications
+//
+// This means a brand-new customer who
+// submits a withdrawal verification will
+// still appear in Admin Support.
 // ========================================
 
 function loadCustomers() {
 
-    const messagesQuery =
+    let supportCustomers =
+        [];
+
+    let withdrawalCustomers =
+        [];
+
+
+    // ====================================
+    // SUPPORT MESSAGES LISTENER
+    // ====================================
+
+    const supportQuery =
         query(
             collection(
                 db,
@@ -150,12 +181,12 @@ function loadCustomers() {
 
 
     onSnapshot(
-        messagesQuery,
+        supportQuery,
 
         (snapshot) => {
 
-            const customers =
-                new Map();
+            supportCustomers =
+                [];
 
 
             snapshot.forEach(
@@ -165,78 +196,253 @@ function loadCustomers() {
                         messageDoc.data();
 
 
-                    if (!message.userId) {
+                    if (
+                        !message.userId
+                    ) {
                         return;
                     }
 
 
-                    if (
-                        !customers.has(
-                            message.userId
-                        )
-                    ) {
-
-                        customers.set(
-                            message.userId,
-                            {
-                                userId:
-                                    message.userId,
-
-                                userName:
-                                    message.userName ||
-                                    "",
-
-                                userEmail:
-                                    message.userEmail ||
-                                    "",
-
-                                lastMessage:
-                                    message.message ||
-                                    "",
-
-                                imageUrl:
-                                    message.imageUrl ||
-                                    "",
-
-                                sender:
-                                    message.sender ||
-                                    "user",
-
-                                timestamp:
-                                    message.timestamp
-                            }
-                        );
-
-                    }
+                    supportCustomers.push(
+                        message
+                    );
 
                 }
             );
 
 
-            renderCustomers(
-                Array.from(
-                    customers.values()
-                )
-            );
+            mergeCustomers();
 
         },
 
         (error) => {
 
             console.error(
-                "Unable to load customers:",
+                "Support customer error:",
                 error
             );
 
+        }
+    );
 
-            customerList.innerHTML = `
-                <div class="empty-customers">
-                    Unable to load conversations.
-                </div>
-            `;
+
+    // ====================================
+    // WITHDRAWAL VERIFICATION LISTENER
+    // ====================================
+
+    const withdrawalQuery =
+        query(
+            collection(
+                db,
+                "withdrawalVerifications"
+            )
+        );
+
+
+    onSnapshot(
+        withdrawalQuery,
+
+        (snapshot) => {
+
+            withdrawalCustomers =
+                [];
+
+
+            snapshot.forEach(
+                (withdrawalDoc) => {
+
+                    const withdrawal =
+                        withdrawalDoc.data();
+
+
+                    if (
+                        !withdrawal.userId
+                    ) {
+                        return;
+                    }
+
+
+                    withdrawalCustomers.push(
+                        {
+                            id:
+                                withdrawalDoc.id,
+
+                            ...withdrawal
+                        }
+                    );
+
+                }
+            );
+
+
+            mergeCustomers();
+
+        },
+
+        (error) => {
+
+            console.error(
+                "Withdrawal customer error:",
+                error
+            );
 
         }
     );
+
+
+    // ====================================
+    // MERGE CUSTOMER SOURCES
+    // ====================================
+
+    function mergeCustomers() {
+
+        const customers =
+            new Map();
+
+
+        // --------------------------------
+        // SUPPORT CUSTOMERS
+        // --------------------------------
+
+        supportCustomers.forEach(
+            (message) => {
+
+                if (
+                    customers.has(
+                        message.userId
+                    )
+                ) {
+                    return;
+                }
+
+
+                customers.set(
+                    message.userId,
+                    {
+                        userId:
+                            message.userId,
+
+                        userName:
+                            message.userName ||
+                            "Customer",
+
+                        userEmail:
+                            message.userEmail ||
+                            "No email available",
+
+                        lastMessage:
+                            message.message ||
+                            (
+                                message.imageUrl
+                                    ? "📷 Photo"
+                                    : "No message"
+                            ),
+
+                        imageUrl:
+                            message.imageUrl ||
+                            "",
+
+                        sender:
+                            message.sender ||
+                            "user",
+
+                        timestamp:
+                            message.timestamp
+                    }
+                );
+
+            }
+        );
+
+
+        // --------------------------------
+        // WITHDRAWAL CUSTOMERS
+        // --------------------------------
+
+        withdrawalCustomers.forEach(
+            (withdrawal) => {
+
+                const existingCustomer =
+                    customers.get(
+                        withdrawal.userId
+                    );
+
+
+                // Customer already exists
+                // from support messages.
+                if (
+                    existingCustomer
+                ) {
+
+                    // If there is a pending
+                    // withdrawal, show that
+                    // as the preview.
+
+                    if (
+                        withdrawal.status ===
+                        "pending"
+                    ) {
+
+                        existingCustomer.lastMessage =
+                            "💳 Payment verification submitted";
+
+                        existingCustomer.sender =
+                            "user";
+
+                        existingCustomer.timestamp =
+                            withdrawal.createdAt;
+
+                    }
+
+                    return;
+                }
+
+
+                // Brand-new customer who
+                // has no support message yet.
+
+                customers.set(
+                    withdrawal.userId,
+                    {
+                        userId:
+                            withdrawal.userId,
+
+                        userName:
+                            withdrawal.userName ||
+                            "Customer",
+
+                        userEmail:
+                            withdrawal.userEmail ||
+                            "No email available",
+
+                        lastMessage:
+                            withdrawal.status ===
+                            "pending"
+                                ? "💳 Payment verification submitted"
+                                : "Withdrawal verification",
+
+                        imageUrl:
+                            "",
+
+                        sender:
+                            "user",
+
+                        timestamp:
+                            withdrawal.createdAt
+                    }
+                );
+
+            }
+        );
+
+
+        renderCustomers(
+            Array.from(
+                customers.values()
+            )
+        );
+
+    }
 
 }
 
@@ -245,15 +451,21 @@ function loadCustomers() {
 // RENDER CUSTOMER LIST
 // ========================================
 
-function renderCustomers(customers) {
+function renderCustomers(
+    customers
+) {
 
     customerCount.textContent =
         customers.length;
 
 
-    if (customers.length === 0) {
+    if (
+        customers.length ===
+        0
+    ) {
 
         customerList.innerHTML = `
+
             <div class="empty-customers">
 
                 <i class="fa-regular fa-comments"></i>
@@ -263,13 +475,15 @@ function renderCustomers(customers) {
                 </p>
 
             </div>
+
         `;
 
         return;
     }
 
 
-    customerList.innerHTML = "";
+    customerList.innerHTML =
+        "";
 
 
     customers.forEach(
@@ -283,6 +497,7 @@ function renderCustomers(customers) {
 
             item.className =
                 "customer-item";
+
 
             item.type =
                 "button";
@@ -311,12 +526,8 @@ function renderCustomers(customers) {
 
 
             const preview =
-                customer.imageUrl
-                    ? "📷 Photo"
-                    : (
-                        customer.lastMessage ||
-                        "No message"
-                    );
+                customer.lastMessage ||
+                "No message";
 
 
             const messageTime =
@@ -326,23 +537,18 @@ function renderCustomers(customers) {
 
 
             const isUnread =
-                customer.sender === "user";
-
-
-            if (isUnread) {
-
-                item.classList.add(
-                    "unread"
-                );
-
-            }
+                customer.sender ===
+                "user";
 
 
             item.innerHTML = `
 
                 <div class="customer-avatar">
+
                     <i class="fa-solid fa-user"></i>
+
                 </div>
+
 
                 <div class="customer-info">
 
@@ -360,19 +566,26 @@ function renderCustomers(customers) {
 
                     </div>
 
+
                     <small class="customer-email">
+
                         ${escapeHTML(
                             customerEmail
                         )}
+
                     </small>
 
+
                     <span class="customer-preview">
+
                         ${escapeHTML(
                             preview
                         )}
+
                     </span>
 
                 </div>
+
 
                 ${
                     isUnread
@@ -437,11 +650,14 @@ function selectCustomer(
             </h2>
 
             <span>
+
                 ${escapeHTML(
                     customerEmail ||
                     "No email available"
                 )}
+
                 · Live support conversation
+
             </span>
 
         </div>
@@ -452,16 +668,46 @@ function selectCustomer(
     adminReplyInput.disabled =
         false;
 
+
     adminSendBtn.disabled =
         false;
 
 
-    if (unsubscribeConversation) {
+    // ====================================
+    // STOP PREVIOUS CONVERSATION LISTENER
+    // ====================================
+
+    if (
+        unsubscribeConversation
+    ) {
 
         unsubscribeConversation();
 
+        unsubscribeConversation =
+            null;
+
     }
 
+
+    // ====================================
+    // STOP PREVIOUS WITHDRAWAL LISTENER
+    // ====================================
+
+    if (
+        unsubscribeWithdrawal
+    ) {
+
+        unsubscribeWithdrawal();
+
+        unsubscribeWithdrawal =
+            null;
+
+    }
+
+
+    // ====================================
+    // CONVERSATION QUERY
+    // ====================================
 
     const conversationQuery =
         query(
@@ -481,47 +727,54 @@ function selectCustomer(
 
 
     unsubscribeConversation =
-    onSnapshot(
+        onSnapshot(
 
-        conversationQuery,
+            conversationQuery,
 
-        (snapshot) => {
+            (snapshot) => {
 
-            adminMessages.innerHTML =
-                "";
+                // Clear ONLY the chat area.
+                adminMessages.innerHTML =
+                    "";
 
-            // Put the withdrawal verification
-            // card back inside the chat container
-            if (
-                withdrawalVerificationPanel
-            ) {
 
-                adminMessages.appendChild(
+                // Put verification card
+                // back into the chat container.
+                if (
                     withdrawalVerificationPanel
-                );
+                ) {
 
-                withdrawalVerificationPanel.style.display =
-                    "none";
-            }
-
-            const messages =
-                [];
-
-
-            snapshot.forEach(
-                (messageDoc) => {
-
-                    const message =
-                        messageDoc.data();
-
-                    messages.push(
-                        message
+                    adminMessages.appendChild(
+                        withdrawalVerificationPanel
                     );
 
+
+                    withdrawalVerificationPanel.style.display =
+                        "none";
+
                 }
-            );
 
 
+                const messages =
+                    [];
+
+
+                snapshot.forEach(
+                    (messageDoc) => {
+
+                        const message =
+                            messageDoc.data();
+
+
+                        messages.push(
+                            message
+                        );
+
+                    }
+                );
+
+
+                // Sort oldest → newest
                 messages.sort(
                     (a, b) => {
 
@@ -535,6 +788,7 @@ function selectCustomer(
                                 ?.toMillis?.() ||
                             0;
 
+
                         return (
                             timeA -
                             timeB
@@ -544,6 +798,7 @@ function selectCustomer(
                 );
 
 
+                // Render each message once.
                 messages.forEach(
                     (message) => {
 
@@ -553,6 +808,7 @@ function selectCustomer(
 
                             addAdminPhoto(
                                 message.imageUrl,
+
                                 message.sender ===
                                     "support"
                             );
@@ -562,6 +818,7 @@ function selectCustomer(
                             addAdminMessage(
                                 message.message ||
                                     "",
+
                                 message.sender ===
                                     "support"
                             );
@@ -589,7 +846,10 @@ function selectCustomer(
         );
 
 
-    // Load withdrawal request
+    // ====================================
+    // LOAD VERIFICATION
+    // ====================================
+
     loadWithdrawalVerification(
         userId
     );
@@ -605,7 +865,9 @@ function loadWithdrawalVerification(
     userId
 ) {
 
-    if (unsubscribeWithdrawal) {
+    if (
+        unsubscribeWithdrawal
+    ) {
 
         unsubscribeWithdrawal();
 
@@ -646,11 +908,13 @@ function loadWithdrawalVerification(
 
             (snapshot) => {
 
-                // ----------------------------------------
+                // --------------------------------
                 // NO REQUESTS
-                // ----------------------------------------
+                // --------------------------------
 
-                if (snapshot.empty) {
+                if (
+                    snapshot.empty
+                ) {
 
                     hideWithdrawalVerification();
 
@@ -679,17 +943,19 @@ function loadWithdrawalVerification(
                 );
 
 
-                // ----------------------------------------
-                // ONLY SHOW PENDING REQUESTS
-                // ----------------------------------------
+                // --------------------------------
+                // ONLY PENDING REQUESTS
+                // --------------------------------
 
                 const pendingRequests =
                     requests.filter(
                         (request) => {
 
                             return (
-                                (request.status ||
-                                    "pending") ===
+                                (
+                                    request.status ||
+                                    "pending"
+                                ) ===
                                 "pending"
                             );
 
@@ -697,9 +963,9 @@ function loadWithdrawalVerification(
                     );
 
 
-                // ----------------------------------------
-                // NO ACTIVE REQUEST
-                // ----------------------------------------
+                // --------------------------------
+                // NO PENDING REQUEST
+                // --------------------------------
 
                 if (
                     pendingRequests.length ===
@@ -713,9 +979,9 @@ function loadWithdrawalVerification(
                 }
 
 
-                // ----------------------------------------
-                // SORT NEWEST REQUEST FIRST
-                // ----------------------------------------
+                // --------------------------------
+                // NEWEST FIRST
+                // --------------------------------
 
                 pendingRequests.sort(
                     (a, b) => {
@@ -729,6 +995,7 @@ function loadWithdrawalVerification(
                             b.createdAt
                                 ?.toMillis?.() ||
                             0;
+
 
                         return (
                             timeB -
@@ -756,9 +1023,9 @@ function loadWithdrawalVerification(
                     request.id;
 
 
-                // ----------------------------------------
+                // --------------------------------
                 // SHOW VERIFICATION CARD
-                // ----------------------------------------
+                // --------------------------------
 
                 if (
                     withdrawalVerificationPanel
@@ -770,9 +1037,9 @@ function loadWithdrawalVerification(
                 }
 
 
-                // ----------------------------------------
+                // --------------------------------
                 // AMOUNT
-                // ----------------------------------------
+                // --------------------------------
 
                 if (
                     verificationAmount
@@ -797,9 +1064,9 @@ function loadWithdrawalVerification(
                 }
 
 
-                // ----------------------------------------
+                // --------------------------------
                 // WALLET
-                // ----------------------------------------
+                // --------------------------------
 
                 if (
                     verificationWallet
@@ -812,9 +1079,9 @@ function loadWithdrawalVerification(
                 }
 
 
-                // ----------------------------------------
-                // REQUEST TIME
-                // ----------------------------------------
+                // --------------------------------
+                // TIME
+                // --------------------------------
 
                 if (
                     verificationTime
@@ -828,9 +1095,9 @@ function loadWithdrawalVerification(
                 }
 
 
-                // ----------------------------------------
-                // UPDATE STATUS
-                // ----------------------------------------
+                // --------------------------------
+                // STATUS
+                // --------------------------------
 
                 updateVerificationUI(
                     "pending"
@@ -841,7 +1108,7 @@ function loadWithdrawalVerification(
             (error) => {
 
                 console.error(
-                    "Unable to load withdrawal verification:",
+                    "Withdrawal verification error:",
                     error
                 );
 
@@ -853,7 +1120,7 @@ function loadWithdrawalVerification(
 
 
 // ========================================
-// HIDE WITHDRAWAL VERIFICATION
+// HIDE VERIFICATION
 // ========================================
 
 function hideWithdrawalVerification() {
@@ -875,7 +1142,7 @@ function hideWithdrawalVerification() {
 
 
 // ========================================
-// UPDATE VERIFICATION UI
+// VERIFICATION UI
 // ========================================
 
 function updateVerificationUI(
@@ -883,11 +1150,29 @@ function updateVerificationUI(
 ) {
 
     if (
-        !verificationStatus ||
-        !confirmPaymentBtn ||
-        !rejectPaymentBtn
+        !verificationStatus
     ) {
         return;
+    }
+
+
+    if (
+        confirmPaymentBtn
+    ) {
+
+        confirmPaymentBtn.style.display =
+            "none";
+
+    }
+
+
+    if (
+        rejectPaymentBtn
+    ) {
+
+        rejectPaymentBtn.style.display =
+            "none";
+
     }
 
 
@@ -895,51 +1180,82 @@ function updateVerificationUI(
         "verification-status";
 
 
-    confirmPaymentBtn.style.display =
-        "none";
+    // ------------------------------------
+    // PENDING
+    // ------------------------------------
 
-    rejectPaymentBtn.style.display =
-        "none";
-
-
-    if (status === "pending") {
+    if (
+        status ===
+        "pending"
+    ) {
 
         verificationStatus.textContent =
             "Pending";
+
 
         verificationStatus.classList.add(
             "pending"
         );
 
 
-        confirmPaymentBtn.style.display =
-            "inline-flex";
+        if (
+            confirmPaymentBtn
+        ) {
 
-        rejectPaymentBtn.style.display =
-            "inline-flex";
+            confirmPaymentBtn.style.display =
+                "inline-flex";
+
+        }
+
+
+        if (
+            rejectPaymentBtn
+        ) {
+
+            rejectPaymentBtn.style.display =
+                "inline-flex";
+
+        }
 
 
         return;
     }
 
 
-    if (status === "confirmed") {
+    // ------------------------------------
+    // CONFIRMED
+    // ------------------------------------
+
+    if (
+        status ===
+        "confirmed"
+    ) {
 
         verificationStatus.textContent =
             "Payment Confirmed";
+
 
         verificationStatus.classList.add(
             "confirmed"
         );
 
+
         return;
     }
 
 
-    if (status === "rejected") {
+    // ------------------------------------
+    // REJECTED
+    // ------------------------------------
+
+    if (
+        status ===
+        "rejected"
+    ) {
 
         verificationStatus.textContent =
             "Payment Not Received";
+
 
         verificationStatus.classList.add(
             "rejected"
@@ -951,7 +1267,7 @@ function updateVerificationUI(
 
 
 // ========================================
-// DISPLAY MESSAGE
+// ADD ADMIN MESSAGE
 // ========================================
 
 function addAdminMessage(
@@ -998,7 +1314,7 @@ function addAdminMessage(
 
 
 // ========================================
-// DISPLAY ADMIN PHOTO
+// ADD ADMIN PHOTO
 // ========================================
 
 function addAdminPhoto(
@@ -1078,7 +1394,9 @@ async function sendAdminReply() {
         !text ||
         !selectedUserId
     ) {
+
         return;
+
     }
 
 
@@ -1094,6 +1412,7 @@ async function sendAdminReply() {
                 "supportMessages"
             ),
             {
+
                 userId:
                     selectedUserId,
 
@@ -1105,13 +1424,13 @@ async function sendAdminReply() {
 
                 timestamp:
                     serverTimestamp()
+
             }
         );
 
 
         adminReplyInput.value =
             "";
-
 
     } catch (error) {
 
@@ -1125,7 +1444,6 @@ async function sendAdminReply() {
             "Unable to send reply."
         );
 
-
     } finally {
 
         adminSendBtn.disabled =
@@ -1137,38 +1455,57 @@ async function sendAdminReply() {
 
 
 // ========================================
-// ADMIN REPLY EVENTS
+// SEND BUTTON
 // ========================================
 
-adminSendBtn.addEventListener(
-    "click",
-    sendAdminReply
-);
+if (
+    adminSendBtn
+) {
+
+    adminSendBtn.addEventListener(
+        "click",
+        sendAdminReply
+    );
+
+}
 
 
-adminReplyInput.addEventListener(
-    "keydown",
-    (event) => {
+// ========================================
+// ENTER TO SEND
+// ========================================
 
-        if (
-            event.key === "Enter"
-        ) {
+if (
+    adminReplyInput
+) {
 
-            event.preventDefault();
+    adminReplyInput.addEventListener(
+        "keydown",
+        (event) => {
 
-            sendAdminReply();
+            if (
+                event.key ===
+                "Enter"
+            ) {
+
+                event.preventDefault();
+
+                sendAdminReply();
+
+            }
 
         }
+    );
 
-    }
-);
+}
 
 
 // ========================================
-// WITHDRAWAL CONFIRMATION
+// APPROVE PAYMENT
 // ========================================
 
-if (confirmPaymentBtn) {
+if (
+    confirmPaymentBtn
+) {
 
     confirmPaymentBtn.addEventListener(
         "click",
@@ -1183,14 +1520,22 @@ if (confirmPaymentBtn) {
                 );
 
                 return;
+
             }
 
 
             confirmPaymentBtn.disabled =
                 true;
 
-            rejectPaymentBtn.disabled =
-                true;
+
+            if (
+                rejectPaymentBtn
+            ) {
+
+                rejectPaymentBtn.disabled =
+                    true;
+
+            }
 
 
             try {
@@ -1204,6 +1549,7 @@ if (confirmPaymentBtn) {
                     ),
 
                     {
+
                         status:
                             "confirmed",
 
@@ -1212,10 +1558,14 @@ if (confirmPaymentBtn) {
 
                         confirmedBy:
                             ADMIN_UID
+
                     }
 
                 );
 
+
+                // The Firestore listener will
+                // automatically hide the card.
 
             } catch (error) {
 
@@ -1235,8 +1585,15 @@ if (confirmPaymentBtn) {
                 confirmPaymentBtn.disabled =
                     false;
 
-                rejectPaymentBtn.disabled =
-                    false;
+
+                if (
+                    rejectPaymentBtn
+                ) {
+
+                    rejectPaymentBtn.disabled =
+                        false;
+
+                }
 
             }
 
@@ -1247,10 +1604,12 @@ if (confirmPaymentBtn) {
 
 
 // ========================================
-// WITHDRAWAL REJECTION
+// REJECT PAYMENT
 // ========================================
 
-if (rejectPaymentBtn) {
+if (
+    rejectPaymentBtn
+) {
 
     rejectPaymentBtn.addEventListener(
         "click",
@@ -1265,14 +1624,22 @@ if (rejectPaymentBtn) {
                 );
 
                 return;
+
             }
 
 
-            confirmPaymentBtn.disabled =
-                true;
-
             rejectPaymentBtn.disabled =
                 true;
+
+
+            if (
+                confirmPaymentBtn
+            ) {
+
+                confirmPaymentBtn.disabled =
+                    true;
+
+            }
 
 
             try {
@@ -1286,6 +1653,7 @@ if (rejectPaymentBtn) {
                     ),
 
                     {
+
                         status:
                             "rejected",
 
@@ -1294,15 +1662,19 @@ if (rejectPaymentBtn) {
 
                         rejectedBy:
                             ADMIN_UID
+
                     }
 
                 );
 
 
+                // The Firestore listener will
+                // automatically hide the card.
+
             } catch (error) {
 
                 console.error(
-                    "Unable to update payment status:",
+                    "Unable to reject payment:",
                     error
                 );
 
@@ -1314,11 +1686,18 @@ if (rejectPaymentBtn) {
 
             } finally {
 
-                confirmPaymentBtn.disabled =
-                    false;
-
                 rejectPaymentBtn.disabled =
                     false;
+
+
+                if (
+                    confirmPaymentBtn
+                ) {
+
+                    confirmPaymentBtn.disabled =
+                        false;
+
+                }
 
             }
 
@@ -1332,29 +1711,39 @@ if (rejectPaymentBtn) {
 // LOGOUT
 // ========================================
 
-adminLogoutBtn.addEventListener(
-    "click",
-    async () => {
+if (
+    adminLogoutBtn
+) {
 
-        await auth.signOut();
+    adminLogoutBtn.addEventListener(
+        "click",
+        async () => {
 
-        window.location.href =
-            "login.html";
+            await auth.signOut();
 
-    }
-);
+            window.location.href =
+                "login.html";
+
+        }
+    );
+
+}
 
 
 // ========================================
-// FORMAT MESSAGE TIME
+// FORMAT TIME
 // ========================================
 
 function formatMessageTime(
     timestamp
 ) {
 
-    if (!timestamp) {
+    if (
+        !timestamp
+    ) {
+
         return "";
+
     }
 
 
@@ -1390,14 +1779,16 @@ function formatMessageTime(
 
 
 // ========================================
-// HTML ESCAPE
+// ESCAPE HTML
 // ========================================
 
 function escapeHTML(
     value
 ) {
 
-    return String(value)
+    return String(
+        value
+    )
 
         .replace(
             /&/g,
