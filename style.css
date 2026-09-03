@@ -17852,8 +17852,12 @@ body {
     border-radius:
         9px;
 
-    background:
-        rgba(245, 158, 11, 0.075);
+      background:
+    linear-gradient(
+        145deg,
+        rgba(245, 158, 11, 0.16),
+        rgba(245, 158, 11, 0.06)
+    );
 
     border:
         1px solid rgba(245, 158, 11, 0.23);
@@ -17916,7 +17920,11 @@ body {
         11px;
 
     background:
-        transparent;
+    linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.018),
+        rgba(255, 255, 255, 0.008)
+    );
 
     border:
         1px solid transparent;
@@ -17939,8 +17947,12 @@ body {
 
 .customer-item:hover {
     background:
-        rgba(255, 255, 255, 0.038);
-
+    linear-gradient(
+        145deg,
+        rgba(245, 158, 11, 0.075),
+        rgba(245, 158, 11, 0.025)
+    );
+    
     border-color:
         rgba(255, 255, 255, 0.065);
 }
@@ -17989,10 +18001,9 @@ body {
         #f59e0b;
 
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-
+    0 0 16px rgba(245, 158, 11, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    
 /* CUSTOMER INFORMATION */
 
 .customer-info {
