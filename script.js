@@ -2675,7 +2675,13 @@ onAuthStateChanged(auth, async function(user) {
 
     // ---------- LISTEN FOR WITHDRAWAL PAYMENT STATUS ----------
 
-    listenForPaymentVerification(user)
+ 
+      listenForPaymentVerification(user);
+ 
+      console.log(
+      "Withdrawal verification listener started for:",
+      user.uid
+      );
 
     // ---------- LOAD PROFILE INFORMATION ----------
 
