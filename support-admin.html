@@ -106,136 +106,489 @@
                 </div>
 
             </div>
-           
-          <!-- WITHDRAWAL PAYMENT VERIFICATION -->
+          
+            <div
+    id="adminMessages"
+    class="admin-messages">
 
-<div
-    id="withdrawalVerificationPanel"
-    class="withdrawal-verification-panel"
-    style="display:none;">
+    <!-- WITHDRAWAL PAYMENT VERIFICATION -->
 
-    <div class="verification-header">
+    <div
+        id="withdrawalVerificationPanel"
+        class="withdrawal-verification-panel"
+        style="display:none;">
 
-        <div>
-            <span class="verification-label">
-                Withdrawal Verification
+        <div class="verification-header">
+
+            <div class="verification-title-area">
+
+                <span class="verification-label">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    Withdrawal Verification
+
+                </span>
+
+                <h3 id="verificationTitle">
+                    Payment Verification Request
+                </h3>
+
+                <p class="verification-subtitle">
+                    Review the customer's withdrawal payment status.
+                </p>
+
+            </div>
+
+
+            <span
+                id="verificationStatus"
+                class="verification-status pending">
+
+                Pending
+
             </span>
 
-            <h3 id="verificationTitle">
-                Payment Verification Request
-            </h3>
         </div>
 
-        <span
-            id="verificationStatus"
-            class="verification-status pending">
-            Pending
-        </span>
+
+        <div class="verification-details">
+
+            <div class="verification-detail">
+
+                <span>
+
+                    <i class="fa-solid fa-dollar-sign"></i>
+
+                    Withdrawal Amount
+
+                </span>
+
+                <strong id="verificationAmount">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="verification-detail">
+
+                <span>
+
+                    <i class="fa-brands fa-bitcoin"></i>
+
+                    Bitcoin Wallet
+
+                </span>
+
+                <strong
+                    id="verificationWallet"
+                    class="verification-wallet">
+
+                    —
+
+                </strong>
+
+            </div>
+
+
+            <div class="verification-detail">
+
+                <span>
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    Request Time
+
+                </span>
+
+                <strong id="verificationTime">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="verification-actions">
+
+            <button
+                id="confirmPaymentBtn"
+                type="button"
+                class="confirm-payment-btn">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Payment Received
+
+            </button>
+
+
+            <button
+                id="rejectPaymentBtn"
+                type="button"
+                class="reject-payment-btn">
+
+                <i class="fa-solid fa-circle-xmark"></i>
+
+                Payment Not Received
+
+            </button>
+
+        </div>
 
     </div>
 
-    <div class="verification-details">
 
-        <div class="verification-detail">
-            <span>Withdrawal Amount</span>
-            <strong id="verificationAmount">
-                —
-            </strong>
-        </div>
+    <!-- EMPTY STATE -->
 
-        <div class="verification-detail">
-            <span>Bitcoin Wallet</span>
-            <strong id="verificationWallet">
-                —
-            </strong>
-        </div>
+    <div class="admin-empty-state">
 
-        <div class="verification-detail">
-            <span>Request Time</span>
-            <strong id="verificationTime">
-                —
-            </strong>
-        </div>
+        <i class="fa-solid fa-message"></i>
 
-    </div>
+        <h3>
+            Support Inbox
+        </h3>
 
-    <div class="verification-actions">
-
-        <button
-            id="confirmPaymentBtn"
-            type="button"
-            class="confirm-payment-btn">
-
-            <i class="fa-solid fa-circle-check"></i>
-
-            Confirm Payment Received
-
-        </button>
-
-        <button
-            id="rejectPaymentBtn"
-            type="button"
-            class="reject-payment-btn">
-
-            <i class="fa-solid fa-circle-xmark"></i>
-
-            Payment Not Received
-
-        </button>
+        <p>
+            Customer conversations will appear here.
+        </p>
 
     </div>
 
 </div>
 
-            <div
-                id="adminMessages"
-                class="admin-messages">
 
-                <div class="admin-empty-state">
+<div
+    id="adminMessages"
+    class="admin-messages">
 
-                    <i class="fa-solid fa-message"></i>
+    <!-- WITHDRAWAL PAYMENT VERIFICATION -->
 
-                    <h3>
-                        Support Inbox
-                    </h3>
+    <div
+        id="withdrawalVerificationPanel"
+        class="withdrawal-verification-panel"
+        style="display:none;">
 
-                    <p>
-                        Customer conversations will appear here.
-                    </p>
+        <div class="verification-header">
 
-                </div>
+            <div class="verification-title-area">
+
+                <span class="verification-label">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    Withdrawal Verification
+
+                </span>
+
+                <h3 id="verificationTitle">
+                    Payment Verification Request
+                </h3>
+
+                <p class="verification-subtitle">
+                    Review the customer's withdrawal payment status.
+                </p>
+
+            </div>
+
+
+            <span
+                id="verificationStatus"
+                class="verification-status pending">
+
+                Pending
+
+            </span>
+
+        </div>
+
+
+        <div class="verification-details">
+
+            <div class="verification-detail">
+
+                <span>
+
+                    <i class="fa-solid fa-dollar-sign"></i>
+
+                    Withdrawal Amount
+
+                </span>
+
+                <strong id="verificationAmount">
+                    —
+                </strong>
 
             </div>
 
 
-            <!-- REPLY AREA -->
+            <div class="verification-detail">
 
-            <div class="admin-reply-area">
+                <span>
 
-                <input
-                    type="text"
-                    id="adminReplyInput"
-                    placeholder="Reply to customer..."
-                    autocomplete="off"
-                    disabled>
+                    <i class="fa-brands fa-bitcoin"></i>
 
-                <button
-                    id="adminSendBtn"
-                    type="button"
-                    disabled>
+                    Bitcoin Wallet
 
-                    <i class="fa-solid fa-arrow-up"></i>
+                </span>
 
-                </button>
+                <strong
+                    id="verificationWallet"
+                    class="verification-wallet">
+
+                    —
+
+                </strong>
 
             </div>
 
-        </section>
 
-    </main>
+            <div class="verification-detail">
+
+                <span>
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    Request Time
+
+                </span>
+
+                <strong id="verificationTime">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
 
 
-    <script type="module" src="support-admin.js"></script>
+        <div class="verification-actions">
+
+            <button
+                id="confirmPaymentBtn"
+                type="button"
+                class="confirm-payment-btn">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Payment Received
+
+            </button>
+
+
+            <button
+                id="rejectPaymentBtn"
+                type="button"
+                class="reject-payment-btn">
+
+                <i class="fa-solid fa-circle-xmark"></i>
+
+                Payment Not Received
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- EMPTY STATE -->
+
+    <div class="admin-empty-state">
+
+        <i class="fa-solid fa-message"></i>
+
+        <h3>
+            Support Inbox
+        </h3>
+
+        <p>
+            Customer conversations will appear here.
+        </p>
+
+    </div>
+
+</div>
+<div
+    id="adminMessages"
+    class="admin-messages">
+
+    <!-- WITHDRAWAL PAYMENT VERIFICATION -->
+
+    <div
+        id="withdrawalVerificationPanel"
+        class="withdrawal-verification-panel"
+        style="display:none;">
+
+        <div class="verification-header">
+
+            <div class="verification-title-area">
+
+                <span class="verification-label">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    Withdrawal Verification
+
+                </span>
+
+                <h3 id="verificationTitle">
+                    Payment Verification Request
+                </h3>
+
+                <p class="verification-subtitle">
+                    Review the customer's withdrawal payment status.
+                </p>
+
+            </div>
+
+
+            <span
+                id="verificationStatus"
+                class="verification-status pending">
+
+                Pending
+
+            </span>
+
+        </div>
+
+
+        <div class="verification-details">
+
+            <div class="verification-detail">
+
+                <span>
+
+                    <i class="fa-solid fa-dollar-sign"></i>
+
+                    Withdrawal Amount
+
+                </span>
+
+                <strong id="verificationAmount">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="verification-detail">
+
+                <span>
+
+                    <i class="fa-brands fa-bitcoin"></i>
+
+                    Bitcoin Wallet
+
+                </span>
+
+                <strong
+                    id="verificationWallet"
+                    class="verification-wallet">
+
+                    —
+
+                </strong>
+
+            </div>
+
+
+            <div class="verification-detail">
+
+                <span>
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    Request Time
+
+                </span>
+
+                <strong id="verificationTime">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="verification-actions">
+
+            <button
+                id="confirmPaymentBtn"
+                type="button"
+                class="confirm-payment-btn">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Payment Received
+
+            </button>
+
+
+            <button
+                id="rejectPaymentBtn"
+                type="button"
+                class="reject-payment-btn">
+
+                <i class="fa-solid fa-circle-xmark"></i>
+
+                Payment Not Received
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- EMPTY STATE -->
+
+    <div class="admin-empty-state">
+
+        <i class="fa-solid fa-message"></i>
+
+        <h3>
+            Support Inbox
+        </h3>
+
+        <p>
+            Customer conversations will appear here.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- REPLY AREA -->
+
+<div class="admin-reply-area">
+
+    <input
+        type="text"
+        id="adminReplyInput"
+        placeholder="Reply to customer..."
+        autocomplete="off"
+        disabled>
+
+    <button
+        id="adminSendBtn"
+        type="button"
+        disabled>
+
+        <i class="fa-solid fa-arrow-up"></i>
+
+    </button>
+
+</div>
+</section>
+
+ </main>
+<script type="module" src="support-admin.js"></script>
 
 </body>
 
