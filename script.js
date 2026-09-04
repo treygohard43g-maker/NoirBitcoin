@@ -3264,7 +3264,7 @@ function showPaymentNotReceived() {
    PREMIUM WITHDRAW FLOW
 ========================== */
 
-function showWithdrawalPending() {
+function showWithdrawalPendingAfterPin() {
 
     const amount =
         document.getElementById("withdrawUSD").value.trim();
@@ -3299,7 +3299,11 @@ function showWithdrawalPending() {
 
         return;
     }
+   
+        // Require Withdrawal PIN before continuing
+    openWithdrawalPinVerification();
 
+    return;
 
     // ========================================
     // ALWAYS RESTORE ORIGINAL PENDING CARD
