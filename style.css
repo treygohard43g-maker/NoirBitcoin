@@ -22950,3 +22950,985 @@ body:has(.admin-support-page) {
 
     transform: none !important;
 }
+
+/* =========================================================
+   NOIRBITCOIN — SETTINGS PAGE
+   Unified Surface Design
+   ========================================================= */
+
+.settings-page {
+    width: min(100%, 760px);
+    margin: 0 auto;
+    padding: 34px 18px 60px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.settings-page-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.settings-header-icon {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(245, 158, 11, 0.14),
+            rgba(245, 158, 11, 0.035)
+        );
+
+    border: 1px solid rgba(245, 158, 11, 0.18);
+
+    color: #f59e0b;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.settings-page-header h1 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    letter-spacing: -0.3px;
+}
+
+.settings-page-header p {
+    margin: 5px 0 0;
+
+    color: #737b86;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   ONE UNIFIED SURFACE
+   ========================================================= */
+
+.settings-surface {
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28, 32, 39, 0.88),
+            rgba(13, 17, 23, 0.96)
+        );
+
+    border: 1px solid rgba(255,255,255,0.055);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.30),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.035);
+}
+
+
+/* SUBTLE SURFACE LIGHT */
+
+.settings-surface::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.10),
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.settings-section {
+    position: relative;
+
+    padding: 27px 28px;
+}
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.settings-section-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 23px;
+}
+
+.settings-heading-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    border: 1px solid rgba(255,255,255,0.055);
+
+    color: #a3aab4;
+
+    font-size: 14px;
+}
+
+.settings-heading-icon.security {
+    color: #f59e0b;
+
+    background:
+        rgba(245,158,11,0.07);
+
+    border-color:
+        rgba(245,158,11,0.12);
+}
+
+.settings-section-heading h2 {
+    margin: 0;
+
+    color: #f5f5f5;
+
+    font-size: 15px;
+    font-weight: 650;
+}
+
+.settings-section-heading p {
+    margin: 4px 0 0;
+
+    color: #707883;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   FORM FIELDS
+   ========================================================= */
+
+.settings-field {
+    margin-bottom: 16px;
+}
+
+.settings-field label,
+.pin-field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #aeb5be;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.settings-field input,
+.pin-input-wrap input {
+    width: 100%;
+
+    height: 45px;
+
+    box-sizing: border-box;
+
+    padding: 0 13px;
+
+    border-radius: 10px;
+
+    border: 1px solid #292f38;
+
+    outline: none;
+
+    background:
+        rgba(8, 11, 15, 0.62);
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+
+.settings-field input::placeholder,
+.pin-input-wrap input::placeholder {
+    color: #555d68;
+}
+
+.settings-field input:focus,
+.pin-input-wrap input:focus {
+    border-color:
+        rgba(245,158,11,0.48);
+
+    background:
+        rgba(8, 11, 15, 0.82);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(245,158,11,0.055);
+}
+
+
+/* =========================================================
+   PASSWORD INPUT
+   ========================================================= */
+
+.settings-input-wrap {
+    position: relative;
+}
+
+.settings-input-wrap input {
+    padding-right: 45px;
+}
+
+.settings-password-toggle {
+    position: absolute;
+
+    top: 50%;
+    right: 5px;
+
+    width: 35px;
+    height: 35px;
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #6f7782;
+
+    cursor: pointer;
+}
+
+.settings-password-toggle:hover {
+    color: #f59e0b;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.settings-primary-btn {
+    width: 100%;
+
+    height: 45px;
+
+    margin-top: 5px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #d97706
+        );
+
+    color: #111111;
+
+    font-family: inherit;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 22px
+        rgba(245,158,11,0.12);
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        filter .18s ease;
+}
+
+.settings-primary-btn:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 10px 28px
+        rgba(245,158,11,0.18);
+
+    filter: brightness(1.04);
+}
+
+.settings-primary-btn:active {
+    transform: translateY(0);
+}
+
+.settings-primary-btn:disabled {
+    opacity: .6;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   DIVIDERS
+   ========================================================= */
+
+.settings-divider {
+    height: 1px;
+
+    margin: 0 28px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.065),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   SECURITY
+   ========================================================= */
+
+.settings-security-row {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.settings-security-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-width: 0;
+}
+
+.settings-security-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    color: #f59e0b;
+
+    background:
+        rgba(245,158,11,0.075);
+
+    border: 1px solid
+        rgba(245,158,11,0.13);
+}
+
+.settings-security-info {
+    min-width: 0;
+}
+
+.settings-security-info h3 {
+    margin: 0;
+
+    color: #f2f2f2;
+
+    font-size: 13px;
+}
+
+.settings-security-info p {
+    max-width: 430px;
+
+    margin: 4px 0 8px;
+
+    color: #707883;
+
+    font-size: 10.5px;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   PIN STATUS
+   ========================================================= */
+
+.withdrawal-pin-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 4px 8px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    color: #777f89;
+
+    font-size: 9px;
+}
+
+.withdrawal-pin-status .status-dot {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #707883;
+}
+
+.withdrawal-pin-status.active {
+    color: #64d38a;
+
+    background:
+        rgba(34,197,94,0.065);
+}
+
+.withdrawal-pin-status.active .status-dot {
+    background: #22c55e;
+
+    box-shadow:
+        0 0 7px
+        rgba(34,197,94,0.5);
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+   ========================================================= */
+
+.settings-secondary-btn {
+    height: 38px;
+
+    flex-shrink: 0;
+
+    padding: 0 14px;
+
+    border-radius: 9px;
+
+    border: 1px solid #303640;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    color: #f59e0b;
+
+    font-family: inherit;
+
+    font-size: 10.5px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+}
+
+.settings-secondary-btn:hover {
+    background:
+        rgba(245,158,11,0.07);
+
+    border-color:
+        rgba(245,158,11,0.28);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   PREFERENCES
+   ========================================================= */
+
+.settings-preference-row {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.settings-preference-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.settings-preference-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    border: 1px solid
+        rgba(255,255,255,0.05);
+
+    color: #929aa5;
+}
+
+.settings-preference-info h3 {
+    margin: 0;
+
+    color: #eeeeee;
+
+    font-size: 12px;
+}
+
+.settings-preference-info p {
+    margin: 4px 0 0;
+
+    color: #707883;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   SWITCH
+   ========================================================= */
+
+.settings-switch {
+    position: relative;
+
+    width: 42px;
+    height: 23px;
+
+    flex-shrink: 0;
+}
+
+.settings-switch input {
+    opacity: 0;
+
+    width: 0;
+    height: 0;
+}
+
+.settings-slider {
+    position: absolute;
+
+    inset: 0;
+
+    cursor: pointer;
+
+    border-radius: 20px;
+
+    background: #292f37;
+
+    border: 1px solid #363c45;
+
+    transition: .25s;
+}
+
+.settings-slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 17px;
+    height: 17px;
+
+    left: 2px;
+    top: 2px;
+
+    border-radius: 50%;
+
+    background: #858d97;
+
+    transition: .25s;
+}
+
+.settings-switch input:checked + .settings-slider {
+    background:
+        rgba(245,158,11,0.18);
+
+    border-color:
+        rgba(245,158,11,0.38);
+}
+
+.settings-switch input:checked + .settings-slider::before {
+    transform: translateX(18px);
+
+    background: #f59e0b;
+
+    box-shadow:
+        0 0 8px
+        rgba(245,158,11,0.35);
+}
+
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.settings-back-btn {
+    width: calc(100% - 56px);
+
+    height: 43px;
+
+    margin: 20px 28px 27px;
+
+    border-radius: 10px;
+
+    border: 1px solid #292f38;
+
+    background:
+        rgba(255,255,255,0.018);
+
+    color: #8b939e;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        color .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.settings-back-btn:hover {
+    color: #ffffff;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    border-color: #3a414c;
+}
+
+
+/* =========================================================
+   WITHDRAWAL PIN MODAL
+   ========================================================= */
+
+.withdrawal-pin-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0,0,0,0.72);
+
+    backdrop-filter: blur(9px);
+}
+
+.withdrawal-pin-dialog {
+    position: relative;
+
+    width: min(100%, 390px);
+
+    box-sizing: border-box;
+
+    padding: 27px;
+
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1d2128,
+            #101419
+        );
+
+    border: 1px solid #303640;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,0.55),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.035);
+}
+
+.withdrawal-pin-close {
+    position: absolute;
+
+    top: 13px;
+    right: 13px;
+
+    width: 31px;
+    height: 31px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    color: #747c87;
+
+    cursor: pointer;
+}
+
+.withdrawal-pin-close:hover {
+    color: #ffffff;
+}
+
+.withdrawal-pin-dialog-icon {
+    width: 45px;
+    height: 45px;
+
+    margin-bottom: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    color: #f59e0b;
+
+    background:
+        rgba(245,158,11,0.08);
+
+    border: 1px solid
+        rgba(245,158,11,0.14);
+}
+
+.withdrawal-pin-dialog h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 17px;
+}
+
+.withdrawal-pin-dialog > p {
+    margin: 6px 0 19px;
+
+    color: #737b86;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+.pin-field {
+    margin-bottom: 14px;
+}
+
+.pin-input-wrap {
+    position: relative;
+}
+
+.pin-input-wrap input {
+    padding-right: 45px;
+
+    letter-spacing: 5px;
+
+    font-size: 16px;
+}
+
+.pin-eye-toggle {
+    position: absolute;
+
+    top: 50%;
+    right: 5px;
+
+    width: 35px;
+    height: 35px;
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #707883;
+
+    cursor: pointer;
+}
+
+.pin-eye-toggle:hover {
+    color: #f59e0b;
+}
+
+.withdrawal-pin-error {
+    min-height: 15px;
+
+    margin: 2px 0 5px !important;
+
+    color: #ef6b6b !important;
+
+    font-size: 10px !important;
+}
+
+.pin-submit-btn {
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .settings-page {
+        width: 100%;
+
+        padding:
+            22px 12px 45px;
+    }
+
+    .settings-page-header {
+        margin-bottom: 15px;
+    }
+
+    .settings-page-header h1 {
+        font-size: 21px;
+    }
+
+    .settings-page-header p {
+        font-size: 10.5px;
+    }
+
+    .settings-header-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .settings-surface {
+        border-radius: 17px;
+    }
+
+    .settings-section {
+        padding:
+            22px 17px;
+    }
+
+    .settings-divider {
+        margin:
+            0 17px;
+    }
+
+    .settings-security-row {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 14px;
+    }
+
+    .settings-security-left {
+        width: 100%;
+    }
+
+    .settings-secondary-btn {
+        width: 100%;
+    }
+
+    .settings-preference-row {
+        gap: 10px;
+    }
+
+    .settings-back-btn {
+        width: calc(100% - 34px);
+
+        margin:
+            17px 17px 20px;
+    }
+
+    .withdrawal-pin-dialog {
+        padding: 23px;
+
+        border-radius: 17px;
+    }
+
+}
