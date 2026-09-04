@@ -6271,3 +6271,399 @@ async function hashWithdrawalPin(pin) {
         .join("");
 
 }
+
+// =====================================================
+// WITHDRAWAL PIN VERIFICATION
+// =====================================================
+
+const withdrawalPinVerifyModal =
+    document.getElementById(
+        "withdrawalPinVerifyModal"
+    );
+
+const closeWithdrawalPinVerify =
+    document.getElementById(
+        "closeWithdrawalPinVerify"
+    );
+
+const verifyWithdrawalPin =
+    document.getElementById(
+        "verifyWithdrawalPin"
+    );
+
+const verifyWithdrawalPinBtn =
+    document.getElementById(
+        "verifyWithdrawalPinBtn"
+    );
+
+const withdrawalPinVerifyError =
+    document.getElementById(
+        "withdrawalPinVerifyError"
+    );
+
+const verifyWithdrawalPinEye =
+    document.getElementById(
+        "verifyWithdrawalPinEye"
+    );
+
+
+// =====================================================
+// OPEN PIN VERIFICATION
+// =====================================================
+
+function openWithdrawalPinVerification() {
+
+    if (!withdrawalPinVerifyModal) {
+        return;
+    }
+
+    if (!auth.currentUser) {
+
+        alert(
+            "Your login session has expired. Please log in again."
+        );
+
+        return;
+    }
+
+    if (verifyWithdrawalPin) {
+        verifyWithdrawalPin.value = "";
+    }
+
+    if (withdrawalPinVerifyError) {
+        withdrawalPinVerifyError.textContent = "";
+    }
+
+    withdrawalPinVerifyModal.style.display = "flex";
+
+    setTimeout(function () {
+
+        if (verifyWithdrawalPin) {
+            verifyWithdrawalPin.focus();
+        }
+
+    }, 100);
+
+}
+
+
+// =====================================================
+// CLOSE PIN VERIFICATION
+// =====================================================
+
+function closeWithdrawalPinVerification() {
+
+    if (withdrawalPinVerifyModal) {
+        withdrawalPinVerifyModal.style.display = "none";
+    }
+
+    if (verifyWithdrawalPin) {
+        verifyWithdrawalPin.value = "";
+    }
+
+    if (withdrawalPinVerifyError) {
+        withdrawalPinVerifyError.textContent = "";
+    }
+
+}
+
+
+if (closeWithdrawalPinVerify) {
+
+    closeWithdrawalPinVerify.addEventListener(
+        "click",
+        closeWithdrawalPinVerification
+    );
+
+}
+
+
+if (withdrawalPinVerifyModal) {
+
+    withdrawalPinVerifyModal.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target ===
+                withdrawalPinVerifyModal
+            ) {
+
+                closeWithdrawalPinVerification();
+
+            }
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// SHOW / HIDE VERIFICATION PIN
+// =====================================================
+
+if (verifyWithdrawalPinEye) {
+
+    verifyWithdrawalPinEye.addEventListener(
+        "click",
+        function () {
+
+            if (!verifyWithdrawalPin) {
+                return;
+            }
+
+            const icon =
+                this.querySelector("i");
+
+            if (
+                verifyWithdrawalPin.type ===
+                "password"
+            ) {
+
+                verifyWithdrawalPin.type =
+                    "text";
+
+                if (icon) {
+                    icon.classList.remove(
+                        "fa-eye"
+                    );
+
+                    icon.classList.add(
+                        "fa-eye-slash"
+                    );
+                }
+
+                this.setAttribute(
+                    "aria-label",
+                    "Hide PIN"
+                );
+
+            } else {
+
+                verifyWithdrawalPin.type =
+                    "password";
+
+                if (icon) {
+                    icon.classList.remove(
+                        "fa-eye-slash"
+                    );
+
+                    icon.classList.add(
+                        "fa-eye"
+                    );
+                }
+
+                this.setAttribute(
+                    "aria-label",
+                    "Show PIN"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// PIN INPUT — NUMBERS ONLY
+// =====================================================
+
+if (verifyWithdrawalPin) {
+
+    verifyWithdrawalPin.addEventListener(
+        "input",
+        function () {
+
+            this.value =
+                this.value
+                    .replace(/\D/g, "")
+                    .slice(0, 6);
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// VERIFY WITHDRAWAL PIN
+// =====================================================
+
+if (verifyWithdrawalPinBtn) {
+
+    verifyWithdrawalPinBtn.addEventListener(
+        "click",
+        async function () {
+
+            const user =
+                auth.currentUser;
+
+            if (!user) {
+
+                if (withdrawalPinVerifyError) {
+                    withdrawalPinVerifyError.textContent =
+                        "Your login session has expired. Please log in again.";
+                }
+
+                return;
+            }
+
+
+            const enteredPin =
+                verifyWithdrawalPin
+                    ? verifyWithdrawalPin.value.trim()
+                    : "";
+
+
+            if (
+                !/^\d{6}$/.test(
+                    enteredPin
+                )
+            ) {
+
+                if (withdrawalPinVerifyError) {
+                    withdrawalPinVerifyError.textContent =
+                        "Enter your 6-digit Withdrawal PIN.";
+                }
+
+                return;
+            }
+
+
+            if (withdrawalPinVerifyError) {
+                withdrawalPinVerifyError.textContent = "";
+            }
+
+
+            verifyWithdrawalPinBtn.disabled =
+                true;
+
+            verifyWithdrawalPinBtn.innerHTML = `
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                Verifying...
+            `;
+
+
+            try {
+
+                const pinRef =
+                    doc(
+                        db,
+                        "withdrawalPins",
+                        user.uid
+                    );
+
+
+                const pinSnapshot =
+                    await getDoc(pinRef);
+
+
+                if (!pinSnapshot.exists()) {
+
+                    if (withdrawalPinVerifyError) {
+                        withdrawalPinVerifyError.textContent =
+                            "No Withdrawal PIN has been created for this account.";
+                    }
+
+                    return;
+                }
+
+
+                const pinData =
+                    pinSnapshot.data();
+
+
+                const storedHash =
+                    pinData.pinHash;
+
+
+                if (
+                    !storedHash ||
+                    typeof storedHash !== "string"
+                ) {
+
+                    if (withdrawalPinVerifyError) {
+                        withdrawalPinVerifyError.textContent =
+                            "Your Withdrawal PIN could not be verified.";
+                    }
+
+                    return;
+                }
+
+
+                const enteredHash =
+                    await hashWithdrawalPin(
+                        enteredPin
+                    );
+
+
+                if (
+                    enteredHash !==
+                    storedHash
+                ) {
+
+                    if (withdrawalPinVerifyError) {
+                        withdrawalPinVerifyError.textContent =
+                            "Incorrect Withdrawal PIN.";
+                    }
+
+                    return;
+                }
+
+
+                // =====================================
+                // PIN VERIFIED
+                // =====================================
+
+                closeWithdrawalPinVerification();
+
+
+                // Continue into the EXISTING
+                // withdrawal flow.
+                continueAfterWithdrawalPin();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Withdrawal PIN verification error:",
+                    error
+                );
+
+                if (withdrawalPinVerifyError) {
+
+                    withdrawalPinVerifyError.textContent =
+                        "Unable to verify your PIN. Please try again.";
+
+                }
+
+            } finally {
+
+                verifyWithdrawalPinBtn.disabled =
+                    false;
+
+                verifyWithdrawalPinBtn.innerHTML = `
+                    <i class="fa-solid fa-lock"></i>
+                    Verify & Continue
+                `;
+
+            }
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// CONTINUE AFTER SUCCESSFUL PIN VERIFICATION
+// =====================================================
+
+function continueAfterWithdrawalPin() {
+
+    showWithdrawalPendingAfterPin();
+
+}
