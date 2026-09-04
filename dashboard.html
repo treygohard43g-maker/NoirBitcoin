@@ -635,6 +635,8 @@ Copy Address
         class="premium-bitcoin-coin">
 </div>
 
+
+
         <h2>Withdrawal Pending</h2>
 
         <div class="divider"></div>
@@ -702,6 +704,82 @@ Copy Address
             <i class="fa-solid fa-lock"></i>
             Secure • Encrypted • Trusted
         </div>
+
+    </div>
+
+</div>
+
+<!-- Withdrawal PIN Verification -->
+<div
+    id="withdrawalPinVerifyModal"
+    class="withdrawal-pin-modal"
+    style="display:none;">
+
+    <div class="withdrawal-pin-dialog">
+
+        <button
+            type="button"
+            id="closeWithdrawalPinVerify"
+            class="withdrawal-pin-close">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <div class="withdrawal-pin-dialog-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+        </div>
+
+        <h2>Verify Withdrawal PIN</h2>
+
+        <p>
+            Enter your 6-digit Withdrawal PIN to continue.
+        </p>
+
+        <div class="pin-field">
+
+            <label for="verifyWithdrawalPin">
+                Withdrawal PIN
+            </label>
+
+            <div class="pin-input-wrap">
+
+                <input
+                    type="password"
+                    id="verifyWithdrawalPin"
+                    inputmode="numeric"
+                    maxlength="6"
+                    autocomplete="off"
+                    placeholder="••••••">
+
+                <button
+                    type="button"
+                    class="pin-eye-toggle"
+                    id="verifyWithdrawalPinEye"
+                    aria-label="Show PIN">
+
+                    <i class="fa-solid fa-eye"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+            id="withdrawalPinVerifyError"
+            class="withdrawal-pin-error">
+        </div>
+
+        <button
+            type="button"
+            id="verifyWithdrawalPinBtn"
+            class="pin-submit-btn">
+
+            <i class="fa-solid fa-lock"></i>
+            Verify & Continue
+
+        </button>
 
     </div>
 
