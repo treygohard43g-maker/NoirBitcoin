@@ -5679,3 +5679,440 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+// =====================================================
+// WITHDRAWAL PIN MANAGEMENT
+// =====================================================
+
+const withdrawalPinButton =
+    document.getElementById("withdrawalPinButton");
+
+const withdrawalPinModal =
+    document.getElementById("withdrawalPinModal");
+
+const closeWithdrawalPinModal =
+    document.getElementById("closeWithdrawalPinModal");
+
+const createWithdrawalPinBtn =
+    document.getElementById("createWithdrawalPinBtn");
+
+const createWithdrawalPin =
+    document.getElementById("createWithdrawalPin");
+
+const confirmWithdrawalPin =
+    document.getElementById("confirmWithdrawalPin");
+
+const withdrawalPinError =
+    document.getElementById("withdrawalPinError");
+
+
+// ---------- OPEN PIN MODAL ----------
+
+if (withdrawalPinButton) {
+
+    withdrawalPinButton.addEventListener(
+        "click",
+        function () {
+
+            if (!auth.currentUser) {
+
+                alert(
+                    "Your login session has expired. Please log in again."
+                );
+
+                return;
+            }
+
+            if (withdrawalPinModal) {
+
+                withdrawalPinModal.style.display = "flex";
+
+            }
+
+        }
+    );
+
+}
+
+
+// ---------- CLOSE PIN MODAL ----------
+
+if (closeWithdrawalPinModal) {
+
+    closeWithdrawalPinModal.addEventListener(
+        "click",
+        function () {
+
+            closeWithdrawalPinModalHandler();
+
+        }
+    );
+
+}
+
+
+function closeWithdrawalPinModalHandler() {
+
+    if (withdrawalPinModal) {
+
+        withdrawalPinModal.style.display = "none";
+
+    }
+
+    if (createWithdrawalPin) {
+
+        createWithdrawalPin.value = "";
+
+    }
+
+    if (confirmWithdrawalPin) {
+
+        confirmWithdrawalPin.value = "";
+
+    }
+
+    if (withdrawalPinError) {
+
+        withdrawalPinError.textContent = "";
+
+    }
+
+}
+
+
+// ---------- CLOSE WHEN CLICKING OUTSIDE ----------
+
+if (withdrawalPinModal) {
+
+    withdrawalPinModal.addEventListener(
+        "click",
+        function (event) {
+
+            if (event.target === withdrawalPinModal) {
+
+                closeWithdrawalPinModalHandler();
+
+            }
+
+        }
+    );
+
+}
+
+
+// ---------- ONLY ALLOW NUMBERS ----------
+
+function setupPinInput(input) {
+
+    if (!input) return;
+
+    input.addEventListener(
+        "input",
+        function () {
+
+            this.value =
+                this.value.replace(/\D/g, "").slice(0, 6);
+
+        }
+    );
+
+}
+
+
+setupPinInput(createWithdrawalPin);
+setupPinInput(confirmWithdrawalPin);
+
+
+// ---------- SHOW / HIDE PIN ----------
+
+document
+    .querySelectorAll(".pin-eye-toggle")
+    .forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const targetId =
+                    this.getAttribute("data-target");
+
+                const input =
+                    document.getElementById(targetId);
+
+                const icon =
+                    this.querySelector("i");
+
+                if (!input || !icon) return;
+
+
+                if (input.type === "password") {
+
+                    input.type = "text";
+
+                    icon.classList.remove(
+                        "fa-eye"
+                    );
+
+                    icon.classList.add(
+                        "fa-eye-slash"
+                    );
+
+                    this.setAttribute(
+                        "aria-label",
+                        "Hide PIN"
+                    );
+
+                } else {
+
+                    input.type = "password";
+
+                    icon.classList.remove(
+                        "fa-eye-slash"
+                    );
+
+                    icon.classList.add(
+                        "fa-eye"
+                    );
+
+                    this.setAttribute(
+                        "aria-label",
+                        "Show PIN"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+// ---------- CREATE WITHDRAWAL PIN ----------
+
+if (createWithdrawalPinBtn) {
+
+    createWithdrawalPinBtn.addEventListener(
+        "click",
+        async function () {
+
+            const user =
+                auth.currentUser;
+
+            if (!user) {
+
+                alert(
+                    "Your login session has expired. Please log in again."
+                );
+
+                return;
+
+            }
+
+
+            const pin =
+                createWithdrawalPin.value.trim();
+
+            const confirmPin =
+                confirmWithdrawalPin.value.trim();
+
+
+            // Clear previous error
+
+            if (withdrawalPinError) {
+
+                withdrawalPinError.textContent = "";
+
+            }
+
+
+            // ---------- VALIDATION ----------
+
+            if (!/^\d{6}$/.test(pin)) {
+
+                withdrawalPinError.textContent =
+                    "Your Withdrawal PIN must be exactly 6 digits.";
+
+                return;
+
+            }
+
+
+            if (pin !== confirmPin) {
+
+                withdrawalPinError.textContent =
+                    "The PINs do not match.";
+
+                return;
+
+            }
+
+
+            try {
+
+                createWithdrawalPinBtn.disabled = true;
+
+                createWithdrawalPinBtn.innerHTML = `
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    Creating PIN...
+                `;
+
+
+                // Check whether a PIN has already been created
+
+                const pinRef =
+                    doc(
+                        db,
+                        "withdrawalPins",
+                        user.uid
+                    );
+
+
+                const pinSnapshot =
+                    await getDoc(pinRef);
+
+
+                if (pinSnapshot.exists()) {
+
+                    withdrawalPinError.textContent =
+                        "A Withdrawal PIN already exists. Use Change PIN instead.";
+
+                    return;
+
+                }
+
+
+                /*
+                 * IMPORTANT:
+                 *
+                 * We do NOT store the raw 6-digit PIN.
+                 *
+                 * For the next security step, this value will
+                 * be replaced/validated through trusted backend
+                 * logic before the PIN is used to authorize
+                 * withdrawals.
+                 */
+
+                const pinHash =
+                    await hashWithdrawalPin(pin);
+
+
+                await setDoc(
+                    pinRef,
+                    {
+                        userId: user.uid,
+                        pinHash: pinHash,
+                        createdAt: serverTimestamp(),
+                        updatedAt: serverTimestamp()
+                    }
+                );
+
+
+                // Update UI
+
+                const statusText =
+                    document.getElementById(
+                        "withdrawalPinStatusText"
+                    );
+
+                if (statusText) {
+
+                    statusText.textContent =
+                        "Active";
+
+                }
+
+
+                const status =
+                    document.getElementById(
+                        "withdrawalPinStatus"
+                    );
+
+                if (status) {
+
+                    status.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+                withdrawalPinButton.innerHTML = `
+                    <i class="fa-solid fa-key"></i>
+                    Change PIN
+                `;
+
+
+                closeWithdrawalPinModalHandler();
+
+
+                alert(
+                    "Your Withdrawal PIN has been created successfully."
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Withdrawal PIN creation error:",
+                    error
+                );
+
+
+                if (withdrawalPinError) {
+
+                    withdrawalPinError.textContent =
+                        "Unable to create your Withdrawal PIN. Please try again.";
+
+                }
+
+            } finally {
+
+                createWithdrawalPinBtn.disabled =
+                    false;
+
+                createWithdrawalPinBtn.innerHTML = `
+                    <i class="fa-solid fa-lock"></i>
+                    Create PIN
+                `;
+
+            }
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// HASH WITHDRAWAL PIN
+// =====================================================
+
+async function hashWithdrawalPin(pin) {
+
+    const encoder =
+        new TextEncoder();
+
+    const data =
+        encoder.encode(pin);
+
+    const hashBuffer =
+        await crypto.subtle.digest(
+            "SHA-256",
+            data
+        );
+
+    const hashArray =
+        Array.from(
+            new Uint8Array(hashBuffer)
+        );
+
+    return hashArray
+        .map(
+            byte =>
+                byte
+                    .toString(16)
+                    .padStart(2, "0")
+        )
+        .join("");
+
+}
