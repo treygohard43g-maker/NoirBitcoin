@@ -3818,6 +3818,7 @@ window.closeReceive = closeReceive;
 window.copyWalletAddress = copyWalletAddress;
 window.shareWalletAddress = shareWalletAddress;
 window.saveQRCode = saveQRCode;
+window.openWithdrawalPinVerification = openWithdrawalPinVerification;
 window.showWithdrawalPendingAfterPin = showWithdrawalPendingAfterPin;
 window.closeWithdrawModal = closeWithdrawModal;
 window.closePendingModal = closePendingModal;
