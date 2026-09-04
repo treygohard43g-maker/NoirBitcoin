@@ -1,78 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>Settings - NoirBitcoin</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css">
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
+
 <body>
 
 <div class="settings-container">
 
-    <h2><i class="fa-solid fa-user-gear"></i> Account Settings</h2>
+    <!-- SETTINGS HEADER -->
 
-    <div class="settings-card">
+    <div class="settings-header">
 
-        <label>Username</label>
-        <input type="text" id="newUsername" placeholder="Enter new username">
+        <h2>
+            <i class="fa-solid fa-user-gear"></i>
+            Account Settings
+        </h2>
 
-    <label>Current Password</label>
-
-<div class="password-field">
-    <input type="password" id="oldPassword" placeholder="Enter current password">
-    <i class="fa-solid fa-eye" id="toggleOldPassword"></i>
-</div>
-
-<label>New Password</label>
-
-<div class="password-field">
-    <input type="password" id="newPassword" placeholder="Enter new password">
-    <i class="fa-solid fa-eye" id="toggleNewPassword"></i>
-</div>
-
-<label>Confirm New Password</label>
-
-<div class="password-field">
-    <input type="password" id="confirmPassword" placeholder="Confirm new password">
-    <i class="fa-solid fa-eye" id="toggleConfirmPassword"></i>
-</div>
-
-<button id="saveSettings">
-    <i class="fa-solid fa-floppy-disk"></i>
-    Save Changes
-</button>
-    
-
-<div class="settings-card">
-
-    <div class="setting-row">
-
-        <label class="switch">
-            <input type="checkbox" id="themeToggle" checked>
-            <span class="slider"></span>
-        </label>
+        <p>
+            Manage your account and security preferences.
+        </p>
 
     </div>
 
+
+    <!-- ACCOUNT SETTINGS -->
+
+    <div class="settings-card">
+
+        <div class="settings-section-title">
+
+            <i class="fa-solid fa-user"></i>
+
+            <div>
+                <h3>Account</h3>
+
+                <p>
+                    Update your account information.
+                </p>
+            </div>
+
+        </div>
+
+
+        <label for="newUsername">
+            Username
+        </label>
+
+        <input
+            type="text"
+            id="newUsername"
+            placeholder="Enter new username">
+
+
+        <label for="oldPassword">
+            Current Password
+        </label>
+
+        <div class="password-field">
+
+            <input
+                type="password"
+                id="oldPassword"
+                placeholder="Enter current password">
+
+            <button
+                type="button"
+                class="settings-password-toggle"
+                data-target="oldPassword"
+                aria-label="Show password">
+
+                <i class="fa-solid fa-eye"></i>
+
+            </button>
+
+        </div>
+
+
+        <label for="newPassword">
+            New Password
+        </label>
+
+        <div class="password-field">
+
+            <input
+                type="password"
+                id="newPassword"
+                placeholder="Enter new password">
+
+            <button
+                type="button"
+                class="settings-password-toggle"
+                data-target="newPassword"
+                aria-label="Show password">
+
+                <i class="fa-solid fa-eye"></i>
+
+            </button>
+
+        </div>
+
+
+        <label for="confirmPassword">
+            Confirm New Password
+        </label>
+
+        <div class="password-field">
+
+            <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm new password">
+
+            <button
+                type="button"
+                class="settings-password-toggle"
+                data-target="confirmPassword"
+                aria-label="Show password">
+
+                <i class="fa-solid fa-eye"></i>
+
+            </button>
+
+        </div>
+
+
+        <button
+            id="saveSettings"
+            class="settings-save-btn">
+
+            <i class="fa-solid fa-floppy-disk"></i>
+
+            Save Changes
+
+        </button>
+
+    </div>
+
+
+    <!-- SECURITY -->
+
+    <div class="settings-card security-settings-card">
+
+        <div class="settings-section-title">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <div>
+
+                <h3>
+                    Security
+                </h3>
+
+                <p>
+                    Protect your account and withdrawals.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- WITHDRAWAL PIN -->
+
+        <div class="security-setting">
+
+            <div class="security-setting-icon">
+
+                <i class="fa-solid fa-lock"></i>
+
+            </div>
+
+
+            <div class="security-setting-content">
+
+                <h4>
+                    Withdrawal PIN
+                </h4>
+
+                <p>
+                    Add an extra layer of security to
+                    protect your withdrawals.
+                </p>
+
+
+                <div
+                    class="withdrawal-pin-status"
+                    id="withdrawalPinStatus">
+
+                    <span class="status-dot"></span>
+
+                    <span id="withdrawalPinStatusText">
+                        Not Set
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="withdrawalPinButton"
+                class="security-action-btn">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Create PIN
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PREFERENCES -->
+
+    <div class="settings-card">
+
+        <div class="settings-section-title">
+
+            <i class="fa-solid fa-sliders"></i>
+
+            <div>
+
+                <h3>
+                    Preferences
+                </h3>
+
+                <p>
+                    Customize your NoirBitcoin experience.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="setting-row">
+
+            <div class="setting-row-info">
+
+                <div class="setting-row-icon">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Dark Theme
+                    </strong>
+
+                    <span>
+                        Use the NoirBitcoin dark interface.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="themeToggle"
+                    checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- BACK TO DASHBOARD -->
+
+    <button
+        type="button"
+        class="settings-back-btn"
+        onclick="window.location.href='dashboard.html'">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Back to Dashboard
+
+    </button>
+
 </div>
-    
-        
-        <button onclick="window.location.href='dashboard.html'">
-            <i class="fa-solid fa-arrow-left"></i>
-            Back to Dashboard
+
+
+<!-- WITHDRAWAL PIN MODAL -->
+
+<div
+    class="withdrawal-pin-modal"
+    id="withdrawalPinModal"
+    style="display: none;">
+
+    <div class="withdrawal-pin-modal-content">
+
+        <button
+            type="button"
+            class="withdrawal-pin-close"
+            id="closeWithdrawalPinModal"
+            aria-label="Close">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+        <div class="withdrawal-pin-modal-icon">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+        </div>
+
+
+        <h3>
+            Create Withdrawal PIN
+        </h3>
+
+
+        <p>
+            Create a secure 6-digit PIN to
+            protect your withdrawals.
+        </p>
+
+
+        <label for="createWithdrawalPin">
+            New Withdrawal PIN
+        </label>
+
+        <div class="withdrawal-pin-input">
+
+            <input
+                type="password"
+                id="createWithdrawalPin"
+                inputmode="numeric"
+                maxlength="6"
+                autocomplete="new-password"
+                placeholder="••••••">
+
+            <button
+                type="button"
+                class="pin-eye-toggle"
+                data-target="createWithdrawalPin"
+                aria-label="Show PIN">
+
+                <i class="fa-solid fa-eye"></i>
+
+            </button>
+
+        </div>
+
+
+        <label for="confirmWithdrawalPin">
+            Confirm Withdrawal PIN
+        </label>
+
+        <div class="withdrawal-pin-input">
+
+            <input
+                type="password"
+                id="confirmWithdrawalPin"
+                inputmode="numeric"
+                maxlength="6"
+                autocomplete="new-password"
+                placeholder="••••••">
+
+            <button
+                type="button"
+                class="pin-eye-toggle"
+                data-target="confirmWithdrawalPin"
+                aria-label="Show PIN">
+
+                <i class="fa-solid fa-eye"></i>
+
+            </button>
+
+        </div>
+
+
+        <p
+            class="withdrawal-pin-error"
+            id="withdrawalPinError">
+        </p>
+
+
+        <button
+            type="button"
+            id="createWithdrawalPinBtn"
+            class="withdrawal-pin-submit-btn">
+
+            <i class="fa-solid fa-lock"></i>
+
+            Create PIN
+
         </button>
 
     </div>
 
 </div>
 
+
 <script type="module" src="script.js"></script>
 
 </body>
-</html>
 
+</html>
