@@ -5626,63 +5626,56 @@ function playWithdrawalPendingAlert() {
     }
 }
 
-const loginPasswordToggle =
-    document.getElementById("loginPasswordToggle");
+document.addEventListener("DOMContentLoaded", function () {
 
-const loginPassword =
-    document.getElementById("loginPassword");
+    const passwordToggle =
+        document.getElementById("loginPasswordToggle");
 
-const loginPasswordEye =
-    document.getElementById("loginPasswordEye");
+    const passwordInput =
+        document.getElementById("loginPassword");
 
+    const passwordEye =
+        document.getElementById("loginPasswordEye");
 
-if (
-    loginPasswordToggle &&
-    loginPassword &&
-    loginPasswordEye
-) {
+    if (
+        !passwordToggle ||
+        !passwordInput ||
+        !passwordEye
+    ) {
+        return;
+    }
 
-    loginPasswordToggle.addEventListener(
-        "click",
-        function () {
+    passwordToggle.addEventListener("click", function (event) {
 
-            if (loginPassword.type === "password") {
+        event.preventDefault();
+        event.stopPropagation();
 
-                loginPassword.type = "text";
+        if (passwordInput.type === "password") {
 
-                loginPasswordEye.classList.remove(
-                    "fa-eye"
-                );
+            passwordInput.type = "text";
 
-                loginPasswordEye.classList.add(
-                    "fa-eye-slash"
-                );
+            passwordEye.classList.remove("fa-eye");
+            passwordEye.classList.add("fa-eye-slash");
 
-                loginPasswordToggle.setAttribute(
-                    "aria-label",
-                    "Hide password"
-                );
+            passwordToggle.setAttribute(
+                "aria-label",
+                "Hide password"
+            );
 
-            } else {
+        } else {
 
-                loginPassword.type = "password";
+            passwordInput.type = "password";
 
-                loginPasswordEye.classList.remove(
-                    "fa-eye-slash"
-                );
+            passwordEye.classList.remove("fa-eye-slash");
+            passwordEye.classList.add("fa-eye");
 
-                loginPasswordEye.classList.add(
-                    "fa-eye"
-                );
-
-                loginPasswordToggle.setAttribute(
-                    "aria-label",
-                    "Show password"
-                );
-
-            }
+            passwordToggle.setAttribute(
+                "aria-label",
+                "Show password"
+            );
 
         }
-    );
 
-}
+    });
+
+});
