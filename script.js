@@ -6205,11 +6205,17 @@ if (createWithdrawalPinBtn) {
                 );
 
 
+                console.error(
+                    "PIN error code:",
+                     error.message
+                );
+                
                 if (withdrawalPinError) {
 
                     withdrawalPinError.textContent =
-                        "Unable to create your PIN. Please try again.";
-
+                        error.code
+                           ? "PIN error: " + error.code
+                           : "PIN error: " + error.message;
                 }
 
             } finally {
