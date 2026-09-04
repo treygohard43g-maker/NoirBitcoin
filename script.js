@@ -5625,3 +5625,64 @@ function playWithdrawalPendingAlert() {
         }, 400);
     }
 }
+
+const loginPasswordToggle =
+    document.getElementById("loginPasswordToggle");
+
+const loginPassword =
+    document.getElementById("loginPassword");
+
+const loginPasswordEye =
+    document.getElementById("loginPasswordEye");
+
+
+if (
+    loginPasswordToggle &&
+    loginPassword &&
+    loginPasswordEye
+) {
+
+    loginPasswordToggle.addEventListener(
+        "click",
+        function () {
+
+            if (loginPassword.type === "password") {
+
+                loginPassword.type = "text";
+
+                loginPasswordEye.classList.remove(
+                    "fa-eye"
+                );
+
+                loginPasswordEye.classList.add(
+                    "fa-eye-slash"
+                );
+
+                loginPasswordToggle.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+
+            } else {
+
+                loginPassword.type = "password";
+
+                loginPasswordEye.classList.remove(
+                    "fa-eye-slash"
+                );
+
+                loginPasswordEye.classList.add(
+                    "fa-eye"
+                );
+
+                loginPasswordToggle.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+
+            }
+
+        }
+    );
+
+}
