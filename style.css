@@ -22953,7 +22953,7 @@ body:has(.admin-support-page) {
 
 /* =========================================================
    NOIRBITCOIN — SETTINGS PAGE
-   Unified Surface Design
+   Flat Surface / Profile Menu Style
    ========================================================= */
 
 .settings-page {
@@ -22972,106 +22972,70 @@ body:has(.admin-support-page) {
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .settings-header-icon {
     width: 44px;
     height: 44px;
-
     flex-shrink: 0;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 13px;
+    border-radius: 12px;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(245, 158, 11, 0.14),
-            rgba(245, 158, 11, 0.035)
-        );
-
+    background: rgba(245, 158, 11, 0.08);
     border: 1px solid rgba(245, 158, 11, 0.18);
 
     color: #f59e0b;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.04);
 }
 
 .settings-page-header h1 {
     margin: 0;
 
-    color: #ffffff;
+    color: var(--settings-text, #ffffff);
 
     font-size: 24px;
     font-weight: 700;
-
     letter-spacing: -0.3px;
 }
 
 .settings-page-header p {
     margin: 5px 0 0;
 
-    color: #737b86;
+    color: var(--settings-muted, #737b86);
 
     font-size: 12px;
 }
 
 
 /* =========================================================
-   ONE UNIFIED SURFACE
+   SINGLE FLAT SURFACE
    ========================================================= */
 
 .settings-surface {
     position: relative;
 
+    width: 100%;
+    box-sizing: border-box;
+
     overflow: hidden;
 
-    border-radius: 22px;
+    border-radius: 18px;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(28, 32, 39, 0.88),
-            rgba(13, 17, 23, 0.96)
-        );
+    background: var(
+        --settings-surface,
+        rgba(255, 255, 255, 0.025)
+    );
 
-    border: 1px solid rgba(255,255,255,0.055);
+    border: 1px solid var(
+        --settings-border,
+        rgba(255, 255, 255, 0.08)
+    );
 
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.30),
-
-        inset 0 1px 0
-        rgba(255,255,255,0.035);
-}
-
-
-/* SUBTLE SURFACE LIGHT */
-
-.settings-surface::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.10),
-            transparent
-        );
-
-    pointer-events: none;
+    box-shadow: none;
 }
 
 
@@ -23109,14 +23073,16 @@ body:has(.admin-support-page) {
     align-items: center;
     justify-content: center;
 
-    border-radius: 11px;
+    border-radius: 10px;
 
-    background:
-        rgba(255,255,255,0.035);
+    background: transparent;
 
-    border: 1px solid rgba(255,255,255,0.055);
+    border: 1px solid var(
+        --settings-border,
+        rgba(255, 255, 255, 0.08)
+    );
 
-    color: #a3aab4;
+    color: var(--settings-muted, #929aa5);
 
     font-size: 14px;
 }
@@ -23124,17 +23090,15 @@ body:has(.admin-support-page) {
 .settings-heading-icon.security {
     color: #f59e0b;
 
-    background:
-        rgba(245,158,11,0.07);
+    border-color: rgba(245, 158, 11, 0.22);
 
-    border-color:
-        rgba(245,158,11,0.12);
+    background: rgba(245, 158, 11, 0.045);
 }
 
 .settings-section-heading h2 {
     margin: 0;
 
-    color: #f5f5f5;
+    color: var(--settings-text, #f5f5f5);
 
     font-size: 15px;
     font-weight: 650;
@@ -23143,7 +23107,7 @@ body:has(.admin-support-page) {
 .settings-section-heading p {
     margin: 4px 0 0;
 
-    color: #707883;
+    color: var(--settings-muted, #707883);
 
     font-size: 11px;
 }
@@ -23163,7 +23127,7 @@ body:has(.admin-support-page) {
 
     margin-bottom: 7px;
 
-    color: #aeb5be;
+    color: var(--settings-label, #aeb5be);
 
     font-size: 11px;
     font-weight: 600;
@@ -23172,26 +23136,29 @@ body:has(.admin-support-page) {
 .settings-field input,
 .pin-input-wrap input {
     width: 100%;
-
     height: 45px;
 
     box-sizing: border-box;
 
     padding: 0 13px;
 
-    border-radius: 10px;
+    border-radius: 9px;
 
-    border: 1px solid #292f38;
+    border: 1px solid var(
+        --settings-input-border,
+        rgba(255, 255, 255, 0.10)
+    );
 
     outline: none;
 
-    background:
-        rgba(8, 11, 15, 0.62);
+    background: var(
+        --settings-input,
+        rgba(0, 0, 0, 0.12)
+    );
 
-    color: #ffffff;
+    color: var(--settings-text, #ffffff);
 
     font-family: inherit;
-
     font-size: 12px;
 
     transition:
@@ -23202,20 +23169,20 @@ body:has(.admin-support-page) {
 
 .settings-field input::placeholder,
 .pin-input-wrap input::placeholder {
-    color: #555d68;
+    color: var(--settings-placeholder, #68717c);
 }
 
 .settings-field input:focus,
 .pin-input-wrap input:focus {
-    border-color:
-        rgba(245,158,11,0.48);
+    border-color: rgba(245, 158, 11, 0.48);
 
-    background:
-        rgba(8, 11, 15, 0.82);
+    background: var(
+        --settings-input-focus,
+        rgba(0, 0, 0, 0.16)
+    );
 
     box-shadow:
-        0 0 0 3px
-        rgba(245,158,11,0.055);
+        0 0 0 3px rgba(245, 158, 11, 0.055);
 }
 
 
@@ -23250,7 +23217,7 @@ body:has(.admin-support-page) {
 
     background: transparent;
 
-    color: #6f7782;
+    color: var(--settings-muted, #6f7782);
 
     cursor: pointer;
 }
@@ -23266,14 +23233,12 @@ body:has(.admin-support-page) {
 
 .settings-primary-btn {
     width: 100%;
-
     height: 45px;
 
     margin-top: 5px;
 
     border: 0;
-
-    border-radius: 10px;
+    border-radius: 9px;
 
     background:
         linear-gradient(
@@ -23285,29 +23250,20 @@ body:has(.admin-support-page) {
     color: #111111;
 
     font-family: inherit;
-
     font-size: 12px;
     font-weight: 700;
 
     cursor: pointer;
 
-    box-shadow:
-        0 7px 22px
-        rgba(245,158,11,0.12);
+    box-shadow: none;
 
     transition:
         transform .18s ease,
-        box-shadow .18s ease,
         filter .18s ease;
 }
 
 .settings-primary-btn:hover {
     transform: translateY(-1px);
-
-    box-shadow:
-        0 10px 28px
-        rgba(245,158,11,0.18);
-
     filter: brightness(1.04);
 }
 
@@ -23317,29 +23273,24 @@ body:has(.admin-support-page) {
 
 .settings-primary-btn:disabled {
     opacity: .6;
-
     cursor: not-allowed;
-
     transform: none;
 }
 
 
 /* =========================================================
-   DIVIDERS
+   LINE DEMARCATION
    ========================================================= */
 
 .settings-divider {
     height: 1px;
 
-    margin: 0 28px;
+    margin: 0;
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.065),
-            transparent
-        );
+    background: var(
+        --settings-divider,
+        rgba(255, 255, 255, 0.075)
+    );
 }
 
 
@@ -23351,7 +23302,6 @@ body:has(.admin-support-page) {
     display: flex;
 
     align-items: center;
-
     justify-content: space-between;
 
     gap: 20px;
@@ -23377,15 +23327,13 @@ body:has(.admin-support-page) {
     align-items: center;
     justify-content: center;
 
-    border-radius: 12px;
+    border-radius: 11px;
 
     color: #f59e0b;
 
-    background:
-        rgba(245,158,11,0.075);
+    background: transparent;
 
-    border: 1px solid
-        rgba(245,158,11,0.13);
+    border: 1px solid rgba(245, 158, 11, 0.20);
 }
 
 .settings-security-info {
@@ -23395,7 +23343,7 @@ body:has(.admin-support-page) {
 .settings-security-info h3 {
     margin: 0;
 
-    color: #f2f2f2;
+    color: var(--settings-text, #f2f2f2);
 
     font-size: 13px;
 }
@@ -23405,10 +23353,9 @@ body:has(.admin-support-page) {
 
     margin: 4px 0 8px;
 
-    color: #707883;
+    color: var(--settings-muted, #707883);
 
     font-size: 10.5px;
-
     line-height: 1.45;
 }
 
@@ -23421,17 +23368,15 @@ body:has(.admin-support-page) {
     display: inline-flex;
 
     align-items: center;
-
     gap: 6px;
 
     padding: 4px 8px;
 
     border-radius: 20px;
 
-    background:
-        rgba(255,255,255,0.035);
+    background: transparent;
 
-    color: #777f89;
+    color: var(--settings-muted, #777f89);
 
     font-size: 9px;
 }
@@ -23446,18 +23391,16 @@ body:has(.admin-support-page) {
 }
 
 .withdrawal-pin-status.active {
-    color: #64d38a;
+    color: #22a85a;
 
-    background:
-        rgba(34,197,94,0.065);
+    background: rgba(34, 197, 94, 0.06);
 }
 
 .withdrawal-pin-status.active .status-dot {
     background: #22c55e;
 
     box-shadow:
-        0 0 7px
-        rgba(34,197,94,0.5);
+        0 0 6px rgba(34, 197, 94, 0.35);
 }
 
 
@@ -23472,12 +23415,14 @@ body:has(.admin-support-page) {
 
     padding: 0 14px;
 
-    border-radius: 9px;
+    border-radius: 8px;
 
-    border: 1px solid #303640;
+    border: 1px solid var(
+        --settings-button-border,
+        rgba(255, 255, 255, 0.10)
+    );
 
-    background:
-        rgba(255,255,255,0.025);
+    background: transparent;
 
     color: #f59e0b;
 
@@ -23495,11 +23440,10 @@ body:has(.admin-support-page) {
 }
 
 .settings-secondary-btn:hover {
-    background:
-        rgba(245,158,11,0.07);
+    background: rgba(245, 158, 11, 0.06);
 
     border-color:
-        rgba(245,158,11,0.28);
+        rgba(245, 158, 11, 0.28);
 
     transform: translateY(-1px);
 }
@@ -23535,21 +23479,22 @@ body:has(.admin-support-page) {
     align-items: center;
     justify-content: center;
 
-    border-radius: 11px;
+    border-radius: 10px;
 
-    background:
-        rgba(255,255,255,0.035);
+    background: transparent;
 
-    border: 1px solid
-        rgba(255,255,255,0.05);
+    border: 1px solid var(
+        --settings-border,
+        rgba(255, 255, 255, 0.08)
+    );
 
-    color: #929aa5;
+    color: var(--settings-muted, #929aa5);
 }
 
 .settings-preference-info h3 {
     margin: 0;
 
-    color: #eeeeee;
+    color: var(--settings-text, #eeeeee);
 
     font-size: 12px;
 }
@@ -23557,7 +23502,7 @@ body:has(.admin-support-page) {
 .settings-preference-info p {
     margin: 4px 0 0;
 
-    color: #707883;
+    color: var(--settings-muted, #707883);
 
     font-size: 10px;
 }
@@ -23592,9 +23537,11 @@ body:has(.admin-support-page) {
 
     border-radius: 20px;
 
-    background: #292f37;
+    background:
+        var(--settings-switch-bg, #292f37);
 
-    border: 1px solid #363c45;
+    border: 1px solid
+        var(--settings-switch-border, #363c45);
 
     transition: .25s;
 }
@@ -23612,17 +23559,18 @@ body:has(.admin-support-page) {
 
     border-radius: 50%;
 
-    background: #858d97;
+    background:
+        var(--settings-switch-knob, #858d97);
 
     transition: .25s;
 }
 
 .settings-switch input:checked + .settings-slider {
     background:
-        rgba(245,158,11,0.18);
+        rgba(245, 158, 11, 0.18);
 
     border-color:
-        rgba(245,158,11,0.38);
+        rgba(245, 158, 11, 0.38);
 }
 
 .settings-switch input:checked + .settings-slider::before {
@@ -23631,8 +23579,7 @@ body:has(.admin-support-page) {
     background: #f59e0b;
 
     box-shadow:
-        0 0 8px
-        rgba(245,158,11,0.35);
+        0 0 7px rgba(245, 158, 11, 0.28);
 }
 
 
@@ -23647,14 +23594,16 @@ body:has(.admin-support-page) {
 
     margin: 20px 28px 27px;
 
-    border-radius: 10px;
+    border-radius: 9px;
 
-    border: 1px solid #292f38;
+    border: 1px solid var(
+        --settings-button-border,
+        rgba(255, 255, 255, 0.10)
+    );
 
-    background:
-        rgba(255,255,255,0.018);
+    background: transparent;
 
-    color: #8b939e;
+    color: var(--settings-muted, #8b939e);
 
     font-family: inherit;
 
@@ -23670,12 +23619,13 @@ body:has(.admin-support-page) {
 }
 
 .settings-back-btn:hover {
-    color: #ffffff;
+    color: var(--settings-text, #ffffff);
 
     background:
-        rgba(255,255,255,0.035);
+        rgba(255, 255, 255, 0.035);
 
-    border-color: #3a414c;
+    border-color:
+        rgba(255, 255, 255, 0.16);
 }
 
 
@@ -23697,8 +23647,7 @@ body:has(.admin-support-page) {
 
     padding: 20px;
 
-    background:
-        rgba(0,0,0,0.72);
+    background: rgba(0, 0, 0, 0.72);
 
     backdrop-filter: blur(9px);
 }
@@ -23712,23 +23661,26 @@ body:has(.admin-support-page) {
 
     padding: 27px;
 
-    border-radius: 19px;
+    border-radius: 17px;
 
     background:
-        linear-gradient(
-            145deg,
-            #1d2128,
-            #101419
+        var(
+            --settings-modal,
+            linear-gradient(
+                145deg,
+                #1d2128,
+                #101419
+            )
         );
 
-    border: 1px solid #303640;
+    border: 1px solid
+        var(
+            --settings-modal-border,
+            #303640
+        );
 
     box-shadow:
-        0 25px 70px
-        rgba(0,0,0,0.55),
-
-        inset 0 1px 0
-        rgba(255,255,255,0.035);
+        0 25px 70px rgba(0, 0, 0, 0.55);
 }
 
 .withdrawal-pin-close {
@@ -23745,7 +23697,7 @@ body:has(.admin-support-page) {
     border-radius: 8px;
 
     background:
-        rgba(255,255,255,0.045);
+        rgba(255, 255, 255, 0.045);
 
     color: #747c87;
 
@@ -23766,15 +23718,15 @@ body:has(.admin-support-page) {
     align-items: center;
     justify-content: center;
 
-    border-radius: 13px;
+    border-radius: 12px;
 
     color: #f59e0b;
 
     background:
-        rgba(245,158,11,0.08);
+        rgba(245, 158, 11, 0.08);
 
     border: 1px solid
-        rgba(245,158,11,0.14);
+        rgba(245, 158, 11, 0.14);
 }
 
 .withdrawal-pin-dialog h2 {
@@ -23855,6 +23807,109 @@ body:has(.admin-support-page) {
 
 
 /* =========================================================
+   DARK THEME
+   ========================================================= */
+
+body:not(.light-theme):not(.light-mode) {
+    --settings-surface: rgba(255, 255, 255, 0.025);
+    --settings-border: rgba(255, 255, 255, 0.08);
+    --settings-divider: rgba(255, 255, 255, 0.075);
+
+    --settings-text: #ffffff;
+    --settings-label: #aeb5be;
+    --settings-muted: #737b86;
+    --settings-placeholder: #68717c;
+
+    --settings-input: rgba(0, 0, 0, 0.12);
+    --settings-input-focus: rgba(0, 0, 0, 0.16);
+    --settings-input-border: rgba(255, 255, 255, 0.10);
+
+    --settings-button-border: rgba(255, 255, 255, 0.10);
+
+    --settings-switch-bg: #292f37;
+    --settings-switch-border: #363c45;
+    --settings-switch-knob: #858d97;
+}
+
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+body.light-theme,
+body.light-mode {
+    --settings-surface: rgba(255, 255, 255, 0.92);
+
+    --settings-border: rgba(15, 23, 42, 0.10);
+
+    --settings-divider: rgba(15, 23, 42, 0.10);
+
+    --settings-text: #17191d;
+
+    --settings-label: #555d68;
+
+    --settings-muted: #737b86;
+
+    --settings-placeholder: #9aa1aa;
+
+    --settings-input: rgba(15, 23, 42, 0.025);
+
+    --settings-input-focus: rgba(15, 23, 42, 0.04);
+
+    --settings-input-border: rgba(15, 23, 42, 0.13);
+
+    --settings-button-border: rgba(15, 23, 42, 0.13);
+
+    --settings-switch-bg: #e5e7eb;
+
+    --settings-switch-border: #d1d5db;
+
+    --settings-switch-knob: #9ca3af;
+
+    --settings-modal:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f4f5f7
+        );
+
+    --settings-modal-border:
+        rgba(15, 23, 42, 0.12);
+}
+
+body.light-theme .settings-page-header h1,
+body.light-mode .settings-page-header h1 {
+    color: #17191d;
+}
+
+body.light-theme .settings-section-heading h2,
+body.light-mode .settings-section-heading h2,
+body.light-theme .settings-security-info h3,
+body.light-mode .settings-security-info h3,
+body.light-theme .settings-preference-info h3,
+body.light-mode .settings-preference-info h3 {
+    color: #17191d;
+}
+
+body.light-theme .settings-field input,
+body.light-mode .settings-field input,
+body.light-theme .pin-input-wrap input,
+body.light-mode .pin-input-wrap input {
+    color: #17191d;
+}
+
+body.light-theme .settings-password-toggle,
+body.light-mode .settings-password-toggle {
+    color: #737b86;
+}
+
+body.light-theme .settings-back-btn:hover,
+body.light-mode .settings-back-btn:hover {
+    color: #17191d;
+}
+
+
+/* =========================================================
    MOBILE
    ========================================================= */
 
@@ -23863,8 +23918,7 @@ body:has(.admin-support-page) {
     .settings-page {
         width: 100%;
 
-        padding:
-            22px 12px 45px;
+        padding: 22px 12px 45px;
     }
 
     .settings-page-header {
@@ -23885,17 +23939,11 @@ body:has(.admin-support-page) {
     }
 
     .settings-surface {
-        border-radius: 17px;
+        border-radius: 15px;
     }
 
     .settings-section {
-        padding:
-            22px 17px;
-    }
-
-    .settings-divider {
-        margin:
-            0 17px;
+        padding: 22px 17px;
     }
 
     .settings-security-row {
@@ -23921,14 +23969,13 @@ body:has(.admin-support-page) {
     .settings-back-btn {
         width: calc(100% - 34px);
 
-        margin:
-            17px 17px 20px;
+        margin: 17px 17px 20px;
     }
 
     .withdrawal-pin-dialog {
         padding: 23px;
 
-        border-radius: 17px;
+        border-radius: 16px;
     }
 
 }
