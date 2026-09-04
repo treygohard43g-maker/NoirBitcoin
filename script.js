@@ -5706,7 +5706,122 @@ const withdrawalPinError =
     document.getElementById("withdrawalPinError");
 
 
-// ---------- OPEN PIN MODAL ----------
+// =====================================================
+// PIN STATUS UI
+// =====================================================
+
+function setWithdrawalPinStatus(isActive) {
+
+    const statusText =
+        document.getElementById(
+            "withdrawalPinStatusText"
+        );
+
+    const status =
+        document.getElementById(
+            "withdrawalPinStatus"
+        );
+
+    if (!statusText || !status || !withdrawalPinButton) {
+        return;
+    }
+
+
+    if (isActive) {
+
+        statusText.textContent = "Active";
+
+        status.classList.add("active");
+
+        withdrawalPinButton.innerHTML = `
+            <i class="fa-solid fa-key"></i>
+            Change PIN
+        `;
+
+    } else {
+
+        statusText.textContent = "Not Set";
+
+        status.classList.remove("active");
+
+        withdrawalPinButton.innerHTML = `
+            <i class="fa-solid fa-plus"></i>
+            Create PIN
+        `;
+
+    }
+
+}
+
+
+// =====================================================
+// LOAD PIN STATUS
+// =====================================================
+
+async function loadWithdrawalPinStatus(user) {
+
+    if (!user) {
+        return;
+    }
+
+    try {
+
+        const pinRef =
+            doc(
+                db,
+                "withdrawalPins",
+                user.uid
+            );
+
+        const snapshot =
+            await getDoc(pinRef);
+
+        setWithdrawalPinStatus(
+            snapshot.exists()
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load Withdrawal PIN status:",
+            error
+        );
+
+    }
+
+}
+
+
+// =====================================================
+// WAIT FOR FIREBASE AUTH
+// =====================================================
+
+if (
+    withdrawalPinButton ||
+    withdrawalPinModal
+) {
+
+    onAuthStateChanged(
+        auth,
+        async function (user) {
+
+            if (!user) {
+
+                return;
+
+            }
+
+            await loadWithdrawalPinStatus(user);
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// OPEN PIN MODAL
+// =====================================================
 
 if (withdrawalPinButton) {
 
@@ -5714,13 +5829,35 @@ if (withdrawalPinButton) {
         "click",
         function () {
 
-            if (!auth.currentUser) {
+            const user =
+                auth.currentUser;
+
+            if (!user) {
 
                 alert(
                     "Your login session has expired. Please log in again."
                 );
 
                 return;
+
+            }
+
+            if (withdrawalPinError) {
+
+                withdrawalPinError.textContent = "";
+
+            }
+
+            if (createWithdrawalPin) {
+
+                createWithdrawalPin.value = "";
+
+            }
+
+            if (confirmWithdrawalPin) {
+
+                confirmWithdrawalPin.value = "";
+
             }
 
             if (withdrawalPinModal) {
@@ -5735,21 +5872,9 @@ if (withdrawalPinButton) {
 }
 
 
-// ---------- CLOSE PIN MODAL ----------
-
-if (closeWithdrawalPinModal) {
-
-    closeWithdrawalPinModal.addEventListener(
-        "click",
-        function () {
-
-            closeWithdrawalPinModalHandler();
-
-        }
-    );
-
-}
-
+// =====================================================
+// CLOSE PIN MODAL
+// =====================================================
 
 function closeWithdrawalPinModalHandler() {
 
@@ -5780,7 +5905,15 @@ function closeWithdrawalPinModalHandler() {
 }
 
 
-// ---------- CLOSE WHEN CLICKING OUTSIDE ----------
+if (closeWithdrawalPinModal) {
+
+    closeWithdrawalPinModal.addEventListener(
+        "click",
+        closeWithdrawalPinModalHandler
+    );
+
+}
+
 
 if (withdrawalPinModal) {
 
@@ -5788,7 +5921,10 @@ if (withdrawalPinModal) {
         "click",
         function (event) {
 
-            if (event.target === withdrawalPinModal) {
+            if (
+                event.target ===
+                withdrawalPinModal
+            ) {
 
                 closeWithdrawalPinModalHandler();
 
@@ -5800,18 +5936,24 @@ if (withdrawalPinModal) {
 }
 
 
-// ---------- ONLY ALLOW NUMBERS ----------
+// =====================================================
+// PIN INPUT RESTRICTION
+// =====================================================
 
 function setupPinInput(input) {
 
-    if (!input) return;
+    if (!input) {
+        return;
+    }
 
     input.addEventListener(
         "input",
         function () {
 
             this.value =
-                this.value.replace(/\D/g, "").slice(0, 6);
+                this.value
+                    .replace(/\D/g, "")
+                    .slice(0, 6);
 
         }
     );
@@ -5823,7 +5965,9 @@ setupPinInput(createWithdrawalPin);
 setupPinInput(confirmWithdrawalPin);
 
 
-// ---------- SHOW / HIDE PIN ----------
+// =====================================================
+// SHOW / HIDE PIN
+// =====================================================
 
 document
     .querySelectorAll(".pin-eye-toggle")
@@ -5834,18 +5978,25 @@ document
             function () {
 
                 const targetId =
-                    this.getAttribute("data-target");
+                    this.dataset.target;
 
                 const input =
-                    document.getElementById(targetId);
+                    document.getElementById(
+                        targetId
+                    );
 
                 const icon =
                     this.querySelector("i");
 
-                if (!input || !icon) return;
+                if (!input || !icon) {
+                    return;
+                }
 
 
-                if (input.type === "password") {
+                if (
+                    input.type ===
+                    "password"
+                ) {
 
                     input.type = "text";
 
@@ -5855,11 +6006,6 @@ document
 
                     icon.classList.add(
                         "fa-eye-slash"
-                    );
-
-                    this.setAttribute(
-                        "aria-label",
-                        "Hide PIN"
                     );
 
                 } else {
@@ -5874,11 +6020,6 @@ document
                         "fa-eye"
                     );
 
-                    this.setAttribute(
-                        "aria-label",
-                        "Show PIN"
-                    );
-
                 }
 
             }
@@ -5887,7 +6028,9 @@ document
     });
 
 
-// ---------- CREATE WITHDRAWAL PIN ----------
+// =====================================================
+// CREATE WITHDRAWAL PIN
+// =====================================================
 
 if (createWithdrawalPinBtn) {
 
@@ -5898,11 +6041,15 @@ if (createWithdrawalPinBtn) {
             const user =
                 auth.currentUser;
 
+
             if (!user) {
 
-                alert(
-                    "Your login session has expired. Please log in again."
-                );
+                if (withdrawalPinError) {
+
+                    withdrawalPinError.textContent =
+                        "Your session is still loading. Please try again.";
+
+                }
 
                 return;
 
@@ -5916,8 +6063,6 @@ if (createWithdrawalPinBtn) {
                 confirmWithdrawalPin.value.trim();
 
 
-            // Clear previous error
-
             if (withdrawalPinError) {
 
                 withdrawalPinError.textContent = "";
@@ -5925,12 +6070,12 @@ if (createWithdrawalPinBtn) {
             }
 
 
-            // ---------- VALIDATION ----------
+            // Validate PIN
 
             if (!/^\d{6}$/.test(pin)) {
 
                 withdrawalPinError.textContent =
-                    "Your Withdrawal PIN must be exactly 6 digits.";
+                    "Enter a 6-digit Withdrawal PIN.";
 
                 return;
 
@@ -5947,17 +6092,15 @@ if (createWithdrawalPinBtn) {
             }
 
 
+            createWithdrawalPinBtn.disabled = true;
+
+            createWithdrawalPinBtn.innerHTML = `
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                Creating...
+            `;
+
+
             try {
-
-                createWithdrawalPinBtn.disabled = true;
-
-                createWithdrawalPinBtn.innerHTML = `
-                    <i class="fa-solid fa-spinner fa-spin"></i>
-                    Creating PIN...
-                `;
-
-
-                // Check whether a PIN has already been created
 
                 const pinRef =
                     doc(
@@ -5967,30 +6110,21 @@ if (createWithdrawalPinBtn) {
                     );
 
 
-                const pinSnapshot =
+                const existingPin =
                     await getDoc(pinRef);
 
 
-                if (pinSnapshot.exists()) {
+                if (existingPin.exists()) {
 
                     withdrawalPinError.textContent =
-                        "A Withdrawal PIN already exists. Use Change PIN instead.";
+                        "A Withdrawal PIN already exists. Use Change PIN.";
 
                     return;
 
                 }
 
 
-                /*
-                 * IMPORTANT:
-                 *
-                 * We do NOT store the raw 6-digit PIN.
-                 *
-                 * For the next security step, this value will
-                 * be replaced/validated through trusted backend
-                 * logic before the PIN is used to authorize
-                 * withdrawals.
-                 */
+                // Hash the PIN before storing it.
 
                 const pinHash =
                     await hashWithdrawalPin(pin);
@@ -6001,59 +6135,29 @@ if (createWithdrawalPinBtn) {
                     {
                         userId: user.uid,
                         pinHash: pinHash,
-                        createdAt: serverTimestamp(),
-                        updatedAt: serverTimestamp()
+                        createdAt:
+                            serverTimestamp(),
+                        updatedAt:
+                            serverTimestamp()
                     }
                 );
 
 
-                // Update UI
-
-                const statusText =
-                    document.getElementById(
-                        "withdrawalPinStatusText"
-                    );
-
-                if (statusText) {
-
-                    statusText.textContent =
-                        "Active";
-
-                }
-
-
-                const status =
-                    document.getElementById(
-                        "withdrawalPinStatus"
-                    );
-
-                if (status) {
-
-                    status.classList.add(
-                        "active"
-                    );
-
-                }
-
-
-                withdrawalPinButton.innerHTML = `
-                    <i class="fa-solid fa-key"></i>
-                    Change PIN
-                `;
+                setWithdrawalPinStatus(true);
 
 
                 closeWithdrawalPinModalHandler();
 
 
                 alert(
-                    "Your Withdrawal PIN has been created successfully."
+                    "Withdrawal PIN created successfully."
                 );
 
 
             } catch (error) {
 
                 console.error(
-                    "Withdrawal PIN creation error:",
+                    "Withdrawal PIN error:",
                     error
                 );
 
@@ -6061,7 +6165,7 @@ if (createWithdrawalPinBtn) {
                 if (withdrawalPinError) {
 
                     withdrawalPinError.textContent =
-                        "Unable to create your Withdrawal PIN. Please try again.";
+                        "Unable to create your PIN. Please try again.";
 
                 }
 
@@ -6084,7 +6188,7 @@ if (createWithdrawalPinBtn) {
 
 
 // =====================================================
-// HASH WITHDRAWAL PIN
+// HASH PIN
 // =====================================================
 
 async function hashWithdrawalPin(pin) {
@@ -6103,7 +6207,9 @@ async function hashWithdrawalPin(pin) {
 
     const hashArray =
         Array.from(
-            new Uint8Array(hashBuffer)
+            new Uint8Array(
+                hashBuffer
+            )
         );
 
     return hashArray
