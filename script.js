@@ -3299,11 +3299,6 @@ function showWithdrawalPendingAfterPin() {
 
         return;
     }
-   
-        // Require Withdrawal PIN before continuing
-    openWithdrawalPinVerification();
-
-    return;
 
     // ========================================
     // ALWAYS RESTORE ORIGINAL PENDING CARD
