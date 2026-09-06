@@ -3128,7 +3128,7 @@ function showPaymentConfirmed() {
         </div>
 
         <h2>
-            Payment Confirmed by Support ✅
+            payment successfully received.
         </h2>
 
         <div class="divider"></div>
