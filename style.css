@@ -24060,3 +24060,410 @@ body.light-mode .settings-back-btn:hover {
     font-size: 32px !important;
     font-weight: 900;
 }
+
+/* =====================================================
+   NOIRBITCOIN — PLATFORM DOCUMENT
+===================================================== */
+
+.platform-document-page {
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: #0d1117;
+    color: #111827;
+}
+
+.platform-document-topbar {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.platform-document-back,
+.platform-document-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    background: #111827;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.platform-document-back:hover,
+.platform-document-print:hover {
+    border-color: #f59e0b;
+    color: #f59e0b;
+}
+
+
+/* =====================================================
+   PAPER
+===================================================== */
+
+.platform-paper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    min-height: 1100px;
+    margin: 0 auto;
+    padding: 70px;
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,.97),
+            rgba(248,246,238,.97)
+        );
+
+    color: #17202a;
+
+    border: 1px solid #d4c8a8;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.45);
+
+}
+
+
+/* Elegant inner border */
+
+.platform-paper::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+
+    border: 1px solid #c9b77d;
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.platform-document-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.platform-document-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 62px;
+    height: 62px;
+
+    margin-bottom: 15px;
+
+    border-radius: 50%;
+
+    background: #111827;
+    color: #f59e0b;
+
+    font-size: 30px;
+}
+
+.platform-document-brand {
+    margin: 0;
+    font-size: 30px;
+    letter-spacing: 4px;
+    font-weight: 700;
+}
+
+.platform-document-subtitle {
+    margin-top: 8px;
+    color: #6b7280;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   VERIFIED MARK
+===================================================== */
+
+.platform-verified-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 25px;
+    padding: 8px 15px;
+
+    border: 1px solid #b59b4c;
+    border-radius: 30px;
+
+    color: #806b25;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.platform-document-title {
+    text-align: center;
+    margin: 30px 0 10px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 34px;
+    letter-spacing: 2px;
+
+    color: #111827;
+}
+
+.platform-document-description {
+    max-width: 650px;
+    margin: 0 auto 35px;
+
+    text-align: center;
+
+    color: #59636f;
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   DOCUMENT INFORMATION
+===================================================== */
+
+.platform-document-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+
+    margin: 35px 0;
+
+    background: #d8d1bd;
+    border: 1px solid #d8d1bd;
+}
+
+.platform-document-meta-item {
+    padding: 18px;
+    background: #f8f6ee;
+}
+
+.platform-document-meta-item span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #737b84;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.platform-document-meta-item strong {
+    font-size: 15px;
+    color: #18212b;
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.platform-document-section {
+    margin-top: 35px;
+}
+
+.platform-document-section h3 {
+    margin-bottom: 10px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 20px;
+
+    color: #18212b;
+}
+
+.platform-document-section p {
+    margin: 0;
+
+    color: #4b5563;
+
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   INFORMATION TABLE
+===================================================== */
+
+.platform-document-table {
+    width: 100%;
+    margin-top: 15px;
+
+    border-collapse: collapse;
+
+    font-size: 14px;
+}
+
+.platform-document-table td {
+    padding: 13px 10px;
+
+    border-bottom: 1px solid #ddd6c4;
+}
+
+.platform-document-table td:first-child {
+    width: 38%;
+
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.platform-document-table td:last-child {
+    color: #18212b;
+}
+
+
+/* =====================================================
+   SIGNATURE AREA
+===================================================== */
+
+.platform-document-signature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 60px;
+
+    margin-top: 70px;
+}
+
+.signature-box {
+    text-align: center;
+}
+
+.signature-line {
+    height: 45px;
+
+    border-bottom: 1px solid #374151;
+
+    margin-bottom: 10px;
+}
+
+.signature-box strong {
+    display: block;
+    font-size: 14px;
+}
+
+.signature-box span {
+    display: block;
+    margin-top: 4px;
+
+    color: #6b7280;
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   DOCUMENT FOOTER
+===================================================== */
+
+.platform-document-footer {
+    margin-top: 70px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #d8d1bd;
+
+    text-align: center;
+
+    color: #737b84;
+
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .platform-document-page {
+        padding: 20px 10px;
+    }
+
+    .platform-paper {
+        padding: 45px 25px;
+        min-height: auto;
+    }
+
+    .platform-paper::before {
+        inset: 10px;
+    }
+
+    .platform-document-title {
+        font-size: 26px;
+    }
+
+    .platform-document-meta {
+        grid-template-columns: 1fr;
+    }
+
+    .platform-document-signature {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-top: 50px;
+    }
+
+    .platform-document-topbar {
+        flex-wrap: wrap;
+    }
+
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+@media print {
+
+    body {
+        background: #fff !important;
+    }
+
+    .platform-document-page {
+        padding: 0;
+        background: #fff;
+    }
+
+    .platform-document-topbar {
+        display: none;
+    }
+
+    .platform-paper {
+        box-shadow: none;
+        border: none;
+        max-width: none;
+        min-height: auto;
+    }
+
+}
