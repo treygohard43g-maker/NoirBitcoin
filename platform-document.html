@@ -472,6 +472,48 @@
 
 </div>
 
+<script type="module">
+
+import { auth } from "./firebase.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const ADMIN_UID = "5jLniALGV6NvdsLSK43wON8upVj1";
+
+onAuthStateChanged(auth, (user) => {
+
+    /*
+     * User is not authenticated
+     */
+    if (!user) {
+
+        window.location.replace("login.html");
+
+        return;
+    }
+
+
+    /*
+     * User is authenticated but is not the administrator
+     */
+    if (user.uid !== ADMIN_UID) {
+
+        window.location.replace("dashboard.html");
+
+        return;
+    }
+
+
+    /*
+     * Administrator verified.
+     * The document can remain visible.
+     */
+
+});
+
+</script>
 
 </body>
 
