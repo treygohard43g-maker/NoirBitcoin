@@ -107,6 +107,17 @@ NOIRBITCOIN
     Login Activity
     </a>
     
+    <a href="platform-document.html"
+   id="adminPlatformDocumentLink"
+   class="support-menu-item"
+   style="display: none;">
+
+    <i class="fa-solid fa-certificate"></i>
+
+    Platform Document
+
+</a>
+
     <a href="settings.html">
     <i class="fa-solid fa-gear"></i>
     Settings
@@ -1122,7 +1133,9 @@ import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+
 const ADMIN_UID = "5jLniALGV6NvdsLSK43wON8upVj1";
+
 
 const adminSupportLink =
     document.getElementById("adminSupportLink");
@@ -1130,27 +1143,54 @@ const adminSupportLink =
 const adminLoginActivityLink =
     document.getElementById("adminLoginActivityLink");
 
+const adminPlatformDocumentLink =
+    document.getElementById("adminPlatformDocumentLink");
+
+
 onAuthStateChanged(auth, (user) => {
 
-    if (user && user.uid === ADMIN_UID) {
+    const isAdmin =
+        user && user.uid === ADMIN_UID;
 
-        if (adminSupportLink) {
-            adminSupportLink.style.display = "flex";
-        }
 
-        if (adminLoginActivityLink) {
-            adminLoginActivityLink.style.display = "flex";
-        }
+    /*
+    =====================================================
+    ADMIN SUPPORT
+    =====================================================
+    */
 
-    } else {
+    if (adminSupportLink) {
 
-        if (adminSupportLink) {
-            adminSupportLink.style.display = "none";
-        }
+        adminSupportLink.style.display =
+            isAdmin ? "flex" : "none";
 
-        if (adminLoginActivityLink) {
-            adminLoginActivityLink.style.display = "none";
-        }
+    }
+
+
+    /*
+    =====================================================
+    LOGIN ACTIVITY
+    =====================================================
+    */
+
+    if (adminLoginActivityLink) {
+
+        adminLoginActivityLink.style.display =
+            isAdmin ? "flex" : "none";
+
+    }
+
+
+    /*
+    =====================================================
+    PLATFORM DOCUMENT
+    =====================================================
+    */
+
+    if (adminPlatformDocumentLink) {
+
+        adminPlatformDocumentLink.style.display =
+            isAdmin ? "flex" : "none";
 
     }
 
